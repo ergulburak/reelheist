@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "Télécharge séries, films et vidéos YouTube en MP4 avec toutes les pistes audio, et les sous-titres en SRT."
+  },
+  "tab_page": {
+    "message": "Cette page"
+  },
+  "tab_queue": {
+    "message": "File d'attente"
+  },
+  "lbl_name": {
+    "message": "Nom"
+  },
+  "lbl_kind": {
+    "message": "Type"
+  },
+  "kind_episode": {
+    "message": "Série"
+  },
+  "kind_movie": {
+    "message": "Film"
+  },
+  "kind_video": {
+    "message": "Vidéo"
+  },
+  "lbl_season": {
+    "message": "Saison"
+  },
+  "lbl_episode": {
+    "message": "Épisode"
+  },
+  "lbl_year": {
+    "message": "Année"
+  },
+  "lbl_channel": {
+    "message": "Chaîne / dossier"
+  },
+  "lbl_source": {
+    "message": "Source"
+  },
+  "lbl_quality": {
+    "message": "Qualité"
+  },
+  "lbl_audio": {
+    "message": "Audio"
+  },
+  "lbl_subtitles": {
+    "message": "Sous-titres"
+  },
+  "btn_download": {
+    "message": "Télécharger"
+  },
+  "playlist_summary": {
+    "message": "Ajouter la playlist à la file"
+  },
+  "btn_find_playlist": {
+    "message": "Charger la liste"
+  },
+  "season_summary": {
+    "message": "Ajouter la saison à la file"
+  },
+  "btn_find_episodes": {
+    "message": "Trouver les épisodes"
+  },
+  "btn_clear_done": {
+    "message": "Retirer les tâches terminées de la liste"
+  },
+  "settings_summary": {
+    "message": "Réglages"
+  },
+  "lbl_outdir": {
+    "message": "Dossier de téléchargement"
+  },
+  "btn_save": {
+    "message": "Enregistrer"
+  },
+  "target_line": {
+    "message": "Enregistré dans : {path}"
+  },
+  "default_dir": {
+    "message": "Téléchargements"
+  },
+  "quality_file": {
+    "message": "Qualité du fichier"
+  },
+  "quality_single": {
+    "message": "Qualité unique"
+  },
+  "source_file": {
+    "message": "Fichier MP4"
+  },
+  "audio_all_included": {
+    "message": "Toutes les pistes audio de la vidéo sont incluses."
+  },
+  "tag_original": {
+    "message": "original"
+  },
+  "tag_default": {
+    "message": "par défaut"
+  },
+  "tag_auto": {
+    "message": "automatique"
+  },
+  "audios_other": {
+    "message": "Autres langues ({n})"
+  },
+  "subs_other": {
+    "message": "Autres sous-titres ({n})"
+  },
+  "subs_none": {
+    "message": "Aucun sous-titre trouvé. Si vous activez les sous-titres dans le lecteur, l'extension les capture aussi."
+  },
+  "status_playlist_page": {
+    "message": "C'est une page de playlist. Ajoutez la liste à la file ci-dessous."
+  },
+  "status_yt_probing": {
+    "message": "Analyse de la vidéo YouTube... (quelques secondes)"
+  },
+  "status_yt_ready": {
+    "message": "Vidéo YouTube · {duration} · {n} langues audio"
+  },
+  "playlist_loading": {
+    "message": "Chargement de la liste..."
+  },
+  "playlist_failed": {
+    "message": "Impossible de charger la liste : {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} vidéos · dossier : {folder}"
+  },
+  "btn_add_videos": {
+    "message": "Ajouter les vidéos sélectionnées à la file"
+  },
+  "status_inspecting_page": {
+    "message": "Analyse de la page..."
+  },
+  "status_open_yt": {
+    "message": "Ouvrez une vidéo ou une playlist YouTube."
+  },
+  "status_no_video": {
+    "message": "Aucune vidéo trouvée sur cette page pour l'instant. Lancez la lecture dans le lecteur ou démarrez-le avec le bouton ci-dessous."
+  },
+  "btn_start_player": {
+    "message": "Démarrer le lecteur"
+  },
+  "status_starting_player": {
+    "message": "Démarrage du lecteur..."
+  },
+  "status_inspecting_sources": {
+    "message": "Analyse des sources..."
+  },
+  "status_sources_unreadable": {
+    "message": "Impossible de lire les adresses capturées. Rechargez la page et lancez la vidéo. {why}"
+  },
+  "status_video_found": {
+    "message": "Vidéo trouvée"
+  },
+  "status_video_found_dur": {
+    "message": "Vidéo trouvée · {duration}"
+  },
+  "add_failed": {
+    "message": "Impossible d'ajouter à la file : {error}"
+  },
+  "episodes_searching": {
+    "message": "Recherche des épisodes..."
+  },
+  "episodes_none": {
+    "message": "Aucun lien d'épisode trouvé sur cette page. Ouvrez une page qui affiche la liste des épisodes de la série."
+  },
+  "season_n": {
+    "message": "Saison {n}"
+  },
+  "episode_n": {
+    "message": "Épisode {n}"
+  },
+  "btn_add_episodes": {
+    "message": "Ajouter les épisodes sélectionnés à la file"
+  },
+  "season_hint": {
+    "message": "L'extension ouvre chaque épisode dans une petite fenêtre en arrière-plan pour trouver l'adresse de la vidéo. Ne fermez pas cette fenêtre."
+  },
+  "state_queued": {
+    "message": "En attente"
+  },
+  "state_downloading": {
+    "message": "Téléchargement"
+  },
+  "state_muxing": {
+    "message": "Création du MP4"
+  },
+  "state_done": {
+    "message": "Terminé"
+  },
+  "state_failed": {
+    "message": "Échec"
+  },
+  "state_canceled": {
+    "message": "Annulé"
+  },
+  "percent": {
+    "message": "{n} %"
+  },
+  "eta_min": {
+    "message": "{n} min restantes"
+  },
+  "eta_sec": {
+    "message": "{n} s restantes"
+  },
+  "speed": {
+    "message": "{n} Mo/s"
+  },
+  "connections": {
+    "message": "{n} connexions"
+  },
+  "subs_count": {
+    "message": "{n} sous-titres"
+  },
+  "avg_speed": {
+    "message": "moy. {n} Mo/s"
+  },
+  "unit_h": {
+    "message": "h"
+  },
+  "unit_min": {
+    "message": "min"
+  },
+  "btn_cancel": {
+    "message": "Annuler"
+  },
+  "btn_retry": {
+    "message": "Réessayer"
+  },
+  "btn_open_folder": {
+    "message": "Ouvrir le dossier"
+  },
+  "btn_remove": {
+    "message": "Retirer"
+  },
+  "queue_empty": {
+    "message": "La file d'attente est vide."
+  },
+  "season_progress": {
+    "message": "Saison : {done}/{total} épisodes prêts"
+  },
+  "season_progress_current": {
+    "message": "Saison : {done}/{total} épisodes prêts (épisode {n} en cours)"
+  },
+  "season_failed": {
+    "message": "Saison {season}, épisode {episode} : ajout impossible : {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ Télécharger"
+  },
+  "overlay_close": {
+    "message": "Fermer"
+  },
+  "err_link_expired": {
+    "message": "Le lien a expiré. « Réessayer » ouvre la page et renouvelle les adresses."
+  },
+  "err_drm": {
+    "message": "Cette vidéo est protégée par DRM et ne peut pas être téléchargée."
+  },
+  "err_no_quality": {
+    "message": "La qualité choisie est introuvable dans la playlist."
+  },
+  "err_playlist_empty": {
+    "message": "La playlist de la vidéo est vide."
+  },
+  "err_not_hls": {
+    "message": "La source n'est pas une playlist vidéo valide."
+  },
+  "err_ffmpeg_missing": {
+    "message": "ffmpeg est introuvable. Lancez install.ps1 puis réessayez."
+  },
+  "err_ytdlp_missing": {
+    "message": "Le composant YouTube (yt-dlp) n'a pas pu être téléchargé. Vérifiez votre connexion internet."
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube n'a pas fourni la vidéo. Réessayez plus tard."
+  },
+  "err_live": {
+    "message": "Les directs ne peuvent pas être téléchargés. Réessayez quand la diffusion sera terminée."
+  },
+  "err_bad_segment": {
+    "message": "Le serveur envoie des parties de vidéo corrompues. Réessayez plus tard."
+  },
+  "err_no_video": {
+    "message": "Aucun format vidéo utilisable n'a été trouvé."
+  },
+  "err_internal": {
+    "message": "Une erreur inattendue s'est produite dans le programme auxiliaire."
+  },
+  "err_helper_missing": {
+    "message": "Le programme auxiliaire est introuvable. Lancez install.ps1, puis redémarrez le navigateur."
+  },
+  "err_helper_no_reply": {
+    "message": "Le programme auxiliaire n'a pas répondu."
+  },
+  "err_helper_unreachable": {
+    "message": "Impossible de se connecter au programme auxiliaire."
+  },
+  "err_episode_timeout": {
+    "message": "Aucune vidéo trouvée (délai dépassé)."
+  },
+  "err_episode_unreadable": {
+    "message": "Impossible de lire les adresses vidéo capturées."
+  },
+  "err_bad_request": {
+    "message": "La requête n’est pas valide."
+  },
+  "already_downloaded": {
+    "message": "✓ Téléchargé · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "Lire"
+  },
+  "btn_folder": {
+    "message": "Dossier"
+  },
+  "btn_redownload": {
+    "message": "Télécharger à nouveau"
+  },
+  "download": {
+    "message": "Télécharger"
+  },
+  "overlayDownload": {
+    "message": "⬇ Télécharger"
+  },
+  "badge_downloaded": {
+    "message": "Téléchargé"
+  },
+  "status_searching": {
+    "message": "Recherche de la vidéo…"
+  },
+  "status_press_play": {
+    "message": "Appuyez sur ▶ dans le lecteur"
+  },
+  "chip_audio_all": {
+    "message": "Tout l’audio"
+  },
+  "chip_subs_off": {
+    "message": "Désactivé"
+  },
+  "btn_edit_meta": {
+    "message": "✎ Nom et dossier"
+  },
+  "est_min": {
+    "message": "~{n} min"
+  },
+  "downloading_close_hint": {
+    "message": "Vous pouvez fermer l’onglet ; le téléchargement continue en arrière-plan."
+  },
+  "hint_next_ep": {
+    "message": "Suivant : Épisode {n}"
+  },
+  "hint_add_season_rest": {
+    "message": "Ajouter le reste de la saison ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "Actualiser et réessayer"
+  },
+  "lbl_error_details": {
+    "message": "Détails techniques"
+  },
+  "status_unsupported": {
+    "message": "Aucune vidéo téléchargeable sur cette page."
+  },
+  "status_no_helper": {
+    "message": "L’application ReelHeist n’est pas installée"
+  },
+  "btn_download_installer": {
+    "message": "Télécharger l’installateur"
+  },
+  "status_bar_downloading": {
+    "message": "Téléchargement : {name}"
+  },
+  "status_bar_downloads": {
+    "message": "Téléchargements"
+  },
+  "state_paused": {
+    "message": "En pause"
+  },
+  "btn_pause": {
+    "message": "Pause"
+  },
+  "btn_resume": {
+    "message": "Reprendre"
+  },
+  "set_grp_theme": {
+    "message": "Thème"
+  },
+  "theme_red": {
+    "message": "Rouge"
+  },
+  "theme_black_beige": {
+    "message": "Noir/beige"
+  },
+  "theme_beige_black": {
+    "message": "Beige/noir"
+  },
+  "theme_midnight": {
+    "message": "Minuit"
+  },
+  "theme_emerald": {
+    "message": "Émeraude"
+  },
+  "theme_amethyst": {
+    "message": "Améthyste"
+  },
+  "theme_amber": {
+    "message": "Ambre"
+  },
+  "theme_snow": {
+    "message": "Neige"
+  },
+  "theme_rose": {
+    "message": "Rose"
+  },
+  "set_grp_lang": {
+    "message": "Langue"
+  },
+  "lang_auto": {
+    "message": "Automatique"
+  },
+  "set_grp_defaults": {
+    "message": "Valeurs par défaut"
+  },
+  "quality_highest": {
+    "message": "La plus élevée"
+  },
+  "lbl_audio_langs": {
+    "message": "Langues audio"
+  },
+  "lbl_sub_langs": {
+    "message": "Langues des sous-titres"
+  },
+  "lbl_motion": {
+    "message": "Aperçu animé"
+  },
+  "motion_auto": {
+    "message": "Automatique"
+  },
+  "motion_on": {
+    "message": "Activé"
+  },
+  "motion_off": {
+    "message": "Désactivé"
+  },
+  "set_grp_repos": {
+    "message": "Dépôts de sites"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "Ajouter"
+  },
+  "repo_trust_prompt": {
+    "message": "Faites-vous confiance à ce dépôt ? Empreinte : {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "Faire confiance"
+  },
+  "btn_remove_repo": {
+    "message": "Supprimer"
+  },
+  "placeholder_search_packs": {
+    "message": "Rechercher des paquets…"
+  },
+  "btn_install_pack": {
+    "message": "Installer"
+  },
+  "btn_uninstall_pack": {
+    "message": "Désinstaller"
+  },
+  "btn_update_packs": {
+    "message": "Mettre à jour"
+  },
+  "lbl_auto_update_packs": {
+    "message": "Mise à jour automatique des paquets"
+  },
+  "packs_updated": {
+    "message": "Mis à jour : {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "Dépôt inaccessible."
+  },
+  "err_repo_invalid": {
+    "message": "Format de dépôt invalide."
+  },
+  "err_repo_untrusted": {
+    "message": "Approuvez le dépôt avant d’installer."
+  },
+  "err_pack_hash": {
+    "message": "Le hachage du paquet ne correspond pas."
+  },
+  "err_pack_signature": {
+    "message": "Signature du paquet invalide."
+  },
+  "err_pack_invalid": {
+    "message": "Schéma du paquet invalide."
+  },
+  "err_pack_not_found": {
+    "message": "Paquet introuvable dans le dépôt."
+  },
+  "set_grp_support": {
+    "message": "Soutien"
+  },
+  "btn_support": {
+    "message": "★ Soutenir le projet"
+  },
+  "set_grp_about": {
+    "message": "À propos"
+  },
+  "lbl_version": {
+    "message": "Version {v}"
+  },
+  "btn_check_updates": {
+    "message": "Vérifier les mises à jour"
+  },
+  "update_up_to_date": {
+    "message": "À jour ({v})"
+  },
+  "update_available": {
+    "message": "Nouvelle version disponible : {v}"
+  },
+  "update_check_failed": {
+    "message": "Impossible de vérifier les mises à jour."
+  },
+  "btn_update_now": {
+    "message": "Mettre à jour"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "Licences"
+  }
+}

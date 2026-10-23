@@ -1,0 +1,20 @@
+{
+  "title": "Adicionar o ReelHeist ao navegador",
+  "subtitle": "Siga estes 3 passos rápidos para concluir a instalação:",
+  "status_waiting": "Aguardando conexão da extensão…",
+  "status_connected": "Pronto ✓ Extensão conectada!",
+  "step1_title": "1. Abra a página de Extensões",
+  "step1_desc": "Copie este endereço, cole na barra de endereços do navegador e pressione Enter:",
+  "step2_title": "2. Ative o Modo do desenvolvedor",
+  "step2_desc": "Ative a chave \"Modo do desenvolvedor\" no canto superior direito.",
+  "step3_title": "3. Clique em \"Carregar sem compactação\"",
+  "step3_desc": "Clique em \"Carregar sem compactação\" e selecione ou cole o caminho desta pasta:",
+  "btn_copy": "Copiar",
+  "btn_copied": "Copiado ✓",
+  "note_devmode_title": "Sobre o Modo do desenvolvedor",
+  "note_devmode_desc": "O navegador pode exibir um lembrete sobre extensões em modo do desenvolvedor. Isso é normal.",
+  "note_smartscreen_title": "Sobre o Windows SmartScreen",
+  "note_smartscreen_desc": "Se o Windows exibir \"O Windows protegeu o seu PC\", clique em \"Mais informações\" e em \"Executar assim mesmo\".",
+  "reload_title": "Atualizando uma instalação existente?",
+  "reload_desc": "Abra a página de Extensões e clique no ícone Recarregar (↻) no cartão do ReelHeist."
+}

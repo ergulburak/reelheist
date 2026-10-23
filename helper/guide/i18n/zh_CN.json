@@ -1,0 +1,20 @@
+{
+  "title": "将 ReelHeist 添加到浏览器",
+  "subtitle": "只需 3 个简单步骤即可完成安装：",
+  "status_waiting": "正在等待扩展程序连接…",
+  "status_connected": "就绪 ✓ 扩展程序已连接！",
+  "step1_title": "1. 打开扩展程序页面",
+  "step1_desc": "复制以下地址，粘贴到浏览器地址栏并按回车键：",
+  "step2_title": "2. 开启“开发者模式”",
+  "step2_desc": "打开扩展程序页面右上角的“开发者模式”开关。",
+  "step3_title": "3. 点击“加载已解压的扩展程序”",
+  "step3_desc": "点击“加载已解压的扩展程序”，然后选择或粘贴以下文件夹路径：",
+  "btn_copy": "复制",
+  "btn_copied": "已复制 ✓",
+  "note_devmode_title": "关于开发者模式提示",
+  "note_devmode_desc": "浏览器有时会针对开发者模式下的扩展程序显示提醒，这属于正常现象。",
+  "note_smartscreen_title": "关于 Windows SmartScreen",
+  "note_smartscreen_desc": "如果 Windows 显示“Windows 已保护你的电脑”，请点击“更多信息”→“仍要运行”。",
+  "reload_title": "正在更新现有安装？",
+  "reload_desc": "打开扩展程序页面，点击 ReelHeist 卡片上的重新加载 (↻) 图标。"
+}

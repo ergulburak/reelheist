@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReelHeist Setup Guide</title>
+  <style>
+    :root {
+      --bg: #0e0e12;
+      --surface: #17171d;
+      --surface-2: #202029;
+      --line: #2c2c38;
+      --text: #ececf1;
+      --muted: #9a9aa6;
+      --accent: #ff3b47;
+      --ok: #22c55e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.5 'Segoe UI', system-ui, sans-serif;
+      padding: 28px 16px 48px;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+    .logo b { color: var(--accent); }
+    select {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 13px;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+    .status-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .status-banner .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.2s ease-in-out infinite alternate;
+    }
+    .status-banner.connected {
+      border-color: var(--ok);
+      background: rgba(34, 197, 94, 0.12);
+      color: #dcfce7;
+    }
+    .status-banner.connected .dot {
+      background: var(--ok);
+      animation: none;
+    }
+    @keyframes pulse {
+      from { opacity: 0.35; }
+      to { opacity: 1; }
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tab {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+    .step h2 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+    .step p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .copy-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+    }
+    .copy-box code {
+      flex: 1;
+      font: 600 13.5px Consolas, monospace;
+      overflow-wrap: anywhere;
+      direction: ltr;
+      text-align: left;
+    }
+    .copy-btn {
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      border-radius: 7px;
+      padding: 6px 12px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      flex: none;
+    }
+    .copy-btn:hover { filter: brightness(1.08); }
+    .step img {
+      display: block;
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+    .notes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .note {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+    .note strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .note span {
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <div class="logo">Reel<b>Heist</b></div>
+      <select id="langSelect" aria-label="Language"></select>
+    </div>
+
+    <h1 id="titleText">Add ReelHeist to your browser</h1>
+    <p class="subtitle" id="subtitleText">Follow these 3 quick steps to finish setup:</p>
+
+    <div id="statusBanner" class="status-banner">
+      <span class="dot"></span>
+      <span id="statusText">Waiting for extension connection…</span>
+    </div>
+
+    <div class="tabs" id="browserTabs">
+      <button type="button" class="tab active" data-browser="brave">Brave</button>
+      <button type="button" class="tab" data-browser="chrome">Chrome</button>
+      <button type="button" class="tab" data-browser="edge">Edge</button>
+    </div>
+
+    <div class="step">
+      <h2 id="step1Title">1. Open the Extensions page</h2>
+      <p id="step1Desc">Copy this address, paste it into your browser address bar, and press Enter:</p>
+      <div class="copy-box">
+        <code id="extUrlCode">brave://extensions</code>
+        <button type="button" class="copy-btn" id="copyUrlBtn">Copy</button>
+      </div>
+      <img src="/img/step1.png" alt="Step 1">
+    </div>
+
+    <div class="step">
+      <h2 id="step2Title">2. Enable Developer mode</h2>
+      <p id="step2Desc">Turn on the "Developer mode" switch in the top-right corner.</p>
+      <img src="/img/step2.png" alt="Step 2">
+    </div>
+
+    <div class="step">
+      <h2 id="step3Title">3. Click "Load unpacked"</h2>
+      <p id="step3Desc">Click "Load unpacked" and select or paste this extension folder path:</p>
+      <div class="copy-box">
+        <code id="extPathCode"></code>
+        <button type="button" class="copy-btn" id="copyPathBtn">Copy</button>
+      </div>
+      <img src="/img/step3.png" alt="Step 3">
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <strong id="reloadTitle">Updating an existing install?</strong>
+        <span id="reloadDesc">Open your browser Extensions page and click the Reload (↻) icon on the ReelHeist card.</span>
+      </div>
+      <div class="note">
+        <strong id="devmodeTitle">About Developer mode</strong>
+        <span id="devmodeDesc">Browsers may show a reminder when running unpacked extensions in Developer mode. This is normal—keep the extension enabled.</span>
+      </div>
+      <div class="note">
+        <strong id="smartscreenTitle">About Windows SmartScreen</strong>
+        <span id="smartscreenDesc">If Windows shows "Windows protected your PC" when running the installer, click "More info" and then "Run anyway".</span>
+      </div>
+    </div>
+  </div>
+  <script src="/guide.js"></script>
+</body>
+</html>

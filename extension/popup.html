@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-theme="red">
+<head>
+  <meta charset="utf-8">
+  <title>ReelHeist</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <header class="head">
+    <button type="button" id="btnBack" class="iconbtn" data-i18n-aria="overlay_close" hidden></button>
+    <span id="headerLogo" class="logo"></span>
+    <span id="headerTitle" class="logo" hidden></span>
+    <span id="doneBadge" class="done-badge" hidden><span data-i18n="badge_downloaded"></span></span>
+    <button type="button" id="btnSettings" class="iconbtn" data-i18n-title="settings_summary" data-i18n-aria="settings_summary"></button>
+  </header>
+
+  <section id="page" class="view">
+    <div id="preview" class="loop" hidden>
+      <div class="film"></div>
+      <img id="previewImg" alt="" hidden>
+      <video id="previewVideo" muted loop playsinline></video>
+      <div class="shade"></div>
+      <div class="inner">
+        <span id="previewMeta" class="meta"></span>
+        <h3 id="previewTitle"></h3>
+      </div>
+    </div>
+
+    <div class="body">
+      <div id="pageStatus" class="status"></div>
+
+      <div id="searchingBox" class="state-box" hidden>
+        <div class="skel-card"></div>
+        <div class="skel-row"></div>
+        <div id="searchingPrompt" class="searching-prompt" hidden>
+          <div class="muted small" data-i18n="status_press_play"></div>
+          <button type="button" id="startPlayerBtn" data-i18n="btn_start_player"></button>
+        </div>
+      </div>
+
+      <div id="errorBox" class="state-box" hidden>
+        <div id="errorText" class="err"></div>
+        <button type="button" id="reloadRetryBtn" class="primary" data-i18n="btn_reload_retry"></button>
+        <details id="errorDetailsWrap" class="more" hidden>
+          <summary data-i18n="lbl_error_details"></summary>
+          <pre id="errorDetail" class="err-detail"></pre>
+        </details>
+      </div>
+
+      <div id="noHelperBox" class="state-box" hidden>
+        <div class="err" data-i18n="status_no_helper"></div>
+        <button type="button" id="noHelperBtn" class="primary" data-i18n="btn_download_installer"></button>
+      </div>
+
+      <div id="pageForm" hidden>
+        <div class="chips-area">
+          <div id="chipBar" class="chip-bar">
+            <button type="button" id="chip-quality" class="chip on" aria-expanded="false"></button>
+            <button type="button" id="chip-audio" class="chip on" aria-expanded="false"></button>
+            <button type="button" id="chip-subs" class="chip on" aria-expanded="false"></button>
+          </div>
+          <div id="menu-quality" class="chip-menu" hidden>
+            <div id="qualityList" class="menu-list"></div>
+            <select id="quality" hidden></select>
+          </div>
+          <div id="menu-audio" class="chip-menu" hidden>
+            <div id="audios"></div>
+          </div>
+          <div id="menu-subs" class="chip-menu" hidden>
+            <div id="subs"></div>
+          </div>
+        </div>
+
+        <div class="edit-row">
+          <button type="button" id="editToggle" class="link edit-link" data-i18n="btn_edit_meta"></button>
+        </div>
+
+        <div id="metaEditor" class="meta-editor" hidden>
+          <div class="row">
+            <label class="grow"><span data-i18n="lbl_name"></span> <input id="name" type="text"></label>
+          </div>
+          <div class="row">
+            <label><span data-i18n="lbl_kind"></span>
+              <select id="kind"><option value="episode" data-i18n="kind_episode"></option><option value="movie" data-i18n="kind_movie"></option><option value="video" data-i18n="kind_video"></option></select>
+            </label>
+            <label class="ep"><span data-i18n="lbl_season"></span> <input id="season" type="number" min="0" max="99"></label>
+            <label class="ep"><span data-i18n="lbl_episode"></span> <input id="episode" type="number" min="0" max="9999"></label>
+            <label class="mv"><span data-i18n="lbl_year"></span> <input id="year" type="number" min="1900" max="2100"></label>
+            <label class="vd grow"><span data-i18n="lbl_channel"></span> <input id="channel" type="text"></label>
+          </div>
+          <div class="row" id="sourceRow">
+            <label class="grow"><span data-i18n="lbl_source"></span> <select id="source"></select></label>
+          </div>
+          <div class="muted small" id="target"></div>
+        </div>
+
+        <div id="existsBox" class="exists" hidden>
+          <div id="existsLine" class="exists-line"></div>
+          <div class="row exists-actions">
+            <button type="button" id="existsPlay" class="btn-secondary"><span data-i18n="btn_play"></span></button>
+            <button type="button" id="existsFolder" class="btn-secondary"><span data-i18n="btn_folder"></span></button>
+          </div>
+          <button type="button" id="redownload" class="link" data-i18n="btn_redownload"></button>
+        </div>
+
+        <div id="pageProgressWrap" hidden>
+          <div id="pageProgress" class="prog">
+            <i id="pageProgressFill"></i>
+            <span id="pageProgressLeft"></span>
+            <small id="pageProgressRight"></small>
+          </div>
+          <div id="downloadingHint" class="hint" data-i18n="downloading_close_hint"></div>
+        </div>
+
+        <button type="button" id="download" class="btn-main">
+          <span id="downloadMainLabel" class="btn-main-left"><span data-i18n="download"></span></span>
+          <small id="downloadEst"></small>
+        </button>
+
+        <div id="seasonHintRow" class="hint" hidden></div>
+      </div>
+
+      <details id="playlistBox" hidden>
+        <summary data-i18n="playlist_summary"></summary>
+        <div id="playlistContent">
+          <button type="button" id="findPlaylist" data-i18n="btn_find_playlist"></button>
+        </div>
+      </details>
+
+      <details id="seasonBox" hidden>
+        <summary data-i18n="season_summary"></summary>
+        <div id="seasonContent">
+          <button type="button" id="findEpisodes" data-i18n="btn_find_episodes"></button>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="queue" class="view" hidden>
+    <div class="body">
+      <div id="seasonStatus" class="status small"></div>
+      <div class="queue-head">
+        <button type="button" id="clearDone" class="link" data-i18n="btn_clear_done"></button>
+      </div>
+      <div id="jobs"></div>
+    </div>
+  </section>
+
+  <section id="settings" class="view" hidden>
+    <div class="body set" id="settingsBody">
+      <div class="grp">
+        <div class="lbl" data-i18n="set_grp_theme"></div>
+        <div class="sw" id="themeSwatches">
+          <button type="button" class="sw-item" data-theme-choice="red">
+            <i class="t" data-theme="red"></i>
+            <span data-i18n="theme_red"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="black-beige">
+            <i class="t" data-theme="black-beige"></i>
+            <span data-i18n="theme_black_beige"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="beige-black">
+            <i class="t" data-theme="beige-black"></i>
+            <span data-i18n="theme_beige_black"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="midnight">
+            <i class="t" data-theme="midnight"></i>
+            <span data-i18n="theme_midnight"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="emerald">
+            <i class="t" data-theme="emerald"></i>
+            <span data-i18n="theme_emerald"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="amethyst">
+            <i class="t" data-theme="amethyst"></i>
+            <span data-i18n="theme_amethyst"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="amber">
+            <i class="t" data-theme="amber"></i>
+            <span data-i18n="theme_amber"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="snow">
+            <i class="t" data-theme="snow"></i>
+            <span data-i18n="theme_snow"></span>
+          </button>
+          <button type="button" class="sw-item" data-theme-choice="rose">
+            <i class="t" data-theme="rose"></i>
+            <span data-i18n="theme_rose"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="lbl" data-i18n="set_grp_lang"></div>
+        <select id="setLang"></select>
+      </div>
+
+      <div class="grp">
+        <div class="lbl" data-i18n="set_grp_defaults"></div>
+        <div class="set-grid">
+          <label><span data-i18n="lbl_quality"></span> <select id="setDefaultQuality"></select></label>
+          <label><span data-i18n="lbl_motion"></span>
+            <select id="setMotion">
+              <option value="auto" data-i18n="motion_auto"></option>
+              <option value="on" data-i18n="motion_on"></option>
+              <option value="off" data-i18n="motion_off"></option>
+            </select>
+          </label>
+        </div>
+        <div class="set-grid">
+          <label><span data-i18n="lbl_audio_langs"></span> <input id="setDefaultAudio" type="text"></label>
+          <label><span data-i18n="lbl_sub_langs"></span> <input id="setDefaultSubs" type="text"></label>
+        </div>
+        <div class="row outdir-row">
+          <label class="grow"><span data-i18n="lbl_outdir"></span> <input id="outDir" type="text"></label>
+          <button type="button" id="saveSettings" data-i18n="btn_save"></button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="lbl" data-i18n="set_grp_repos"></div>
+        <div class="row repo-add-row">
+          <input id="repoUrlInput" type="url" class="grow-input" data-i18n-placeholder="placeholder_repo_url">
+          <button type="button" id="addRepoBtn" data-i18n="btn_add_repo"></button>
+        </div>
+        <div id="repoStatus" class="status small" hidden></div>
+        <div id="reposList" class="repos-list"></div>
+        <div id="packsSection" class="packs-section" hidden>
+          <div class="row packs-search-row">
+            <input id="packSearchInput" type="search" class="grow-input" data-i18n-placeholder="placeholder_search_packs">
+            <button type="button" id="updatePacksBtn" data-i18n="btn_update_packs"></button>
+          </div>
+          <div id="packsList" class="packs-list"></div>
+          <label class="check"><input id="autoUpdatePacks" type="checkbox" checked> <span data-i18n="lbl_auto_update_packs"></span></label>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="lbl" data-i18n="set_grp_support"></div>
+        <button type="button" id="supportBtn" class="btn-secondary full-width" data-i18n="btn_support"></button>
+      </div>
+
+      <div class="grp">
+        <div class="lbl" data-i18n="set_grp_about"></div>
+        <div class="about-row">
+          <span id="aboutVersion" class="muted small"></span>
+          <button type="button" id="checkUpdatesBtn" data-i18n="btn_check_updates"></button>
+        </div>
+        <div id="updateStatus" class="status small" hidden></div>
+        <div class="about-links">
+          <button type="button" id="githubLink" class="link" data-i18n="link_github"></button>
+          <button type="button" id="licensesLink" class="link" data-i18n="link_licenses"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="statusBar" class="foot"></footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

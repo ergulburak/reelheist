@@ -1,0 +1,215 @@
+/* Theme tokens. <html data-theme="..."> selects a set; the overlay sets the same attribute on its shadow host.
+   Any element with data-theme gets that set too (the theme swatches in Settings use this). */
+:root, :host,
+[data-theme="red"], :host([data-theme="red"]) {
+  --bg: #0e0e12;
+  --surface: #17171d;
+  --surface-2: #22222a;
+  --surface-3: #2a2a33;
+  --line: #34343e;
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --text: #ececf1;
+  --muted: #9b9ba8;
+  --accent: #ff3b47;
+  --accent-hi: #ff5a64;
+  --accent-lo: #e0222f;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(255, 59, 71, 0.14);
+  --glow: rgba(255, 59, 71, 0.42);
+  --brand: #ff3b47;
+  --shadow: rgba(0, 0, 0, 0.55);
+  --sheen: rgba(255, 255, 255, 0.22);
+  --ok: #3ddc84;
+  --err: #ff7a85;
+  --preview-filter: none;
+}
+
+[data-theme="black-beige"], :host([data-theme="black-beige"]) {
+  --bg: #0b0b0b;
+  --surface: #151513;
+  --surface-2: #201f1c;
+  --surface-3: #292824;
+  --line: #36332c;
+  --line-soft: rgba(239, 230, 214, 0.06);
+  --text: #efe6d6;
+  --muted: #a89f8d;
+  --accent: #e6d5b8;
+  --accent-hi: #f1e4cc;
+  --accent-lo: #cdb995;
+  --accent-text: #0b0b0b;
+  --accent-soft: rgba(230, 213, 184, 0.12);
+  --glow: rgba(230, 213, 184, 0.2);
+  --brand: #e6d5b8;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.4);
+  --ok: #a9c98a;
+  --err: #e59585;
+  --preview-filter: sepia(0.65) saturate(0.85);
+}
+
+[data-theme="beige-black"], :host([data-theme="beige-black"]) {
+  --bg: #f1e9db;
+  --surface: #e9dfcd;
+  --surface-2: #ddd1ba;
+  --surface-3: #f7f1e6;
+  --line: #c6b99f;
+  --line-soft: rgba(21, 20, 18, 0.07);
+  --text: #151412;
+  --muted: #6a6354;
+  --accent: #151412;
+  --accent-hi: #2d2a25;
+  --accent-lo: #0a0908;
+  --accent-text: #f1e9db;
+  --accent-soft: rgba(21, 20, 18, 0.08);
+  --glow: rgba(21, 20, 18, 0.28);
+  --brand: #8a6a3a;
+  --shadow: rgba(60, 45, 20, 0.22);
+  --sheen: rgba(255, 255, 255, 0.14);
+  --ok: #2f6b3a;
+  --err: #a8322d;
+  --preview-filter: none;
+}
+
+/* Midnight: deep navy, electric blue. */
+[data-theme="midnight"], :host([data-theme="midnight"]) {
+  --bg: #0a0e1a;
+  --surface: #121829;
+  --surface-2: #1a2236;
+  --surface-3: #222b42;
+  --line: #2c3650;
+  --line-soft: rgba(160, 190, 255, 0.07);
+  --text: #e8edf8;
+  --muted: #8e99b3;
+  --accent: #4c8dff;
+  --accent-hi: #6ea3ff;
+  --accent-lo: #2f6fe6;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(76, 141, 255, 0.15);
+  --glow: rgba(76, 141, 255, 0.45);
+  --brand: #6ea3ff;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.25);
+  --ok: #3ddc97;
+  --err: #ff7a85;
+  --preview-filter: none;
+}
+
+/* Emerald: dark green, mint. */
+[data-theme="emerald"], :host([data-theme="emerald"]) {
+  --bg: #08110e;
+  --surface: #0f1b17;
+  --surface-2: #16251f;
+  --surface-3: #1d2f28;
+  --line: #263c33;
+  --line-soft: rgba(160, 255, 210, 0.06);
+  --text: #e3f2ea;
+  --muted: #8aa699;
+  --accent: #2ed39a;
+  --accent-hi: #52e3b0;
+  --accent-lo: #1cb37f;
+  --accent-text: #04120c;
+  --accent-soft: rgba(46, 211, 154, 0.14);
+  --glow: rgba(46, 211, 154, 0.36);
+  --brand: #2ed39a;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.3);
+  --ok: #8be07a;
+  --err: #ff8a7a;
+  --preview-filter: none;
+}
+
+/* Amethyst: dark violet, lilac. */
+[data-theme="amethyst"], :host([data-theme="amethyst"]) {
+  --bg: #0f0b16;
+  --surface: #181222;
+  --surface-2: #221a2f;
+  --surface-3: #2b213b;
+  --line: #3a2e4d;
+  --line-soft: rgba(210, 180, 255, 0.07);
+  --text: #efe8fa;
+  --muted: #a497b8;
+  --accent: #a970ff;
+  --accent-hi: #bf93ff;
+  --accent-lo: #8d4ff0;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(169, 112, 255, 0.16);
+  --glow: rgba(169, 112, 255, 0.45);
+  --brand: #bf93ff;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.25);
+  --ok: #4fe0a0;
+  --err: #ff7aa0;
+  --preview-filter: none;
+}
+
+/* Amber: warm dark, gold. */
+[data-theme="amber"], :host([data-theme="amber"]) {
+  --bg: #110d08;
+  --surface: #1a140d;
+  --surface-2: #241c13;
+  --surface-3: #2e2419;
+  --line: #3d3022;
+  --line-soft: rgba(255, 210, 150, 0.07);
+  --text: #f5ead9;
+  --muted: #b3a088;
+  --accent: #ffb340;
+  --accent-hi: #ffc76a;
+  --accent-lo: #f29a12;
+  --accent-text: #1a1105;
+  --accent-soft: rgba(255, 179, 64, 0.14);
+  --glow: rgba(255, 179, 64, 0.36);
+  --brand: #ffb340;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.35);
+  --ok: #8fd16a;
+  --err: #ff8a70;
+  --preview-filter: sepia(0.2) saturate(1.05);
+}
+
+/* Snow: cool white, cobalt. */
+[data-theme="snow"], :host([data-theme="snow"]) {
+  --bg: #f6f7fa;
+  --surface: #ffffff;
+  --surface-2: #eceff5;
+  --surface-3: #ffffff;
+  --line: #d5d9e3;
+  --line-soft: rgba(20, 30, 60, 0.08);
+  --text: #141824;
+  --muted: #5f6678;
+  --accent: #2f5bea;
+  --accent-hi: #4a72f5;
+  --accent-lo: #2247cc;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(47, 91, 234, 0.1);
+  --glow: rgba(47, 91, 234, 0.35);
+  --brand: #2f5bea;
+  --shadow: rgba(20, 30, 60, 0.16);
+  --sheen: rgba(255, 255, 255, 0.3);
+  --ok: #1f9d55;
+  --err: #d22f3f;
+  --preview-filter: none;
+}
+
+/* Rose: soft pink paper, deep rose. */
+[data-theme="rose"], :host([data-theme="rose"]) {
+  --bg: #fbf1f2;
+  --surface: #fff8f9;
+  --surface-2: #f3e0e4;
+  --surface-3: #fffbfc;
+  --line: #e3c4cb;
+  --line-soft: rgba(90, 20, 40, 0.08);
+  --text: #2a1418;
+  --muted: #7a5a61;
+  --accent: #c8325a;
+  --accent-hi: #d94c72;
+  --accent-lo: #a9244a;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(200, 50, 90, 0.1);
+  --glow: rgba(200, 50, 90, 0.32);
+  --brand: #c8325a;
+  --shadow: rgba(90, 20, 40, 0.16);
+  --sheen: rgba(255, 255, 255, 0.3);
+  --ok: #2f8a4f;
+  --err: #b8283a;
+  --preview-filter: none;
+}

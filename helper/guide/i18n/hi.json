@@ -1,0 +1,20 @@
+{
+  "title": "अपने ब्राउज़र में ReelHeist जोड़ें",
+  "subtitle": "सेटअप पूरा करने के लिए इन 3 आसान चरणों का पालन करें:",
+  "status_waiting": "एक्सटेंशन कनेक्शन की प्रतीक्षा हो रही है…",
+  "status_connected": "तैयार ✓ एक्सटेंशन जुड़ गया!",
+  "step1_title": "1. एक्सटेंशन पेज खोलें",
+  "step1_desc": "नीचे दिया गया पता कॉपी करें, ब्राउज़र के एड्रेस बार में पेस्ट करें और Enter दबाएँ:",
+  "step2_title": "2. डेवलपर मोड चालू करें",
+  "step2_desc": "ऊपरी दाएँ कोने में \"Developer mode\" स्विच चालू करें।",
+  "step3_title": "3. \"Load unpacked\" पर क्लिक करें",
+  "step3_desc": "\"Load unpacked\" पर क्लिक करें और यह एक्सटेंशन फ़ोल्डर पथ चुनें या पेस्ट करें:",
+  "btn_copy": "कॉपी करें",
+  "btn_copied": "कॉपी हो गया ✓",
+  "note_devmode_title": "डेवलपर मोड चेतावनी के बारे में",
+  "note_devmode_desc": "ब्राउज़र कभी-कभी डेवलपर मोड एक्सटेंशन के बारे में सूचना दिखा सकता है। यह सामान्य है।",
+  "note_smartscreen_title": "Windows SmartScreen के बारे में",
+  "note_smartscreen_desc": "यदि Windows \"Windows protected your PC\" दिखाता है, तो \"More info\" → \"Run anyway\" पर क्लिक करें।",
+  "reload_title": "मौजूदा इंस्टॉल अपडेट कर रहे हैं?",
+  "reload_desc": "एक्सटेंशन पेज खोलें और ReelHeist कार्ड पर रीलोड (↻) आइकन पर क्लिक करें।"
+}

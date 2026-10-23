@@ -1,0 +1,8 @@
+# Neutrality blocklist format.
+# One term per line. Terms are plain substrings, matched case-insensitive.
+# Lines that start with # are comments. Empty lines are ignored.
+# Copy this file to tools/neutral-blocklist.txt (gitignored) and add the terms.
+#
+# The checker always applies these personal-path patterns (regular expressions):
+# C:\\Users\\[^\\]+
+# @marker\.gs

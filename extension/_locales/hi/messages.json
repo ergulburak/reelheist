@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "सीरीज़, फ़िल्में और YouTube वीडियो को सभी ऑडियो ट्रैक के साथ MP4 में और सबटाइटल को SRT में डाउनलोड करता है।"
+  },
+  "tab_page": {
+    "message": "यह पेज"
+  },
+  "tab_queue": {
+    "message": "कतार"
+  },
+  "lbl_name": {
+    "message": "नाम"
+  },
+  "lbl_kind": {
+    "message": "प्रकार"
+  },
+  "kind_episode": {
+    "message": "सीरीज़"
+  },
+  "kind_movie": {
+    "message": "फ़िल्म"
+  },
+  "kind_video": {
+    "message": "वीडियो"
+  },
+  "lbl_season": {
+    "message": "सीज़न"
+  },
+  "lbl_episode": {
+    "message": "एपिसोड"
+  },
+  "lbl_year": {
+    "message": "वर्ष"
+  },
+  "lbl_channel": {
+    "message": "चैनल / फ़ोल्डर"
+  },
+  "lbl_source": {
+    "message": "स्रोत"
+  },
+  "lbl_quality": {
+    "message": "क्वालिटी"
+  },
+  "lbl_audio": {
+    "message": "ऑडियो"
+  },
+  "lbl_subtitles": {
+    "message": "सबटाइटल"
+  },
+  "btn_download": {
+    "message": "डाउनलोड करें"
+  },
+  "playlist_summary": {
+    "message": "प्लेलिस्ट को कतार में जोड़ें"
+  },
+  "btn_find_playlist": {
+    "message": "सूची लाएँ"
+  },
+  "season_summary": {
+    "message": "सीज़न को कतार में जोड़ें"
+  },
+  "btn_find_episodes": {
+    "message": "एपिसोड खोजें"
+  },
+  "btn_clear_done": {
+    "message": "पूरे हो चुके काम सूची से हटाएँ"
+  },
+  "settings_summary": {
+    "message": "सेटिंग"
+  },
+  "lbl_outdir": {
+    "message": "डाउनलोड फ़ोल्डर"
+  },
+  "btn_save": {
+    "message": "सहेजें"
+  },
+  "target_line": {
+    "message": "सहेजने की जगह: {path}"
+  },
+  "default_dir": {
+    "message": "डाउनलोड"
+  },
+  "quality_file": {
+    "message": "फ़ाइल की क्वालिटी"
+  },
+  "quality_single": {
+    "message": "एक ही क्वालिटी"
+  },
+  "source_file": {
+    "message": "MP4 फ़ाइल"
+  },
+  "audio_all_included": {
+    "message": "वीडियो के सभी ऑडियो ट्रैक लिए जाएँगे।"
+  },
+  "tag_original": {
+    "message": "मूल"
+  },
+  "tag_default": {
+    "message": "डिफ़ॉल्ट"
+  },
+  "tag_auto": {
+    "message": "स्वचालित"
+  },
+  "audios_other": {
+    "message": "अन्य भाषाएँ ({n})"
+  },
+  "subs_other": {
+    "message": "अन्य सबटाइटल ({n})"
+  },
+  "subs_none": {
+    "message": "कोई सबटाइटल नहीं मिला। अगर आप प्लेयर में सबटाइटल चालू करेंगे तो एक्सटेंशन उसे भी पकड़ लेगा।"
+  },
+  "status_playlist_page": {
+    "message": "यह प्लेलिस्ट का पेज है। नीचे से सूची को कतार में जोड़ें।"
+  },
+  "status_yt_probing": {
+    "message": "YouTube वीडियो जाँचा जा रहा है... (कुछ सेकंड लगते हैं)"
+  },
+  "status_yt_ready": {
+    "message": "YouTube वीडियो · {duration} · {n} ऑडियो भाषाएँ"
+  },
+  "playlist_loading": {
+    "message": "सूची लाई जा रही है..."
+  },
+  "playlist_failed": {
+    "message": "सूची नहीं मिल सकी: {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} वीडियो · फ़ोल्डर: {folder}"
+  },
+  "btn_add_videos": {
+    "message": "चुने हुए वीडियो कतार में जोड़ें"
+  },
+  "status_inspecting_page": {
+    "message": "पेज जाँचा जा रहा है..."
+  },
+  "status_open_yt": {
+    "message": "कोई YouTube वीडियो या प्लेलिस्ट खोलें।"
+  },
+  "status_no_video": {
+    "message": "इस पेज पर अभी कोई वीडियो नहीं मिला। प्लेयर में प्ले दबाएँ या नीचे के बटन से उसे शुरू करें।"
+  },
+  "btn_start_player": {
+    "message": "प्लेयर शुरू करें"
+  },
+  "status_starting_player": {
+    "message": "प्लेयर शुरू किया जा रहा है..."
+  },
+  "status_inspecting_sources": {
+    "message": "स्रोत जाँचे जा रहे हैं..."
+  },
+  "status_sources_unreadable": {
+    "message": "पकड़े गए पते पढ़े नहीं जा सके। पेज को रीफ़्रेश करके वीडियो चलाएँ। {why}"
+  },
+  "status_video_found": {
+    "message": "वीडियो मिल गया"
+  },
+  "status_video_found_dur": {
+    "message": "वीडियो मिल गया · {duration}"
+  },
+  "add_failed": {
+    "message": "कतार में नहीं जोड़ा जा सका: {error}"
+  },
+  "episodes_searching": {
+    "message": "एपिसोड खोजे जा रहे हैं..."
+  },
+  "episodes_none": {
+    "message": "इस पेज पर एपिसोड के लिंक नहीं मिले। वह पेज खोलें जिसमें सीरीज़ के एपिसोड की सूची दिखती हो।"
+  },
+  "season_n": {
+    "message": "सीज़न {n}"
+  },
+  "episode_n": {
+    "message": "एपिसोड {n}"
+  },
+  "btn_add_episodes": {
+    "message": "चुने हुए एपिसोड कतार में जोड़ें"
+  },
+  "season_hint": {
+    "message": "वीडियो का पता खोजने के लिए एक्सटेंशन हर एपिसोड को बैकग्राउंड में एक छोटी विंडो में खोलता है। इस विंडो को बंद न करें।"
+  },
+  "state_queued": {
+    "message": "प्रतीक्षा में"
+  },
+  "state_downloading": {
+    "message": "डाउनलोड हो रहा है"
+  },
+  "state_muxing": {
+    "message": "MP4 बन रहा है"
+  },
+  "state_done": {
+    "message": "पूरा हुआ"
+  },
+  "state_failed": {
+    "message": "विफल"
+  },
+  "state_canceled": {
+    "message": "रद्द किया गया"
+  },
+  "percent": {
+    "message": "{n}%"
+  },
+  "eta_min": {
+    "message": "{n} मिनट बाकी"
+  },
+  "eta_sec": {
+    "message": "{n} सेकंड बाकी"
+  },
+  "speed": {
+    "message": "{n} MB/से"
+  },
+  "connections": {
+    "message": "{n} कनेक्शन"
+  },
+  "subs_count": {
+    "message": "{n} सबटाइटल"
+  },
+  "avg_speed": {
+    "message": "औसत {n} MB/से"
+  },
+  "unit_h": {
+    "message": "घं"
+  },
+  "unit_min": {
+    "message": "मि"
+  },
+  "btn_cancel": {
+    "message": "रद्द करें"
+  },
+  "btn_retry": {
+    "message": "फिर कोशिश करें"
+  },
+  "btn_open_folder": {
+    "message": "फ़ोल्डर खोलें"
+  },
+  "btn_remove": {
+    "message": "हटाएँ"
+  },
+  "queue_empty": {
+    "message": "कतार खाली है।"
+  },
+  "season_progress": {
+    "message": "सीज़न: {total} में से {done} एपिसोड तैयार"
+  },
+  "season_progress_current": {
+    "message": "सीज़न: {total} में से {done} एपिसोड तैयार (अभी एपिसोड {n})"
+  },
+  "season_failed": {
+    "message": "सीज़न {season} एपिसोड {episode} नहीं जोड़ा जा सका: {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ डाउनलोड"
+  },
+  "overlay_close": {
+    "message": "बंद करें"
+  },
+  "err_link_expired": {
+    "message": "लिंक की समय-सीमा खत्म हो गई। \"फिर कोशिश करें\" पेज खोलकर पते ताज़ा करता है।"
+  },
+  "err_drm": {
+    "message": "यह वीडियो DRM से सुरक्षित है और डाउनलोड नहीं हो सकता।"
+  },
+  "err_no_quality": {
+    "message": "चुनी हुई क्वालिटी प्लेलिस्ट में नहीं मिली।"
+  },
+  "err_playlist_empty": {
+    "message": "वीडियो की प्लेलिस्ट खाली है।"
+  },
+  "err_not_hls": {
+    "message": "यह स्रोत मान्य वीडियो प्लेलिस्ट नहीं है।"
+  },
+  "err_ffmpeg_missing": {
+    "message": "ffmpeg नहीं मिला। install.ps1 चलाएँ और फिर कोशिश करें।"
+  },
+  "err_ytdlp_missing": {
+    "message": "YouTube का घटक (yt-dlp) डाउनलोड नहीं हो सका। अपना इंटरनेट कनेक्शन जाँचें।"
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube ने वीडियो नहीं दिया। कुछ देर बाद फिर कोशिश करें।"
+  },
+  "err_live": {
+    "message": "लाइव स्ट्रीम डाउनलोड नहीं की जा सकतीं। स्ट्रीम खत्म होने पर फिर कोशिश करें।"
+  },
+  "err_bad_segment": {
+    "message": "सर्वर खराब वीडियो हिस्से भेज रहा है। कुछ देर बाद फिर कोशिश करें।"
+  },
+  "err_no_video": {
+    "message": "कोई उपयोगी वीडियो फ़ॉर्मैट नहीं मिला।"
+  },
+  "err_internal": {
+    "message": "सहायक प्रोग्राम में अनपेक्षित त्रुटि हुई।"
+  },
+  "err_helper_missing": {
+    "message": "सहायक प्रोग्राम नहीं मिला। install.ps1 चलाएँ, फिर ब्राउज़र को दोबारा शुरू करें।"
+  },
+  "err_helper_no_reply": {
+    "message": "सहायक प्रोग्राम ने जवाब नहीं दिया।"
+  },
+  "err_helper_unreachable": {
+    "message": "सहायक प्रोग्राम से कनेक्ट नहीं हो सका।"
+  },
+  "err_episode_timeout": {
+    "message": "कोई वीडियो नहीं मिला (समय समाप्त)।"
+  },
+  "err_episode_unreadable": {
+    "message": "पकड़े गए वीडियो पते पढ़े नहीं जा सके।"
+  },
+  "err_bad_request": {
+    "message": "अनुरोध मान्य नहीं है।"
+  },
+  "already_downloaded": {
+    "message": "✓ डाउनलोड हो चुका · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "चलाएँ"
+  },
+  "btn_folder": {
+    "message": "फ़ोल्डर"
+  },
+  "btn_redownload": {
+    "message": "फिर भी दोबारा डाउनलोड करें"
+  },
+  "download": {
+    "message": "डाउनलोड"
+  },
+  "overlayDownload": {
+    "message": "⬇ डाउनलोड"
+  },
+  "badge_downloaded": {
+    "message": "डाउनलोड हो गया"
+  },
+  "status_searching": {
+    "message": "वीडियो खोजा जा रहा है…"
+  },
+  "status_press_play": {
+    "message": "प्लेयर में ▶ दबाएँ"
+  },
+  "chip_audio_all": {
+    "message": "सभी ऑडियो"
+  },
+  "chip_subs_off": {
+    "message": "बंद"
+  },
+  "btn_edit_meta": {
+    "message": "✎ नाम और फ़ोल्डर"
+  },
+  "est_min": {
+    "message": "~{n} मि॰"
+  },
+  "downloading_close_hint": {
+    "message": "आप टैब बंद कर सकते हैं; डाउनलोड पृष्ठभूमि में जारी रहेगा।"
+  },
+  "hint_next_ep": {
+    "message": "अगला: एपिसोड {n}"
+  },
+  "hint_add_season_rest": {
+    "message": "सीज़न के बाकी जोड़ें ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "रीलोड करें और पुनः प्रयास करें"
+  },
+  "lbl_error_details": {
+    "message": "तकनीकी विवरण"
+  },
+  "status_unsupported": {
+    "message": "इस पृष्ठ पर कोई डाउनलोड करने योग्य वीडियो नहीं है।"
+  },
+  "status_no_helper": {
+    "message": "ReelHeist ऐप इंस्टॉल नहीं है"
+  },
+  "btn_download_installer": {
+    "message": "इंस्टॉलर डाउनलोड करें"
+  },
+  "status_bar_downloading": {
+    "message": "डाउनलोड हो रहा है: {name}"
+  },
+  "status_bar_downloads": {
+    "message": "डाउनलोड"
+  },
+  "state_paused": {
+    "message": "रोका गया"
+  },
+  "btn_pause": {
+    "message": "रोकें"
+  },
+  "btn_resume": {
+    "message": "जारी रखें"
+  },
+  "set_grp_theme": {
+    "message": "थीम"
+  },
+  "theme_red": {
+    "message": "लाल"
+  },
+  "theme_black_beige": {
+    "message": "काला/बेज"
+  },
+  "theme_beige_black": {
+    "message": "बेज/काला"
+  },
+  "theme_midnight": {
+    "message": "आधी रात"
+  },
+  "theme_emerald": {
+    "message": "पन्ना"
+  },
+  "theme_amethyst": {
+    "message": "जामुनी"
+  },
+  "theme_amber": {
+    "message": "अंबर"
+  },
+  "theme_snow": {
+    "message": "बर्फ़"
+  },
+  "theme_rose": {
+    "message": "गुलाबी"
+  },
+  "set_grp_lang": {
+    "message": "भाषा"
+  },
+  "lang_auto": {
+    "message": "स्वचालित"
+  },
+  "set_grp_defaults": {
+    "message": "डिफ़ॉल्ट"
+  },
+  "quality_highest": {
+    "message": "उच्चतम"
+  },
+  "lbl_audio_langs": {
+    "message": "ऑडियो भाषाएँ"
+  },
+  "lbl_sub_langs": {
+    "message": "उपशीर्षक भाषाएँ"
+  },
+  "lbl_motion": {
+    "message": "एनिमेटेड पूर्वावलोकन"
+  },
+  "motion_auto": {
+    "message": "स्वचालित"
+  },
+  "motion_on": {
+    "message": "चालू"
+  },
+  "motion_off": {
+    "message": "बंद"
+  },
+  "set_grp_repos": {
+    "message": "साइट रिपॉज़िटरी"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "जोड़ें"
+  },
+  "repo_trust_prompt": {
+    "message": "क्या आप इस रिपॉज़िटरी पर भरोसा करते हैं? फ़िंगरप्रिंट: {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "भरोसा करें"
+  },
+  "btn_remove_repo": {
+    "message": "हटाएँ"
+  },
+  "placeholder_search_packs": {
+    "message": "साइट पैक खोजें…"
+  },
+  "btn_install_pack": {
+    "message": "इंस्टॉल करें"
+  },
+  "btn_uninstall_pack": {
+    "message": "हटाएँ"
+  },
+  "btn_update_packs": {
+    "message": "पैक अपडेट करें"
+  },
+  "lbl_auto_update_packs": {
+    "message": "पैक स्वचालित रूप से अपडेट करें"
+  },
+  "packs_updated": {
+    "message": "अपडेट किए गए: {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "रिपॉज़िटरी तक नहीं पहुँचा जा सका।"
+  },
+  "err_repo_invalid": {
+    "message": "रिपॉज़िटरी प्रारूप अमान्य है।"
+  },
+  "err_repo_untrusted": {
+    "message": "इंस्टॉल करने से पहले रिपॉज़िटरी पर भरोसा करें।"
+  },
+  "err_pack_hash": {
+    "message": "पैक फ़ाइल हैश मेल नहीं खाता।"
+  },
+  "err_pack_signature": {
+    "message": "पैक हस्ताक्षर अमान्य है।"
+  },
+  "err_pack_invalid": {
+    "message": "पैक स्कीमा अमान्य है।"
+  },
+  "err_pack_not_found": {
+    "message": "रिपॉज़िटरी में पैक नहीं मिला।"
+  },
+  "set_grp_support": {
+    "message": "सहयोग"
+  },
+  "btn_support": {
+    "message": "★ समर्थक बनें"
+  },
+  "set_grp_about": {
+    "message": "परिचय"
+  },
+  "lbl_version": {
+    "message": "संस्करण {v}"
+  },
+  "btn_check_updates": {
+    "message": "अपडेट की जाँच करें"
+  },
+  "update_up_to_date": {
+    "message": "नवीनतम है ({v})"
+  },
+  "update_available": {
+    "message": "नया संस्करण उपलब्ध है: {v}"
+  },
+  "update_check_failed": {
+    "message": "अपडेट की जाँच नहीं हो सकी।"
+  },
+  "btn_update_now": {
+    "message": "अपडेट करें"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "लाइसेंस"
+  }
+}

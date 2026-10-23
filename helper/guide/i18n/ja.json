@@ -1,0 +1,20 @@
+{
+  "title": "ReelHeist をブラウザに追加",
+  "subtitle": "次の 3 つのステップでセットアップを完了します：",
+  "status_waiting": "拡張機能の接続を待っています…",
+  "status_connected": "準備完了 ✓ 拡張機能が接続されました！",
+  "step1_title": "1. 拡張機能ページを開く",
+  "step1_desc": "以下のアドレスをコピーし、ブラウザのアドレスバーに貼り付けて Enter キーを押します：",
+  "step2_title": "2. デベロッパー モードを有効にする",
+  "step2_desc": "右上にある「デベロッパー モード」スイッチをオンにします。",
+  "step3_title": "3. 「パッケージ化されていない拡張機能を読み込む」をクリック",
+  "step3_desc": "ボタンをクリックし、次の拡張機能フォルダのパスを選択または貼り付けます：",
+  "btn_copy": "コピー",
+  "btn_copied": "コピー完了 ✓",
+  "note_devmode_title": "デベロッパー モードの警告について",
+  "note_devmode_desc": "デベロッパー モードの拡張機能に関する通知が表示されることがありますが、正常な動作です。",
+  "note_smartscreen_title": "Windows SmartScreen について",
+  "note_smartscreen_desc": "「Windows によって PC が保護されました」と表示された場合は、「詳細情報」→「実行」をクリックしてください。",
+  "reload_title": "アップデートの場合",
+  "reload_desc": "拡張機能ページを開き、ReelHeist カードの再読み込み (↻) アイコンをクリックしてください。"
+}

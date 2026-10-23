@@ -1,0 +1,20 @@
+{
+  "title": "ReelHeist zum Browser hinzufügen",
+  "subtitle": "Folgen Sie diesen 3 kurzen Schritten, um die Einrichtung abzuschließen:",
+  "status_waiting": "Warte auf Verbindung der Erweiterung…",
+  "status_connected": "Bereit ✓ Erweiterung verbunden!",
+  "step1_title": "1. Erweiterungsseite öffnen",
+  "step1_desc": "Kopieren Sie diese Adresse, fügen Sie sie in die Adressleiste ein und drücken Sie Enter:",
+  "step2_title": "2. Entwicklermodus aktivieren",
+  "step2_desc": "Schalten Sie oben rechts den „Entwicklermodus“ ein.",
+  "step3_title": "3. Auf „Entpackte Erweiterung laden“ klicken",
+  "step3_desc": "Klicken Sie auf „Entpackte Erweiterung laden“ und wählen Sie diesen Ordnerpfad aus:",
+  "btn_copy": "Kopieren",
+  "btn_copied": "Kopiert ✓",
+  "note_devmode_title": "Hinweis zum Entwicklermodus",
+  "note_devmode_desc": "Ihr Browser zeigt gelegentlich einen Hinweis zu Erweiterungen im Entwicklermodus an. Das ist normal.",
+  "note_smartscreen_title": "Hinweis zu Windows SmartScreen",
+  "note_smartscreen_desc": "Falls Windows „Der PC wurde durch Windows geschützt“ anzeigt, klicken Sie auf „Weitere Informationen“ → „Trotzdem ausführen“.",
+  "reload_title": "Bestehende Installation aktualisieren?",
+  "reload_desc": "Öffnen Sie die Erweiterungsseite und klicken Sie bei ReelHeist auf das Neu-laden-Symbol (↻)."
+}

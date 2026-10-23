@@ -1,0 +1,13 @@
+keys/*.pem
+.superpowers/
+.idea/
+extension/_metadata/
+helper/host.bat
+node_modules/
+dist/
+docs/private/
+docs/superpowers/
+tools/neutral-blocklist.txt
+installer/Output/
+guide.url
+reelheist-sites/

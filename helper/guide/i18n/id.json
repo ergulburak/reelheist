@@ -1,0 +1,20 @@
+{
+  "title": "Tambahkan ReelHeist ke browser Anda",
+  "subtitle": "Ikuti 3 langkah singkat ini untuk menyelesaikan pemasangan:",
+  "status_waiting": "Menunggu koneksi ekstensi…",
+  "status_connected": "Siap ✓ Ekstensi terhubung!",
+  "step1_title": "1. Buka halaman Ekstensi",
+  "step1_desc": "Salin alamat ini, tempel ke bilah alamat browser, lalu tekan Enter:",
+  "step2_title": "2. Aktifkan Mode pengembang",
+  "step2_desc": "Nyalakan tombol \"Mode pengembang\" di pojok kanan atas.",
+  "step3_title": "3. Klik \"Muat yang belum dibuka\"",
+  "step3_desc": "Klik \"Muat yang belum dibuka\" (Load unpacked) lalu pilih atau tempel jalur folder ini:",
+  "btn_copy": "Salin",
+  "btn_copied": "Disalin ✓",
+  "note_devmode_title": "Tentang peringatan Mode pengembang",
+  "note_devmode_desc": "Browser mungkin sesekali menampilkan pengingat tentang ekstensi Mode pengembang. Ini normal.",
+  "note_smartscreen_title": "Tentang Windows SmartScreen",
+  "note_smartscreen_desc": "Jika Windows menampilkan \"Windows melindungi PC Anda\", klik \"Info selengkapnya\" lalu \"Tetap jalankan\".",
+  "reload_title": "Memperbarui instalasi yang ada?",
+  "reload_desc": "Buka halaman Ekstensi dan klik ikon Muat ulang (↻) pada kartu ReelHeist."
+}

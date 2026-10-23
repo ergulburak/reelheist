@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "Dizi, film ve YouTube videolarını bütün ses kanallarıyla MP4 olarak, altyazılarıyla SRT olarak indirir."
+  },
+  "tab_page": {
+    "message": "Bu sayfa"
+  },
+  "tab_queue": {
+    "message": "Kuyruk"
+  },
+  "lbl_name": {
+    "message": "Ad"
+  },
+  "lbl_kind": {
+    "message": "Tür"
+  },
+  "kind_episode": {
+    "message": "Dizi"
+  },
+  "kind_movie": {
+    "message": "Film"
+  },
+  "kind_video": {
+    "message": "Video"
+  },
+  "lbl_season": {
+    "message": "Sezon"
+  },
+  "lbl_episode": {
+    "message": "Bölüm"
+  },
+  "lbl_year": {
+    "message": "Yıl"
+  },
+  "lbl_channel": {
+    "message": "Kanal / klasör"
+  },
+  "lbl_source": {
+    "message": "Kaynak"
+  },
+  "lbl_quality": {
+    "message": "Kalite"
+  },
+  "lbl_audio": {
+    "message": "Ses"
+  },
+  "lbl_subtitles": {
+    "message": "Altyazı"
+  },
+  "btn_download": {
+    "message": "İndir"
+  },
+  "playlist_summary": {
+    "message": "Oynatma listesini kuyruğa ekle"
+  },
+  "btn_find_playlist": {
+    "message": "Listeyi getir"
+  },
+  "season_summary": {
+    "message": "Sezonu kuyruğa ekle"
+  },
+  "btn_find_episodes": {
+    "message": "Bölümleri bul"
+  },
+  "btn_clear_done": {
+    "message": "Biten işleri listeden kaldır"
+  },
+  "settings_summary": {
+    "message": "Ayarlar"
+  },
+  "lbl_outdir": {
+    "message": "İndirme klasörü"
+  },
+  "btn_save": {
+    "message": "Kaydet"
+  },
+  "target_line": {
+    "message": "Kayıt yeri: {path}"
+  },
+  "default_dir": {
+    "message": "İndirilenler"
+  },
+  "quality_file": {
+    "message": "Dosyanın kalitesi"
+  },
+  "quality_single": {
+    "message": "Tek kalite"
+  },
+  "source_file": {
+    "message": "MP4 dosyası"
+  },
+  "audio_all_included": {
+    "message": "Videonun içindeki bütün ses kanalları alınır."
+  },
+  "tag_original": {
+    "message": "orijinal"
+  },
+  "tag_default": {
+    "message": "varsayılan"
+  },
+  "tag_auto": {
+    "message": "otomatik"
+  },
+  "audios_other": {
+    "message": "Diğer diller ({n})"
+  },
+  "subs_other": {
+    "message": "Diğer altyazılar ({n})"
+  },
+  "subs_none": {
+    "message": "Altyazı bulunamadı. Oynatıcıda altyazıyı açarsanız eklenti onu da yakalar."
+  },
+  "status_playlist_page": {
+    "message": "Oynatma listesi sayfası. Aşağıdan listeyi kuyruğa ekleyin."
+  },
+  "status_yt_probing": {
+    "message": "YouTube videosu inceleniyor… (birkaç saniye sürer)"
+  },
+  "status_yt_ready": {
+    "message": "YouTube videosu · {duration} · {n} ses dili"
+  },
+  "playlist_loading": {
+    "message": "Liste getiriliyor…"
+  },
+  "playlist_failed": {
+    "message": "Liste alınamadı: {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} video · klasör: {folder}"
+  },
+  "btn_add_videos": {
+    "message": "Seçilen videoları kuyruğa ekle"
+  },
+  "status_inspecting_page": {
+    "message": "Sayfa inceleniyor…"
+  },
+  "status_open_yt": {
+    "message": "Bir YouTube videosu veya oynatma listesi açın."
+  },
+  "status_no_video": {
+    "message": "Bu sayfada henüz video bulunamadı. Oynatıcıda ▶ düğmesine basın veya aşağıdaki düğmeyle başlatın."
+  },
+  "btn_start_player": {
+    "message": "Oynatıcıyı başlat"
+  },
+  "status_starting_player": {
+    "message": "Oynatıcı başlatılıyor…"
+  },
+  "status_inspecting_sources": {
+    "message": "Kaynaklar inceleniyor…"
+  },
+  "status_sources_unreadable": {
+    "message": "Yakalanan adresler okunamadı. Sayfayı yenileyip videoyu oynatın. {why}"
+  },
+  "status_video_found": {
+    "message": "Video bulundu"
+  },
+  "status_video_found_dur": {
+    "message": "Video bulundu · {duration}"
+  },
+  "add_failed": {
+    "message": "Kuyruğa eklenemedi: {error}"
+  },
+  "episodes_searching": {
+    "message": "Bölümler aranıyor…"
+  },
+  "episodes_none": {
+    "message": "Bu sayfada bölüm bağlantısı bulunamadı. Dizinin bölüm listesinin göründüğü bir sayfayı açın."
+  },
+  "season_n": {
+    "message": "{n}. Sezon"
+  },
+  "episode_n": {
+    "message": "{n}. Bölüm"
+  },
+  "btn_add_episodes": {
+    "message": "Seçilen bölümleri kuyruğa ekle"
+  },
+  "season_hint": {
+    "message": "Eklenti her bölümü arka planda küçük bir pencerede açıp video adresini bulur. Bu pencereyi kapatmayın."
+  },
+  "state_queued": {
+    "message": "Sırada"
+  },
+  "state_downloading": {
+    "message": "İndiriliyor"
+  },
+  "state_muxing": {
+    "message": "MP4 yapılıyor"
+  },
+  "state_done": {
+    "message": "Tamamlandı"
+  },
+  "state_failed": {
+    "message": "Hata"
+  },
+  "state_canceled": {
+    "message": "İptal edildi"
+  },
+  "percent": {
+    "message": "%{n}"
+  },
+  "eta_min": {
+    "message": "{n} dk kaldı"
+  },
+  "eta_sec": {
+    "message": "{n} sn kaldı"
+  },
+  "speed": {
+    "message": "{n} MB/sn"
+  },
+  "connections": {
+    "message": "{n} bağlantı"
+  },
+  "subs_count": {
+    "message": "{n} altyazı"
+  },
+  "avg_speed": {
+    "message": "ort. {n} MB/sn"
+  },
+  "unit_h": {
+    "message": "sa"
+  },
+  "unit_min": {
+    "message": "dk"
+  },
+  "btn_cancel": {
+    "message": "İptal"
+  },
+  "btn_retry": {
+    "message": "Yeniden dene"
+  },
+  "btn_open_folder": {
+    "message": "Klasörü aç"
+  },
+  "btn_remove": {
+    "message": "Kaldır"
+  },
+  "queue_empty": {
+    "message": "Kuyruk boş."
+  },
+  "season_progress": {
+    "message": "Sezon: {done}/{total} bölüm hazırlandı"
+  },
+  "season_progress_current": {
+    "message": "Sezon: {done}/{total} bölüm hazırlandı (şimdi {n}. bölüm)"
+  },
+  "season_failed": {
+    "message": "{season}. sezon {episode}. bölüm eklenemedi: {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ İndir"
+  },
+  "overlay_close": {
+    "message": "Kapat"
+  },
+  "err_link_expired": {
+    "message": "Bağlantının süresi doldu. \"Yeniden dene\" sayfayı açıp adresleri tazeler."
+  },
+  "err_drm": {
+    "message": "Bu video DRM ile korunuyor; indirilemez."
+  },
+  "err_no_quality": {
+    "message": "Seçilen kalite oynatma listesinde bulunamadı."
+  },
+  "err_playlist_empty": {
+    "message": "Video oynatma listesi boş."
+  },
+  "err_not_hls": {
+    "message": "Kaynak geçerli bir video oynatma listesi değil."
+  },
+  "err_ffmpeg_missing": {
+    "message": "ffmpeg bulunamadı. install.ps1 dosyasını çalıştırın."
+  },
+  "err_ytdlp_missing": {
+    "message": "YouTube bileşeni (yt-dlp) indirilemedi. İnternet bağlantınızı kontrol edin."
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube videoyu vermedi. Biraz sonra yeniden deneyin."
+  },
+  "err_live": {
+    "message": "Canlı yayınlar indirilemez. Yayın bitince tekrar deneyin."
+  },
+  "err_bad_segment": {
+    "message": "Sunucu bozuk video parçaları gönderiyor. Biraz sonra yeniden deneyin."
+  },
+  "err_no_video": {
+    "message": "Uygun video biçimi bulunamadı."
+  },
+  "err_internal": {
+    "message": "Yardımcı programda beklenmeyen bir hata oldu."
+  },
+  "err_helper_missing": {
+    "message": "Yardımcı program bulunamadı. install.ps1 dosyasını çalıştırın, sonra tarayıcıyı yeniden başlatın."
+  },
+  "err_helper_no_reply": {
+    "message": "Yardımcı program yanıt vermedi."
+  },
+  "err_helper_unreachable": {
+    "message": "Yardımcı programa bağlanılamadı."
+  },
+  "err_episode_timeout": {
+    "message": "Video bulunamadı (zaman aşımı)."
+  },
+  "err_episode_unreadable": {
+    "message": "Yakalanan video adresleri okunamadı."
+  },
+  "err_bad_request": {
+    "message": "Geçersiz istek."
+  },
+  "already_downloaded": {
+    "message": "✓ İndirildi · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "Oynat"
+  },
+  "btn_folder": {
+    "message": "Klasör"
+  },
+  "btn_redownload": {
+    "message": "Yine de yeniden indir"
+  },
+  "download": {
+    "message": "İndir"
+  },
+  "overlayDownload": {
+    "message": "⬇ İndir"
+  },
+  "badge_downloaded": {
+    "message": "İndirildi"
+  },
+  "status_searching": {
+    "message": "Video aranıyor…"
+  },
+  "status_press_play": {
+    "message": "Oynatıcıda ▶ düğmesine basın"
+  },
+  "chip_audio_all": {
+    "message": "Tüm sesler"
+  },
+  "chip_subs_off": {
+    "message": "Kapalı"
+  },
+  "btn_edit_meta": {
+    "message": "✎ Ad ve klasör"
+  },
+  "est_min": {
+    "message": "~{n} dk"
+  },
+  "downloading_close_hint": {
+    "message": "Sekmeyi kapatabilirsiniz; indirme arka planda sürer."
+  },
+  "hint_next_ep": {
+    "message": "Sonraki: {n}. Bölüm"
+  },
+  "hint_add_season_rest": {
+    "message": "Sezonun kalanını ekle ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "Yenile ve tekrar dene"
+  },
+  "lbl_error_details": {
+    "message": "Teknik ayrıntı"
+  },
+  "status_unsupported": {
+    "message": "Bu sayfada indirilebilir video yok."
+  },
+  "status_no_helper": {
+    "message": "ReelHeist uygulaması kurulu değil"
+  },
+  "btn_download_installer": {
+    "message": "Kurulum programını indir"
+  },
+  "status_bar_downloading": {
+    "message": "İndiriliyor: {name}"
+  },
+  "status_bar_downloads": {
+    "message": "İndirmeler"
+  },
+  "state_paused": {
+    "message": "Duraklatıldı"
+  },
+  "btn_pause": {
+    "message": "Duraklat"
+  },
+  "btn_resume": {
+    "message": "Sürdür"
+  },
+  "set_grp_theme": {
+    "message": "Tema"
+  },
+  "theme_red": {
+    "message": "Kırmızı"
+  },
+  "theme_black_beige": {
+    "message": "Siyah/bej"
+  },
+  "theme_beige_black": {
+    "message": "Bej/siyah"
+  },
+  "theme_midnight": {
+    "message": "Gece mavisi"
+  },
+  "theme_emerald": {
+    "message": "Zümrüt"
+  },
+  "theme_amethyst": {
+    "message": "Ametist"
+  },
+  "theme_amber": {
+    "message": "Kehribar"
+  },
+  "theme_snow": {
+    "message": "Kar"
+  },
+  "theme_rose": {
+    "message": "Gül"
+  },
+  "set_grp_lang": {
+    "message": "Dil"
+  },
+  "lang_auto": {
+    "message": "Otomatik"
+  },
+  "set_grp_defaults": {
+    "message": "Varsayılanlar"
+  },
+  "quality_highest": {
+    "message": "En yüksek"
+  },
+  "lbl_audio_langs": {
+    "message": "Ses dilleri"
+  },
+  "lbl_sub_langs": {
+    "message": "Altyazı dilleri"
+  },
+  "lbl_motion": {
+    "message": "Hareketli önizleme"
+  },
+  "motion_auto": {
+    "message": "Otomatik"
+  },
+  "motion_on": {
+    "message": "Açık"
+  },
+  "motion_off": {
+    "message": "Kapalı"
+  },
+  "set_grp_repos": {
+    "message": "Site depoları"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "Ekle"
+  },
+  "repo_trust_prompt": {
+    "message": "Bu depoya güveniyor musunuz? Parmak izi: {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "Güven"
+  },
+  "btn_remove_repo": {
+    "message": "Kaldır"
+  },
+  "placeholder_search_packs": {
+    "message": "Site paketi ara…"
+  },
+  "btn_install_pack": {
+    "message": "Kur"
+  },
+  "btn_uninstall_pack": {
+    "message": "Kaldır"
+  },
+  "btn_update_packs": {
+    "message": "Paketleri güncelle"
+  },
+  "lbl_auto_update_packs": {
+    "message": "Paketleri otomatik güncelle"
+  },
+  "packs_updated": {
+    "message": "Güncellenen: {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "Depoya ulaşılamadı."
+  },
+  "err_repo_invalid": {
+    "message": "Depo biçimi geçersiz."
+  },
+  "err_repo_untrusted": {
+    "message": "Paket kurmadan önce depoya güvenin."
+  },
+  "err_pack_hash": {
+    "message": "Paket dosyasının özeti uyuşmadı."
+  },
+  "err_pack_signature": {
+    "message": "Paket imzası geçersiz."
+  },
+  "err_pack_invalid": {
+    "message": "Paket şeması geçersiz."
+  },
+  "err_pack_not_found": {
+    "message": "Paket depoda bulunamadı."
+  },
+  "set_grp_support": {
+    "message": "Destek"
+  },
+  "btn_support": {
+    "message": "★ Destek ol"
+  },
+  "set_grp_about": {
+    "message": "Hakkında"
+  },
+  "lbl_version": {
+    "message": "Sürüm {v}"
+  },
+  "btn_check_updates": {
+    "message": "Güncellemeleri denetle"
+  },
+  "update_up_to_date": {
+    "message": "Güncel ({v})"
+  },
+  "update_available": {
+    "message": "Yeni sürüm var: {v}"
+  },
+  "update_check_failed": {
+    "message": "Güncellemeler denetlenemedi."
+  },
+  "btn_update_now": {
+    "message": "Güncelle"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "Lisanslar"
+  }
+}

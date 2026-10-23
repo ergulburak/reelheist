@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "ドラマ、映画、YouTube 動画をすべての音声トラック付きの MP4 で、字幕を SRT でダウンロードします。"
+  },
+  "tab_page": {
+    "message": "このページ"
+  },
+  "tab_queue": {
+    "message": "キュー"
+  },
+  "lbl_name": {
+    "message": "名前"
+  },
+  "lbl_kind": {
+    "message": "種類"
+  },
+  "kind_episode": {
+    "message": "ドラマ"
+  },
+  "kind_movie": {
+    "message": "映画"
+  },
+  "kind_video": {
+    "message": "動画"
+  },
+  "lbl_season": {
+    "message": "シーズン"
+  },
+  "lbl_episode": {
+    "message": "エピソード"
+  },
+  "lbl_year": {
+    "message": "年"
+  },
+  "lbl_channel": {
+    "message": "チャンネル / フォルダー"
+  },
+  "lbl_source": {
+    "message": "ソース"
+  },
+  "lbl_quality": {
+    "message": "画質"
+  },
+  "lbl_audio": {
+    "message": "音声"
+  },
+  "lbl_subtitles": {
+    "message": "字幕"
+  },
+  "btn_download": {
+    "message": "ダウンロード"
+  },
+  "playlist_summary": {
+    "message": "プレイリストをキューに追加"
+  },
+  "btn_find_playlist": {
+    "message": "リストを取得"
+  },
+  "season_summary": {
+    "message": "シーズンをキューに追加"
+  },
+  "btn_find_episodes": {
+    "message": "エピソードを探す"
+  },
+  "btn_clear_done": {
+    "message": "完了したジョブをリストから削除"
+  },
+  "settings_summary": {
+    "message": "設定"
+  },
+  "lbl_outdir": {
+    "message": "ダウンロード先フォルダー"
+  },
+  "btn_save": {
+    "message": "保存"
+  },
+  "target_line": {
+    "message": "保存先: {path}"
+  },
+  "default_dir": {
+    "message": "ダウンロード"
+  },
+  "quality_file": {
+    "message": "ファイルの画質"
+  },
+  "quality_single": {
+    "message": "単一の画質"
+  },
+  "source_file": {
+    "message": "MP4 ファイル"
+  },
+  "audio_all_included": {
+    "message": "動画に含まれるすべての音声トラックを取得します。"
+  },
+  "tag_original": {
+    "message": "オリジナル"
+  },
+  "tag_default": {
+    "message": "既定"
+  },
+  "tag_auto": {
+    "message": "自動"
+  },
+  "audios_other": {
+    "message": "その他の言語 ({n})"
+  },
+  "subs_other": {
+    "message": "その他の字幕 ({n})"
+  },
+  "subs_none": {
+    "message": "字幕が見つかりません。プレーヤーで字幕をオンにすると、拡張機能がそれも取得します。"
+  },
+  "status_playlist_page": {
+    "message": "プレイリストのページです。下からリストをキューに追加してください。"
+  },
+  "status_yt_probing": {
+    "message": "YouTube 動画を確認しています…（数秒かかります）"
+  },
+  "status_yt_ready": {
+    "message": "YouTube 動画 · {duration} · 音声 {n} 言語"
+  },
+  "playlist_loading": {
+    "message": "リストを取得しています…"
+  },
+  "playlist_failed": {
+    "message": "リストを取得できませんでした: {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} 本の動画 · フォルダー: {folder}"
+  },
+  "btn_add_videos": {
+    "message": "選択した動画をキューに追加"
+  },
+  "status_inspecting_page": {
+    "message": "ページを確認しています…"
+  },
+  "status_open_yt": {
+    "message": "YouTube の動画またはプレイリストを開いてください。"
+  },
+  "status_no_video": {
+    "message": "このページではまだ動画が見つかっていません。プレーヤーで再生するか、下のボタンで開始してください。"
+  },
+  "btn_start_player": {
+    "message": "プレーヤーを開始"
+  },
+  "status_starting_player": {
+    "message": "プレーヤーを開始しています…"
+  },
+  "status_inspecting_sources": {
+    "message": "ソースを確認しています…"
+  },
+  "status_sources_unreadable": {
+    "message": "取得したアドレスを読み取れませんでした。ページを再読み込みして動画を再生してください。{why}"
+  },
+  "status_video_found": {
+    "message": "動画が見つかりました"
+  },
+  "status_video_found_dur": {
+    "message": "動画が見つかりました · {duration}"
+  },
+  "add_failed": {
+    "message": "キューに追加できませんでした: {error}"
+  },
+  "episodes_searching": {
+    "message": "エピソードを探しています…"
+  },
+  "episodes_none": {
+    "message": "このページにエピソードのリンクが見つかりません。作品のエピソード一覧が表示されるページを開いてください。"
+  },
+  "season_n": {
+    "message": "シーズン {n}"
+  },
+  "episode_n": {
+    "message": "第 {n} 話"
+  },
+  "btn_add_episodes": {
+    "message": "選択したエピソードをキューに追加"
+  },
+  "season_hint": {
+    "message": "拡張機能は各エピソードをバックグラウンドの小さなウィンドウで開き、動画のアドレスを探します。このウィンドウを閉じないでください。"
+  },
+  "state_queued": {
+    "message": "待機中"
+  },
+  "state_downloading": {
+    "message": "ダウンロード中"
+  },
+  "state_muxing": {
+    "message": "MP4 を作成中"
+  },
+  "state_done": {
+    "message": "完了"
+  },
+  "state_failed": {
+    "message": "エラー"
+  },
+  "state_canceled": {
+    "message": "キャンセル済み"
+  },
+  "percent": {
+    "message": "{n}%"
+  },
+  "eta_min": {
+    "message": "残り {n} 分"
+  },
+  "eta_sec": {
+    "message": "残り {n} 秒"
+  },
+  "speed": {
+    "message": "{n} MB/秒"
+  },
+  "connections": {
+    "message": "{n} 接続"
+  },
+  "subs_count": {
+    "message": "字幕 {n} 件"
+  },
+  "avg_speed": {
+    "message": "平均 {n} MB/秒"
+  },
+  "unit_h": {
+    "message": "時間"
+  },
+  "unit_min": {
+    "message": "分"
+  },
+  "btn_cancel": {
+    "message": "キャンセル"
+  },
+  "btn_retry": {
+    "message": "再試行"
+  },
+  "btn_open_folder": {
+    "message": "フォルダーを開く"
+  },
+  "btn_remove": {
+    "message": "削除"
+  },
+  "queue_empty": {
+    "message": "キューは空です。"
+  },
+  "season_progress": {
+    "message": "シーズン: {total} 話中 {done} 話が準備完了"
+  },
+  "season_progress_current": {
+    "message": "シーズン: {total} 話中 {done} 話が準備完了（現在 第 {n} 話）"
+  },
+  "season_failed": {
+    "message": "シーズン {season} 第 {episode} 話を追加できませんでした: {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ ダウンロード"
+  },
+  "overlay_close": {
+    "message": "閉じる"
+  },
+  "err_link_expired": {
+    "message": "リンクの有効期限が切れました。「再試行」でページを開いてアドレスを更新します。"
+  },
+  "err_drm": {
+    "message": "この動画は DRM で保護されているためダウンロードできません。"
+  },
+  "err_no_quality": {
+    "message": "選択した画質がプレイリストに見つかりません。"
+  },
+  "err_playlist_empty": {
+    "message": "動画のプレイリストが空です。"
+  },
+  "err_not_hls": {
+    "message": "このソースは有効な動画プレイリストではありません。"
+  },
+  "err_ffmpeg_missing": {
+    "message": "ffmpeg が見つかりません。install.ps1 を実行してからもう一度お試しください。"
+  },
+  "err_ytdlp_missing": {
+    "message": "YouTube 用コンポーネント (yt-dlp) をダウンロードできませんでした。インターネット接続を確認してください。"
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube が動画を返しませんでした。しばらくしてからもう一度お試しください。"
+  },
+  "err_live": {
+    "message": "ライブ配信はダウンロードできません。配信が終わってからお試しください。"
+  },
+  "err_bad_segment": {
+    "message": "サーバーが破損した動画パートを送っています。しばらくしてからもう一度お試しください。"
+  },
+  "err_no_video": {
+    "message": "使用できる動画形式が見つかりません。"
+  },
+  "err_internal": {
+    "message": "ヘルパープログラムで予期しないエラーが発生しました。"
+  },
+  "err_helper_missing": {
+    "message": "ヘルパープログラムが見つかりません。install.ps1 を実行してからブラウザーを再起動してください。"
+  },
+  "err_helper_no_reply": {
+    "message": "ヘルパープログラムが応答しませんでした。"
+  },
+  "err_helper_unreachable": {
+    "message": "ヘルパープログラムに接続できません。"
+  },
+  "err_episode_timeout": {
+    "message": "動画が見つかりません（タイムアウト）。"
+  },
+  "err_episode_unreadable": {
+    "message": "取得した動画アドレスを読み取れませんでした。"
+  },
+  "err_bad_request": {
+    "message": "リクエストが無効です。"
+  },
+  "already_downloaded": {
+    "message": "✓ ダウンロード済み · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "再生"
+  },
+  "btn_folder": {
+    "message": "フォルダ"
+  },
+  "btn_redownload": {
+    "message": "それでも再ダウンロード"
+  },
+  "download": {
+    "message": "ダウンロード"
+  },
+  "overlayDownload": {
+    "message": "⬇ ダウンロード"
+  },
+  "badge_downloaded": {
+    "message": "ダウンロード済み"
+  },
+  "status_searching": {
+    "message": "動画を探しています…"
+  },
+  "status_press_play": {
+    "message": "プレーヤーで ▶ を押してください"
+  },
+  "chip_audio_all": {
+    "message": "すべての音声"
+  },
+  "chip_subs_off": {
+    "message": "オフ"
+  },
+  "btn_edit_meta": {
+    "message": "✎ 名前とフォルダー"
+  },
+  "est_min": {
+    "message": "約{n}分"
+  },
+  "downloading_close_hint": {
+    "message": "タブを閉じても、バックグラウンドでダウンロードが続きます。"
+  },
+  "hint_next_ep": {
+    "message": "次へ: 第{n}話"
+  },
+  "hint_add_season_rest": {
+    "message": "シーズンの残りを追加 ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "再読み込みして再試行"
+  },
+  "lbl_error_details": {
+    "message": "技術的な詳細"
+  },
+  "status_unsupported": {
+    "message": "このページにはダウンロード可能な動画がありません。"
+  },
+  "status_no_helper": {
+    "message": "ReelHeist アプリがインストールされていません"
+  },
+  "btn_download_installer": {
+    "message": "インストーラーを入手"
+  },
+  "status_bar_downloading": {
+    "message": "ダウンロード中: {name}"
+  },
+  "status_bar_downloads": {
+    "message": "ダウンロード一覧"
+  },
+  "state_paused": {
+    "message": "一時停止中"
+  },
+  "btn_pause": {
+    "message": "一時停止"
+  },
+  "btn_resume": {
+    "message": "再開"
+  },
+  "set_grp_theme": {
+    "message": "テーマ"
+  },
+  "theme_red": {
+    "message": "レッド"
+  },
+  "theme_black_beige": {
+    "message": "ブラック/ベージュ"
+  },
+  "theme_beige_black": {
+    "message": "ベージュ/ブラック"
+  },
+  "theme_midnight": {
+    "message": "ミッドナイト"
+  },
+  "theme_emerald": {
+    "message": "エメラルド"
+  },
+  "theme_amethyst": {
+    "message": "アメジスト"
+  },
+  "theme_amber": {
+    "message": "アンバー"
+  },
+  "theme_snow": {
+    "message": "スノー"
+  },
+  "theme_rose": {
+    "message": "ローズ"
+  },
+  "set_grp_lang": {
+    "message": "言語"
+  },
+  "lang_auto": {
+    "message": "自動"
+  },
+  "set_grp_defaults": {
+    "message": "既定の設定"
+  },
+  "quality_highest": {
+    "message": "最高画質"
+  },
+  "lbl_audio_langs": {
+    "message": "音声の言語"
+  },
+  "lbl_sub_langs": {
+    "message": "字幕の言語"
+  },
+  "lbl_motion": {
+    "message": "アニメーションプレビュー"
+  },
+  "motion_auto": {
+    "message": "自動"
+  },
+  "motion_on": {
+    "message": "オン"
+  },
+  "motion_off": {
+    "message": "オフ"
+  },
+  "set_grp_repos": {
+    "message": "サイトリポジトリ"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "追加"
+  },
+  "repo_trust_prompt": {
+    "message": "このリポジトリを信頼しますか？ フィンガープリント: {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "信頼する"
+  },
+  "btn_remove_repo": {
+    "message": "削除"
+  },
+  "placeholder_search_packs": {
+    "message": "サイトパックを検索…"
+  },
+  "btn_install_pack": {
+    "message": "インストール"
+  },
+  "btn_uninstall_pack": {
+    "message": "削除"
+  },
+  "btn_update_packs": {
+    "message": "パックを更新"
+  },
+  "lbl_auto_update_packs": {
+    "message": "パックを自動更新する"
+  },
+  "packs_updated": {
+    "message": "更新済み: {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "リポジトリに接続できませんでした。"
+  },
+  "err_repo_invalid": {
+    "message": "リポジトリの形式が無効です。"
+  },
+  "err_repo_untrusted": {
+    "message": "インストール前にリポジトリを信頼してください。"
+  },
+  "err_pack_hash": {
+    "message": "パックのハッシュが一致しません。"
+  },
+  "err_pack_signature": {
+    "message": "パックの署名が無効です。"
+  },
+  "err_pack_invalid": {
+    "message": "パックの形式が無効です。"
+  },
+  "err_pack_not_found": {
+    "message": "パックが見つかりませんでした。"
+  },
+  "set_grp_support": {
+    "message": "サポート"
+  },
+  "btn_support": {
+    "message": "★ サポーターになる"
+  },
+  "set_grp_about": {
+    "message": "情報"
+  },
+  "lbl_version": {
+    "message": "バージョン {v}"
+  },
+  "btn_check_updates": {
+    "message": "更新を確認"
+  },
+  "update_up_to_date": {
+    "message": "最新です ({v})"
+  },
+  "update_available": {
+    "message": "新しいバージョンがあります: {v}"
+  },
+  "update_check_failed": {
+    "message": "更新を確認できませんでした。"
+  },
+  "btn_update_now": {
+    "message": "更新"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "ライセンス"
+  }
+}

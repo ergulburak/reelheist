@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "Скачивает сериалы, фильмы и видео YouTube в MP4 со всеми звуковыми дорожками, а субтитры в SRT."
+  },
+  "tab_page": {
+    "message": "Эта страница"
+  },
+  "tab_queue": {
+    "message": "Очередь"
+  },
+  "lbl_name": {
+    "message": "Название"
+  },
+  "lbl_kind": {
+    "message": "Тип"
+  },
+  "kind_episode": {
+    "message": "Сериал"
+  },
+  "kind_movie": {
+    "message": "Фильм"
+  },
+  "kind_video": {
+    "message": "Видео"
+  },
+  "lbl_season": {
+    "message": "Сезон"
+  },
+  "lbl_episode": {
+    "message": "Серия"
+  },
+  "lbl_year": {
+    "message": "Год"
+  },
+  "lbl_channel": {
+    "message": "Канал / папка"
+  },
+  "lbl_source": {
+    "message": "Источник"
+  },
+  "lbl_quality": {
+    "message": "Качество"
+  },
+  "lbl_audio": {
+    "message": "Звук"
+  },
+  "lbl_subtitles": {
+    "message": "Субтитры"
+  },
+  "btn_download": {
+    "message": "Скачать"
+  },
+  "playlist_summary": {
+    "message": "Добавить плейлист в очередь"
+  },
+  "btn_find_playlist": {
+    "message": "Загрузить список"
+  },
+  "season_summary": {
+    "message": "Добавить сезон в очередь"
+  },
+  "btn_find_episodes": {
+    "message": "Найти серии"
+  },
+  "btn_clear_done": {
+    "message": "Убрать завершённые задачи"
+  },
+  "settings_summary": {
+    "message": "Настройки"
+  },
+  "lbl_outdir": {
+    "message": "Папка загрузки"
+  },
+  "btn_save": {
+    "message": "Сохранить"
+  },
+  "target_line": {
+    "message": "Сохранится в: {path}"
+  },
+  "default_dir": {
+    "message": "Загрузки"
+  },
+  "quality_file": {
+    "message": "Качество файла"
+  },
+  "quality_single": {
+    "message": "Единственное качество"
+  },
+  "source_file": {
+    "message": "Файл MP4"
+  },
+  "audio_all_included": {
+    "message": "Будут взяты все звуковые дорожки видео."
+  },
+  "tag_original": {
+    "message": "оригинал"
+  },
+  "tag_default": {
+    "message": "по умолчанию"
+  },
+  "tag_auto": {
+    "message": "авто"
+  },
+  "audios_other": {
+    "message": "Другие языки ({n})"
+  },
+  "subs_other": {
+    "message": "Другие субтитры ({n})"
+  },
+  "subs_none": {
+    "message": "Субтитры не найдены. Если включить субтитры в плеере, расширение перехватит и их."
+  },
+  "status_playlist_page": {
+    "message": "Это страница плейлиста. Добавьте список в очередь ниже."
+  },
+  "status_yt_probing": {
+    "message": "Анализ видео YouTube... (несколько секунд)"
+  },
+  "status_yt_ready": {
+    "message": "Видео YouTube · {duration} · звуковых языков: {n}"
+  },
+  "playlist_loading": {
+    "message": "Загрузка списка..."
+  },
+  "playlist_failed": {
+    "message": "Не удалось загрузить список: {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · видео: {n} · папка: {folder}"
+  },
+  "btn_add_videos": {
+    "message": "Добавить выбранные видео в очередь"
+  },
+  "status_inspecting_page": {
+    "message": "Анализ страницы..."
+  },
+  "status_open_yt": {
+    "message": "Откройте видео или плейлист YouTube."
+  },
+  "status_no_video": {
+    "message": "На этой странице видео пока не найдено. Нажмите воспроизведение в плеере или запустите его кнопкой ниже."
+  },
+  "btn_start_player": {
+    "message": "Запустить плеер"
+  },
+  "status_starting_player": {
+    "message": "Запуск плеера..."
+  },
+  "status_inspecting_sources": {
+    "message": "Анализ источников..."
+  },
+  "status_sources_unreadable": {
+    "message": "Не удалось прочитать перехваченные адреса. Обновите страницу и запустите видео. {why}"
+  },
+  "status_video_found": {
+    "message": "Видео найдено"
+  },
+  "status_video_found_dur": {
+    "message": "Видео найдено · {duration}"
+  },
+  "add_failed": {
+    "message": "Не удалось добавить в очередь: {error}"
+  },
+  "episodes_searching": {
+    "message": "Поиск серий..."
+  },
+  "episodes_none": {
+    "message": "На этой странице нет ссылок на серии. Откройте страницу со списком серий сериала."
+  },
+  "season_n": {
+    "message": "Сезон {n}"
+  },
+  "episode_n": {
+    "message": "Серия {n}"
+  },
+  "btn_add_episodes": {
+    "message": "Добавить выбранные серии в очередь"
+  },
+  "season_hint": {
+    "message": "Расширение открывает каждую серию в маленьком фоновом окне, чтобы найти адрес видео. Не закрывайте это окно."
+  },
+  "state_queued": {
+    "message": "В очереди"
+  },
+  "state_downloading": {
+    "message": "Загрузка"
+  },
+  "state_muxing": {
+    "message": "Сборка MP4"
+  },
+  "state_done": {
+    "message": "Готово"
+  },
+  "state_failed": {
+    "message": "Ошибка"
+  },
+  "state_canceled": {
+    "message": "Отменено"
+  },
+  "percent": {
+    "message": "{n} %"
+  },
+  "eta_min": {
+    "message": "осталось {n} мин"
+  },
+  "eta_sec": {
+    "message": "осталось {n} с"
+  },
+  "speed": {
+    "message": "{n} МБ/с"
+  },
+  "connections": {
+    "message": "подключений: {n}"
+  },
+  "subs_count": {
+    "message": "субтитров: {n}"
+  },
+  "avg_speed": {
+    "message": "средняя {n} МБ/с"
+  },
+  "unit_h": {
+    "message": "ч"
+  },
+  "unit_min": {
+    "message": "мин"
+  },
+  "btn_cancel": {
+    "message": "Отмена"
+  },
+  "btn_retry": {
+    "message": "Повторить"
+  },
+  "btn_open_folder": {
+    "message": "Открыть папку"
+  },
+  "btn_remove": {
+    "message": "Убрать"
+  },
+  "queue_empty": {
+    "message": "Очередь пуста."
+  },
+  "season_progress": {
+    "message": "Сезон: готово серий {done} из {total}"
+  },
+  "season_progress_current": {
+    "message": "Сезон: готово серий {done} из {total} (сейчас серия {n})"
+  },
+  "season_failed": {
+    "message": "Сезон {season}, серия {episode}: не удалось добавить: {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ Скачать"
+  },
+  "overlay_close": {
+    "message": "Закрыть"
+  },
+  "err_link_expired": {
+    "message": "Срок действия ссылки истёк. «Повторить» откроет страницу и обновит адреса."
+  },
+  "err_drm": {
+    "message": "Это видео защищено DRM, его нельзя скачать."
+  },
+  "err_no_quality": {
+    "message": "Выбранное качество не найдено в плейлисте."
+  },
+  "err_playlist_empty": {
+    "message": "Плейлист видео пуст."
+  },
+  "err_not_hls": {
+    "message": "Источник не является допустимым видеоплейлистом."
+  },
+  "err_ffmpeg_missing": {
+    "message": "ffmpeg не найден. Запустите install.ps1 и повторите."
+  },
+  "err_ytdlp_missing": {
+    "message": "Не удалось скачать компонент YouTube (yt-dlp). Проверьте подключение к интернету."
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube не отдал видео. Повторите позже."
+  },
+  "err_live": {
+    "message": "Прямые трансляции скачать нельзя. Повторите после окончания трансляции."
+  },
+  "err_bad_segment": {
+    "message": "Сервер присылает повреждённые части видео. Повторите позже."
+  },
+  "err_no_video": {
+    "message": "Подходящий формат видео не найден."
+  },
+  "err_internal": {
+    "message": "В вспомогательной программе произошла непредвиденная ошибка."
+  },
+  "err_helper_missing": {
+    "message": "Вспомогательная программа не найдена. Запустите install.ps1 и перезапустите браузер."
+  },
+  "err_helper_no_reply": {
+    "message": "Вспомогательная программа не ответила."
+  },
+  "err_helper_unreachable": {
+    "message": "Не удалось подключиться к вспомогательной программе."
+  },
+  "err_episode_timeout": {
+    "message": "Видео не найдено (время ожидания истекло)."
+  },
+  "err_episode_unreadable": {
+    "message": "Не удалось прочитать перехваченные адреса видео."
+  },
+  "err_bad_request": {
+    "message": "Недопустимый запрос."
+  },
+  "already_downloaded": {
+    "message": "✓ Скачано · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "Играть"
+  },
+  "btn_folder": {
+    "message": "Папка"
+  },
+  "btn_redownload": {
+    "message": "Скачать снова"
+  },
+  "download": {
+    "message": "Скачать"
+  },
+  "overlayDownload": {
+    "message": "⬇ Скачать"
+  },
+  "badge_downloaded": {
+    "message": "Скачано"
+  },
+  "status_searching": {
+    "message": "Поиск видео…"
+  },
+  "status_press_play": {
+    "message": "Нажмите ▶ в плеере"
+  },
+  "chip_audio_all": {
+    "message": "Все дорожки"
+  },
+  "chip_subs_off": {
+    "message": "Выкл."
+  },
+  "btn_edit_meta": {
+    "message": "✎ Имя и папка"
+  },
+  "est_min": {
+    "message": "~{n} мин"
+  },
+  "downloading_close_hint": {
+    "message": "Вкладку можно закрыть; загрузка продолжится в фоне."
+  },
+  "hint_next_ep": {
+    "message": "Далее: Серия {n}"
+  },
+  "hint_add_season_rest": {
+    "message": "Добавить остаток сезона ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "Обновить и повторить"
+  },
+  "lbl_error_details": {
+    "message": "Технические подробности"
+  },
+  "status_unsupported": {
+    "message": "На этой странице нет доступного видео."
+  },
+  "status_no_helper": {
+    "message": "Приложение ReelHeist не установлено"
+  },
+  "btn_download_installer": {
+    "message": "Скачать установщик"
+  },
+  "status_bar_downloading": {
+    "message": "Загрузка: {name}"
+  },
+  "status_bar_downloads": {
+    "message": "Загрузки"
+  },
+  "state_paused": {
+    "message": "Пауза"
+  },
+  "btn_pause": {
+    "message": "Пауза"
+  },
+  "btn_resume": {
+    "message": "Продолжить"
+  },
+  "set_grp_theme": {
+    "message": "Тема"
+  },
+  "theme_red": {
+    "message": "Красная"
+  },
+  "theme_black_beige": {
+    "message": "Чёрно-бежевая"
+  },
+  "theme_beige_black": {
+    "message": "Бежево-чёрная"
+  },
+  "theme_midnight": {
+    "message": "Полночь"
+  },
+  "theme_emerald": {
+    "message": "Изумруд"
+  },
+  "theme_amethyst": {
+    "message": "Аметист"
+  },
+  "theme_amber": {
+    "message": "Янтарь"
+  },
+  "theme_snow": {
+    "message": "Снег"
+  },
+  "theme_rose": {
+    "message": "Роза"
+  },
+  "set_grp_lang": {
+    "message": "Язык"
+  },
+  "lang_auto": {
+    "message": "Автоматически"
+  },
+  "set_grp_defaults": {
+    "message": "По умолчанию"
+  },
+  "quality_highest": {
+    "message": "Наивысшее"
+  },
+  "lbl_audio_langs": {
+    "message": "Языки аудио"
+  },
+  "lbl_sub_langs": {
+    "message": "Языки субтитров"
+  },
+  "lbl_motion": {
+    "message": "Анимированное превью"
+  },
+  "motion_auto": {
+    "message": "Автоматически"
+  },
+  "motion_on": {
+    "message": "Вкл."
+  },
+  "motion_off": {
+    "message": "Выкл."
+  },
+  "set_grp_repos": {
+    "message": "Репозитории сайтов"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "Добавить"
+  },
+  "repo_trust_prompt": {
+    "message": "Доверять этому репозиторию? Отпечаток: {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "Доверять"
+  },
+  "btn_remove_repo": {
+    "message": "Удалить"
+  },
+  "placeholder_search_packs": {
+    "message": "Поиск пакетов…"
+  },
+  "btn_install_pack": {
+    "message": "Установить"
+  },
+  "btn_uninstall_pack": {
+    "message": "Удалить"
+  },
+  "btn_update_packs": {
+    "message": "Обновить пакеты"
+  },
+  "lbl_auto_update_packs": {
+    "message": "Автоматически обновлять пакеты"
+  },
+  "packs_updated": {
+    "message": "Обновлено: {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "Не удалось подключиться к репозиторию."
+  },
+  "err_repo_invalid": {
+    "message": "Неверный формат репозитория."
+  },
+  "err_repo_untrusted": {
+    "message": "Сначала подтвердите доверие репозиторию."
+  },
+  "err_pack_hash": {
+    "message": "Хеш файла пакета не совпадает."
+  },
+  "err_pack_signature": {
+    "message": "Недействительная подпись пакета."
+  },
+  "err_pack_invalid": {
+    "message": "Недействительная схема пакета."
+  },
+  "err_pack_not_found": {
+    "message": "Пакет не найден в репозитории."
+  },
+  "set_grp_support": {
+    "message": "Поддержка"
+  },
+  "btn_support": {
+    "message": "★ Поддержать проект"
+  },
+  "set_grp_about": {
+    "message": "О программе"
+  },
+  "lbl_version": {
+    "message": "Версия {v}"
+  },
+  "btn_check_updates": {
+    "message": "Проверить обновления"
+  },
+  "update_up_to_date": {
+    "message": "Актуальная версия ({v})"
+  },
+  "update_available": {
+    "message": "Доступна новая версия: {v}"
+  },
+  "update_check_failed": {
+    "message": "Не удалось проверить обновления."
+  },
+  "btn_update_now": {
+    "message": "Обновить"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "Лицензии"
+  }
+}

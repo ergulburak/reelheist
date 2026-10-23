@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "example",
+  "name": "Example site",
+  "version": "1.0.0",
+  "lang": "en",
+  "hosts": ["example.com", "*.example.com", "example*.net"],
+  "title": {
+    "strip": [" - Watch online$", "^Watch "],
+    "episodeUrl": ["/season-(?<season>\\d{1,2})/episode-(?<episode>\\d{1,4})"],
+    "slugUrl": "/series/(?<slug>[a-z0-9-]+)",
+    "yearUrl": "-(\\d{4})$"
+  },
+  "episodes": {
+    "linkUrl": ["/season-(?<season>\\d{1,2})/episode-(?<episode>\\d{1,4})"]
+  },
+  "player": {
+    "lazySrcAttrs": ["data-src", "data-lazy-src"],
+    "playSelectors": [".play-button"],
+    "frameFetch": true
+  },
+  "block": [
+    { "urlFilter": "||ads.example.com^", "action": "block" },
+    { "urlFilter": "||example.com/popup.js", "action": "stub" }
+  ]
+}

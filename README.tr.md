@@ -1,0 +1,69 @@
+# ReelHeist
+
+[English README](README.md)
+
+**ReelHeist**, tarayıcıdaki HLS akışlarını, doğrudan video bağlantılarını ve YouTube video/oynatma listelerini çoklu ses kanalı ve altyazılarla birlikte temiz `.mp4` dosyaları olarak kaydetmenizi sağlayan yerel bir tarayıcı eklentisi ve Windows yardımcı uygulamasıdır.
+
+---
+
+## Özellikler
+
+- **Otomatik video ve altyazı yakalama:** Etkin sekmedeki HLS (`.m3u8`), doğrudan medya dosyaları (`.mp4`, `.webm`, `.mkv`) ve WebVTT/SRT altyazılarını; ayrıca `yt-dlp` aracılığıyla YouTube videolarını ve oynatma listelerini yakalar.
+- **Temiz MP4 çıktısı:** `ffmpeg` kullanarak yeniden kodlama (re-encode) yapmadan görüntüyü, birden çok ses kanalını (dil etiketli, orijinal ses varsayılan olarak işaretli) ve altyazıları tek bir standart `.mp4` dosyasında birleştirir.
+- **Duraklat ve sürdür:** İndirilen parçalar diskte korunur; duraklatılan veya kesilen indirmeler kaldığı yerden devam eder.
+- **Hareketli önizleme ve seçim çipleri:** 2 saniyelik sessiz önizleme döngüsü, kalite (`1080p`, `720p`, `480p`), ses dili ve altyazı çipleri ile site bazlı seçim belleği sunar.
+- **3 tema ve 12 dil:** Kırmızı, Siyah/Bej ve Bej/Siyah temalar; 12 dilde tam arayüz desteği (`tr`, `en`, `es`, `pt_BR`, `fr`, `de`, `ru`, `ar` sağdan sola, `zh_CN`, `id`, `ja`, `hi`).
+- **İmzalı site paketi depoları:** Özel başlık ayrıştırma, bölüm bulma ve oynatıcı başlatma kuralları için Ed25519 imzalı bildirimsel JSON paketleri.
+
+---
+
+## Kurulum (Windows)
+
+1. [GitHub Releases](https://github.com/ergulburak/reelheist/releases) sayfasından **`ReelHeist-Setup-0.1.0.exe`** dosyasını indirip çalıştırın.
+   - **Windows SmartScreen uyarısı:** Kurulum programı henüz ücretli bir sertifikayla imzalanmadığı için Windows *"Bilgisayarınız korundu"* uyarısı gösterebilir. **Ek bilgi** → **Yine de çalıştır** seçeneğine tıklayın.
+2. Dilinizi seçin ve kurulumu tamamlayın. Yönetici izni gerekmez (`%LOCALAPPDATA%\ReelHeist` altına kurulur).
+3. Kurulum sonunda tarayıcınızda **Rehberli Eklenti Kurulum** sayfası otomatik olarak açılır:
+   - **1. Adım:** `brave://extensions` (veya `chrome://extensions` / `edge://extensions`) adresini kopyalayıp adres çubuğuna yapıştırın ve Enter'a basın.
+     ![1. Adım — Uzantılar sayfasını açın](helper/guide/img/step1.png)
+   - **2. Adım:** Sağ üst köşedeki **Geliştirici modu** anahtarını açın.
+     ![2. Adım — Geliştirici modunu açın](helper/guide/img/step2.png)
+   - **3. Adım:** **Paketlenmemiş öğe yükle** düğmesine tıklayın ve eklenti klasör yolunu (`%LOCALAPPDATA%\ReelHeist\app\extension`) seçin.
+     ![3. Adım — Paketlenmemiş öğe yükle](helper/guide/img/step3.png)
+   - Eklenti yüklendiğinde rehber sayfası bağlantıyı otomatik algılar ve **Hazır ✓** gösterir.
+   - **Geliştirici modu bildirimi:** Tarayıcınız zaman zaman geliştirici modundaki eklentiler için bir hatırlatma gösterebilir; paketlenmemiş eklentiler için bu durum normaldir.
+
+---
+
+## Site Paketi Depoları Ekleme
+
+ReelHeist, standart HTML5/HLS oynatıcılarda ve YouTube'da ek ayar gerektirmeden çalışır. Özel adres kalıpları veya başlık ekleri kullanan siteler için imzalı bir **Site Paketi Deposu** ekleyebilirsiniz:
+
+1. ReelHeist açılır penceresinde **⚙ Ayarlar** düğmesine tıklayın.
+2. **Site depoları** bölümüne depo adresini (ör. `https://example.com/repo`) yapıştırıp **Ekle** düğmesine basın.
+3. Deponun Ed25519 anahtar parmak izini kontrol edip **Güven** düğmesine tıklayın.
+4. Listeden istediğiniz paketleri kurun. Paketler SHA-256 özeti ve Ed25519 imzası doğrulanarak kurulur ve günde bir kez güncellenir.
+
+Paket şeması ve imzalama aracı için [docs/site-packs.md](docs/site-packs.md) belgesine bakın.
+
+---
+
+## Kullanım Sorumluluğu ve Destekçi Notu
+
+- **Haklar ve kişisel kullanım:** ReelHeist yalnızca sahibi olduğunuz, indirme izniniz bulunan veya kişisel çevrimdışı izleme hakkınız olan içerikler için tasarlanmış genel amaçlı bir araçtır. DRM korumalı yayınların şifresini çözmez ve korumaları aşmaz.
+- **Destekçi özellikleri (v0.2+ yol haritası):** Gelecekteki destekçi anahtarı mekanizması DRM değil, geliştirmeyi desteklemeye yönelik gönüllü bir teşviktir. Ana kaynak kodu MIT lisansı altında açık kalır.
+
+---
+
+## Üçüncü Taraf Bileşenler
+
+ReelHeist kurulum sırasında aşağıdaki açık kaynaklı bileşenleri kullanır veya indirir:
+
+- **[Node.js](https://nodejs.org/)** (`v22.14.0` taşınabilir çalışma zamanı) — MIT Lisansı
+- **[FFmpeg](https://ffmpeg.org/)** ([BtbN/FFmpeg-Builds](https://github.com/BtbN/FFmpeg-Builds) üzerinden indirilir) — GPLv3 Lisansı
+- **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** — The Unlicense
+
+---
+
+## Lisans
+
+MIT — ayrıntılar için [LICENSE](LICENSE) dosyasına bakın.

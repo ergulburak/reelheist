@@ -1,0 +1,20 @@
+{
+  "title": "Ajouter ReelHeist à votre navigateur",
+  "subtitle": "Suivez ces 3 étapes rapides pour terminer l’installation :",
+  "status_waiting": "En attente de la connexion de l’extension…",
+  "status_connected": "Prêt ✓ Extension connectée !",
+  "step1_title": "1. Ouvrez la page des Extensions",
+  "step1_desc": "Copiez cette adresse, collez-la dans la barre d’adresse du navigateur et appuyez sur Entrée :",
+  "step2_title": "2. Activez le Mode développeur",
+  "step2_desc": "Activez le bouton « Mode développeur » en haut à droite.",
+  "step3_title": "3. Cliquez sur « Charger l’extension non empaquetée »",
+  "step3_desc": "Cliquez sur « Charger l’extension non empaquetée » et sélectionnez ou collez ce dossier :",
+  "btn_copy": "Copier",
+  "btn_copied": "Copié ✓",
+  "note_devmode_title": "À propos du Mode développeur",
+  "note_devmode_desc": "Le navigateur peut parfois afficher un rappel concernant le mode développeur. C’est normal.",
+  "note_smartscreen_title": "À propos de Windows SmartScreen",
+  "note_smartscreen_desc": "Si Windows affiche « Windows a protégé votre PC », cliquez sur « Informations complémentaires » puis « Exécuter quand même ».",
+  "reload_title": "Mise à jour d’une installation existante ?",
+  "reload_desc": "Ouvrez la page des Extensions et cliquez sur l’icône Actualiser (↻) sur la carte ReelHeist."
+}

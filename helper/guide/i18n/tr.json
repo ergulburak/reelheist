@@ -1,0 +1,20 @@
+{
+  "title": "ReelHeist eklentisini tarayıcıya ekleyin",
+  "subtitle": "Kurulumu tamamlamak için şu 3 kısa adımı izleyin:",
+  "status_waiting": "Eklenti bağlantısı bekleniyor…",
+  "status_connected": "Hazır ✓ Eklenti bağlandı!",
+  "step1_title": "1. Uzantılar sayfasını açın",
+  "step1_desc": "Aşağıdaki adresi kopyalayıp tarayıcınızın adres çubuğuna yapıştırın ve Enter tuşuna basın:",
+  "step2_title": "2. Geliştirici modunu açın",
+  "step2_desc": "Uzantılar sayfasının sağ üst köşesindeki \"Geliştirici modu\" anahtarını açın.",
+  "step3_title": "3. \"Paketlenmemiş öğe yükle\" düğmesine basın",
+  "step3_desc": "\"Paketlenmemiş öğe yükle\" düğmesine tıklayın ve aşağıdaki eklenti klasör yolunu seçin veya yapıştırın:",
+  "btn_copy": "Kopyala",
+  "btn_copied": "Kopyalandı ✓",
+  "note_devmode_title": "Geliştirici modu uyarısı hakkında",
+  "note_devmode_desc": "Tarayıcınız zaman zaman geliştirici modundaki eklentiler için bir bildirim gösterebilir. Bu durum normaldir; eklentiyi açık tutun.",
+  "note_smartscreen_title": "Windows SmartScreen uyarısı hakkında",
+  "note_smartscreen_desc": "Kurulum programını çalıştırırken Windows \"Bilgisayarınız korundu\" derse \"Ek bilgi\" → \"Yine de çalıştır\" seçeneğine tıklayın.",
+  "reload_title": "Güncelleme mi yapıyorsunuz?",
+  "reload_desc": "Tarayıcınızın Uzantılar sayfasını açıp ReelHeist kartındaki Yeniden yükle (↻) simgesine tıklayın."
+}

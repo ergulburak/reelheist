@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "将剧集、电影和 YouTube 视频下载为包含全部音轨的 MP4，字幕保存为 SRT。"
+  },
+  "tab_page": {
+    "message": "当前页面"
+  },
+  "tab_queue": {
+    "message": "队列"
+  },
+  "lbl_name": {
+    "message": "名称"
+  },
+  "lbl_kind": {
+    "message": "类型"
+  },
+  "kind_episode": {
+    "message": "剧集"
+  },
+  "kind_movie": {
+    "message": "电影"
+  },
+  "kind_video": {
+    "message": "视频"
+  },
+  "lbl_season": {
+    "message": "季"
+  },
+  "lbl_episode": {
+    "message": "集"
+  },
+  "lbl_year": {
+    "message": "年份"
+  },
+  "lbl_channel": {
+    "message": "频道 / 文件夹"
+  },
+  "lbl_source": {
+    "message": "来源"
+  },
+  "lbl_quality": {
+    "message": "画质"
+  },
+  "lbl_audio": {
+    "message": "音频"
+  },
+  "lbl_subtitles": {
+    "message": "字幕"
+  },
+  "btn_download": {
+    "message": "下载"
+  },
+  "playlist_summary": {
+    "message": "将播放列表加入队列"
+  },
+  "btn_find_playlist": {
+    "message": "获取列表"
+  },
+  "season_summary": {
+    "message": "将整季加入队列"
+  },
+  "btn_find_episodes": {
+    "message": "查找剧集"
+  },
+  "btn_clear_done": {
+    "message": "从列表中移除已完成的任务"
+  },
+  "settings_summary": {
+    "message": "设置"
+  },
+  "lbl_outdir": {
+    "message": "下载文件夹"
+  },
+  "btn_save": {
+    "message": "保存"
+  },
+  "target_line": {
+    "message": "保存位置：{path}"
+  },
+  "default_dir": {
+    "message": "下载"
+  },
+  "quality_file": {
+    "message": "文件原画质"
+  },
+  "quality_single": {
+    "message": "唯一画质"
+  },
+  "source_file": {
+    "message": "MP4 文件"
+  },
+  "audio_all_included": {
+    "message": "将包含视频中的所有音轨。"
+  },
+  "tag_original": {
+    "message": "原声"
+  },
+  "tag_default": {
+    "message": "默认"
+  },
+  "tag_auto": {
+    "message": "自动"
+  },
+  "audios_other": {
+    "message": "其他语言（{n}）"
+  },
+  "subs_other": {
+    "message": "其他字幕（{n}）"
+  },
+  "subs_none": {
+    "message": "未找到字幕。如果在播放器中打开字幕，扩展也会捕获。"
+  },
+  "status_playlist_page": {
+    "message": "这是播放列表页面。请在下方将列表加入队列。"
+  },
+  "status_yt_probing": {
+    "message": "正在检查 YouTube 视频…（需要几秒钟）"
+  },
+  "status_yt_ready": {
+    "message": "YouTube 视频 · {duration} · {n} 种音频语言"
+  },
+  "playlist_loading": {
+    "message": "正在获取列表…"
+  },
+  "playlist_failed": {
+    "message": "无法获取列表：{error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} 个视频 · 文件夹：{folder}"
+  },
+  "btn_add_videos": {
+    "message": "将所选视频加入队列"
+  },
+  "status_inspecting_page": {
+    "message": "正在检查页面…"
+  },
+  "status_open_yt": {
+    "message": "请打开一个 YouTube 视频或播放列表。"
+  },
+  "status_no_video": {
+    "message": "此页面暂未找到视频。请在播放器中点击播放，或用下方按钮启动。"
+  },
+  "btn_start_player": {
+    "message": "启动播放器"
+  },
+  "status_starting_player": {
+    "message": "正在启动播放器…"
+  },
+  "status_inspecting_sources": {
+    "message": "正在检查来源…"
+  },
+  "status_sources_unreadable": {
+    "message": "无法读取捕获的地址。请刷新页面并播放视频。{why}"
+  },
+  "status_video_found": {
+    "message": "已找到视频"
+  },
+  "status_video_found_dur": {
+    "message": "已找到视频 · {duration}"
+  },
+  "add_failed": {
+    "message": "无法加入队列：{error}"
+  },
+  "episodes_searching": {
+    "message": "正在查找剧集…"
+  },
+  "episodes_none": {
+    "message": "此页面没有剧集链接。请打开显示该剧集列表的页面。"
+  },
+  "season_n": {
+    "message": "第 {n} 季"
+  },
+  "episode_n": {
+    "message": "第 {n} 集"
+  },
+  "btn_add_episodes": {
+    "message": "将所选剧集加入队列"
+  },
+  "season_hint": {
+    "message": "扩展会在后台的小窗口中逐集打开以查找视频地址。请不要关闭该窗口。"
+  },
+  "state_queued": {
+    "message": "等待中"
+  },
+  "state_downloading": {
+    "message": "下载中"
+  },
+  "state_muxing": {
+    "message": "正在生成 MP4"
+  },
+  "state_done": {
+    "message": "已完成"
+  },
+  "state_failed": {
+    "message": "失败"
+  },
+  "state_canceled": {
+    "message": "已取消"
+  },
+  "percent": {
+    "message": "{n}%"
+  },
+  "eta_min": {
+    "message": "剩余 {n} 分钟"
+  },
+  "eta_sec": {
+    "message": "剩余 {n} 秒"
+  },
+  "speed": {
+    "message": "{n} MB/秒"
+  },
+  "connections": {
+    "message": "{n} 个连接"
+  },
+  "subs_count": {
+    "message": "{n} 个字幕"
+  },
+  "avg_speed": {
+    "message": "平均 {n} MB/秒"
+  },
+  "unit_h": {
+    "message": "小时"
+  },
+  "unit_min": {
+    "message": "分钟"
+  },
+  "btn_cancel": {
+    "message": "取消"
+  },
+  "btn_retry": {
+    "message": "重试"
+  },
+  "btn_open_folder": {
+    "message": "打开文件夹"
+  },
+  "btn_remove": {
+    "message": "移除"
+  },
+  "queue_empty": {
+    "message": "队列为空。"
+  },
+  "season_progress": {
+    "message": "本季：已准备 {done}/{total} 集"
+  },
+  "season_progress_current": {
+    "message": "本季：已准备 {done}/{total} 集（正在处理第 {n} 集）"
+  },
+  "season_failed": {
+    "message": "第 {season} 季第 {episode} 集无法添加：{error}"
+  },
+  "overlay_download": {
+    "message": "⬇ 下载"
+  },
+  "overlay_close": {
+    "message": "关闭"
+  },
+  "err_link_expired": {
+    "message": "链接已过期。点击“重试”会打开页面并刷新地址。"
+  },
+  "err_drm": {
+    "message": "此视频受 DRM 保护，无法下载。"
+  },
+  "err_no_quality": {
+    "message": "播放列表中没有所选画质。"
+  },
+  "err_playlist_empty": {
+    "message": "视频播放列表为空。"
+  },
+  "err_not_hls": {
+    "message": "该来源不是有效的视频播放列表。"
+  },
+  "err_ffmpeg_missing": {
+    "message": "未找到 ffmpeg。请运行 install.ps1 后重试。"
+  },
+  "err_ytdlp_missing": {
+    "message": "无法下载 YouTube 组件（yt-dlp）。请检查网络连接。"
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube 没有提供该视频。请稍后重试。"
+  },
+  "err_live": {
+    "message": "无法下载直播。请在直播结束后重试。"
+  },
+  "err_bad_segment": {
+    "message": "服务器发送了损坏的视频片段。请稍后重试。"
+  },
+  "err_no_video": {
+    "message": "未找到可用的视频格式。"
+  },
+  "err_internal": {
+    "message": "辅助程序发生意外错误。"
+  },
+  "err_helper_missing": {
+    "message": "未找到辅助程序。请运行 install.ps1，然后重启浏览器。"
+  },
+  "err_helper_no_reply": {
+    "message": "辅助程序没有响应。"
+  },
+  "err_helper_unreachable": {
+    "message": "无法连接到辅助程序。"
+  },
+  "err_episode_timeout": {
+    "message": "未找到视频（超时）。"
+  },
+  "err_episode_unreadable": {
+    "message": "无法读取捕获的视频地址。"
+  },
+  "err_bad_request": {
+    "message": "请求无效。"
+  },
+  "already_downloaded": {
+    "message": "✓ 已下载 · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "播放"
+  },
+  "btn_folder": {
+    "message": "文件夹"
+  },
+  "btn_redownload": {
+    "message": "仍然重新下载"
+  },
+  "download": {
+    "message": "下载"
+  },
+  "overlayDownload": {
+    "message": "⬇ 下载"
+  },
+  "badge_downloaded": {
+    "message": "已下载"
+  },
+  "status_searching": {
+    "message": "正在查找视频…"
+  },
+  "status_press_play": {
+    "message": "请在播放器中点击 ▶"
+  },
+  "chip_audio_all": {
+    "message": "全部音轨"
+  },
+  "chip_subs_off": {
+    "message": "关闭"
+  },
+  "btn_edit_meta": {
+    "message": "✎ 名称与文件夹"
+  },
+  "est_min": {
+    "message": "~{n} 分钟"
+  },
+  "downloading_close_hint": {
+    "message": "您可以关闭标签页，下载将在后台继续。"
+  },
+  "hint_next_ep": {
+    "message": "下一集：第 {n} 集"
+  },
+  "hint_add_season_rest": {
+    "message": "添加本季剩余集数 ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "刷新并重试"
+  },
+  "lbl_error_details": {
+    "message": "技术详情"
+  },
+  "status_unsupported": {
+    "message": "此页面没有可下载的视频。"
+  },
+  "status_no_helper": {
+    "message": "未安装 ReelHeist 应用"
+  },
+  "btn_download_installer": {
+    "message": "下载安装程序"
+  },
+  "status_bar_downloading": {
+    "message": "正在下载：{name}"
+  },
+  "status_bar_downloads": {
+    "message": "下载列表"
+  },
+  "state_paused": {
+    "message": "已暂停"
+  },
+  "btn_pause": {
+    "message": "暂停"
+  },
+  "btn_resume": {
+    "message": "继续"
+  },
+  "set_grp_theme": {
+    "message": "主题"
+  },
+  "theme_red": {
+    "message": "红色"
+  },
+  "theme_black_beige": {
+    "message": "黑/米色"
+  },
+  "theme_beige_black": {
+    "message": "米/黑色"
+  },
+  "theme_midnight": {
+    "message": "午夜"
+  },
+  "theme_emerald": {
+    "message": "翡翠"
+  },
+  "theme_amethyst": {
+    "message": "紫晶"
+  },
+  "theme_amber": {
+    "message": "琥珀"
+  },
+  "theme_snow": {
+    "message": "雪白"
+  },
+  "theme_rose": {
+    "message": "玫瑰"
+  },
+  "set_grp_lang": {
+    "message": "语言"
+  },
+  "lang_auto": {
+    "message": "自动"
+  },
+  "set_grp_defaults": {
+    "message": "默认设置"
+  },
+  "quality_highest": {
+    "message": "最高画质"
+  },
+  "lbl_audio_langs": {
+    "message": "音频语言"
+  },
+  "lbl_sub_langs": {
+    "message": "字幕语言"
+  },
+  "lbl_motion": {
+    "message": "动态预览"
+  },
+  "motion_auto": {
+    "message": "自动"
+  },
+  "motion_on": {
+    "message": "开启"
+  },
+  "motion_off": {
+    "message": "关闭"
+  },
+  "set_grp_repos": {
+    "message": "站点仓库"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "添加"
+  },
+  "repo_trust_prompt": {
+    "message": "您信任此仓库吗？指纹：{fp}"
+  },
+  "btn_trust_repo": {
+    "message": "信任"
+  },
+  "btn_remove_repo": {
+    "message": "移除"
+  },
+  "placeholder_search_packs": {
+    "message": "搜索站点包…"
+  },
+  "btn_install_pack": {
+    "message": "安装"
+  },
+  "btn_uninstall_pack": {
+    "message": "卸载"
+  },
+  "btn_update_packs": {
+    "message": "更新站点包"
+  },
+  "lbl_auto_update_packs": {
+    "message": "自动更新站点包"
+  },
+  "packs_updated": {
+    "message": "已更新：{n}"
+  },
+  "err_repo_unreachable": {
+    "message": "无法访问该仓库。"
+  },
+  "err_repo_invalid": {
+    "message": "仓库格式无效。"
+  },
+  "err_repo_untrusted": {
+    "message": "安装前请先信任该仓库。"
+  },
+  "err_pack_hash": {
+    "message": "站点包哈希值不匹配。"
+  },
+  "err_pack_signature": {
+    "message": "站点包签名无效。"
+  },
+  "err_pack_invalid": {
+    "message": "站点包格式无效。"
+  },
+  "err_pack_not_found": {
+    "message": "仓库中未找到该站点包。"
+  },
+  "set_grp_support": {
+    "message": "支持"
+  },
+  "btn_support": {
+    "message": "★ 成为支持者"
+  },
+  "set_grp_about": {
+    "message": "关于"
+  },
+  "lbl_version": {
+    "message": "版本 {v}"
+  },
+  "btn_check_updates": {
+    "message": "检查更新"
+  },
+  "update_up_to_date": {
+    "message": "已是最新 ({v})"
+  },
+  "update_available": {
+    "message": "发现新版本：{v}"
+  },
+  "update_check_failed": {
+    "message": "无法检查更新。"
+  },
+  "btn_update_now": {
+    "message": "更新"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "许可证"
+  }
+}

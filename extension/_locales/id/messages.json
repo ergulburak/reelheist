@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "Mengunduh serial, film, dan video YouTube sebagai MP4 dengan semua trek audio, serta subtitle sebagai SRT."
+  },
+  "tab_page": {
+    "message": "Halaman ini"
+  },
+  "tab_queue": {
+    "message": "Antrean"
+  },
+  "lbl_name": {
+    "message": "Nama"
+  },
+  "lbl_kind": {
+    "message": "Jenis"
+  },
+  "kind_episode": {
+    "message": "Serial"
+  },
+  "kind_movie": {
+    "message": "Film"
+  },
+  "kind_video": {
+    "message": "Video"
+  },
+  "lbl_season": {
+    "message": "Musim"
+  },
+  "lbl_episode": {
+    "message": "Episode"
+  },
+  "lbl_year": {
+    "message": "Tahun"
+  },
+  "lbl_channel": {
+    "message": "Kanal / folder"
+  },
+  "lbl_source": {
+    "message": "Sumber"
+  },
+  "lbl_quality": {
+    "message": "Kualitas"
+  },
+  "lbl_audio": {
+    "message": "Audio"
+  },
+  "lbl_subtitles": {
+    "message": "Subtitle"
+  },
+  "btn_download": {
+    "message": "Unduh"
+  },
+  "playlist_summary": {
+    "message": "Tambahkan playlist ke antrean"
+  },
+  "btn_find_playlist": {
+    "message": "Ambil daftar"
+  },
+  "season_summary": {
+    "message": "Tambahkan musim ke antrean"
+  },
+  "btn_find_episodes": {
+    "message": "Cari episode"
+  },
+  "btn_clear_done": {
+    "message": "Hapus tugas selesai dari daftar"
+  },
+  "settings_summary": {
+    "message": "Pengaturan"
+  },
+  "lbl_outdir": {
+    "message": "Folder unduhan"
+  },
+  "btn_save": {
+    "message": "Simpan"
+  },
+  "target_line": {
+    "message": "Disimpan di: {path}"
+  },
+  "default_dir": {
+    "message": "Unduhan"
+  },
+  "quality_file": {
+    "message": "Kualitas file"
+  },
+  "quality_single": {
+    "message": "Satu kualitas"
+  },
+  "source_file": {
+    "message": "File MP4"
+  },
+  "audio_all_included": {
+    "message": "Semua trek audio di dalam video akan diambil."
+  },
+  "tag_original": {
+    "message": "asli"
+  },
+  "tag_default": {
+    "message": "bawaan"
+  },
+  "tag_auto": {
+    "message": "otomatis"
+  },
+  "audios_other": {
+    "message": "Bahasa lain ({n})"
+  },
+  "subs_other": {
+    "message": "Subtitle lain ({n})"
+  },
+  "subs_none": {
+    "message": "Subtitle tidak ditemukan. Jika Anda mengaktifkan subtitle di pemutar, ekstensi juga menangkapnya."
+  },
+  "status_playlist_page": {
+    "message": "Ini halaman playlist. Tambahkan daftar ke antrean di bawah."
+  },
+  "status_yt_probing": {
+    "message": "Memeriksa video YouTube... (butuh beberapa detik)"
+  },
+  "status_yt_ready": {
+    "message": "Video YouTube · {duration} · {n} bahasa audio"
+  },
+  "playlist_loading": {
+    "message": "Mengambil daftar..."
+  },
+  "playlist_failed": {
+    "message": "Daftar tidak dapat diambil: {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} video · folder: {folder}"
+  },
+  "btn_add_videos": {
+    "message": "Tambahkan video terpilih ke antrean"
+  },
+  "status_inspecting_page": {
+    "message": "Memeriksa halaman..."
+  },
+  "status_open_yt": {
+    "message": "Buka video atau playlist YouTube."
+  },
+  "status_no_video": {
+    "message": "Belum ada video di halaman ini. Tekan putar di pemutar atau mulai dengan tombol di bawah."
+  },
+  "btn_start_player": {
+    "message": "Mulai pemutar"
+  },
+  "status_starting_player": {
+    "message": "Memulai pemutar..."
+  },
+  "status_inspecting_sources": {
+    "message": "Memeriksa sumber..."
+  },
+  "status_sources_unreadable": {
+    "message": "Alamat yang ditangkap tidak dapat dibaca. Muat ulang halaman dan putar videonya. {why}"
+  },
+  "status_video_found": {
+    "message": "Video ditemukan"
+  },
+  "status_video_found_dur": {
+    "message": "Video ditemukan · {duration}"
+  },
+  "add_failed": {
+    "message": "Tidak dapat ditambahkan ke antrean: {error}"
+  },
+  "episodes_searching": {
+    "message": "Mencari episode..."
+  },
+  "episodes_none": {
+    "message": "Tautan episode tidak ditemukan di halaman ini. Buka halaman yang menampilkan daftar episode serial."
+  },
+  "season_n": {
+    "message": "Musim {n}"
+  },
+  "episode_n": {
+    "message": "Episode {n}"
+  },
+  "btn_add_episodes": {
+    "message": "Tambahkan episode terpilih ke antrean"
+  },
+  "season_hint": {
+    "message": "Ekstensi membuka setiap episode di jendela kecil di latar belakang untuk menemukan alamat video. Jangan tutup jendela itu."
+  },
+  "state_queued": {
+    "message": "Menunggu"
+  },
+  "state_downloading": {
+    "message": "Mengunduh"
+  },
+  "state_muxing": {
+    "message": "Membuat MP4"
+  },
+  "state_done": {
+    "message": "Selesai"
+  },
+  "state_failed": {
+    "message": "Gagal"
+  },
+  "state_canceled": {
+    "message": "Dibatalkan"
+  },
+  "percent": {
+    "message": "{n}%"
+  },
+  "eta_min": {
+    "message": "sisa {n} mnt"
+  },
+  "eta_sec": {
+    "message": "sisa {n} dtk"
+  },
+  "speed": {
+    "message": "{n} MB/dtk"
+  },
+  "connections": {
+    "message": "{n} koneksi"
+  },
+  "subs_count": {
+    "message": "{n} subtitle"
+  },
+  "avg_speed": {
+    "message": "rata-rata {n} MB/dtk"
+  },
+  "unit_h": {
+    "message": "j"
+  },
+  "unit_min": {
+    "message": "mnt"
+  },
+  "btn_cancel": {
+    "message": "Batal"
+  },
+  "btn_retry": {
+    "message": "Coba lagi"
+  },
+  "btn_open_folder": {
+    "message": "Buka folder"
+  },
+  "btn_remove": {
+    "message": "Hapus"
+  },
+  "queue_empty": {
+    "message": "Antrean kosong."
+  },
+  "season_progress": {
+    "message": "Musim: {done}/{total} episode siap"
+  },
+  "season_progress_current": {
+    "message": "Musim: {done}/{total} episode siap (sekarang episode {n})"
+  },
+  "season_failed": {
+    "message": "Musim {season} episode {episode} tidak dapat ditambahkan: {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ Unduh"
+  },
+  "overlay_close": {
+    "message": "Tutup"
+  },
+  "err_link_expired": {
+    "message": "Tautan sudah kedaluwarsa. \"Coba lagi\" membuka halaman dan menyegarkan alamat."
+  },
+  "err_drm": {
+    "message": "Video ini dilindungi DRM dan tidak dapat diunduh."
+  },
+  "err_no_quality": {
+    "message": "Kualitas yang dipilih tidak ditemukan di playlist."
+  },
+  "err_playlist_empty": {
+    "message": "Playlist video kosong."
+  },
+  "err_not_hls": {
+    "message": "Sumber ini bukan playlist video yang valid."
+  },
+  "err_ffmpeg_missing": {
+    "message": "ffmpeg tidak ditemukan. Jalankan install.ps1 lalu coba lagi."
+  },
+  "err_ytdlp_missing": {
+    "message": "Komponen YouTube (yt-dlp) tidak dapat diunduh. Periksa koneksi internet Anda."
+  },
+  "err_ytdlp_failed": {
+    "message": "YouTube tidak memberikan videonya. Coba lagi nanti."
+  },
+  "err_live": {
+    "message": "Siaran langsung tidak dapat diunduh. Coba lagi setelah siaran selesai."
+  },
+  "err_bad_segment": {
+    "message": "Server mengirim bagian video yang rusak. Coba lagi nanti."
+  },
+  "err_no_video": {
+    "message": "Format video yang dapat dipakai tidak ditemukan."
+  },
+  "err_internal": {
+    "message": "Terjadi kesalahan tak terduga pada program pembantu."
+  },
+  "err_helper_missing": {
+    "message": "Program pembantu tidak ditemukan. Jalankan install.ps1, lalu mulai ulang browser."
+  },
+  "err_helper_no_reply": {
+    "message": "Program pembantu tidak menjawab."
+  },
+  "err_helper_unreachable": {
+    "message": "Tidak dapat terhubung ke program pembantu."
+  },
+  "err_episode_timeout": {
+    "message": "Video tidak ditemukan (waktu habis)."
+  },
+  "err_episode_unreadable": {
+    "message": "Alamat video yang ditangkap tidak dapat dibaca."
+  },
+  "err_bad_request": {
+    "message": "Permintaan tidak valid."
+  },
+  "already_downloaded": {
+    "message": "✓ Sudah diunduh · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "Putar"
+  },
+  "btn_folder": {
+    "message": "Folder"
+  },
+  "btn_redownload": {
+    "message": "Unduh ulang saja"
+  },
+  "download": {
+    "message": "Unduh"
+  },
+  "overlayDownload": {
+    "message": "⬇ Unduh"
+  },
+  "badge_downloaded": {
+    "message": "Terunduh"
+  },
+  "status_searching": {
+    "message": "Mencari video…"
+  },
+  "status_press_play": {
+    "message": "Tekan ▶ di pemutar"
+  },
+  "chip_audio_all": {
+    "message": "Semua audio"
+  },
+  "chip_subs_off": {
+    "message": "Mati"
+  },
+  "btn_edit_meta": {
+    "message": "✎ Nama & folder"
+  },
+  "est_min": {
+    "message": "~{n} mnt"
+  },
+  "downloading_close_hint": {
+    "message": "Anda dapat menutup tab; unduhan berlanjut di latar belakang."
+  },
+  "hint_next_ep": {
+    "message": "Berikutnya: Episode {n}"
+  },
+  "hint_add_season_rest": {
+    "message": "Tambahkan sisa musim ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "Muat ulang dan coba lagi"
+  },
+  "lbl_error_details": {
+    "message": "Detail teknis"
+  },
+  "status_unsupported": {
+    "message": "Tidak ada video yang dapat diunduh di halaman ini."
+  },
+  "status_no_helper": {
+    "message": "Aplikasi ReelHeist belum terpasang"
+  },
+  "btn_download_installer": {
+    "message": "Unduh pemasang"
+  },
+  "status_bar_downloading": {
+    "message": "Mengunduh: {name}"
+  },
+  "status_bar_downloads": {
+    "message": "Unduhan"
+  },
+  "state_paused": {
+    "message": "Dijeda"
+  },
+  "btn_pause": {
+    "message": "Jeda"
+  },
+  "btn_resume": {
+    "message": "Lanjutkan"
+  },
+  "set_grp_theme": {
+    "message": "Tema"
+  },
+  "theme_red": {
+    "message": "Merah"
+  },
+  "theme_black_beige": {
+    "message": "Hitam/krem"
+  },
+  "theme_beige_black": {
+    "message": "Krem/hitam"
+  },
+  "theme_midnight": {
+    "message": "Tengah malam"
+  },
+  "theme_emerald": {
+    "message": "Zamrud"
+  },
+  "theme_amethyst": {
+    "message": "Ametis"
+  },
+  "theme_amber": {
+    "message": "Ambar"
+  },
+  "theme_snow": {
+    "message": "Salju"
+  },
+  "theme_rose": {
+    "message": "Mawar"
+  },
+  "set_grp_lang": {
+    "message": "Bahasa"
+  },
+  "lang_auto": {
+    "message": "Otomatis"
+  },
+  "set_grp_defaults": {
+    "message": "Bawaan"
+  },
+  "quality_highest": {
+    "message": "Tertinggi"
+  },
+  "lbl_audio_langs": {
+    "message": "Bahasa audio"
+  },
+  "lbl_sub_langs": {
+    "message": "Bahasa takarir"
+  },
+  "lbl_motion": {
+    "message": "Pratinjau bergerak"
+  },
+  "motion_auto": {
+    "message": "Otomatis"
+  },
+  "motion_on": {
+    "message": "Aktif"
+  },
+  "motion_off": {
+    "message": "Nonaktif"
+  },
+  "set_grp_repos": {
+    "message": "Repositori situs"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "Tambah"
+  },
+  "repo_trust_prompt": {
+    "message": "Percayai repositori ini? Sidik jari: {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "Percayai"
+  },
+  "btn_remove_repo": {
+    "message": "Hapus"
+  },
+  "placeholder_search_packs": {
+    "message": "Cari paket situs…"
+  },
+  "btn_install_pack": {
+    "message": "Pasang"
+  },
+  "btn_uninstall_pack": {
+    "message": "Copot"
+  },
+  "btn_update_packs": {
+    "message": "Perbarui paket"
+  },
+  "lbl_auto_update_packs": {
+    "message": "Perbarui paket secara otomatis"
+  },
+  "packs_updated": {
+    "message": "Diperbarui: {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "Tidak dapat menjangkau repositori."
+  },
+  "err_repo_invalid": {
+    "message": "Format repositori tidak valid."
+  },
+  "err_repo_untrusted": {
+    "message": "Percayai repositori sebelum memasang paket."
+  },
+  "err_pack_hash": {
+    "message": "Hash berkas paket tidak cocok."
+  },
+  "err_pack_signature": {
+    "message": "Tanda tangan paket tidak valid."
+  },
+  "err_pack_invalid": {
+    "message": "Skema paket tidak valid."
+  },
+  "err_pack_not_found": {
+    "message": "Paket tidak ditemukan di repositori."
+  },
+  "set_grp_support": {
+    "message": "Dukungan"
+  },
+  "btn_support": {
+    "message": "★ Dukung proyek"
+  },
+  "set_grp_about": {
+    "message": "Tentang"
+  },
+  "lbl_version": {
+    "message": "Versi {v}"
+  },
+  "btn_check_updates": {
+    "message": "Periksa pembaruan"
+  },
+  "update_up_to_date": {
+    "message": "Sudah terbaru ({v})"
+  },
+  "update_available": {
+    "message": "Versi baru tersedia: {v}"
+  },
+  "update_check_failed": {
+    "message": "Tidak dapat memeriksa pembaruan."
+  },
+  "btn_update_now": {
+    "message": "Perbarui"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "Lisensi"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "default_locale": "en",
+  "version": "0.1.0",
+  "description": "__MSG_extDesc__",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlOjzv6Ey8NyqEYB2tefzFmwK15Obndzwax0foKpClb7zv4eUC2Xjpfv0pUisGGp5qL9QzjVEAzyG7adguBSUQxzmejUZL0PJbQG3LgafOTi2Nt8QyRfTnb3rxsbcSbcbSoPHHcNSGHXSekv+pwV4p5Yq/OvdLy5C2LEUSWkvW9XYIVXLUcKPqq/0qm1t+6OV/A8FrBdna71w13gQm4YgmY2A/NhD67bwJ+09HLgPvAA832dwR6tbuWejAIu98QMjQeeyCnd/yTU+9S17pvrfa3OKKwkOguopqdbnHpA7XTZ8l+ZuE9V4SOcONpxBxOJor24tPGPXXC4vhw0kCif/LwIDAQAB",
+  "minimum_chrome_version": "137",
+  "permissions": [
+    "webRequest",
+    "declarativeNetRequest",
+    "storage",
+    "alarms",
+    "tabs",
+    "scripting",
+    "nativeMessaging",
+    "cookies"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "ReelHeist",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content/scan.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content/overlay.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "stubs/devtools-noop.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "resources": [
+        "popup.html",
+        "styles/*",
+        "popup.js",
+        "ui/*",
+        "lib/*"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "use_dynamic_url": true
+    }
+  ]
+}

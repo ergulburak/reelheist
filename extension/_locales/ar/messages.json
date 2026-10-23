@@ -1,0 +1,542 @@
+{
+  "extName": {
+    "message": "ReelHeist"
+  },
+  "extDesc": {
+    "message": "يحمّل المسلسلات والأفلام وفيديوهات يوتيوب بصيغة MP4 مع كل المسارات الصوتية، والترجمات بصيغة SRT."
+  },
+  "tab_page": {
+    "message": "هذه الصفحة"
+  },
+  "tab_queue": {
+    "message": "قائمة الانتظار"
+  },
+  "lbl_name": {
+    "message": "الاسم"
+  },
+  "lbl_kind": {
+    "message": "النوع"
+  },
+  "kind_episode": {
+    "message": "مسلسل"
+  },
+  "kind_movie": {
+    "message": "فيلم"
+  },
+  "kind_video": {
+    "message": "فيديو"
+  },
+  "lbl_season": {
+    "message": "الموسم"
+  },
+  "lbl_episode": {
+    "message": "الحلقة"
+  },
+  "lbl_year": {
+    "message": "السنة"
+  },
+  "lbl_channel": {
+    "message": "القناة / المجلد"
+  },
+  "lbl_source": {
+    "message": "المصدر"
+  },
+  "lbl_quality": {
+    "message": "الجودة"
+  },
+  "lbl_audio": {
+    "message": "الصوت"
+  },
+  "lbl_subtitles": {
+    "message": "الترجمة"
+  },
+  "btn_download": {
+    "message": "تحميل"
+  },
+  "playlist_summary": {
+    "message": "إضافة قائمة التشغيل إلى قائمة الانتظار"
+  },
+  "btn_find_playlist": {
+    "message": "جلب القائمة"
+  },
+  "season_summary": {
+    "message": "إضافة الموسم إلى قائمة الانتظار"
+  },
+  "btn_find_episodes": {
+    "message": "البحث عن الحلقات"
+  },
+  "btn_clear_done": {
+    "message": "إزالة المهام المكتملة من القائمة"
+  },
+  "settings_summary": {
+    "message": "الإعدادات"
+  },
+  "lbl_outdir": {
+    "message": "مجلد التحميل"
+  },
+  "btn_save": {
+    "message": "حفظ"
+  },
+  "target_line": {
+    "message": "مكان الحفظ: {path}"
+  },
+  "default_dir": {
+    "message": "التنزيلات"
+  },
+  "quality_file": {
+    "message": "جودة الملف"
+  },
+  "quality_single": {
+    "message": "جودة واحدة"
+  },
+  "source_file": {
+    "message": "ملف MP4"
+  },
+  "audio_all_included": {
+    "message": "سيتم أخذ كل المسارات الصوتية الموجودة في الفيديو."
+  },
+  "tag_original": {
+    "message": "الأصلي"
+  },
+  "tag_default": {
+    "message": "افتراضي"
+  },
+  "tag_auto": {
+    "message": "تلقائي"
+  },
+  "audios_other": {
+    "message": "لغات أخرى ({n})"
+  },
+  "subs_other": {
+    "message": "ترجمات أخرى ({n})"
+  },
+  "subs_none": {
+    "message": "لم يتم العثور على ترجمة. إذا شغّلت الترجمة في المشغّل فستلتقطها الإضافة أيضًا."
+  },
+  "status_playlist_page": {
+    "message": "هذه صفحة قائمة تشغيل. أضف القائمة إلى قائمة الانتظار من الأسفل."
+  },
+  "status_yt_probing": {
+    "message": "جارٍ فحص فيديو يوتيوب... (يستغرق بضع ثوانٍ)"
+  },
+  "status_yt_ready": {
+    "message": "فيديو يوتيوب · {duration} · {n} لغات صوتية"
+  },
+  "playlist_loading": {
+    "message": "جارٍ جلب القائمة..."
+  },
+  "playlist_failed": {
+    "message": "تعذّر جلب القائمة: {error}"
+  },
+  "playlist_info": {
+    "message": "{title} · {n} فيديو · المجلد: {folder}"
+  },
+  "btn_add_videos": {
+    "message": "إضافة الفيديوهات المحددة إلى قائمة الانتظار"
+  },
+  "status_inspecting_page": {
+    "message": "جارٍ فحص الصفحة..."
+  },
+  "status_open_yt": {
+    "message": "افتح فيديو أو قائمة تشغيل على يوتيوب."
+  },
+  "status_no_video": {
+    "message": "لم يُعثر على فيديو في هذه الصفحة بعد. اضغط زر التشغيل في المشغّل أو شغّله بالزر أدناه."
+  },
+  "btn_start_player": {
+    "message": "تشغيل المشغّل"
+  },
+  "status_starting_player": {
+    "message": "جارٍ تشغيل المشغّل..."
+  },
+  "status_inspecting_sources": {
+    "message": "جارٍ فحص المصادر..."
+  },
+  "status_sources_unreadable": {
+    "message": "تعذّرت قراءة العناوين الملتقطة. أعد تحميل الصفحة وشغّل الفيديو. {why}"
+  },
+  "status_video_found": {
+    "message": "تم العثور على فيديو"
+  },
+  "status_video_found_dur": {
+    "message": "تم العثور على فيديو · {duration}"
+  },
+  "add_failed": {
+    "message": "تعذّرت الإضافة إلى قائمة الانتظار: {error}"
+  },
+  "episodes_searching": {
+    "message": "جارٍ البحث عن الحلقات..."
+  },
+  "episodes_none": {
+    "message": "لم يُعثر على روابط حلقات في هذه الصفحة. افتح صفحة تعرض قائمة حلقات المسلسل."
+  },
+  "season_n": {
+    "message": "الموسم {n}"
+  },
+  "episode_n": {
+    "message": "الحلقة {n}"
+  },
+  "btn_add_episodes": {
+    "message": "إضافة الحلقات المحددة إلى قائمة الانتظار"
+  },
+  "season_hint": {
+    "message": "تفتح الإضافة كل حلقة في نافذة صغيرة في الخلفية لتجد عنوان الفيديو. لا تغلق هذه النافذة."
+  },
+  "state_queued": {
+    "message": "في الانتظار"
+  },
+  "state_downloading": {
+    "message": "جارٍ التحميل"
+  },
+  "state_muxing": {
+    "message": "جارٍ إنشاء MP4"
+  },
+  "state_done": {
+    "message": "اكتمل"
+  },
+  "state_failed": {
+    "message": "خطأ"
+  },
+  "state_canceled": {
+    "message": "أُلغي"
+  },
+  "percent": {
+    "message": "{n}%"
+  },
+  "eta_min": {
+    "message": "متبقي {n} د"
+  },
+  "eta_sec": {
+    "message": "متبقي {n} ث"
+  },
+  "speed": {
+    "message": "{n} MB/s"
+  },
+  "connections": {
+    "message": "{n} اتصالات"
+  },
+  "subs_count": {
+    "message": "{n} ترجمات"
+  },
+  "avg_speed": {
+    "message": "المتوسط {n} MB/s"
+  },
+  "unit_h": {
+    "message": "س"
+  },
+  "unit_min": {
+    "message": "د"
+  },
+  "btn_cancel": {
+    "message": "إلغاء"
+  },
+  "btn_retry": {
+    "message": "إعادة المحاولة"
+  },
+  "btn_open_folder": {
+    "message": "فتح المجلد"
+  },
+  "btn_remove": {
+    "message": "إزالة"
+  },
+  "queue_empty": {
+    "message": "قائمة الانتظار فارغة."
+  },
+  "season_progress": {
+    "message": "الموسم: جاهزة {done} من {total} حلقة"
+  },
+  "season_progress_current": {
+    "message": "الموسم: جاهزة {done} من {total} حلقة (الآن الحلقة {n})"
+  },
+  "season_failed": {
+    "message": "تعذّرت إضافة الموسم {season} الحلقة {episode}: {error}"
+  },
+  "overlay_download": {
+    "message": "⬇ تحميل"
+  },
+  "overlay_close": {
+    "message": "إغلاق"
+  },
+  "err_link_expired": {
+    "message": "انتهت صلاحية الرابط. زر «إعادة المحاولة» يفتح الصفحة ويجدّد العناوين."
+  },
+  "err_drm": {
+    "message": "هذا الفيديو محمي بتقنية DRM ولا يمكن تحميله."
+  },
+  "err_no_quality": {
+    "message": "لم يُعثر على الجودة المختارة في قائمة التشغيل."
+  },
+  "err_playlist_empty": {
+    "message": "قائمة تشغيل الفيديو فارغة."
+  },
+  "err_not_hls": {
+    "message": "المصدر ليس قائمة تشغيل فيديو صالحة."
+  },
+  "err_ffmpeg_missing": {
+    "message": "لم يُعثر على ffmpeg. شغّل install.ps1 ثم حاول مرة أخرى."
+  },
+  "err_ytdlp_missing": {
+    "message": "تعذّر تحميل مكوّن يوتيوب (yt-dlp). تحقق من اتصالك بالإنترنت."
+  },
+  "err_ytdlp_failed": {
+    "message": "لم يسلّم يوتيوب الفيديو. حاول مرة أخرى لاحقًا."
+  },
+  "err_live": {
+    "message": "لا يمكن تحميل البث المباشر. حاول مرة أخرى بعد انتهاء البث."
+  },
+  "err_bad_segment": {
+    "message": "يرسل الخادم أجزاء فيديو تالفة. حاول مرة أخرى لاحقًا."
+  },
+  "err_no_video": {
+    "message": "لم يُعثر على صيغة فيديو مناسبة."
+  },
+  "err_internal": {
+    "message": "حدث خطأ غير متوقع في البرنامج المساعد."
+  },
+  "err_helper_missing": {
+    "message": "لم يُعثر على البرنامج المساعد. شغّل install.ps1 ثم أعد تشغيل المتصفح."
+  },
+  "err_helper_no_reply": {
+    "message": "لم يستجب البرنامج المساعد."
+  },
+  "err_helper_unreachable": {
+    "message": "تعذّر الاتصال بالبرنامج المساعد."
+  },
+  "err_episode_timeout": {
+    "message": "لم يُعثر على فيديو (انتهت المهلة)."
+  },
+  "err_episode_unreadable": {
+    "message": "تعذّرت قراءة عناوين الفيديو الملتقطة."
+  },
+  "err_bad_request": {
+    "message": "الطلب غير صالح."
+  },
+  "already_downloaded": {
+    "message": "✓ تم التنزيل · {size} · {date}"
+  },
+  "btn_play": {
+    "message": "تشغيل"
+  },
+  "btn_folder": {
+    "message": "المجلد"
+  },
+  "btn_redownload": {
+    "message": "التنزيل مرة أخرى"
+  },
+  "download": {
+    "message": "تنزيل"
+  },
+  "overlayDownload": {
+    "message": "⬇ تنزيل"
+  },
+  "badge_downloaded": {
+    "message": "تم التنزيل"
+  },
+  "status_searching": {
+    "message": "جارٍ البحث عن الفيديو…"
+  },
+  "status_press_play": {
+    "message": "اضغط ▶ في المشغّل"
+  },
+  "chip_audio_all": {
+    "message": "كل الصوتيات"
+  },
+  "chip_subs_off": {
+    "message": "إيقاف"
+  },
+  "btn_edit_meta": {
+    "message": "✎ الاسم والمجلد"
+  },
+  "est_min": {
+    "message": "~{n} د"
+  },
+  "downloading_close_hint": {
+    "message": "يمكنك إغلاق علامة التبويب؛ سيستمر التنزيل في الخلفية."
+  },
+  "hint_next_ep": {
+    "message": "التالي: الحلقة {n}"
+  },
+  "hint_add_season_rest": {
+    "message": "إضافة باقي الموسم ({n})"
+  },
+  "btn_reload_retry": {
+    "message": "إعادة التحميل والمحاولة مجدداً"
+  },
+  "lbl_error_details": {
+    "message": "التفاصيل التقنية"
+  },
+  "status_unsupported": {
+    "message": "لا يوجد فيديو قابل للتنزيل في هذه الصفحة."
+  },
+  "status_no_helper": {
+    "message": "تطبيق ReelHeist غير مثبّت"
+  },
+  "btn_download_installer": {
+    "message": "تنزيل برنامج التثبيت"
+  },
+  "status_bar_downloading": {
+    "message": "جارٍ التنزيل: {name}"
+  },
+  "status_bar_downloads": {
+    "message": "التنزيلات"
+  },
+  "state_paused": {
+    "message": "متوقف مؤقتاً"
+  },
+  "btn_pause": {
+    "message": "إيقاف مؤقت"
+  },
+  "btn_resume": {
+    "message": "استئناف"
+  },
+  "set_grp_theme": {
+    "message": "المظهر"
+  },
+  "theme_red": {
+    "message": "أحمر"
+  },
+  "theme_black_beige": {
+    "message": "أسود/بيج"
+  },
+  "theme_beige_black": {
+    "message": "بيج/أسود"
+  },
+  "theme_midnight": {
+    "message": "منتصف الليل"
+  },
+  "theme_emerald": {
+    "message": "زمرد"
+  },
+  "theme_amethyst": {
+    "message": "جمشت"
+  },
+  "theme_amber": {
+    "message": "كهرمان"
+  },
+  "theme_snow": {
+    "message": "ثلج"
+  },
+  "theme_rose": {
+    "message": "وردي"
+  },
+  "set_grp_lang": {
+    "message": "اللغة"
+  },
+  "lang_auto": {
+    "message": "تلقائي"
+  },
+  "set_grp_defaults": {
+    "message": "الإعدادات الافتراضية"
+  },
+  "quality_highest": {
+    "message": "الأعلى"
+  },
+  "lbl_audio_langs": {
+    "message": "لغات الصوت"
+  },
+  "lbl_sub_langs": {
+    "message": "لغات الترجمة"
+  },
+  "lbl_motion": {
+    "message": "معاينة متحركة"
+  },
+  "motion_auto": {
+    "message": "تلقائي"
+  },
+  "motion_on": {
+    "message": "تشغيل"
+  },
+  "motion_off": {
+    "message": "إيقاف"
+  },
+  "set_grp_repos": {
+    "message": "مستودعات المواقع"
+  },
+  "placeholder_repo_url": {
+    "message": "https://example.com/repo"
+  },
+  "btn_add_repo": {
+    "message": "إضافة"
+  },
+  "repo_trust_prompt": {
+    "message": "هل تثق بهذا المستودع؟ البصمة: {fp}"
+  },
+  "btn_trust_repo": {
+    "message": "وثوق"
+  },
+  "btn_remove_repo": {
+    "message": "إزالة"
+  },
+  "placeholder_search_packs": {
+    "message": "البحث عن حزم…"
+  },
+  "btn_install_pack": {
+    "message": "تثبيت"
+  },
+  "btn_uninstall_pack": {
+    "message": "إلغاء التثبيت"
+  },
+  "btn_update_packs": {
+    "message": "تحديث الحزم"
+  },
+  "lbl_auto_update_packs": {
+    "message": "تحديث الحزم تلقائياً"
+  },
+  "packs_updated": {
+    "message": "تم التحديث: {n}"
+  },
+  "err_repo_unreachable": {
+    "message": "تعذّر الوصول إلى المستودع."
+  },
+  "err_repo_invalid": {
+    "message": "تنسيق المستودع غير صالح."
+  },
+  "err_repo_untrusted": {
+    "message": "يجب الوثوق بالمستودع قبل تثبيت الحزم."
+  },
+  "err_pack_hash": {
+    "message": "بصمة ملف الحزمة غير متطابقة."
+  },
+  "err_pack_signature": {
+    "message": "توقيع الحزمة غير صالح."
+  },
+  "err_pack_invalid": {
+    "message": "مخطط الحزمة غير صالح."
+  },
+  "err_pack_not_found": {
+    "message": "الحزمة غير موجودة في المستودع."
+  },
+  "set_grp_support": {
+    "message": "الدعم"
+  },
+  "btn_support": {
+    "message": "★ ادعم المشروع"
+  },
+  "set_grp_about": {
+    "message": "حول"
+  },
+  "lbl_version": {
+    "message": "الإصدار {v}"
+  },
+  "btn_check_updates": {
+    "message": "التحقق من التحديثات"
+  },
+  "update_up_to_date": {
+    "message": "محدّث ({v})"
+  },
+  "update_available": {
+    "message": "إصدار جديد متاح: {v}"
+  },
+  "update_check_failed": {
+    "message": "تعذّر التحقق من التحديثات."
+  },
+  "btn_update_now": {
+    "message": "تحديث"
+  },
+  "link_github": {
+    "message": "GitHub"
+  },
+  "link_licenses": {
+    "message": "التراخيص"
+  }
+}

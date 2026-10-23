@@ -1,0 +1,20 @@
+{
+  "title": "Add ReelHeist to your browser",
+  "subtitle": "Follow these 3 quick steps to finish setup:",
+  "status_waiting": "Waiting for extension connection…",
+  "status_connected": "Ready ✓ Extension connected!",
+  "step1_title": "1. Open the Extensions page",
+  "step1_desc": "Copy this address, paste it into your browser address bar, and press Enter:",
+  "step2_title": "2. Enable Developer mode",
+  "step2_desc": "Turn on the \"Developer mode\" switch in the top-right corner.",
+  "step3_title": "3. Click \"Load unpacked\"",
+  "step3_desc": "Click \"Load unpacked\" and select or paste this extension folder path:",
+  "btn_copy": "Copy",
+  "btn_copied": "Copied ✓",
+  "note_devmode_title": "About Developer mode",
+  "note_devmode_desc": "Browsers may show a reminder when running unpacked extensions in Developer mode. This is normal—keep the extension enabled.",
+  "note_smartscreen_title": "About Windows SmartScreen",
+  "note_smartscreen_desc": "If Windows shows \"Windows protected your PC\" when running the installer, click \"More info\" and then \"Run anyway\".",
+  "reload_title": "Updating an existing install?",
+  "reload_desc": "Open your browser Extensions page and click the Reload (↻) icon on the ReelHeist card."
+}
