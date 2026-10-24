@@ -147,109 +147,174 @@
   </section>
 
   <section id="settings" class="view" hidden>
+    <div class="set-tabs" id="setTabs" role="tablist" data-i18n-aria="settings_summary">
+      <button type="button" role="tab" id="setTab-look" aria-controls="setPanel-look" data-set-tab="look" data-i18n="set_tab_look"></button>
+      <button type="button" role="tab" id="setTab-download" aria-controls="setPanel-download" data-set-tab="download" data-i18n="set_tab_download"></button>
+      <button type="button" role="tab" id="setTab-repos" aria-controls="setPanel-repos" data-set-tab="repos" data-i18n="set_tab_repos"></button>
+      <button type="button" role="tab" id="setTab-about" aria-controls="setPanel-about" data-set-tab="about" data-i18n="set_tab_about"></button>
+    </div>
     <div class="body set" id="settingsBody">
-      <div class="grp">
-        <div class="lbl" data-i18n="set_grp_theme"></div>
-        <div class="sw" id="themeSwatches">
-          <button type="button" class="sw-item" data-theme-choice="red">
-            <i class="t" data-theme="red"></i>
-            <span data-i18n="theme_red"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="black-beige">
-            <i class="t" data-theme="black-beige"></i>
-            <span data-i18n="theme_black_beige"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="beige-black">
-            <i class="t" data-theme="beige-black"></i>
-            <span data-i18n="theme_beige_black"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="midnight">
-            <i class="t" data-theme="midnight"></i>
-            <span data-i18n="theme_midnight"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="emerald">
-            <i class="t" data-theme="emerald"></i>
-            <span data-i18n="theme_emerald"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="amethyst">
-            <i class="t" data-theme="amethyst"></i>
-            <span data-i18n="theme_amethyst"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="amber">
-            <i class="t" data-theme="amber"></i>
-            <span data-i18n="theme_amber"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="snow">
-            <i class="t" data-theme="snow"></i>
-            <span data-i18n="theme_snow"></span>
-          </button>
-          <button type="button" class="sw-item" data-theme-choice="rose">
-            <i class="t" data-theme="rose"></i>
-            <span data-i18n="theme_rose"></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="grp">
-        <div class="lbl" data-i18n="set_grp_lang"></div>
-        <select id="setLang"></select>
-      </div>
-
-      <div class="grp">
-        <div class="lbl" data-i18n="set_grp_defaults"></div>
-        <div class="set-grid">
-          <label><span data-i18n="lbl_quality"></span> <select id="setDefaultQuality"></select></label>
-          <label><span data-i18n="lbl_motion"></span>
-            <select id="setMotion">
-              <option value="auto" data-i18n="motion_auto"></option>
-              <option value="on" data-i18n="motion_on"></option>
-              <option value="off" data-i18n="motion_off"></option>
-            </select>
-          </label>
-        </div>
-        <div class="set-grid">
-          <label><span data-i18n="lbl_audio_langs"></span> <input id="setDefaultAudio" type="text"></label>
-          <label><span data-i18n="lbl_sub_langs"></span> <input id="setDefaultSubs" type="text"></label>
-        </div>
-        <div class="row outdir-row">
-          <label class="grow"><span data-i18n="lbl_outdir"></span> <input id="outDir" type="text"></label>
-          <button type="button" id="saveSettings" data-i18n="btn_save"></button>
-        </div>
-      </div>
-
-      <div class="grp">
-        <div class="lbl" data-i18n="set_grp_repos"></div>
-        <div class="row repo-add-row">
-          <input id="repoUrlInput" type="url" class="grow-input" data-i18n-placeholder="placeholder_repo_url">
-          <button type="button" id="addRepoBtn" data-i18n="btn_add_repo"></button>
-        </div>
-        <div id="repoStatus" class="status small" hidden></div>
-        <div id="reposList" class="repos-list"></div>
-        <div id="packsSection" class="packs-section" hidden>
-          <div class="row packs-search-row">
-            <input id="packSearchInput" type="search" class="grow-input" data-i18n-placeholder="placeholder_search_packs">
-            <button type="button" id="updatePacksBtn" data-i18n="btn_update_packs"></button>
+      <div class="set-panel" id="setPanel-look" role="tabpanel" aria-labelledby="setTab-look" data-set-panel="look">
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_theme"></div>
+          <div class="sw" id="themeSwatches">
+            <button type="button" class="sw-item" data-theme-choice="red">
+              <i class="t" data-theme="red"></i>
+              <span data-i18n="theme_red"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="black-beige">
+              <i class="t" data-theme="black-beige"></i>
+              <span data-i18n="theme_black_beige"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="beige-black">
+              <i class="t" data-theme="beige-black"></i>
+              <span data-i18n="theme_beige_black"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="midnight">
+              <i class="t" data-theme="midnight"></i>
+              <span data-i18n="theme_midnight"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="emerald">
+              <i class="t" data-theme="emerald"></i>
+              <span data-i18n="theme_emerald"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="amethyst">
+              <i class="t" data-theme="amethyst"></i>
+              <span data-i18n="theme_amethyst"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="amber">
+              <i class="t" data-theme="amber"></i>
+              <span data-i18n="theme_amber"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="snow">
+              <i class="t" data-theme="snow"></i>
+              <span data-i18n="theme_snow"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="rose">
+              <i class="t" data-theme="rose"></i>
+              <span data-i18n="theme_rose"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="velvet">
+              <i class="t" data-theme="velvet"></i>
+              <span data-i18n="theme_velvet"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="neon">
+              <i class="t" data-theme="neon"></i>
+              <span data-i18n="theme_neon"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="sunset">
+              <i class="t" data-theme="sunset"></i>
+              <span data-i18n="theme_sunset"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="arctic">
+              <i class="t" data-theme="arctic"></i>
+              <span data-i18n="theme_arctic"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="graphite">
+              <i class="t" data-theme="graphite"></i>
+              <span data-i18n="theme_graphite"></span>
+            </button>
+            <button type="button" class="sw-item" data-theme-choice="lavender">
+              <i class="t" data-theme="lavender"></i>
+              <span data-i18n="theme_lavender"></span>
+            </button>
           </div>
-          <div id="packsList" class="packs-list"></div>
+        </div>
+
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_lang"></div>
+          <select id="setLang"></select>
+        </div>
+
+        <div class="grp">
+          <div class="lbl" data-i18n="lbl_motion"></div>
+          <select id="setMotion">
+            <option value="auto" data-i18n="motion_auto"></option>
+            <option value="on" data-i18n="motion_on"></option>
+            <option value="off" data-i18n="motion_off"></option>
+          </select>
+        </div>
+      </div>
+
+      <div class="set-panel" id="setPanel-download" role="tabpanel" aria-labelledby="setTab-download" data-set-panel="download" hidden>
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_defaults"></div>
+          <label><span data-i18n="lbl_quality"></span> <select id="setDefaultQuality"></select></label>
+          <div class="set-field" role="group" aria-labelledby="lblAudioLangs">
+            <span id="lblAudioLangs" data-i18n="lbl_audio_langs"></span>
+            <div id="setDefaultAudio" class="lang-picker"></div>
+            <span class="set-hint" data-i18n="hint_audio_auto"></span>
+          </div>
+          <div class="set-field" role="group" aria-labelledby="lblSubLangs">
+            <span id="lblSubLangs" data-i18n="lbl_sub_langs"></span>
+            <div id="setDefaultSubs" class="lang-picker"></div>
+            <span class="set-hint" data-i18n="hint_subs_auto"></span>
+          </div>
+        </div>
+
+        <div class="grp">
+          <div class="lbl" data-i18n="lbl_outdir"></div>
+          <div class="outdir-row">
+            <input id="outDir" type="text" readonly>
+            <button type="button" id="pickOutDir" class="btn-pick-folder"><span data-i18n="btn_change_folder"></span></button>
+          </div>
+          <div id="outDirStatus" class="status small" hidden></div>
+        </div>
+
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_memory"></div>
+          <span class="set-hint" data-i18n="hint_site_memory"></span>
+          <button type="button" id="clearMemoryBtn" class="btn-secondary full-width"></button>
+        </div>
+      </div>
+
+      <div class="set-panel" id="setPanel-repos" role="tabpanel" aria-labelledby="setTab-repos" data-set-panel="repos" hidden>
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_repos"></div>
+          <div class="row repo-add-row">
+            <input id="repoUrlInput" type="url" class="grow-input" data-i18n-placeholder="placeholder_repo_url">
+            <button type="button" id="addRepoBtn" data-i18n="btn_add_repo"></button>
+          </div>
+          <div id="repoStatus" class="status small" hidden></div>
+          <div id="reposList" class="repos-list"></div>
+        </div>
+
+        <div id="packsSection" class="grp packs-section" hidden>
+          <div class="lbl packs-head">
+            <span data-i18n="set_grp_packs"></span>
+            <span id="packsCount" class="muted small packs-count"></span>
+            <button type="button" id="updatePacksBtn" class="iconbtn small-iconbtn" data-i18n-title="btn_update_packs" data-i18n-aria="btn_update_packs"></button>
+          </div>
+          <input id="packSearchInput" type="search" data-i18n-placeholder="placeholder_search_packs">
+          <div class="packs-table" role="table" data-i18n-aria="set_grp_packs">
+            <div class="packs-th" role="row">
+              <span role="columnheader" data-i18n="col_pack"></span>
+              <span role="columnheader" data-i18n="col_version"></span>
+              <span role="columnheader"></span>
+            </div>
+            <div id="packsList" class="packs-list" role="rowgroup"></div>
+          </div>
           <label class="check"><input id="autoUpdatePacks" type="checkbox" checked> <span data-i18n="lbl_auto_update_packs"></span></label>
         </div>
       </div>
 
-      <div class="grp">
-        <div class="lbl" data-i18n="set_grp_support"></div>
-        <button type="button" id="supportBtn" class="btn-secondary full-width" data-i18n="btn_support"></button>
-      </div>
-
-      <div class="grp">
-        <div class="lbl" data-i18n="set_grp_about"></div>
-        <div class="about-row">
-          <span id="aboutVersion" class="muted small"></span>
-          <button type="button" id="checkUpdatesBtn" data-i18n="btn_check_updates"></button>
+      <div class="set-panel" id="setPanel-about" role="tabpanel" aria-labelledby="setTab-about" data-set-panel="about" hidden>
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_support"></div>
+          <button type="button" id="supportBtn" class="btn-secondary full-width" data-i18n="btn_support"></button>
         </div>
-        <div id="updateStatus" class="status small" hidden></div>
-        <div class="about-links">
-          <button type="button" id="githubLink" class="link" data-i18n="link_github"></button>
-          <button type="button" id="licensesLink" class="link" data-i18n="link_licenses"></button>
+
+        <div class="grp">
+          <div class="lbl" data-i18n="set_grp_about"></div>
+          <div class="about-row">
+            <span id="aboutVersion" class="muted small"></span>
+            <button type="button" id="checkUpdatesBtn" data-i18n="btn_check_updates"></button>
+          </div>
+          <div id="updateStatus" class="status small" hidden></div>
+          <div class="about-links">
+            <button type="button" id="githubLink" class="link" data-i18n="link_github"></button>
+            <button type="button" id="licensesLink" class="link" data-i18n="link_licenses"></button>
+          </div>
         </div>
       </div>
     </div>

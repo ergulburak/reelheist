@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "ダウンロード先フォルダー"
   },
-  "btn_save": {
-    "message": "保存"
-  },
   "target_line": {
     "message": "保存先: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "取得した動画アドレスを読み取れませんでした。"
   },
+  "err_episode_short": {
+    "message": "短い動画（予告編または広告）しか見つかりませんでした。エピソード本体は読み込まれませんでした。"
+  },
+  "warn_av_mismatch": {
+    "message": "ファイルを確認してください：長さが一致しません（{detail}）。"
+  },
   "err_bad_request": {
     "message": "リクエストが無効です。"
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "再開"
   },
+  "set_tab_look": {
+    "message": "表示"
+  },
+  "set_tab_download": {
+    "message": "ダウンロード"
+  },
+  "set_tab_repos": {
+    "message": "リポジトリ"
+  },
+  "set_tab_about": {
+    "message": "情報"
+  },
   "set_grp_theme": {
     "message": "テーマ"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "ローズ"
   },
+  "theme_velvet": {
+    "message": "ベルベット"
+  },
+  "theme_neon": {
+    "message": "ネオン"
+  },
+  "theme_sunset": {
+    "message": "サンセット"
+  },
+  "theme_arctic": {
+    "message": "アークティック"
+  },
+  "theme_graphite": {
+    "message": "グラファイト"
+  },
+  "theme_lavender": {
+    "message": "ラベンダー"
+  },
   "set_grp_lang": {
     "message": "言語"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "オフ"
+  },
+  "hint_audio_auto": {
+    "message": "自動: 表示言語と動画の元の言語。"
+  },
+  "hint_subs_auto": {
+    "message": "自動: 表示言語、英語、動画の元の言語。"
+  },
+  "btn_add_lang": {
+    "message": "+ 言語を追加"
+  },
+  "btn_remove_lang": {
+    "message": "{name} を削除"
+  },
+  "btn_change_folder": {
+    "message": "変更…"
+  },
+  "hint_folder_type": {
+    "message": "このバージョンのヘルパーではフォルダー選択を開けません。フォルダーのパスを入力して Enter を押してください。"
+  },
+  "set_grp_memory": {
+    "message": "サイトごとの選択"
+  },
+  "hint_site_memory": {
+    "message": "サイトごとに、最後に選んだ画質・音声・字幕が記憶されます。そのサイトでは、これらの既定の設定の代わりに使われます。"
+  },
+  "btn_clear_site_memory": {
+    "message": "保存した選択を消去 ({n} サイト)"
   },
   "set_grp_repos": {
     "message": "サイトリポジトリ"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "パックが見つかりませんでした。"
+  },
+  "repo_trusted": {
+    "message": "信頼済み"
+  },
+  "repo_untrusted": {
+    "message": "未信頼"
+  },
+  "set_grp_packs": {
+    "message": "パック"
+  },
+  "packs_installed_count": {
+    "message": "{n} 件インストール済み"
+  },
+  "col_pack": {
+    "message": "パック"
+  },
+  "col_version": {
+    "message": "バージョン"
+  },
+  "packs_empty": {
+    "message": "一致するパックはありません。"
   },
   "set_grp_support": {
     "message": "サポート"

@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "Download-Ordner"
   },
-  "btn_save": {
-    "message": "Speichern"
-  },
   "target_line": {
     "message": "Speicherort: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "Die erfassten Videoadressen konnten nicht gelesen werden."
   },
+  "err_episode_short": {
+    "message": "Es wurde nur ein kurzes Video gefunden (Trailer oder Werbung). Die Folge selbst wurde nicht geladen."
+  },
+  "warn_av_mismatch": {
+    "message": "Datei prüfen: Die Längen stimmen nicht überein ({detail})."
+  },
   "err_bad_request": {
     "message": "Die Anfrage ist ungültig."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Fortsetzen"
   },
+  "set_tab_look": {
+    "message": "Darstellung"
+  },
+  "set_tab_download": {
+    "message": "Downloads"
+  },
+  "set_tab_repos": {
+    "message": "Repositories"
+  },
+  "set_tab_about": {
+    "message": "Über"
+  },
   "set_grp_theme": {
     "message": "Design"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Rosé"
   },
+  "theme_velvet": {
+    "message": "Samt"
+  },
+  "theme_neon": {
+    "message": "Neon"
+  },
+  "theme_sunset": {
+    "message": "Abendrot"
+  },
+  "theme_arctic": {
+    "message": "Arktis"
+  },
+  "theme_graphite": {
+    "message": "Graphit"
+  },
+  "theme_lavender": {
+    "message": "Lavendel"
+  },
   "set_grp_lang": {
     "message": "Sprache"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Aus"
+  },
+  "hint_audio_auto": {
+    "message": "Automatisch: die Sprache der Oberfläche und die Originalsprache des Videos."
+  },
+  "hint_subs_auto": {
+    "message": "Automatisch: die Sprache der Oberfläche, Englisch und die Originalsprache des Videos."
+  },
+  "btn_add_lang": {
+    "message": "+ Sprache hinzufügen"
+  },
+  "btn_remove_lang": {
+    "message": "{name} entfernen"
+  },
+  "btn_change_folder": {
+    "message": "Ändern…"
+  },
+  "hint_folder_type": {
+    "message": "Diese Helfer-Version kann die Ordnerauswahl nicht öffnen. Geben Sie den Ordnerpfad ein und drücken Sie die Eingabetaste."
+  },
+  "set_grp_memory": {
+    "message": "Auswahl pro Seite"
+  },
+  "hint_site_memory": {
+    "message": "Ihre letzte Auswahl für Qualität, Audio und Untertitel wird pro Seite gespeichert. Auf dieser Seite gilt sie statt dieser Standardwerte."
+  },
+  "btn_clear_site_memory": {
+    "message": "Gespeicherte Auswahl löschen ({n} Seiten)"
   },
   "set_grp_repos": {
     "message": "Seiten-Repositories"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "Paket im Repository nicht gefunden."
+  },
+  "repo_trusted": {
+    "message": "Vertrauenswürdig"
+  },
+  "repo_untrusted": {
+    "message": "Nicht vertraut"
+  },
+  "set_grp_packs": {
+    "message": "Pakete"
+  },
+  "packs_installed_count": {
+    "message": "{n} installiert"
+  },
+  "col_pack": {
+    "message": "Paket"
+  },
+  "col_version": {
+    "message": "Version"
+  },
+  "packs_empty": {
+    "message": "Keine passenden Pakete."
   },
   "set_grp_support": {
     "message": "Unterstützung"

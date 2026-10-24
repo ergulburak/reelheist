@@ -17,6 +17,7 @@ const { toCoded } = require('./lib/errors');
 const { checkExists, resolveInside } = require('./lib/exists');
 const { startGuideServer } = require('./lib/guide-server');
 const { createUpdateService, applyUpdate } = require('./lib/update');
+const { pickFolder } = require('./lib/pick-folder');
 const releaseConfig = require('./release.json');
 
 const VERSION = require('./package.json').version;
@@ -170,6 +171,15 @@ const server = http.createServer(async (req, res) => {
         return send(res, 400, { error: e.code, detail: e.detail });
       }
       return send(res, 200, { ok: true });
+    }
+    if (route === 'POST /pick-folder') {
+      // Opens the native folder dialog; { path: null } when the user cancels.
+      const body = await readBody(req);
+      const picked = await pickFolder({
+        initial: typeof body.initial === 'string' && body.initial ? body.initial : queue.settings.outDir,
+        title: typeof body.title === 'string' ? body.title.slice(0, 200) : '',
+      });
+      return send(res, 200, { path: picked });
     }
     if (route === 'GET /update') {
       const force = url.searchParams.get('force') === '1';

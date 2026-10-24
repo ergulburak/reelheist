@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "डाउनलोड फ़ोल्डर"
   },
-  "btn_save": {
-    "message": "सहेजें"
-  },
   "target_line": {
     "message": "सहेजने की जगह: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "पकड़े गए वीडियो पते पढ़े नहीं जा सके।"
   },
+  "err_episode_short": {
+    "message": "केवल एक छोटा वीडियो मिला (ट्रेलर या विज्ञापन)। एपिसोड स्वयं लोड नहीं हुआ।"
+  },
+  "warn_av_mismatch": {
+    "message": "फ़ाइल जाँचें: अवधियाँ मेल नहीं खातीं ({detail})।"
+  },
   "err_bad_request": {
     "message": "अनुरोध मान्य नहीं है।"
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "जारी रखें"
   },
+  "set_tab_look": {
+    "message": "रूप"
+  },
+  "set_tab_download": {
+    "message": "डाउनलोड"
+  },
+  "set_tab_repos": {
+    "message": "रिपॉज़िटरी"
+  },
+  "set_tab_about": {
+    "message": "परिचय"
+  },
   "set_grp_theme": {
     "message": "थीम"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "गुलाबी"
   },
+  "theme_velvet": {
+    "message": "मखमल"
+  },
+  "theme_neon": {
+    "message": "नियॉन"
+  },
+  "theme_sunset": {
+    "message": "सूर्यास्त"
+  },
+  "theme_arctic": {
+    "message": "आर्कटिक"
+  },
+  "theme_graphite": {
+    "message": "ग्रेफ़ाइट"
+  },
+  "theme_lavender": {
+    "message": "लैवेंडर"
+  },
   "set_grp_lang": {
     "message": "भाषा"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "बंद"
+  },
+  "hint_audio_auto": {
+    "message": "स्वचालित: इंटरफ़ेस की भाषा और वीडियो की मूल भाषा।"
+  },
+  "hint_subs_auto": {
+    "message": "स्वचालित: इंटरफ़ेस की भाषा, अंग्रेज़ी और वीडियो की मूल भाषा।"
+  },
+  "btn_add_lang": {
+    "message": "+ भाषा जोड़ें"
+  },
+  "btn_remove_lang": {
+    "message": "{name} हटाएँ"
+  },
+  "btn_change_folder": {
+    "message": "बदलें…"
+  },
+  "hint_folder_type": {
+    "message": "हेल्पर का यह संस्करण फ़ोल्डर चुनने वाली विंडो नहीं खोल सकता। फ़ोल्डर का पथ लिखें और Enter दबाएँ।"
+  },
+  "set_grp_memory": {
+    "message": "साइट के चुनाव"
+  },
+  "hint_site_memory": {
+    "message": "किसी साइट पर गुणवत्ता, ऑडियो और सबटाइटल के आपके पिछले चुनाव याद रखे जाते हैं। उस साइट पर इन डिफ़ॉल्ट की जगह वही इस्तेमाल होते हैं।"
+  },
+  "btn_clear_site_memory": {
+    "message": "सहेजे गए चुनाव भूलें ({n} साइट)"
   },
   "set_grp_repos": {
     "message": "साइट रिपॉज़िटरी"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "रिपॉज़िटरी में पैक नहीं मिला।"
+  },
+  "repo_trusted": {
+    "message": "भरोसेमंद"
+  },
+  "repo_untrusted": {
+    "message": "भरोसा नहीं"
+  },
+  "set_grp_packs": {
+    "message": "पैक"
+  },
+  "packs_installed_count": {
+    "message": "{n} इंस्टॉल"
+  },
+  "col_pack": {
+    "message": "पैक"
+  },
+  "col_version": {
+    "message": "संस्करण"
+  },
+  "packs_empty": {
+    "message": "कोई मेल खाता पैक नहीं।"
   },
   "set_grp_support": {
     "message": "सहयोग"

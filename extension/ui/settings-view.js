@@ -1,10 +1,14 @@
-// Settings view: theme, language, defaults, motion, site repositories, support, and about (spec §6.3).
+// Settings view: theme, language, defaults, motion, site repositories, support, and about (spec §6.3),
+// split into Appearance / Downloads / Repositories / About tabs. Languages are picked by name,
+// the download folder through the helper's native folder dialog.
 import { api } from '../lib/helper.js';
-import { LOCALES, LOCALE_NAMES, initI18n, applyI18n, t } from '../lib/i18n.js';
+import { LOCALES, LOCALE_NAMES, initI18n, applyI18n, t, isRtl } from '../lib/i18n.js';
 import { THEMES, applyTheme } from '../lib/theme.js';
 import { saveUiSettings } from '../lib/ui-settings.js';
 import { SUPPORT_URL, REPO_URL, RELEASES_URL } from '../lib/links.js';
 import { createReposView } from './repos-view.js';
+import { createLangPicker } from './lang-picker.js';
+import { icon } from './icons.js';
 
 function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);
@@ -18,13 +22,21 @@ function h(tag, attrs = {}, ...children) {
   return el;
 }
 
-function parseLangList(raw) {
-  const list = String(raw || '').split(/[\s,]+/).map(s => s.trim()).filter(Boolean);
-  return list.length ? list : undefined;
+// Settings are split into tabs; the last open tab is remembered for the next time the popup opens.
+const TABS = ['look', 'download', 'repos', 'about'];
+const TAB_KEY = 'reelheist.settingsTab';
+
+function readTab() {
+  try {
+    const v = localStorage.getItem(TAB_KEY);
+    return TABS.includes(v) ? v : TABS[0];
+  } catch { return TABS[0]; }
 }
 
 export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings, errText, onUiChanged, onPacksChanged, onUpdateInfo }) {
   const $ = id => document.getElementById(id);
+  let audioPicker = null;
+  let subsPicker = null;
 
   const reposView = createReposView({
     bg,
@@ -62,6 +74,17 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     sel.value = ['1080', '720', '480'].includes(cur) ? cur : '';
   }
 
+  function selectTab(name, { focus = false } = {}) {
+    for (const tab of document.querySelectorAll('[data-set-tab]')) {
+      const active = tab.dataset.setTab === name;
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    }
+    for (const panel of document.querySelectorAll('[data-set-panel]')) panel.hidden = panel.dataset.setPanel !== name;
+    try { localStorage.setItem(TAB_KEY, name); } catch { /* storage might be blocked */ }
+  }
+
   function renderThemeSwatches() {
     const cur = getUi().theme || 'red';
     for (const btn of document.querySelectorAll('[data-theme-choice]')) {
@@ -82,19 +105,36 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     populateLangSelect();
     populateQualitySelect();
 
-    const audioEl = $('setDefaultAudio');
-    if (audioEl) audioEl.value = Array.isArray(ui.defaults?.audioLangs) ? ui.defaults.audioLangs.join(', ') : '';
-
-    const subsEl = $('setDefaultSubs');
-    if (subsEl) subsEl.value = Array.isArray(ui.defaults?.subLangs) ? ui.defaults.subLangs.join(', ') : '';
+    audioPicker?.set(Array.isArray(ui.defaults?.audioLangs) ? ui.defaults.audioLangs : []);
+    subsPicker?.set(Array.isArray(ui.defaults?.subLangs) ? ui.defaults.subLangs : []);
 
     const motionEl = $('setMotion');
     if (motionEl) motionEl.value = ['auto', 'on', 'off'].includes(ui.motion) ? ui.motion : 'auto';
 
     const outEl = $('outDir');
-    if (outEl && getSettings()?.outDir !== undefined) outEl.value = getSettings().outDir;
+    if (outEl && getSettings()?.outDir !== undefined) {
+      outEl.value = getSettings().outDir;
+      outEl.title = getSettings().outDir;
+    }
 
+    renderMemory();
     renderAbout();
+  }
+
+  function renderMemory() {
+    const btn = $('clearMemoryBtn');
+    if (!btn) return;
+    const n = Object.keys(getUi().siteMemory || {}).length;
+    btn.textContent = t('btn_clear_site_memory', { n });
+    btn.disabled = n === 0;
+  }
+
+  function setOutDirStatus(msg, isError = false) {
+    const el = $('outDirStatus');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.toggle('err', isError);
+    el.hidden = !msg;
   }
 
   async function saveDefaultsPatch(patch) {
@@ -108,14 +148,38 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     onUiChanged?.();
   }
 
-  async function saveOutDir() {
-    const outEl = $('outDir');
-    if (!outEl) return;
+  async function saveOutDir(dir) {
     try {
-      const saved = await api('POST', '/settings', { outDir: outEl.value });
+      const saved = await api('POST', '/settings', { outDir: dir });
       setSettings(saved);
+      syncFormFromState();
       onUiChanged?.();
-    } catch { /* helper might be offline */ }
+    } catch (e) {
+      setOutDirStatus(errText(e), true);
+    }
+  }
+
+  // Native folder dialog through the helper. A helper older than /pick-folder answers 404;
+  // then the path box becomes editable as before.
+  async function pickOutDir() {
+    const outEl = $('outDir');
+    const btn = $('pickOutDir');
+    setOutDirStatus('');
+    if (btn) btn.disabled = true;
+    try {
+      const res = await api('POST', '/pick-folder', { initial: outEl?.value || '', title: t('lbl_outdir') });
+      if (res?.path) await saveOutDir(res.path);
+    } catch (e) {
+      if (/^not found$/.test(e?.code) && outEl) {
+        outEl.readOnly = false;
+        outEl.focus();
+        setOutDirStatus(t('hint_folder_type'));
+      } else {
+        setOutDirStatus(errText(e), true);
+      }
+    } finally {
+      if (btn) btn.disabled = false;
+    }
   }
 
   function openExternal(url) {
@@ -123,6 +187,25 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
   }
 
   function wire() {
+    for (const tab of document.querySelectorAll('[data-set-tab]')) {
+      tab.addEventListener('click', () => selectTab(tab.dataset.setTab));
+    }
+
+    // Arrow keys move between tabs (mirrored in RTL), Home/End jump to the ends.
+    $('setTabs')?.addEventListener('keydown', e => {
+      const cur = TABS.indexOf(document.activeElement?.dataset?.setTab);
+      if (cur < 0) return;
+      const step = isRtl() ? -1 : 1;
+      let next;
+      if (e.key === 'ArrowRight') next = cur + step;
+      else if (e.key === 'ArrowLeft') next = cur - step;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = TABS.length - 1;
+      else return;
+      e.preventDefault();
+      selectTab(TABS[(next + TABS.length) % TABS.length], { focus: true });
+    });
+
     for (const btn of document.querySelectorAll('[data-theme-choice]')) {
       btn.addEventListener('click', async () => {
         const choice = btn.dataset.themeChoice;
@@ -151,12 +234,24 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       saveDefaultsPatch({ quality: v ? Number(v) : undefined });
     });
 
-    $('setDefaultAudio')?.addEventListener('change', e => {
-      saveDefaultsPatch({ audioLangs: parseLangList(e.target.value) });
-    });
+    const audioRoot = $('setDefaultAudio');
+    if (audioRoot) {
+      audioPicker = createLangPicker(audioRoot, {
+        onChange: list => saveDefaultsPatch({ audioLangs: list.length ? list : undefined }),
+      });
+    }
+    const subsRoot = $('setDefaultSubs');
+    if (subsRoot) {
+      subsPicker = createLangPicker(subsRoot, {
+        onChange: list => saveDefaultsPatch({ subLangs: list.length ? list : undefined }),
+      });
+    }
 
-    $('setDefaultSubs')?.addEventListener('change', e => {
-      saveDefaultsPatch({ subLangs: parseLangList(e.target.value) });
+    $('clearMemoryBtn')?.addEventListener('click', async () => {
+      const next = await saveUiSettings({ siteMemory: {} });
+      setUi(next);
+      renderMemory();
+      onUiChanged?.();
     });
 
     $('setMotion')?.addEventListener('change', async e => {
@@ -166,8 +261,14 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       onUiChanged?.();
     });
 
-    $('saveSettings')?.addEventListener('click', saveOutDir);
-    $('outDir')?.addEventListener('change', saveOutDir);
+    $('pickOutDir')?.prepend(icon('folder'));
+    $('pickOutDir')?.addEventListener('click', pickOutDir);
+    $('outDir')?.addEventListener('click', e => {
+      if (e.currentTarget.readOnly) pickOutDir();
+    });
+    $('outDir')?.addEventListener('change', e => {
+      if (!e.target.readOnly && e.target.value.trim()) saveOutDir(e.target.value.trim());
+    });
 
     $('supportBtn')?.addEventListener('click', () => openExternal(SUPPORT_URL));
     $('githubLink')?.addEventListener('click', () => openExternal(REPO_URL));
@@ -208,11 +309,18 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     });
 
     reposView.wire();
+    selectTab(readTab());
     syncFormFromState();
   }
 
   async function open() {
+    selectTab(readTab());
     syncFormFromState();
+    // The page view loads these too, but only after a page scan; settings may open first.
+    api('GET', '/settings').then(s => {
+      setSettings(s);
+      syncFormFromState();
+    }).catch(() => {});
     await reposView.refresh();
   }
 

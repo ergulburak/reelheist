@@ -1,6 +1,7 @@
 // Site repositories and packs management UI in Settings (spec §5d.4).
 import { t } from '../lib/i18n.js';
 import { saveUiSettings } from '../lib/ui-settings.js';
+import { icon } from './icons.js';
 
 function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);
@@ -12,6 +13,13 @@ function h(tag, attrs = {}, ...children) {
   }
   for (const c of children.flat()) if (c != null) el.append(c);
   return el;
+}
+
+// One readable host per pack: the first one without a wildcard, plus how many more there are.
+function hostSummary(hosts) {
+  const main = hosts.find(x => !x.includes('*')) || hosts[0] || '';
+  const more = hosts.length - (main ? 1 : 0);
+  return more > 0 ? `${main} +${more}` : main;
 }
 
 export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
@@ -57,15 +65,22 @@ export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
     const box = $('reposList');
     if (!box) return;
     const rows = repos.map(repo => {
-      const titleLine = h('div', { class: 'repo-head' },
+      const name = repo.name || repo.url;
+      const row = h('div', { class: 'repo-row' },
+        h('span', { class: 'repo-avatar', 'aria-hidden': 'true' }, name.trim().charAt(0).toUpperCase()),
         h('div', { class: 'repo-title' },
-          h('strong', {}, repo.name),
-          h('small', { class: 'muted' }, repo.url),
+          h('strong', {}, name),
+          h('small', { class: 'muted', title: repo.url }, repo.url),
         ),
+        repo.trusted
+          ? h('span', { class: 'repo-badge ok', title: repo.fingerprint }, t('repo_trusted'))
+          : h('span', { class: 'repo-badge warn' }, t('repo_untrusted')),
         h('button', {
           type: 'button',
-          class: 'btn-remove-repo',
+          class: 'iconbtn small-iconbtn btn-remove-repo',
           'data-repo-url': repo.url,
+          title: t('btn_remove_repo'),
+          'aria-label': t('btn_remove_repo'),
           onclick: async () => {
             setStatus('');
             try {
@@ -76,34 +91,29 @@ export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
               setStatus(errText(e), true);
             }
           },
-        }, t('btn_remove_repo')),
+        }, icon('close')),
       );
 
-      if (!repo.trusted) {
-        const trustPrompt = h('div', { class: 'repo-trust' },
-          h('div', { class: 'repo-fp' }, t('repo_trust_prompt', { fp: repo.fingerprint })),
-          h('button', {
-            type: 'button',
-            class: 'btn-trust-repo primary',
-            'data-repo-url': repo.url,
-            onclick: async () => {
-              setStatus('');
-              try {
-                await bg({ type: 'packs-trust-repo', url: repo.url });
-                await refresh();
-              } catch (e) {
-                setStatus(errText(e), true);
-              }
-            },
-          }, t('btn_trust_repo')),
-        );
-        return h('div', { class: 'repo-card untrusted' }, titleLine, trustPrompt);
-      }
+      if (repo.trusted) return h('div', { class: 'repo-card trusted' }, row);
 
-      return h('div', { class: 'repo-card trusted' },
-        titleLine,
-        h('div', { class: 'muted small repo-fp' }, repo.fingerprint),
+      const trustPrompt = h('div', { class: 'repo-trust' },
+        h('div', { class: 'repo-fp' }, t('repo_trust_prompt', { fp: repo.fingerprint })),
+        h('button', {
+          type: 'button',
+          class: 'btn-trust-repo primary',
+          'data-repo-url': repo.url,
+          onclick: async () => {
+            setStatus('');
+            try {
+              await bg({ type: 'packs-trust-repo', url: repo.url });
+              await refresh();
+            } catch (e) {
+              setStatus(errText(e), true);
+            }
+          },
+        }, t('btn_trust_repo')),
       );
+      return h('div', { class: 'repo-card untrusted' }, row, trustPrompt);
     });
     box.replaceChildren(...rows);
   }
@@ -148,19 +158,26 @@ export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
       });
     }
 
-    const filtered = items.filter(it => {
-      if (!q) return true;
-      const hay = `${it.id} ${it.name} ${it.hosts.join(' ')}`.toLowerCase();
-      return hay.includes(q);
-    });
+    const countEl = $('packsCount');
+    if (countEl) countEl.textContent = t('packs_installed_count', { n: installed.length });
 
-    const cards = filtered.map(it => {
-      const metaText = [it.version ? `v${it.version}` : '', it.hosts.join(', ')].filter(Boolean).join(' · ');
+    // Installed packs first, then by name.
+    const filtered = items
+      .filter(it => {
+        if (!q) return true;
+        const hay = `${it.id} ${it.name} ${it.hosts.join(' ')}`.toLowerCase();
+        return hay.includes(q);
+      })
+      .sort((a, b) => (b.isInstalled - a.isInstalled) || a.name.localeCompare(b.name));
+
+    const rows = filtered.map(it => {
       const actionBtn = it.isInstalled
         ? h('button', {
             type: 'button',
-            class: 'btn-uninstall-pack',
+            class: 'iconbtn small-iconbtn btn-uninstall-pack',
             'data-pack-id': it.id,
+            title: t('btn_uninstall_pack'),
+            'aria-label': `${t('btn_uninstall_pack')}: ${it.name}`,
             onclick: async () => {
               setStatus('');
               try {
@@ -171,12 +188,14 @@ export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
                 setStatus(errText(e), true);
               }
             },
-          }, t('btn_uninstall_pack'))
+          }, icon('close'))
         : h('button', {
             type: 'button',
-            class: 'btn-install-pack',
+            class: 'iconbtn small-iconbtn btn-install-pack',
             'data-repo-url': it.repoUrl,
             'data-pack-id': it.id,
+            title: t('btn_install_pack'),
+            'aria-label': `${t('btn_install_pack')}: ${it.name}`,
             onclick: async () => {
               setStatus('');
               try {
@@ -187,18 +206,20 @@ export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
                 setStatus(errText(e), true);
               }
             },
-          }, t('btn_install_pack'));
+          }, icon('download'));
 
-      return h('div', { class: 'pack-row' },
-        h('div', { class: 'pack-info' },
+      return h('div', { class: `pack-row${it.isInstalled ? ' installed' : ''}`, role: 'row' },
+        h('div', { class: 'pack-info', role: 'cell', title: it.hosts.join('\n') },
           h('div', { class: 'pack-name' }, it.name),
-          h('div', { class: 'muted small' }, metaText),
+          h('div', { class: 'muted pack-host' }, hostSummary(it.hosts)),
         ),
-        actionBtn,
+        h('span', { class: 'muted pack-ver', role: 'cell' }, it.version),
+        h('span', { role: 'cell' }, actionBtn),
       );
     });
 
-    listEl.replaceChildren(...cards);
+    if (!rows.length) rows.push(h('div', { class: 'muted small packs-empty' }, t('packs_empty')));
+    listEl.replaceChildren(...rows);
   }
 
   async function addRepoFromInput() {
@@ -216,6 +237,7 @@ export function createReposView({ bg, getUi, setUi, errText, onPacksChanged }) {
   }
 
   function wire() {
+    $('updatePacksBtn')?.replaceChildren(icon('retry'));
     $('addRepoBtn')?.addEventListener('click', addRepoFromInput);
     $('repoUrlInput')?.addEventListener('keydown', e => {
       if (e.key === 'Enter') {

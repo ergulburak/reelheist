@@ -75,5 +75,5 @@ test('applyTheme sets data-theme and rejects unknown names', () => {
   assert.strictEqual(applyTheme('beige-black', doc), 'beige-black');
   assert.strictEqual(doc.documentElement.dataset.theme, 'beige-black');
   assert.strictEqual(applyTheme('nope', doc), 'red');
-  assert.deepStrictEqual(THEMES, ['red', 'black-beige', 'beige-black', 'midnight', 'emerald', 'amethyst', 'amber', 'snow', 'rose']);
+  assert.deepStrictEqual(THEMES, ['red', 'black-beige', 'beige-black', 'midnight', 'emerald', 'amethyst', 'amber', 'snow', 'rose', 'velvet', 'neon', 'sunset', 'arctic', 'graphite', 'lavender']);
 });

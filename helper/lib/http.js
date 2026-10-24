@@ -29,6 +29,21 @@ class HttpError extends Error {
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+// Body read chunk by chunk; `arm` restarts the idle timer, so a slow but live download
+// never hits the timeout, only a stalled one does.
+async function readBody(res, arm) {
+  const chunks = [];
+  const reader = res.body.getReader();
+  for (;;) {
+    arm();
+    const { value, done } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+  }
+  return Buffer.concat(chunks);
+}
+
+// timeoutMs: idle limit (no headers or no body bytes for that long), not a total limit.
 async function request(url, { headers, signal, range, timeoutMs = 30000, retries = 5 } = {}) {
   let lastErr;
   for (let attempt = 0; attempt <= retries; attempt++) {
@@ -36,7 +51,12 @@ async function request(url, { headers, signal, range, timeoutMs = 30000, retries
     const ctrl = new AbortController();
     const onAbort = () => ctrl.abort(signal.reason);
     signal?.addEventListener('abort', onAbort, { once: true });
-    const timer = setTimeout(() => ctrl.abort(new Error('timeout')), timeoutMs);
+    let timer = null;
+    const arm = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => ctrl.abort(new Error('timeout')), timeoutMs);
+    };
+    arm();
     try {
       const h = pickHeaders(headers);
       if (range) h.Range = `bytes=${range.offset}-${range.offset + range.length - 1}`;
@@ -48,7 +68,7 @@ async function request(url, { headers, signal, range, timeoutMs = 30000, retries
         }
         throw new HttpError(res.status, url);
       }
-      const buf = Buffer.from(await res.arrayBuffer());
+      const buf = await readBody(res, arm);
       return { buf, res };
     } catch (e) {
       lastErr = e;

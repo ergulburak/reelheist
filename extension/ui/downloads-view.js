@@ -160,6 +160,7 @@ export function createDownloadsView({ bg, errText, onRefresh }) {
       showBar ? h('div', { class: 'bar' }, h('i', { style: barStyle })) : null,
       info.length ? h('div', { class: 'job-info' }, info.join(' · ')) : null,
       j.error ? h('div', { class: 'err' }, errText({ code: j.errorCode, message: j.error })) : null,
+      j.warning ? h('div', { class: 'warn' }, t(`warn_${j.warning}`, { detail: j.warningDetail || '' })) : null,
       h('div', { class: 'err', 'data-msg': '' }),
       h('div', { class: 'actions' }, actions));
   }

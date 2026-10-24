@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "مجلد التحميل"
   },
-  "btn_save": {
-    "message": "حفظ"
-  },
   "target_line": {
     "message": "مكان الحفظ: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "تعذّرت قراءة عناوين الفيديو الملتقطة."
   },
+  "err_episode_short": {
+    "message": "تم العثور على مقطع قصير فقط (إعلان ترويجي أو إعلان). لم يتم تحميل الحلقة نفسها."
+  },
+  "warn_av_mismatch": {
+    "message": "تحقق من الملف: المدد غير متطابقة ({detail})."
+  },
   "err_bad_request": {
     "message": "الطلب غير صالح."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "استئناف"
   },
+  "set_tab_look": {
+    "message": "المظهر"
+  },
+  "set_tab_download": {
+    "message": "التنزيل"
+  },
+  "set_tab_repos": {
+    "message": "المستودعات"
+  },
+  "set_tab_about": {
+    "message": "حول"
+  },
   "set_grp_theme": {
     "message": "المظهر"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "وردي"
   },
+  "theme_velvet": {
+    "message": "مخمل"
+  },
+  "theme_neon": {
+    "message": "نيون"
+  },
+  "theme_sunset": {
+    "message": "غروب"
+  },
+  "theme_arctic": {
+    "message": "قطبي"
+  },
+  "theme_graphite": {
+    "message": "غرافيت"
+  },
+  "theme_lavender": {
+    "message": "لافندر"
+  },
   "set_grp_lang": {
     "message": "اللغة"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "إيقاف"
+  },
+  "hint_audio_auto": {
+    "message": "تلقائي: لغة الواجهة واللغة الأصلية للفيديو."
+  },
+  "hint_subs_auto": {
+    "message": "تلقائي: لغة الواجهة والإنجليزية واللغة الأصلية للفيديو."
+  },
+  "btn_add_lang": {
+    "message": "+ إضافة لغة"
+  },
+  "btn_remove_lang": {
+    "message": "إزالة {name}"
+  },
+  "btn_change_folder": {
+    "message": "تغيير…"
+  },
+  "hint_folder_type": {
+    "message": "لا يستطيع هذا الإصدار من البرنامج المساعد فتح منتقي المجلدات. اكتب مسار المجلد ثم اضغط Enter."
+  },
+  "set_grp_memory": {
+    "message": "اختيارات المواقع"
+  },
+  "hint_site_memory": {
+    "message": "يتم تذكر آخر اختياراتك للجودة والصوت والترجمة في كل موقع. وفي ذلك الموقع تُستخدم بدلاً من هذه الإعدادات الافتراضية."
+  },
+  "btn_clear_site_memory": {
+    "message": "نسيان الاختيارات المحفوظة ({n} مواقع)"
   },
   "set_grp_repos": {
     "message": "مستودعات المواقع"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "الحزمة غير موجودة في المستودع."
+  },
+  "repo_trusted": {
+    "message": "موثوق"
+  },
+  "repo_untrusted": {
+    "message": "غير موثوق"
+  },
+  "set_grp_packs": {
+    "message": "الحزم"
+  },
+  "packs_installed_count": {
+    "message": "{n} مثبتة"
+  },
+  "col_pack": {
+    "message": "الحزمة"
+  },
+  "col_version": {
+    "message": "الإصدار"
+  },
+  "packs_empty": {
+    "message": "لا توجد حزم مطابقة."
   },
   "set_grp_support": {
     "message": "الدعم"

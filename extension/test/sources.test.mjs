@@ -41,6 +41,26 @@ test('variants and audio playlists of a master are hidden; longest first', async
   assert.strictEqual(list[0].label, '1080p · 42 dk · p.test');
 });
 
+test('minDuration marks trailers and ads as short', async () => {
+  const sources = [
+    { url: 'https://yt.test/trailer.m3u8', kind: 'hls' },
+    { url: master.url, kind: 'hls' },
+    { url: 'https://p.test/file.mp4', kind: 'file' },
+  ];
+  const probes = {
+    'https://yt.test/trailer.m3u8': { type: 'master', url: 'https://yt.test/trailer.m3u8', duration: 12, variants: [], audios: [], subtitles: [] },
+    [master.url]: master,
+  };
+  const list = await analyzeSources(sources, async s => probes[s.url], { minDuration: 120 });
+  assert.deepStrictEqual(list.map(r => [r.source.url, r.short]), [
+    [master.url, false],
+    ['https://p.test/file.mp4', false], // unknown length is not short
+    ['https://yt.test/trailer.m3u8', true],
+  ]);
+  const plain = await analyzeSources(sources.slice(0, 1), async s => probes[s.url]);
+  assert.strictEqual(plain[0].short, false);
+});
+
 test('qualities and audio tracks', () => {
   assert.deepStrictEqual(qualities(master), [1080, 720]);
   assert.deepStrictEqual(audioTracks(master, null).map(a => a.name), ['Türkçe', 'İngilizce']);

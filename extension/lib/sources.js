@@ -6,6 +6,7 @@ export { formatDuration };
 
 // sources: [{url, kind, headers, time}], probe: async (source) => probeResult
 // opts.fileLabel: translated label for a plain MP4 source.
+// opts.minDuration: streams shorter than this (seconds) are marked `short` (trailer, ad).
 export async function analyzeSources(sources, probe, opts = {}) {
   const recent = sources.slice(-10);
   const results = [];
@@ -28,8 +29,10 @@ export async function analyzeSources(sources, probe, opts = {}) {
     for (const t of r.probe.subtitles) if (t.url) children.add(t.url);
   }
   const list = results.filter(r => r.probe && !children.has(r.source.url) && !children.has(r.probe.url || ''));
-  list.sort((a, b) => (b.probe.duration || 0) - (a.probe.duration || 0));
-  const out = list.map(r => ({ ...r, label: describe(r, opts) }));
+  const short = r => !!(opts.minDuration && r.probe.duration && r.probe.duration < opts.minDuration);
+  // Known-short streams go last, even below a file of unknown length.
+  list.sort((a, b) => short(a) - short(b) || (b.probe.duration || 0) - (a.probe.duration || 0));
+  const out = list.map(r => ({ ...r, label: describe(r, opts), short: short(r) }));
   out.errors = results.filter(r => r.error).map(r => r.error);
   return out;
 }

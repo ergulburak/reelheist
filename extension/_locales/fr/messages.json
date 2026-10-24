@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "Dossier de téléchargement"
   },
-  "btn_save": {
-    "message": "Enregistrer"
-  },
   "target_line": {
     "message": "Enregistré dans : {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "Impossible de lire les adresses vidéo capturées."
   },
+  "err_episode_short": {
+    "message": "Seule une courte vidéo a été trouvée (bande-annonce ou publicité). L’épisode lui-même ne s’est pas chargé."
+  },
+  "warn_av_mismatch": {
+    "message": "Vérifiez le fichier : les durées ne correspondent pas ({detail})."
+  },
   "err_bad_request": {
     "message": "La requête n’est pas valide."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Reprendre"
   },
+  "set_tab_look": {
+    "message": "Apparence"
+  },
+  "set_tab_download": {
+    "message": "Téléchargements"
+  },
+  "set_tab_repos": {
+    "message": "Dépôts"
+  },
+  "set_tab_about": {
+    "message": "À propos"
+  },
   "set_grp_theme": {
     "message": "Thème"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Rose"
   },
+  "theme_velvet": {
+    "message": "Velours"
+  },
+  "theme_neon": {
+    "message": "Néon"
+  },
+  "theme_sunset": {
+    "message": "Crépuscule"
+  },
+  "theme_arctic": {
+    "message": "Arctique"
+  },
+  "theme_graphite": {
+    "message": "Graphite"
+  },
+  "theme_lavender": {
+    "message": "Lavande"
+  },
   "set_grp_lang": {
     "message": "Langue"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Désactivé"
+  },
+  "hint_audio_auto": {
+    "message": "Automatique : la langue de l’interface et la langue originale de la vidéo."
+  },
+  "hint_subs_auto": {
+    "message": "Automatique : la langue de l’interface, l’anglais et la langue originale de la vidéo."
+  },
+  "btn_add_lang": {
+    "message": "+ Ajouter une langue"
+  },
+  "btn_remove_lang": {
+    "message": "Retirer {name}"
+  },
+  "btn_change_folder": {
+    "message": "Modifier…"
+  },
+  "hint_folder_type": {
+    "message": "Cette version du programme d’aide ne peut pas ouvrir le sélecteur de dossier. Saisissez le chemin du dossier, puis appuyez sur Entrée."
+  },
+  "set_grp_memory": {
+    "message": "Choix par site"
+  },
+  "hint_site_memory": {
+    "message": "Vos derniers choix de qualité, d’audio et de sous-titres sont mémorisés pour chaque site. Sur ce site, ils remplacent ces valeurs par défaut."
+  },
+  "btn_clear_site_memory": {
+    "message": "Oublier les choix enregistrés ({n} sites)"
   },
   "set_grp_repos": {
     "message": "Dépôts de sites"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "Paquet introuvable dans le dépôt."
+  },
+  "repo_trusted": {
+    "message": "Fiable"
+  },
+  "repo_untrusted": {
+    "message": "Non fiable"
+  },
+  "set_grp_packs": {
+    "message": "Paquets"
+  },
+  "packs_installed_count": {
+    "message": "{n} installés"
+  },
+  "col_pack": {
+    "message": "Paquet"
+  },
+  "col_version": {
+    "message": "Version"
+  },
+  "packs_empty": {
+    "message": "Aucun paquet ne correspond."
   },
   "set_grp_support": {
     "message": "Soutien"

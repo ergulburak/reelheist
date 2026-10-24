@@ -76,9 +76,6 @@
   "lbl_outdir": {
     "message": "Download folder"
   },
-  "btn_save": {
-    "message": "Save"
-  },
   "target_line": {
     "message": "Saved to: {path}",
     "description": "{path} is the full output file path."
@@ -316,6 +313,12 @@
   "err_episode_unreadable": {
     "message": "The captured video addresses could not be read."
   },
+  "err_episode_short": {
+    "message": "Only a short video was found (a trailer or an ad). The episode itself did not load."
+  },
+  "warn_av_mismatch": {
+    "message": "Check the file: the lengths do not match ({detail})."
+  },
   "err_bad_request": {
     "message": "The request was not valid."
   },
@@ -397,6 +400,18 @@
   "btn_resume": {
     "message": "Resume"
   },
+  "set_tab_look": {
+    "message": "Appearance"
+  },
+  "set_tab_download": {
+    "message": "Downloads"
+  },
+  "set_tab_repos": {
+    "message": "Repositories"
+  },
+  "set_tab_about": {
+    "message": "About"
+  },
   "set_grp_theme": {
     "message": "Theme"
   },
@@ -427,6 +442,24 @@
   "theme_rose": {
     "message": "Rose"
   },
+  "theme_velvet": {
+    "message": "Velvet"
+  },
+  "theme_neon": {
+    "message": "Neon"
+  },
+  "theme_sunset": {
+    "message": "Sunset"
+  },
+  "theme_arctic": {
+    "message": "Arctic"
+  },
+  "theme_graphite": {
+    "message": "Graphite"
+  },
+  "theme_lavender": {
+    "message": "Lavender"
+  },
   "set_grp_lang": {
     "message": "Language"
   },
@@ -456,6 +489,33 @@
   },
   "motion_off": {
     "message": "Off"
+  },
+  "hint_audio_auto": {
+    "message": "Automatic: the interface language and the original language of the video."
+  },
+  "hint_subs_auto": {
+    "message": "Automatic: the interface language, English and the original language of the video."
+  },
+  "btn_add_lang": {
+    "message": "+ Add language"
+  },
+  "btn_remove_lang": {
+    "message": "Remove {name}"
+  },
+  "btn_change_folder": {
+    "message": "Change…"
+  },
+  "hint_folder_type": {
+    "message": "This helper version cannot open the folder picker. Type the folder path, then press Enter."
+  },
+  "set_grp_memory": {
+    "message": "Site choices"
+  },
+  "hint_site_memory": {
+    "message": "Your last quality, audio and subtitle choices on a site are remembered. On that site they are used instead of these defaults."
+  },
+  "btn_clear_site_memory": {
+    "message": "Forget saved choices ({n} sites)"
   },
   "set_grp_repos": {
     "message": "Site repositories"
@@ -513,6 +573,27 @@
   },
   "err_pack_not_found": {
     "message": "Pack was not found in the repository."
+  },
+  "repo_trusted": {
+    "message": "Trusted"
+  },
+  "repo_untrusted": {
+    "message": "Not trusted"
+  },
+  "set_grp_packs": {
+    "message": "Packs"
+  },
+  "packs_installed_count": {
+    "message": "{n} installed"
+  },
+  "col_pack": {
+    "message": "Pack"
+  },
+  "col_version": {
+    "message": "Version"
+  },
+  "packs_empty": {
+    "message": "No matching packs."
   },
   "set_grp_support": {
     "message": "Support"

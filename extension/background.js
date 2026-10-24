@@ -266,11 +266,24 @@ async function handle(msg, sender) {
       const links = await chrome.tabs.sendMessage(tabId, { type: 'links' }, { frameId: 0 }).catch(() => []);
       return { episodes: collectEpisodes(st.page?.url || '', links || [], await packFor(st.page?.url)) };
     }
-    case 'queue-episodes':
-      season.items.push(...msg.items.map(it => ({ ...it, options: msg.options })));
-      season.total += msg.items.length;
+    case 'queue-episodes': {
+      // A batch added after the previous one finished starts a fresh count and error list.
+      if (!season.running) Object.assign(season, { total: 0, done: 0, failed: [] });
+      // Skip episodes that are already waiting or being resolved (the same season added twice).
+      const pending = new Set([season.current?.url, ...season.items.map(it => it.url)]);
+      const fresh = [];
+      for (const it of msg.items) {
+        if (pending.has(it.url)) continue;
+        pending.add(it.url);
+        fresh.push({ ...it, options: msg.options });
+      }
+      // An episode added again gets a new try, so its old error goes away.
+      season.failed = season.failed.filter(f => !fresh.some(it => it.url === f.url));
+      season.items.push(...fresh);
+      season.total += fresh.length;
       runSeason();
-      return { ok: true };
+      return { ok: true, added: fresh.length };
+    }
     case 'season-status':
       return { ...season, items: season.items.length };
     case 'refresh-job': {
@@ -337,6 +350,9 @@ async function probeSource(s) {
   return api('POST', '/probe', { url: s.url, headers: s.headers, kind: s.kind, playlists: s.playlists });
 }
 
+// An episode is longer than this; anything shorter that answers first is a trailer or an ad.
+const MIN_EPISODE_SEC = 120;
+
 // Probe every captured source (playlists read in the tab) and return the longest one.
 async function pickSource(tabId, sources, pageUrl) {
   const playlistsByUrl = new Map();
@@ -344,12 +360,13 @@ async function pickSource(tabId, sources, pageUrl) {
     const playlists = await prefetchPlaylists(tabId, s, pageUrl);
     playlistsByUrl.set(s.url, playlists);
     return probeSource({ ...s, playlists });
-  });
+  }, { minDuration: MIN_EPISODE_SEC });
   const best = list[0];
   if (!best) return null;
   return {
     source: { kind: best.source.kind, url: best.source.url, headers: best.source.headers },
     playlists: playlistsByUrl.get(best.source.url) || null,
+    short: best.short,
   };
 }
 
@@ -362,7 +379,16 @@ async function openResolverTab(url) {
       return t.id;
     } catch { resolverWindowId = null; }
   }
-  const w = await chrome.windows.create({ url, state: 'minimized', focused: false });
+  // Not minimized: a minimized window's page is "hidden", and the browser does not load or
+  // play video in a hidden page, so no stream is ever requested. A small, unfocused window
+  // in the corner of the user's window stays visible without taking the keyboard focus.
+  const width = 480;
+  const height = 320;
+  const base = await chrome.windows.getLastFocused().catch(() => null);
+  const corner = base?.width && base?.height
+    ? { left: base.left + Math.max(0, base.width - width - 16), top: base.top + Math.max(0, base.height - height - 16) }
+    : {};
+  const w = await chrome.windows.create({ url, state: 'normal', focused: false, width, height, ...corner });
   resolverWindowId = w.id;
   return w.tabs[0].id;
 }
@@ -384,15 +410,27 @@ async function resolvePage(url, timeoutMs = 60000) {
     const pack = await packFor(url);
     const deadline = Date.now() + timeoutMs;
     let firstFound = 0;
+    let tries = 0;
+    let best = null;
+    let picked = 0; // number of sources the last pick looked at
     while (Date.now() < deadline) {
       await sleep(2500);
       const st = await getState(tabId);
-      if (st.sources.length) {
-        if (!firstFound) firstFound = Date.now();
-        // Give the player a moment to request the master playlist and subtitles.
-        if (Date.now() - firstFound > 5000) break;
-      } else {
-        await chrome.tabs.sendMessage(tabId, { type: 'trigger', player: pack?.player }).catch(() => {});
+      if (st.sources.length && !firstFound) firstFound = Date.now();
+      // Give the player a moment to request the master playlist and subtitles.
+      if (firstFound && Date.now() - firstFound > 5000) {
+        if (st.sources.length !== picked) {
+          picked = st.sources.length;
+          best = await pickSource(tabId, st.sources, url);
+        }
+        // A trailer or an ad often plays first: keep waiting for the episode itself.
+        if (best && !best.short) break;
+      }
+      if (!st.sources.length || best?.short) {
+        // Nobody watches this tab, so nobody clicks the poster: after two gentle tries,
+        // let the trigger click play overlays in the top frame as well.
+        tries++;
+        await chrome.tabs.sendMessage(tabId, { type: 'trigger', player: pack?.player, force: tries > 2 }).catch(() => {});
       }
     }
     await chrome.tabs.sendMessage(tabId, { type: 'rescan' }).catch(() => {});
@@ -402,8 +440,9 @@ async function resolvePage(url, timeoutMs = 60000) {
       st.page = await chrome.tabs.sendMessage(tabId, { type: 'page-info' }, { frameId: 0 }).catch(() => null);
     }
     if (!st.sources.length) throw Object.assign(new Error('No video found (timed out)'), { code: 'episode_timeout' });
-    const best = await pickSource(tabId, st.sources, url);
+    if (!best || st.sources.length !== picked) best = await pickSource(tabId, st.sources, url);
     if (!best) throw Object.assign(new Error('The captured video addresses could not be read'), { code: 'episode_unreadable' });
+    if (best.short) throw Object.assign(new Error('Only a short video was found (trailer or ad)'), { code: 'episode_short' });
     return {
       page: st.page,
       meta: st.page ? parsePage(st.page, await packFor(st.page.url || url)) : null,

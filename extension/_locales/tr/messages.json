@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "İndirme klasörü"
   },
-  "btn_save": {
-    "message": "Kaydet"
-  },
   "target_line": {
     "message": "Kayıt yeri: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "Yakalanan video adresleri okunamadı."
   },
+  "err_episode_short": {
+    "message": "Yalnızca kısa bir video bulundu (fragman veya reklam). Bölümün kendisi yüklenmedi."
+  },
+  "warn_av_mismatch": {
+    "message": "Dosyayı kontrol edin: süreler uyuşmuyor ({detail})."
+  },
   "err_bad_request": {
     "message": "Geçersiz istek."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Sürdür"
   },
+  "set_tab_look": {
+    "message": "Görünüm"
+  },
+  "set_tab_download": {
+    "message": "İndirme"
+  },
+  "set_tab_repos": {
+    "message": "Depolar"
+  },
+  "set_tab_about": {
+    "message": "Hakkında"
+  },
   "set_grp_theme": {
     "message": "Tema"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Gül"
   },
+  "theme_velvet": {
+    "message": "Kadife"
+  },
+  "theme_neon": {
+    "message": "Neon"
+  },
+  "theme_sunset": {
+    "message": "Gün batımı"
+  },
+  "theme_arctic": {
+    "message": "Kutup"
+  },
+  "theme_graphite": {
+    "message": "Grafit"
+  },
+  "theme_lavender": {
+    "message": "Lavanta"
+  },
   "set_grp_lang": {
     "message": "Dil"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Kapalı"
+  },
+  "hint_audio_auto": {
+    "message": "Otomatik: arayüz dili ve videonun orijinal dili."
+  },
+  "hint_subs_auto": {
+    "message": "Otomatik: arayüz dili, İngilizce ve videonun orijinal dili."
+  },
+  "btn_add_lang": {
+    "message": "+ Dil ekle"
+  },
+  "btn_remove_lang": {
+    "message": "{name} dilini kaldır"
+  },
+  "btn_change_folder": {
+    "message": "Değiştir…"
+  },
+  "hint_folder_type": {
+    "message": "Bu yardımcı program sürümü klasör seçiciyi açamıyor. Klasör yolunu yazın ve Enter tuşuna basın."
+  },
+  "set_grp_memory": {
+    "message": "Site seçimleri"
+  },
+  "hint_site_memory": {
+    "message": "Bir sitede son seçtiğiniz kalite, ses ve altyazı hatırlanır. O sitede bu varsayılanlar yerine onlar kullanılır."
+  },
+  "btn_clear_site_memory": {
+    "message": "Kayıtlı seçimleri unut ({n} site)"
   },
   "set_grp_repos": {
     "message": "Site depoları"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "Paket depoda bulunamadı."
+  },
+  "repo_trusted": {
+    "message": "Güvenilir"
+  },
+  "repo_untrusted": {
+    "message": "Güvenilmiyor"
+  },
+  "set_grp_packs": {
+    "message": "Paketler"
+  },
+  "packs_installed_count": {
+    "message": "{n} kurulu"
+  },
+  "col_pack": {
+    "message": "Paket"
+  },
+  "col_version": {
+    "message": "Sürüm"
+  },
+  "packs_empty": {
+    "message": "Eşleşen paket yok."
   },
   "set_grp_support": {
     "message": "Destek"

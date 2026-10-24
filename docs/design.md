@@ -116,9 +116,14 @@ gerekir. `host.js` sadece daemon'u başlatır ve port + token verir.
   `data-src`'li boş iframe'lere `src` verir ve çerçevelerdeki `<video>`'yu sessiz oynatmayı
   dener. Sezon çözümlemede bu işlem otomatik yapılır.
 - **Sezon:** Üst çerçevedeki linkler başlık ayrıştırıcıdan geçer; aynı dizi + aynı sezona ait
-  bölümler listelenir. Kullanıcı işaretler. Arka plan, küçültülmüş ve sessiz bir pencerede
-  her bölümü sırayla açar, oynatıcıyı tetikler, kaynak + altyazı yakalanınca (en çok 60 sn)
-  sekmeyi kapatır ve işi kuyruğa ekler.
+  bölümler listelenir. Kullanıcı işaretler. Arka plan, kullanıcının penceresinin sağ alt
+  köşesinde küçük, sessiz ve odaksız bir pencerede her bölümü sırayla açar, oynatıcıyı
+  tetikler, kaynak + altyazı yakalanınca (en çok 60 sn) sekmeyi kapatır ve işi kuyruğa ekler.
+  Pencere küçültülmez: küçültülmüş pencerede sayfa gizli sayılır ve tarayıcı videoyu
+  yüklemez. İki denemede video bulunmazsa tetikleyici, üst çerçevedeki "oynat" kapaklarına
+  da tıklar. Aynı bölüm iki kez kuyruğa girmez. 120 saniyeden kısa kaynaklar (fragman,
+  reklam; örneğin sayfadaki YouTube gömmesi) bölüm sayılmaz: çözümleyici süre dolana kadar
+  daha uzun bir kaynak bekler, bulamazsa `episode_short` hatası verir.
 - **Overlay (C):** Sekmede kaynak bulununca üst çerçeve, görünür en büyük `iframe`/`video`
   öğesinin sağ üst köşesine "⬇ İndir" düğmesi koyar (Shadow DOM). Tıklanınca aynı popup
   sayfası (`popup.html?tab=<id>`) sayfa üzerinde bir panel olarak açılır. Oynatıcı bir poster
@@ -150,7 +155,12 @@ döner.
   yeniden başlatmada var olan parçalar atlanır (devam etme).
 - **Birleştirme:** `ffmpeg -c copy` ile MP4; bütün ses akışları eşlenir, dil etiketi
   (`tr→tur`, `en→eng` …) ve başlık yazılır, `+faststart`. Video TS içinde birden çok ses
-  varsa hepsi alınır.
+  varsa hepsi alınır. Ayrı ses listeleri video ile aynı zaman çizgisini paylaşır: ffmpeg her
+  girişi kendi başına sıfıra çeker, bu yüzden girişlerin başlangıç zamanı (`ffmpeg -i`
+  çıktısındaki `start:`) okunur ve fark `-itsoffset` ile geri verilir (fark 10 sn'den
+  büyükse hizalama yapılmaz). Birleştirme bitince `ffprobe` ile akış süreleri karşılaştırılır;
+  ses/video/playlist süreleri %1'den (en az 2 sn) fazla ayrıksa iş `warning = av_mismatch`
+  ile biter ve kuyrukta uyarı görünür.
 - **Altyazı:** VTT → SRT (zaman biçimi, cue ayarları atılır, numaralandırma), UTF-8 BOM'lu.
   Dil kodu `lang` alanından; yoksa etiketten (Türkçe/Turkish → `tr` …) ya da URL'den.
   Aynı dilde iki altyazı varsa `.tr.2.srt`.
@@ -175,6 +185,13 @@ döner.
   veri reddedilir ve yeniden denenir (hız sınırı sırasında 200 ile gelen sahte cevaplar).
 - `concatf:` ile ffmpeg parçaları doğrudan okur; birleştirilmiş ara dosya yok. ffmpeg liste
   satırlarında ters eğik çizgiyi kabul etmiyor: `file:` + `/` kullanılır.
+- `#EXT-X-DISCONTINUITY`: etiketten sonra zaman damgaları sıçrar; düz birleştirme + `-c copy`
+  bu sıçramayı dosyaya taşır (görüntü donar, ses kayar). Parçalar süreksizlik gruplarına
+  ayrılır; her grup kendi `concatf:` listesidir, gruplar concat demuxer'ı ile
+  (`-f concat -safe 0 -protocol_whitelist file,concatf,concat`) sürekli zaman damgasıyla
+  birleşir. fMP4'te her grup kendi `#EXT-X-MAP` init parçasını alır.
+- HTTP zaman aşımı toplam değil boşta kalma süresidir (30 sn veri gelmezse). Yavaş ama canlı
+  bir parça indirmesi zaman aşımına uğramaz.
 - `job.stats` ve `daemon.log`: indirme süresi, bayt, ortalama hız, en yüksek/son bağlantı,
   yeniden deneme, MP4 süresi.
 

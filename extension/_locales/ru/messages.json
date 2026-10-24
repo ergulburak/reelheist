@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "Папка загрузки"
   },
-  "btn_save": {
-    "message": "Сохранить"
-  },
   "target_line": {
     "message": "Сохранится в: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "Не удалось прочитать перехваченные адреса видео."
   },
+  "err_episode_short": {
+    "message": "Найдено только короткое видео (трейлер или реклама). Сама серия не загрузилась."
+  },
+  "warn_av_mismatch": {
+    "message": "Проверьте файл: длительности не совпадают ({detail})."
+  },
   "err_bad_request": {
     "message": "Недопустимый запрос."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Продолжить"
   },
+  "set_tab_look": {
+    "message": "Вид"
+  },
+  "set_tab_download": {
+    "message": "Загрузки"
+  },
+  "set_tab_repos": {
+    "message": "Репозитории"
+  },
+  "set_tab_about": {
+    "message": "О программе"
+  },
   "set_grp_theme": {
     "message": "Тема"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Роза"
   },
+  "theme_velvet": {
+    "message": "Бархат"
+  },
+  "theme_neon": {
+    "message": "Неон"
+  },
+  "theme_sunset": {
+    "message": "Закат"
+  },
+  "theme_arctic": {
+    "message": "Арктика"
+  },
+  "theme_graphite": {
+    "message": "Графит"
+  },
+  "theme_lavender": {
+    "message": "Лаванда"
+  },
   "set_grp_lang": {
     "message": "Язык"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Выкл."
+  },
+  "hint_audio_auto": {
+    "message": "Автоматически: язык интерфейса и язык оригинала видео."
+  },
+  "hint_subs_auto": {
+    "message": "Автоматически: язык интерфейса, английский и язык оригинала видео."
+  },
+  "btn_add_lang": {
+    "message": "+ Добавить язык"
+  },
+  "btn_remove_lang": {
+    "message": "Удалить: {name}"
+  },
+  "btn_change_folder": {
+    "message": "Изменить…"
+  },
+  "hint_folder_type": {
+    "message": "Эта версия вспомогательной программы не может открыть выбор папки. Введите путь к папке и нажмите Enter."
+  },
+  "set_grp_memory": {
+    "message": "Выбор для сайтов"
+  },
+  "hint_site_memory": {
+    "message": "Последний выбор качества, звука и субтитров запоминается для каждого сайта. На этом сайте он используется вместо этих значений."
+  },
+  "btn_clear_site_memory": {
+    "message": "Забыть сохранённый выбор (сайтов: {n})"
   },
   "set_grp_repos": {
     "message": "Репозитории сайтов"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "Пакет не найден в репозитории."
+  },
+  "repo_trusted": {
+    "message": "Доверенный"
+  },
+  "repo_untrusted": {
+    "message": "Не доверенный"
+  },
+  "set_grp_packs": {
+    "message": "Пакеты"
+  },
+  "packs_installed_count": {
+    "message": "Установлено: {n}"
+  },
+  "col_pack": {
+    "message": "Пакет"
+  },
+  "col_version": {
+    "message": "Версия"
+  },
+  "packs_empty": {
+    "message": "Подходящих пакетов нет."
   },
   "set_grp_support": {
     "message": "Поддержка"

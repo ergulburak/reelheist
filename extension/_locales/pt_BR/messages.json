@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "Pasta de download"
   },
-  "btn_save": {
-    "message": "Salvar"
-  },
   "target_line": {
     "message": "Salvo em: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "Não foi possível ler os endereços de vídeo capturados."
   },
+  "err_episode_short": {
+    "message": "Apenas um vídeo curto foi encontrado (um trailer ou um anúncio). O episódio em si não carregou."
+  },
+  "warn_av_mismatch": {
+    "message": "Verifique o arquivo: as durações não coincidem ({detail})."
+  },
   "err_bad_request": {
     "message": "A solicitação não é válida."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Retomar"
   },
+  "set_tab_look": {
+    "message": "Aparência"
+  },
+  "set_tab_download": {
+    "message": "Downloads"
+  },
+  "set_tab_repos": {
+    "message": "Repositórios"
+  },
+  "set_tab_about": {
+    "message": "Sobre"
+  },
   "set_grp_theme": {
     "message": "Tema"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Rosa"
   },
+  "theme_velvet": {
+    "message": "Veludo"
+  },
+  "theme_neon": {
+    "message": "Neon"
+  },
+  "theme_sunset": {
+    "message": "Pôr do sol"
+  },
+  "theme_arctic": {
+    "message": "Ártico"
+  },
+  "theme_graphite": {
+    "message": "Grafite"
+  },
+  "theme_lavender": {
+    "message": "Lavanda"
+  },
   "set_grp_lang": {
     "message": "Idioma"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Desligada"
+  },
+  "hint_audio_auto": {
+    "message": "Automático: o idioma da interface e o idioma original do vídeo."
+  },
+  "hint_subs_auto": {
+    "message": "Automático: o idioma da interface, o inglês e o idioma original do vídeo."
+  },
+  "btn_add_lang": {
+    "message": "+ Adicionar idioma"
+  },
+  "btn_remove_lang": {
+    "message": "Remover {name}"
+  },
+  "btn_change_folder": {
+    "message": "Alterar…"
+  },
+  "hint_folder_type": {
+    "message": "Esta versão do programa auxiliar não consegue abrir o seletor de pastas. Digite o caminho da pasta e pressione Enter."
+  },
+  "set_grp_memory": {
+    "message": "Escolhas por site"
+  },
+  "hint_site_memory": {
+    "message": "Suas últimas escolhas de qualidade, áudio e legendas são lembradas para cada site. Nesse site, elas são usadas no lugar destes padrões."
+  },
+  "btn_clear_site_memory": {
+    "message": "Esquecer escolhas salvas ({n} sites)"
   },
   "set_grp_repos": {
     "message": "Repositórios de sites"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "Pacote não encontrado no repositório."
+  },
+  "repo_trusted": {
+    "message": "Confiável"
+  },
+  "repo_untrusted": {
+    "message": "Não confiável"
+  },
+  "set_grp_packs": {
+    "message": "Pacotes"
+  },
+  "packs_installed_count": {
+    "message": "{n} instalados"
+  },
+  "col_pack": {
+    "message": "Pacote"
+  },
+  "col_version": {
+    "message": "Versão"
+  },
+  "packs_empty": {
+    "message": "Nenhum pacote encontrado."
   },
   "set_grp_support": {
     "message": "Apoio"

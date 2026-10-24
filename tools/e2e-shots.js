@@ -9,7 +9,7 @@ const { Browser } = require('./cdp');
 const argv = process.argv.slice(2);
 const positional = [];
 let langs = ['tr', 'de', 'ru', 'ar'];
-let themes = ['red', 'black-beige', 'beige-black', 'midnight', 'emerald', 'amethyst', 'amber', 'snow', 'rose'];
+let themes = ['red', 'black-beige', 'beige-black', 'midnight', 'emerald', 'amethyst', 'amber', 'snow', 'rose', 'velvet', 'neon', 'sunset', 'arctic', 'graphite', 'lavender'];
 
 for (let i = 0; i < argv.length; i++) {
   if (argv[i] === '--langs' && argv[i + 1]) {

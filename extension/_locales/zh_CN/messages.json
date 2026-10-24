@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "下载文件夹"
   },
-  "btn_save": {
-    "message": "保存"
-  },
   "target_line": {
     "message": "保存位置：{path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "无法读取捕获的视频地址。"
   },
+  "err_episode_short": {
+    "message": "只找到了一段短视频（预告片或广告）。剧集本身没有加载。"
+  },
+  "warn_av_mismatch": {
+    "message": "请检查文件：时长不一致（{detail}）。"
+  },
   "err_bad_request": {
     "message": "请求无效。"
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "继续"
   },
+  "set_tab_look": {
+    "message": "外观"
+  },
+  "set_tab_download": {
+    "message": "下载"
+  },
+  "set_tab_repos": {
+    "message": "仓库"
+  },
+  "set_tab_about": {
+    "message": "关于"
+  },
   "set_grp_theme": {
     "message": "主题"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "玫瑰"
   },
+  "theme_velvet": {
+    "message": "丝绒"
+  },
+  "theme_neon": {
+    "message": "霓虹"
+  },
+  "theme_sunset": {
+    "message": "日落"
+  },
+  "theme_arctic": {
+    "message": "极地"
+  },
+  "theme_graphite": {
+    "message": "石墨"
+  },
+  "theme_lavender": {
+    "message": "薰衣草"
+  },
   "set_grp_lang": {
     "message": "语言"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "关闭"
+  },
+  "hint_audio_auto": {
+    "message": "自动：界面语言和视频的原始语言。"
+  },
+  "hint_subs_auto": {
+    "message": "自动：界面语言、英语和视频的原始语言。"
+  },
+  "btn_add_lang": {
+    "message": "+ 添加语言"
+  },
+  "btn_remove_lang": {
+    "message": "移除{name}"
+  },
+  "btn_change_folder": {
+    "message": "更改…"
+  },
+  "hint_folder_type": {
+    "message": "此版本的助手程序无法打开文件夹选择器。请输入文件夹路径，然后按 Enter。"
+  },
+  "set_grp_memory": {
+    "message": "站点选择"
+  },
+  "hint_site_memory": {
+    "message": "会记住你在每个站点最后选择的画质、音频和字幕。在该站点上，它们会代替这些默认设置。"
+  },
+  "btn_clear_site_memory": {
+    "message": "清除已保存的选择（{n} 个站点）"
   },
   "set_grp_repos": {
     "message": "站点仓库"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "仓库中未找到该站点包。"
+  },
+  "repo_trusted": {
+    "message": "已信任"
+  },
+  "repo_untrusted": {
+    "message": "未信任"
+  },
+  "set_grp_packs": {
+    "message": "站点包"
+  },
+  "packs_installed_count": {
+    "message": "已安装 {n} 个"
+  },
+  "col_pack": {
+    "message": "站点包"
+  },
+  "col_version": {
+    "message": "版本"
+  },
+  "packs_empty": {
+    "message": "没有匹配的站点包。"
   },
   "set_grp_support": {
     "message": "支持"

@@ -8,7 +8,7 @@ const crypto = require('crypto');
 const P = require('./paths');
 const { buildNames } = require('./names');
 const { downloadHls, downloadFile, writeSubtitles } = require('./download');
-const { mux } = require('./mux');
+const { mux, findFfmpeg, probeStreams, checkOutput } = require('./mux');
 const ytdlp = require('./ytdlp');
 const { toCoded } = require('./errors');
 
@@ -203,6 +203,8 @@ class Queue {
     job.errorCode = null;
     job.startedAt = Date.now();
     job.stats = null;
+    job.warning = null;
+    job.warningDetail = null;
     job.progress = { phase: 'downloading', percent: 0 };
     await this.save();
     const onProgress = p => {
@@ -245,10 +247,18 @@ class Queue {
     if (result.direct) {
       await fsp.copyFile(result.streams[0].file, videoFile);
     } else {
-      await mux(result.streams, videoFile, { duration: result.duration, onProgress, signal });
+      await mux(result.streams, videoFile, { duration: result.duration, onProgress, signal, log: this.log });
     }
     const muxMs = Date.now() - muxStart;
     const st = await fsp.stat(videoFile);
+    // A finished file whose audio and video lengths differ has frozen or silent parts.
+    const ffmpeg = findFfmpeg();
+    const warn = ffmpeg ? checkOutput(await probeStreams(ffmpeg, videoFile), result.duration) : null;
+    if (warn) {
+      job.warning = warn.code;
+      job.warningDetail = warn.detail;
+      this.log(`İş ${job.id} uyarı: süreler uyuşmuyor (${warn.detail})`);
+    }
     job.state = 'done';
     job.progress = { phase: 'done', percent: 100, bytes: st.size, totalBytes: st.size };
     job.output = {

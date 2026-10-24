@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "Carpeta de descarga"
   },
-  "btn_save": {
-    "message": "Guardar"
-  },
   "target_line": {
     "message": "Se guarda en: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "No se pudieron leer las direcciones de vídeo capturadas."
   },
+  "err_episode_short": {
+    "message": "Solo se encontró un video corto (un tráiler o un anuncio). El episodio en sí no se cargó."
+  },
+  "warn_av_mismatch": {
+    "message": "Revise el archivo: las duraciones no coinciden ({detail})."
+  },
   "err_bad_request": {
     "message": "La solicitud no es válida."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Reanudar"
   },
+  "set_tab_look": {
+    "message": "Apariencia"
+  },
+  "set_tab_download": {
+    "message": "Descargas"
+  },
+  "set_tab_repos": {
+    "message": "Repositorios"
+  },
+  "set_tab_about": {
+    "message": "Acerca de"
+  },
   "set_grp_theme": {
     "message": "Tema"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Rosa"
   },
+  "theme_velvet": {
+    "message": "Terciopelo"
+  },
+  "theme_neon": {
+    "message": "Neón"
+  },
+  "theme_sunset": {
+    "message": "Atardecer"
+  },
+  "theme_arctic": {
+    "message": "Ártico"
+  },
+  "theme_graphite": {
+    "message": "Grafito"
+  },
+  "theme_lavender": {
+    "message": "Lavanda"
+  },
   "set_grp_lang": {
     "message": "Idioma"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Desactivada"
+  },
+  "hint_audio_auto": {
+    "message": "Automático: el idioma de la interfaz y el idioma original del vídeo."
+  },
+  "hint_subs_auto": {
+    "message": "Automático: el idioma de la interfaz, el inglés y el idioma original del vídeo."
+  },
+  "btn_add_lang": {
+    "message": "+ Añadir idioma"
+  },
+  "btn_remove_lang": {
+    "message": "Quitar {name}"
+  },
+  "btn_change_folder": {
+    "message": "Cambiar…"
+  },
+  "hint_folder_type": {
+    "message": "Esta versión del programa auxiliar no puede abrir el selector de carpetas. Escribe la ruta de la carpeta y pulsa Intro."
+  },
+  "set_grp_memory": {
+    "message": "Elecciones por sitio"
+  },
+  "hint_site_memory": {
+    "message": "Se recuerdan tus últimas elecciones de calidad, audio y subtítulos en cada sitio. En ese sitio se usan en lugar de estos valores predeterminados."
+  },
+  "btn_clear_site_memory": {
+    "message": "Olvidar elecciones guardadas ({n} sitios)"
   },
   "set_grp_repos": {
     "message": "Repositorios de sitios"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "No se encontró el paquete."
+  },
+  "repo_trusted": {
+    "message": "De confianza"
+  },
+  "repo_untrusted": {
+    "message": "No confiable"
+  },
+  "set_grp_packs": {
+    "message": "Paquetes"
+  },
+  "packs_installed_count": {
+    "message": "{n} instalados"
+  },
+  "col_pack": {
+    "message": "Paquete"
+  },
+  "col_version": {
+    "message": "Versión"
+  },
+  "packs_empty": {
+    "message": "No hay paquetes que coincidan."
   },
   "set_grp_support": {
     "message": "Apoyo"

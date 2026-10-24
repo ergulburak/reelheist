@@ -81,11 +81,14 @@ function parseMedia(text, baseUrl) {
   let pendingRange = null;
   let lastRangeEnd = { };
   let seq = 0;
+  let disc = 0; // timestamps restart after every #EXT-X-DISCONTINUITY
   for (const line of lines) {
     if (!line) continue;
     if (line.startsWith('#EXT-X-MEDIA-SEQUENCE:')) {
       mediaSequence = Number(line.slice(22)) || 0;
       seq = mediaSequence;
+    } else if (line === '#EXT-X-DISCONTINUITY') {
+      if (segments.length) disc++;
     } else if (line.startsWith('#EXT-X-KEY:')) {
       const a = parseAttributes(line.slice(11));
       if (!a.METHOD || a.METHOD === 'NONE') key = null;
@@ -104,14 +107,14 @@ function parseMedia(text, baseUrl) {
         range = parseByteRange(pendingRange, lastRangeEnd[url] || 0);
         lastRangeEnd[url] = range.offset + range.length;
       }
-      segments.push({ url, duration: pendingDuration, seq, key, map, range });
+      segments.push({ url, duration: pendingDuration, seq, key, map, range, disc });
       duration += pendingDuration;
       pendingDuration = 0;
       pendingRange = null;
       seq++;
     }
   }
-  return { segments, duration, mediaSequence, endList: /#EXT-X-ENDLIST/.test(text) };
+  return { segments, duration, mediaSequence, discontinuities: disc, endList: /#EXT-X-ENDLIST/.test(text) };
 }
 
 module.exports = { parseAttributes, parseMaster, parseMedia, isMaster, resolveUrl };

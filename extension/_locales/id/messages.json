@@ -74,9 +74,6 @@
   "lbl_outdir": {
     "message": "Folder unduhan"
   },
-  "btn_save": {
-    "message": "Simpan"
-  },
   "target_line": {
     "message": "Disimpan di: {path}"
   },
@@ -308,6 +305,12 @@
   "err_episode_unreadable": {
     "message": "Alamat video yang ditangkap tidak dapat dibaca."
   },
+  "err_episode_short": {
+    "message": "Hanya video pendek yang ditemukan (trailer atau iklan). Episodenya sendiri tidak dimuat."
+  },
+  "warn_av_mismatch": {
+    "message": "Periksa berkas: durasinya tidak cocok ({detail})."
+  },
   "err_bad_request": {
     "message": "Permintaan tidak valid."
   },
@@ -389,6 +392,18 @@
   "btn_resume": {
     "message": "Lanjutkan"
   },
+  "set_tab_look": {
+    "message": "Tampilan"
+  },
+  "set_tab_download": {
+    "message": "Unduhan"
+  },
+  "set_tab_repos": {
+    "message": "Repositori"
+  },
+  "set_tab_about": {
+    "message": "Tentang"
+  },
   "set_grp_theme": {
     "message": "Tema"
   },
@@ -419,6 +434,24 @@
   "theme_rose": {
     "message": "Mawar"
   },
+  "theme_velvet": {
+    "message": "Beludru"
+  },
+  "theme_neon": {
+    "message": "Neon"
+  },
+  "theme_sunset": {
+    "message": "Senja"
+  },
+  "theme_arctic": {
+    "message": "Arktik"
+  },
+  "theme_graphite": {
+    "message": "Grafit"
+  },
+  "theme_lavender": {
+    "message": "Lavender"
+  },
   "set_grp_lang": {
     "message": "Bahasa"
   },
@@ -448,6 +481,33 @@
   },
   "motion_off": {
     "message": "Nonaktif"
+  },
+  "hint_audio_auto": {
+    "message": "Otomatis: bahasa antarmuka dan bahasa asli video."
+  },
+  "hint_subs_auto": {
+    "message": "Otomatis: bahasa antarmuka, bahasa Inggris, dan bahasa asli video."
+  },
+  "btn_add_lang": {
+    "message": "+ Tambah bahasa"
+  },
+  "btn_remove_lang": {
+    "message": "Hapus {name}"
+  },
+  "btn_change_folder": {
+    "message": "Ubah…"
+  },
+  "hint_folder_type": {
+    "message": "Versi program pembantu ini tidak dapat membuka pemilih folder. Ketik jalur folder, lalu tekan Enter."
+  },
+  "set_grp_memory": {
+    "message": "Pilihan per situs"
+  },
+  "hint_site_memory": {
+    "message": "Pilihan kualitas, audio, dan subtitel terakhir Anda di sebuah situs akan diingat. Di situs itu, pilihan tersebut dipakai sebagai ganti bawaan ini."
+  },
+  "btn_clear_site_memory": {
+    "message": "Lupakan pilihan tersimpan ({n} situs)"
   },
   "set_grp_repos": {
     "message": "Repositori situs"
@@ -505,6 +565,27 @@
   },
   "err_pack_not_found": {
     "message": "Paket tidak ditemukan di repositori."
+  },
+  "repo_trusted": {
+    "message": "Tepercaya"
+  },
+  "repo_untrusted": {
+    "message": "Belum dipercaya"
+  },
+  "set_grp_packs": {
+    "message": "Paket"
+  },
+  "packs_installed_count": {
+    "message": "{n} terpasang"
+  },
+  "col_pack": {
+    "message": "Paket"
+  },
+  "col_version": {
+    "message": "Versi"
+  },
+  "packs_empty": {
+    "message": "Tidak ada paket yang cocok."
   },
   "set_grp_support": {
     "message": "Dukungan"

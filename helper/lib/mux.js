@@ -21,12 +21,23 @@ function findFfmpeg() {
   return null;
 }
 
-// streams: [video, ...audioRenditions]; each {file, lang, name, isDefault}.
+// Input flags for one stream. `concat`: a concat demuxer list whose entries are concatf:
+// lists (one per discontinuity group). `offset`: seconds this input starts after the
+// earliest one (ffmpeg shifts every input to 0 on its own; -itsoffset restores the gap).
+function inputArgs(s) {
+  const a = [];
+  if (s.concat) a.push('-protocol_whitelist', 'file,concatf,concat', '-safe', '0', '-f', 'concat');
+  if (s.offset) a.push('-itsoffset', s.offset.toFixed(3));
+  a.push('-i', s.file);
+  return a;
+}
+
+// streams: [video, ...audioRenditions]; each {file, lang, name, isDefault, concat, offset}.
 // muxedAudio: number of audio tracks already inside the video input; output audio
 // indexes of the separate renditions start after them.
 function buildArgs(streams, muxedAudio, outFile) {
   const args = ['-hide_banner', '-nostdin', '-y'];
-  for (const s of streams) args.push('-i', s.file);
+  for (const s of streams) args.push(...inputArgs(s));
   const audios = streams.slice(1);
   args.push('-map', '0:v:0?', '-map', '0:a?');
   audios.forEach((_, i) => args.push('-map', `${i + 1}:a:0`));
@@ -68,23 +79,39 @@ function run(ffmpeg, args, { onTime, signal } = {}) {
   });
 }
 
-// Count audio streams inside a file (reads ffmpeg's input dump).
-function countAudio(ffmpeg, file) {
+// Audio stream count and start time of one input (reads ffmpeg's input dump).
+function inspect(ffmpeg, s) {
   return new Promise(resolve => {
-    const p = spawn(ffmpeg, ['-hide_banner', '-nostdin', '-i', file], { windowsHide: true });
+    const p = spawn(ffmpeg, ['-hide_banner', '-nostdin', ...inputArgs({ ...s, offset: 0 })], { windowsHide: true });
     let err = '';
     p.stderr.on('data', d => (err += d));
-    p.on('close', () => resolve((err.match(/Stream #\d+:\d+.*?: Audio:/g) || []).length));
-    p.on('error', () => resolve(0));
+    p.on('close', () => {
+      const m = /Duration: .*?, start: (-?[\d.]+)/.exec(err);
+      resolve({ audio: (err.match(/Stream #\d+:\d+.*?: Audio:/g) || []).length, start: m ? Number(m[1]) : null });
+    });
+    p.on('error', () => resolve({ audio: 0, start: null }));
   });
 }
 
-async function mux(streams, outFile, { duration, onProgress, signal } = {}) {
+// Renditions share one timeline: an audio playlist that starts 0.8 s after the video must
+// start 0.8 s later in the MP4 too. A spread beyond this is a different timeline (or junk):
+// then every input starts at 0, as before.
+const MAX_ALIGN_SEC = 10;
+
+async function mux(streams, outFile, { duration, onProgress, signal, log } = {}) {
   const ffmpeg = findFfmpeg();
   if (!ffmpeg) throw new CodedError('ffmpeg_missing', 'ffmpeg was not found');
-  const muxedAudio = await countAudio(ffmpeg, streams[0].file);
+  const info = await Promise.all(streams.map(s => inspect(ffmpeg, s)));
+  const starts = info.map(i => i.start);
+  for (const s of streams) s.offset = 0;
+  if (streams.length > 1 && starts.every(t => t !== null)) {
+    const min = Math.min(...starts);
+    const spread = Math.max(...starts) - min;
+    if (spread <= MAX_ALIGN_SEC) streams.forEach((s, i) => { s.offset = Number((starts[i] - min).toFixed(3)); });
+    else log?.(`Ses/video zaman çizgileri ${spread.toFixed(1)} sn ayrık; hizalama yapılmadı`);
+  }
   const tmp = outFile + '.part';
-  await run(ffmpeg, buildArgs(streams, muxedAudio, tmp), {
+  await run(ffmpeg, buildArgs(streams, info[0].audio, tmp), {
     signal,
     onTime: t => onProgress?.({ phase: 'muxing', percent: duration ? Math.min(100, (t / duration) * 100) : null }),
   });
@@ -93,4 +120,46 @@ async function mux(streams, outFile, { duration, onProgress, signal } = {}) {
   return outFile;
 }
 
-module.exports = { mux, findFfmpeg, buildArgs, countAudio, run };
+// [{type, duration, start}] of a finished file through ffprobe (next to ffmpeg); [] without it.
+function probeStreams(ffmpeg, file) {
+  const ffprobe = path.join(path.dirname(ffmpeg), process.platform === 'win32' ? 'ffprobe.exe' : 'ffprobe');
+  if (!fs.existsSync(ffprobe)) return Promise.resolve([]);
+  return new Promise(resolve => {
+    const p = spawn(ffprobe, ['-v', 'error', '-show_entries', 'stream=codec_type,duration,start_time', '-of', 'json', file],
+      { windowsHide: true });
+    let out = '';
+    p.stdout.on('data', d => (out += d));
+    p.on('close', () => {
+      try {
+        resolve((JSON.parse(out).streams || []).map(s => ({
+          type: s.codec_type, duration: Number(s.duration) || 0, start: Number(s.start_time) || 0,
+        })));
+      } catch { resolve([]); }
+    });
+    p.on('error', () => resolve([]));
+  });
+}
+
+const mmss = sec => `${Math.floor(sec / 60)}:${String(Math.round(sec % 60)).padStart(2, '0')}`;
+
+// Lengths that do not match mean missing or frozen parts: {code, detail} or null.
+// expected: playlist duration in seconds (null when unknown).
+function checkOutput(streams, expected) {
+  const video = streams.find(s => s.type === 'video');
+  if (!video) return null;
+  const tol = Math.max(2, (expected || video.duration) * 0.01);
+  const audios = streams.filter(s => s.type === 'audio');
+  const parts = [`video ${mmss(video.duration)}`];
+  let bad = false;
+  for (const a of audios) {
+    parts.push(`audio ${mmss(a.duration)}`);
+    if (Math.abs(a.duration - video.duration) > tol) bad = true;
+  }
+  if (expected && Math.abs(video.duration - expected) > tol) {
+    parts.push(`playlist ${mmss(expected)}`);
+    bad = true;
+  }
+  return bad ? { code: 'av_mismatch', detail: parts.join(', ') } : null;
+}
+
+module.exports = { mux, findFfmpeg, buildArgs, inputArgs, inspect, run, probeStreams, checkOutput };

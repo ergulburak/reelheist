@@ -29,7 +29,7 @@ Follow these steps before publishing a new ReelHeist release:
    Produces `installer/Output/ReelHeist-Setup-<version>.exe` and verifies portable `node.exe` SHA-256 against `SHASUMS256.txt`.
 
 5. **Visual & End-to-End Verification**
-   - Run `tools/e2e-shots.js` across `tr,de,ru,ar` × all nine themes (`red,black-beige,beige-black,midnight,emerald,amethyst,amber,snow,rose`) and verify `0` horizontal overflows.
+   - Run `tools/e2e-shots.js` across `tr,de,ru,ar` × all fifteen themes (`red,black-beige,beige-black,midnight,emerald,amethyst,amber,snow,rose,velvet,neon,sunset,arctic,graphite,lavender`) and verify `0` horizontal overflows.
    - Verify silent install (`ReelHeist-Setup-<version>.exe /VERYSILENT`), guided setup page (`http://127.0.0.1:47861/`), HLS download + pause/resume, and YouTube download (`tools/e2e-youtube.js`).
 
 6. **Publish on GitHub**

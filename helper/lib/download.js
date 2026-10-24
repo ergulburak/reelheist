@@ -72,6 +72,46 @@ async function runAdaptive(items, limiter, worker, signal) {
   if (failed) throw failed;
 }
 
+// Segment indexes grouped by discontinuity: timestamps restart at the start of every group.
+function discontinuityGroups(segments) {
+  const groups = [];
+  let disc = null;
+  segments.forEach((seg, i) => {
+    if (seg.disc !== disc) { disc = seg.disc; groups.push([]); }
+    groups[groups.length - 1].push(i);
+  });
+  return groups;
+}
+
+// No joined copy on disk: ffmpeg reads the segments in order through "concatf:".
+// Across a discontinuity the timestamps jump, which "-c copy" would keep (frozen picture,
+// audio out of sync): every group gets its own concatf list and the concat demuxer joins the
+// groups with continuous timestamps.
+async function writeConcatInputs(s, si, workDir) {
+  // ffmpeg reads backslash paths in the list as invalid data: use file: + forward slashes.
+  const fwd = p => p.replace(/\\/g, '/');
+  const segFile = i => path.join(s.dir, `${String(i).padStart(6, '0')}.seg`);
+  const lists = [];
+  for (const idx of discontinuityGroups(s.segments)) {
+    const parts = [];
+    const init = s.segments[idx[0]].initFile;
+    if (init) parts.push(init);
+    for (const i of idx) parts.push(segFile(i));
+    const list = path.join(workDir, `stream${si}_${lists.length}.txt`);
+    await fsp.writeFile(list, parts.map(p => `file:${fwd(p)}`).join('\n') + '\n');
+    lists.push(`concatf:${fwd(list)}`);
+  }
+  if (lists.length === 1) {
+    s.file = lists[0];
+    s.concat = false;
+    return;
+  }
+  const list = path.join(workDir, `stream${si}.concat.txt`);
+  await fsp.writeFile(list, lists.map(u => `file '${u.replace(/'/g, "'\\''")}'`).join('\n') + '\n');
+  s.file = list;
+  s.concat = true;
+}
+
 // Build the list of streams to fetch for an HLS job.
 async function planHls(job, signal) {
   const headers = job.source.headers;
@@ -201,22 +241,23 @@ async function downloadHls(job, workDir, onProgress, signal) {
     report();
   }, signal);
 
-  // No joined copy on disk: ffmpeg reads the segments in order through "concatf:".
-  for (const [si, s] of streams.entries()) {
-    const parts = [];
-    if (s.fmp4) {
-      const map = s.segments[0].map;
-      const { buf } = await request(map.url, { headers, signal, range: map.range });
-      const init = path.join(s.dir, 'init.mp4');
-      await fsp.writeFile(init, buf);
-      parts.push(init);
+  // fMP4: every discontinuity group may use its own init segment (#EXT-X-MAP).
+  for (const s of streams) {
+    if (!s.fmp4) continue;
+    const inits = new Map();
+    for (const [i, seg] of s.segments.entries()) {
+      if (!seg.map || (i && s.segments[i - 1].disc === seg.disc)) continue;
+      const id = `${seg.map.url}#${seg.map.range ? `${seg.map.range.offset}-${seg.map.range.length}` : ''}`;
+      if (!inits.has(id)) {
+        const { buf } = await request(seg.map.url, { headers, signal, range: seg.map.range });
+        const init = path.join(s.dir, `init${inits.size}.mp4`);
+        await fsp.writeFile(init, buf);
+        inits.set(id, init);
+      }
+      seg.initFile = inits.get(id);
     }
-    for (let i = 0; i < s.segments.length; i++) parts.push(path.join(s.dir, `${String(i).padStart(6, '0')}.seg`));
-    const list = path.join(workDir, `stream${si}.txt`);
-    // ffmpeg reads backslash paths in the list as invalid data: use file: + forward slashes.
-    await fsp.writeFile(list, parts.map(p => `file:${p.replace(/\\/g, '/')}`).join('\n') + '\n');
-    s.file = `concatf:${list}`;
   }
+  for (const [si, s] of streams.entries()) await writeConcatInputs(s, si, workDir);
   const stats = {
     downloadMs: Date.now() - started,
     bytes,
@@ -229,7 +270,7 @@ async function downloadHls(job, workDir, onProgress, signal) {
 
 async function downloadFile(job, workDir, onProgress, signal) {
   const file = path.join(workDir, 'direct.mp4');
-  const { buf } = await request(job.source.url, { headers: job.source.headers, signal, timeoutMs: 30 * 60 * 1000, retries: 3 });
+  const { buf } = await request(job.source.url, { headers: job.source.headers, signal, timeoutMs: 60000, retries: 3 });
   await fsp.writeFile(file, buf);
   onProgress({ phase: 'downloading', percent: 100, bytes: buf.length, totalBytes: buf.length, speed: 0, eta: 0 });
   return { streams: [{ kind: 'video', file }], extraSubs: [], duration: null, direct: true };
@@ -266,4 +307,7 @@ async function writeSubtitles(list, outDir, base, signal, log) {
   return written;
 }
 
-module.exports = { downloadHls, downloadFile, writeSubtitles, stripToTsSync, ivForSegment, planHls, isValidSegment, runAdaptive };
+module.exports = {
+  downloadHls, downloadFile, writeSubtitles, stripToTsSync, ivForSegment, planHls, isValidSegment, runAdaptive,
+  discontinuityGroups, writeConcatInputs,
+};

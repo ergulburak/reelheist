@@ -78,9 +78,13 @@
   const DEFAULT_LAZY = ['data-src', 'data-lazy-src'];
   const DEFAULT_PLAY = '[class*="play" i]:not(a), [id*="play" i]:not(a), .jw-display-icon-container, .vjs-big-play-button, button[aria-label*="play" i]';
   // player: optional site pack settings {lazySrcAttrs, playSelectors}.
-  function trigger(player) {
+  // force: the page is a throwaway season tab, so also click play overlays in the top frame
+  // before any <video> exists (posters that load the player on click), with the pack's
+  // selectors and the generic ones.
+  function trigger(player, force = false) {
     const lazyAttrs = Array.isArray(player?.lazySrcAttrs) && player.lazySrcAttrs.length ? player.lazySrcAttrs : DEFAULT_LAZY;
-    const playSel = Array.isArray(player?.playSelectors) && player.playSelectors.length ? player.playSelectors.join(', ') : DEFAULT_PLAY;
+    const packSel = Array.isArray(player?.playSelectors) && player.playSelectors.length ? player.playSelectors.join(', ') : '';
+    const playSels = force && packSel ? [packSel, DEFAULT_PLAY] : [packSel || DEFAULT_PLAY];
     let acted = 0;
     for (const f of document.querySelectorAll('iframe')) {
       const ds = lazyAttrs.map(a => f.getAttribute(a)).find(Boolean);
@@ -96,15 +100,22 @@
       if (p && p.catch) p.catch(() => {});
       acted++;
     }
-    if (!isTop || document.querySelector('video')) {
-      let targets = [];
-      try { targets = [...document.querySelectorAll(playSel)].slice(0, 5); } catch { /* bad pack selector */ }
-      for (const el of targets) {
-        const r = el.getBoundingClientRect();
-        if (r.width > 10 && r.height > 10) {
-          el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
-          acted++;
+    // In the top frame, generic selectors only run next to a <video> (they would click random
+    // "play" things on a normal page); pack selectors are written for this site, so they always run.
+    if (!isTop || document.querySelector('video') || packSel || force) {
+      // Up to 5 visible targets, pack selectors first.
+      const targets = new Set();
+      for (const sel of playSels) {
+        let found = [];
+        try { found = document.querySelectorAll(sel); } catch { /* bad pack selector */ }
+        for (const el of found) {
+          const r = el.getBoundingClientRect();
+          if (targets.size < 5 && r.width > 10 && r.height > 10) targets.add(el);
         }
+      }
+      for (const el of targets) {
+        el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+        acted++;
       }
     }
     return acted;
@@ -112,7 +123,7 @@
 
   chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     if (msg.type === 'trigger') {
-      sendResponse({ acted: trigger(msg.player) });
+      sendResponse({ acted: trigger(msg.player, Boolean(msg.force)) });
     } else if (msg.type === 'rescan') {
       lastSent = '';
       report();

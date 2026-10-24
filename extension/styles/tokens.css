@@ -213,3 +213,147 @@
   --err: #b8283a;
   --preview-filter: none;
 }
+
+/* Velvet: theater curtain red-black, gold. */
+[data-theme="velvet"], :host([data-theme="velvet"]) {
+  --bg: #140a0d;
+  --surface: #1f1014;
+  --surface-2: #2a161c;
+  --surface-3: #341c23;
+  --line: #46262f;
+  --line-soft: rgba(255, 200, 190, 0.07);
+  --text: #f6e9e4;
+  --muted: #b39a96;
+  --accent: #d9a441;
+  --accent-hi: #ecc06a;
+  --accent-lo: #b9832a;
+  --accent-text: #1a0d05;
+  --accent-soft: rgba(217, 164, 65, 0.14);
+  --glow: rgba(217, 164, 65, 0.38);
+  --brand: #e2b25a;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.35);
+  --ok: #8fcf8a;
+  --err: #ff8a8a;
+  --preview-filter: saturate(1.1) contrast(1.04);
+}
+
+/* Neon: violet night, pink-to-indigo light. */
+[data-theme="neon"], :host([data-theme="neon"]) {
+  --bg: #0b0716;
+  --surface: #140d24;
+  --surface-2: #1d1433;
+  --surface-3: #261b42;
+  --line: #352659;
+  --line-soft: rgba(200, 150, 255, 0.08);
+  --text: #f3ecff;
+  --muted: #a598c4;
+  --accent: #c04dfb;
+  --accent-hi: #ff5fd2;
+  --accent-lo: #7c4dff;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(224, 64, 251, 0.15);
+  --glow: rgba(224, 64, 251, 0.5);
+  --brand: #ff5fd2;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.28);
+  --ok: #39f3c0;
+  --err: #ff6b8b;
+  --preview-filter: none;
+}
+
+/* Sunset: dusk plum, orange-to-pink light. */
+[data-theme="sunset"], :host([data-theme="sunset"]) {
+  --bg: #170d12;
+  --surface: #22131a;
+  --surface-2: #2d1a22;
+  --surface-3: #38212b;
+  --line: #4a2c38;
+  --line-soft: rgba(255, 200, 180, 0.07);
+  --text: #fbeee6;
+  --muted: #c2a5a0;
+  --accent: #ff7a50;
+  --accent-hi: #ffb35c;
+  --accent-lo: #ff3d6e;
+  --accent-text: #24090f;
+  --accent-soft: rgba(255, 122, 80, 0.15);
+  --glow: rgba(255, 110, 80, 0.42);
+  --brand: #ff8f5a;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.35);
+  --ok: #8fd98a;
+  --err: #ff7a8a;
+  --preview-filter: sepia(0.15) saturate(1.1);
+}
+
+/* Arctic: cool slate, frost blue (low contrast, calm). */
+[data-theme="arctic"], :host([data-theme="arctic"]) {
+  --bg: #242933;
+  --surface: #2e3440;
+  --surface-2: #3b4252;
+  --surface-3: #434c5e;
+  --line: #4c566a;
+  --line-soft: rgba(216, 222, 233, 0.07);
+  --text: #eceff4;
+  --muted: #a3adbf;
+  --accent: #88c0d0;
+  --accent-hi: #a3d4e0;
+  --accent-lo: #6aa8bb;
+  --accent-text: #1d232c;
+  --accent-soft: rgba(136, 192, 208, 0.15);
+  --glow: rgba(136, 192, 208, 0.32);
+  --brand: #88c0d0;
+  --shadow: rgba(10, 14, 20, 0.5);
+  --sheen: rgba(255, 255, 255, 0.35);
+  --ok: #a3be8c;
+  --err: #e07a83;
+  --preview-filter: saturate(0.8);
+}
+
+/* Graphite: pure grey scale, white light, black-and-white poster. */
+[data-theme="graphite"], :host([data-theme="graphite"]) {
+  --bg: #0c0c0d;
+  --surface: #161618;
+  --surface-2: #1f1f22;
+  --surface-3: #29292d;
+  --line: #36363b;
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --text: #f2f2f3;
+  --muted: #96969c;
+  --accent: #f2f2f3;
+  --accent-hi: #ffffff;
+  --accent-lo: #cfcfd4;
+  --accent-text: #0c0c0d;
+  --accent-soft: rgba(255, 255, 255, 0.1);
+  --glow: rgba(255, 255, 255, 0.18);
+  --brand: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 255, 255, 0.6);
+  --ok: #7fd6a0;
+  --err: #ff8080;
+  --preview-filter: grayscale(1) contrast(1.08);
+}
+
+/* Lavender: pale lilac paper, violet. */
+[data-theme="lavender"], :host([data-theme="lavender"]) {
+  --bg: #f4f1fb;
+  --surface: #ffffff;
+  --surface-2: #ebe5f7;
+  --surface-3: #ffffff;
+  --line: #d6cdea;
+  --line-soft: rgba(50, 30, 90, 0.08);
+  --text: #1d1630;
+  --muted: #675d80;
+  --accent: #6c4cf1;
+  --accent-hi: #8569ff;
+  --accent-lo: #5636d6;
+  --accent-text: #ffffff;
+  --accent-soft: rgba(108, 76, 241, 0.1);
+  --glow: rgba(108, 76, 241, 0.32);
+  --brand: #6c4cf1;
+  --shadow: rgba(50, 30, 90, 0.16);
+  --sheen: rgba(255, 255, 255, 0.3);
+  --ok: #23935a;
+  --err: #cf2e4a;
+  --preview-filter: none;
+}
