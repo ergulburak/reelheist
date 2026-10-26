@@ -18,6 +18,12 @@
 
 ---
 
+## What's new in 0.4.0
+
+- **Follow a series:** press "Follow" on a series or episode page. When ReelHeist finds new episodes or a new season, a notification asks "Download them?" and a "New episodes" card waits in the popup. Nothing downloads without your answer. The list is under Settings → Download.
+- **Parallel downloads:** up to 3 episodes download at the same time (Settings → Download → "Downloads at the same time", 1-5).
+- ReelHeist now asks for the **notifications** permission, for the "new episodes" question.
+
 ## What's new in 0.3.0
 
 - **Subtitles inside the MP4:** the subtitles go into the MP4 as tracks you choose in the player menu. The first default subtitle language turns on by itself (in VLC, set the preferred subtitle language). Settings → Download → "Put subtitles inside the MP4".
@@ -59,7 +65,7 @@
 
 ## Installation (Windows)
 
-1. Download **`ReelHeist-Setup-0.3.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
+1. Download **`ReelHeist-Setup-0.4.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
    - **Windows SmartScreen notice:** Because the installer is not signed with a commercial code-signing certificate yet, Windows may display *"Windows protected your PC"*. Click **More info** → **Run anyway**.
 2. Choose your language and complete the setup wizard. No administrator privileges are required (installs under `%LOCALAPPDATA%\ReelHeist`).
 3. At the end of setup, the **Guided Extension Setup** page opens automatically in your browser:
