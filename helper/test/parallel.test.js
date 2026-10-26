@@ -43,7 +43,8 @@ test('default: three jobs download at once, the fourth waits', async t => {
   assert.ok(await until(() => running(q) === 3), `running ${running(q)}`);
   assert.strictEqual(q.jobs.filter(j => j.state === 'queued').length, 1);
   assert.ok(await until(() => q.jobs.every(j => j.state === 'done'), 15000), q.jobs.map(j => j.state).join(','));
-  assert.strictEqual(q.running.size, 0);
+  // The state turns 'done' inside the job; the running entry goes a moment later, in its finally.
+  assert.ok(await until(() => q.running.size === 0), `running ${q.running.size}`);
 });
 
 test('parallel 1 runs one job at a time', async t => {
