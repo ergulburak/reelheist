@@ -342,7 +342,7 @@
     "message": "ReelHeist · {n} Folgen in Suche · Fenster nicht schließen"
   },
   "overlay_download": {
-    "message": "⬇ Laden"
+    "message": "Laden"
   },
   "overlay_close": {
     "message": "Schließen"
@@ -426,7 +426,7 @@
     "message": "Herunterladen"
   },
   "overlayDownload": {
-    "message": "⬇ Herunterladen"
+    "message": "Herunterladen"
   },
   "badge_downloaded": {
     "message": "Heruntergeladen"

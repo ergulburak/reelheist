@@ -342,7 +342,7 @@
     "message": "ReelHeist · mencari {n} episode · jangan tutup jendela ini"
   },
   "overlay_download": {
-    "message": "⬇ Unduh"
+    "message": "Unduh"
   },
   "overlay_close": {
     "message": "Tutup"
@@ -426,7 +426,7 @@
     "message": "Unduh"
   },
   "overlayDownload": {
-    "message": "⬇ Unduh"
+    "message": "Unduh"
   },
   "badge_downloaded": {
     "message": "Terunduh"

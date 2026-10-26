@@ -10,7 +10,9 @@ const { buildDist } = require('./build-dist');
 
 const ROOT = path.resolve(__dirname, '..');
 const ISS_FILE = path.join(ROOT, 'installer', 'reelheist.iss');
-const OUTPUT_EXE = path.join(ROOT, 'installer', 'Output', 'ReelHeist-Setup-0.1.0.exe');
+// The version comes from helper/package.json (check-release.js keeps it equal to the .iss file).
+const VERSION = require(path.join(ROOT, 'helper', 'package.json')).version;
+const OUTPUT_EXE = path.join(ROOT, 'installer', 'Output', `ReelHeist-Setup-${VERSION}.exe`);
 const INNO_URL = 'https://github.com/jrsoftware/issrc/releases/download/is-6_4_1/innosetup-6.4.1.exe';
 
 function findIscc() {

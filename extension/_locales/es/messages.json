@@ -342,7 +342,7 @@
     "message": "ReelHeist · buscando {n} episodios · no cierres esta ventana"
   },
   "overlay_download": {
-    "message": "⬇ Descargar"
+    "message": "Descargar"
   },
   "overlay_close": {
     "message": "Cerrar"
@@ -426,7 +426,7 @@
     "message": "Descargar"
   },
   "overlayDownload": {
-    "message": "⬇ Descargar"
+    "message": "Descargar"
   },
   "badge_downloaded": {
     "message": "Descargado"

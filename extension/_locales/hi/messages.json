@@ -342,7 +342,7 @@
     "message": "ReelHeist · {n} एपिसोड खोज में · यह विंडो बंद न करें"
   },
   "overlay_download": {
-    "message": "⬇ डाउनलोड"
+    "message": "डाउनलोड"
   },
   "overlay_close": {
     "message": "बंद करें"
@@ -426,7 +426,7 @@
     "message": "डाउनलोड"
   },
   "overlayDownload": {
-    "message": "⬇ डाउनलोड"
+    "message": "डाउनलोड"
   },
   "badge_downloaded": {
     "message": "डाउनलोड हो गया"

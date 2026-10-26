@@ -342,7 +342,7 @@
     "message": "ReelHeist · {n} 話を検索中 · このウィンドウを閉じないでください"
   },
   "overlay_download": {
-    "message": "⬇ ダウンロード"
+    "message": "ダウンロード"
   },
   "overlay_close": {
     "message": "閉じる"
@@ -426,7 +426,7 @@
     "message": "ダウンロード"
   },
   "overlayDownload": {
-    "message": "⬇ ダウンロード"
+    "message": "ダウンロード"
   },
   "badge_downloaded": {
     "message": "ダウンロード済み"

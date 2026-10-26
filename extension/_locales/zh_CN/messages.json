@@ -342,7 +342,7 @@
     "message": "ReelHeist · 正在查找 {n} 集 · 请勿关闭此窗口"
   },
   "overlay_download": {
-    "message": "⬇ 下载"
+    "message": "下载"
   },
   "overlay_close": {
     "message": "关闭"
@@ -426,7 +426,7 @@
     "message": "下载"
   },
   "overlayDownload": {
-    "message": "⬇ 下载"
+    "message": "下载"
   },
   "badge_downloaded": {
     "message": "已下载"

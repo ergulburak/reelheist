@@ -1,4 +1,4 @@
-# Release Checklist (v0.1.0)
+# Release Checklist
 
 Follow these steps before publishing a new ReelHeist release:
 

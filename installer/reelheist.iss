@@ -1,6 +1,6 @@
-; ReelHeist v0.1.0 Inno Setup Installer
+; ReelHeist v0.2.0 Inno Setup Installer
 #define MyAppName "ReelHeist"
-#define MyAppVersion "0.1.0"
+#define MyAppVersion "0.2.0"
 #define MyAppPublisher "ReelHeist"
 #define MyAppURL "https://github.com/ergulburak/reelheist"
 

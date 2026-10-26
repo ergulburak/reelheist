@@ -4,6 +4,30 @@
 
 **ReelHeist** is a local browser extension + Windows helper application for saving HLS, direct video streams, and YouTube videos/playlists as clean MP4 files with multi-language audio tracks and soft subtitles.
 
+<p align="center">
+  <img src="docs/media/season-queue.gif" width="400" alt="A season in the ReelHeist queue: every episode is a card with a five-step bar">
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="50%"><img src="docs/media/page-overlay.png" alt="The Download button on a video player"><br><sub>The <b>Download</b> button on the player (you can turn it off)</sub></td>
+    <td align="center" width="25%"><img src="docs/media/popup-page.png" alt="The popup with quality, audio and subtitle choices"><br><sub>Quality, audio and subtitles</sub></td>
+    <td align="center" width="25%"><img src="docs/media/settings.png" alt="Settings, Appearance tab"><br><sub>15 themes, 12 languages</sub></td>
+  </tr>
+</table>
+
+---
+
+## What's new in 0.2.0
+
+- **Season cards:** every episode of a season is a card at once, with a five-step bar. The cards stay when you close the popup or the browser.
+- **Notifications:** Windows notifications when an episode or a season finishes, or when a download fails.
+- **Subtitles only:** save only the `.srt` files of a video or of a whole season.
+- **Forced subtitles** are saved as `.<lang>.forced.srt`, so `.tr.srt` is always the full subtitle.
+- **"Button on the page" setting:** turn the player button off under Settings → Appearance.
+- **Sticky "Downloads" bar** at the bottom of the popup and the panel.
+- Many reliability fixes in the season search and the queue.
+
 ---
 
 ## Features
@@ -15,14 +39,16 @@
 - **Season cards:** Queue a season and every episode appears as a card at once, with a step bar (Page, Video, Download, MP4, Done), so you can see where each one is and retry a failed one.
 - **Subtitles only:** turn on the "Subtitles only" chip to save just the `.srt` files (also for a whole season) without downloading the video.
 - **Download notifications:** Windows toasts when a download finishes or fails; choose all, errors only, or off under Settings → Download → Notifications.
-- **3 themes & 12 languages:** Red, Black/Beige, and Beige/Black themes; full localization in 12 languages (`tr`, `en`, `es`, `pt_BR`, `fr`, `de`, `ru`, `ar` with RTL, `zh_CN`, `id`, `ja`, `hi`).
+- **Forced subtitles kept apart:** a signs-only track is saved as `.<lang>.forced.srt`, so players open the full subtitle by default.
+- **Download button on the player:** appears on the page's video player; turn it off under Settings → Appearance → Button on the page.
+- **15 themes & 12 languages:** Red, Black/Beige, Midnight, Emerald and eleven more; full localization in 12 languages (`tr`, `en`, `es`, `pt_BR`, `fr`, `de`, `ru`, `ar` with RTL, `zh_CN`, `id`, `ja`, `hi`).
 - **Signed site-pack repositories:** Optional Ed25519-signed declarative JSON packs for custom title parsing, episode discovery, and player triggers.
 
 ---
 
 ## Installation (Windows)
 
-1. Download **`ReelHeist-Setup-0.1.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
+1. Download **`ReelHeist-Setup-0.2.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
    - **Windows SmartScreen notice:** Because the installer is not signed with a commercial code-signing certificate yet, Windows may display *"Windows protected your PC"*. Click **More info** → **Run anyway**.
 2. Choose your language and complete the setup wizard. No administrator privileges are required (installs under `%LOCALAPPDATA%\ReelHeist`).
 3. At the end of setup, the **Guided Extension Setup** page opens automatically in your browser:

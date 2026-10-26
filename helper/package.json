@@ -1,6 +1,6 @@
 {
   "name": "reelheist-helper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "ReelHeist yardımcı programı: HLS indirme ve ffmpeg ile MP4 birleştirme",
   "main": "daemon.js",

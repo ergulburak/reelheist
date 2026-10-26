@@ -342,7 +342,7 @@
     "message": "ReelHeist · {n} bölüm aranıyor · pencereyi kapatmayın"
   },
   "overlay_download": {
-    "message": "⬇ İndir"
+    "message": "İndir"
   },
   "overlay_close": {
     "message": "Kapat"
@@ -426,7 +426,7 @@
     "message": "İndir"
   },
   "overlayDownload": {
-    "message": "⬇ İndir"
+    "message": "İndir"
   },
   "badge_downloaded": {
     "message": "İndirildi"

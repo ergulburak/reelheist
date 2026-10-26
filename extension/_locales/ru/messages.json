@@ -342,7 +342,7 @@
     "message": "ReelHeist · поиск серий: {n} · не закрывайте это окно"
   },
   "overlay_download": {
-    "message": "⬇ Скачать"
+    "message": "Скачать"
   },
   "overlay_close": {
     "message": "Закрыть"
@@ -426,7 +426,7 @@
     "message": "Скачать"
   },
   "overlayDownload": {
-    "message": "⬇ Скачать"
+    "message": "Скачать"
   },
   "badge_downloaded": {
     "message": "Скачано"
