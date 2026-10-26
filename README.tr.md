@@ -20,6 +20,13 @@
 
 ---
 
+## 0.3.0 sürümündeki yenilikler
+
+- **Altyazılar MP4 içinde:** altyazılar MP4 içine, oynatıcının menüsünden seçilen izler olarak eklenir. Varsayılan altyazı dillerinden ilki kendiliğinden açılır (VLC'de tercih edilen altyazı dilini ayarlayın). Ayarlar → İndirme → "Altyazıları MP4 içine göm".
+- **Her bölüm için klasör:** MP4 ve altyazı dosyaları için bir `srt` klasörü bir arada durur.
+- **".srt dosyalarını sakla" ayarı:** kapatırsanız `.srt` dosyaları MP4 içine eklendikten sonra silinir.
+- "Bitti" bildirimi, uyarı başka bir konudaysa artık "süreler uyuşmuyor" demiyor.
+
 ## 0.2.0 sürümündeki yenilikler
 
 - **Sezon kartları:** bir sezonun her bölümü hemen kart olur ve beş adımlı bir çubuk gösterir. Popup ya da tarayıcı kapansa da kartlar kalır.
@@ -35,7 +42,9 @@
 ## Özellikler
 
 - **Otomatik video ve altyazı yakalama:** Etkin sekmedeki HLS (`.m3u8`), doğrudan medya dosyaları (`.mp4`, `.webm`, `.mkv`) ve WebVTT/SRT altyazılarını; ayrıca `yt-dlp` aracılığıyla YouTube videolarını ve oynatma listelerini yakalar.
-- **Temiz MP4 çıktısı:** `ffmpeg` kullanarak yeniden kodlama (re-encode) yapmadan görüntüyü, birden çok ses kanalını (dil etiketli, orijinal ses varsayılan olarak işaretli) ve altyazıları tek bir standart `.mp4` dosyasında birleştirir.
+- **Temiz MP4 çıktısı:** `ffmpeg` kullanarak yeniden kodlama (re-encode) yapmadan görüntüyü ve birden çok ses kanalını (dil etiketli, orijinal ses varsayılan olarak işaretli) tek bir standart `.mp4` dosyasında birleştirir.
+- **Altyazılar MP4 içinde:** Ayarlar → İndirme → "Altyazıları MP4 içine göm" (varsayılan olarak açık) altyazıları MP4 içine de ekler; oynatıcının altyazı menüsünden seçilir. Varsayılan altyazı dillerinden ilki, MP4 varsayılan işaretini kullanan oynatıcılarda kendiliğinden açılır. VLC'de Araçlar → Tercihler → Altyazılar/OSD → Tercih edilen altyazı dili ayarını yapın.
+- **Her bölüm için klasör:** her bölüm dizi klasörünün içinde kendi klasörüne iner (`Dizi\Dizi.S01E02\`). `.srt` dosyaları bunun içindeki `srt` klasörüne konur; Ayarlar → İndirme → ".srt dosyalarını sakla" kapalıysa MP4 içine eklendikten sonra silinir.
 - **Duraklat ve sürdür:** İndirilen parçalar diskte korunur; duraklatılan veya kesilen indirmeler kaldığı yerden devam eder.
 - **Hareketli önizleme ve seçim çipleri:** 2 saniyelik sessiz önizleme döngüsü, kalite (`1080p`, `720p`, `480p`), ses dili ve altyazı çipleri ile site bazlı seçim belleği sunar.
 - **Sezon kartları:** Bir sezonu kuyruğa aldığınızda her bölüm hemen kart olarak görünür; adım çubuğu (Sayfa, Video, İndirme, MP4, Bitti) nerede olduğunu gösterir ve hatalı bölümü yeniden deneyebilirsiniz.
@@ -50,7 +59,7 @@
 
 ## Kurulum (Windows)
 
-1. [GitHub Releases](https://github.com/ergulburak/reelheist/releases) sayfasından **`ReelHeist-Setup-0.2.0.exe`** dosyasını indirip çalıştırın.
+1. [GitHub Releases](https://github.com/ergulburak/reelheist/releases) sayfasından **`ReelHeist-Setup-0.3.0.exe`** dosyasını indirip çalıştırın.
    - **Windows SmartScreen uyarısı:** Kurulum programı henüz ücretli bir sertifikayla imzalanmadığı için Windows *"Bilgisayarınız korundu"* uyarısı gösterebilir. **Ek bilgi** → **Yine de çalıştır** seçeneğine tıklayın.
 2. Dilinizi seçin ve kurulumu tamamlayın. Yönetici izni gerekmez (`%LOCALAPPDATA%\ReelHeist` altına kurulur).
 3. Kurulum sonunda tarayıcınızda **Rehberli Eklenti Kurulum** sayfası otomatik olarak açılır:

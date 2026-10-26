@@ -18,6 +18,13 @@
 
 ---
 
+## What's new in 0.3.0
+
+- **Subtitles inside the MP4:** the subtitles go into the MP4 as tracks you choose in the player menu. The first default subtitle language turns on by itself (in VLC, set the preferred subtitle language). Settings → Download → "Put subtitles inside the MP4".
+- **A folder for every episode,** with the MP4 and an `srt` folder for its subtitle files.
+- **"Keep the .srt files" setting:** turn it off to delete the `.srt` files once they are inside the MP4.
+- The "done" notification no longer says the lengths do not match when the warning is about something else.
+
 ## What's new in 0.2.0
 
 - **Season cards:** every episode of a season is a card at once, with a five-step bar. The cards stay when you close the popup or the browser.
@@ -33,7 +40,9 @@
 ## Features
 
 - **Automatic stream & subtitle detection:** Captures HLS (`.m3u8`), direct media files (`.mp4`, `.webm`, `.mkv`), and WebVTT/SRT subtitles directly from the active tab, plus YouTube videos and playlists via `yt-dlp`.
-- **Clean MP4 output:** Remuxes video, multiple audio tracks (tagged by language with the original track marked default), and subtitles into a single standard `.mp4` file using `ffmpeg` without re-encoding.
+- **Clean MP4 output:** Remuxes video and multiple audio tracks (tagged by language with the original track marked default) into a single standard `.mp4` file using `ffmpeg` without re-encoding.
+- **Subtitles inside the MP4:** Settings → Download → "Put subtitles inside the MP4" (on by default) also adds the subtitles to the MP4 as tracks you choose in the player menu. The first default subtitle language turns on by itself in players that use the MP4 default flag; in VLC, set Tools → Preferences → Subtitles/OSD → Preferred subtitle language.
+- **A folder for every episode:** each episode gets its own folder inside the series folder (`Show\Show.S01E02\`). The `.srt` files go into an `srt` folder inside it; turn off Settings → Download → "Keep the .srt files" to delete them once they are inside the MP4.
 - **Pause & resume downloads:** Segment-level progress is kept on disk so interrupted or paused downloads resume where they left off.
 - **Animated preview & selection chips:** Shows a 2-second muted preview loop, quality chip (`1080p`, `720p`, `480p`), audio track chip, and subtitle chip with per-site memory.
 - **Season cards:** Queue a season and every episode appears as a card at once, with a step bar (Page, Video, Download, MP4, Done), so you can see where each one is and retry a failed one.
@@ -48,7 +57,7 @@
 
 ## Installation (Windows)
 
-1. Download **`ReelHeist-Setup-0.2.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
+1. Download **`ReelHeist-Setup-0.3.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
    - **Windows SmartScreen notice:** Because the installer is not signed with a commercial code-signing certificate yet, Windows may display *"Windows protected your PC"*. Click **More info** → **Run anyway**.
 2. Choose your language and complete the setup wizard. No administrator privileges are required (installs under `%LOCALAPPDATA%\ReelHeist`).
 3. At the end of setup, the **Guided Extension Setup** page opens automatically in your browser:
