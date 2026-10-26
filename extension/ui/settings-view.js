@@ -2,7 +2,7 @@
 // split into Appearance / Downloads / Repositories / About tabs. Languages are picked by name,
 // the download folder through the helper's native folder dialog.
 import { api } from '../lib/helper.js';
-import { LOCALES, LOCALE_NAMES, initI18n, applyI18n, t, isRtl } from '../lib/i18n.js';
+import { LOCALES, LOCALE_NAMES, initI18n, applyI18n, t, isRtl, langTag } from '../lib/i18n.js';
 import { THEMES, applyTheme } from '../lib/theme.js';
 import { saveUiSettings } from '../lib/ui-settings.js';
 import { SUPPORT_URL, REPO_URL, RELEASES_URL } from '../lib/links.js';
@@ -128,6 +128,10 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       outEl.value = getSettings().outDir;
       outEl.title = getSettings().outDir;
     }
+
+    const parallelOf = s => ([1, 2, 3, 4, 5].includes(s?.parallel) ? s.parallel : 3);
+    const parallelEl = $('setParallel');
+    if (parallelEl) parallelEl.value = String(parallelOf(getSettings()));
 
     const notifyEl = $('setNotify');
     if (notifyEl) notifyEl.value = ['all', 'errors', 'off'].includes(getSettings()?.notify) ? getSettings().notify : 'all';
@@ -289,6 +293,18 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       setUi(await saveUiSettings({ overlay: Boolean(e.target.checked) }));
     });
 
+    // Kept by the helper: it starts or holds jobs at once when the number changes.
+    $('setParallel')?.addEventListener('change', async e => {
+      const el = e.target;
+      try {
+        setSettings(await api('POST', '/settings', { parallel: Number(el.value) }));
+      } catch {
+        // Helper offline: show the number the helper still has.
+        const n = getSettings()?.parallel;
+        el.value = String([1, 2, 3, 4, 5].includes(n) ? n : 3);
+      }
+    });
+
     $('setNotify')?.addEventListener('change', async e => {
       const el = e.target;
       try {
@@ -352,9 +368,42 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     syncFormFromState();
   }
 
+  // Settings → Download: followed series, their last check, "Check now" and "Unfollow".
+  async function renderFollows() {
+    const box = $('followList');
+    if (!box) return;
+    const { follows } = await bg({ type: 'follow-list' }).catch(() => ({ follows: [] }));
+    if (!follows?.length) {
+      box.replaceChildren(h('div', { class: 'muted small' }, t('follow_none')));
+      return;
+    }
+    const when = ms => new Date(ms).toLocaleString(langTag(), { dateStyle: 'short', timeStyle: 'short' });
+    const button = (label, cls, fn) => {
+      const b = h('button', {
+        type: 'button',
+        class: `link ${cls}`,
+        onclick: async () => {
+          b.disabled = true;
+          await fn().catch(() => {});
+          renderFollows();
+        },
+      }, label);
+      return b;
+    };
+    box.replaceChildren(...follows.map(f => h('div', { class: 'follow-item' },
+      h('div', { class: 'follow-item-main' },
+        h('div', { class: 'follow-item-name', title: f.url }, f.name),
+        f.lastError
+          ? h('div', { class: 'follow-item-meta err' }, t('follow_err'))
+          : h('div', { class: 'follow-item-meta' }, t('follow_last_check', { time: when(f.lastCheck) }))),
+      button(t('follow_check_now'), 'btn-follow-check', () => bg({ type: 'follow-check-now' })),
+      button(t('follow_unfollow'), 'btn-follow-unfollow', () => bg({ type: 'follow-remove', id: f.id })))));
+  }
+
   async function open() {
     selectTab(readTab());
     syncFormFromState();
+    renderFollows();
     // The page view loads these too, but only after a page scan; settings may open first.
     api('GET', '/settings').then(s => {
       setSettings(s);

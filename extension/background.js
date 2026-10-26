@@ -1,5 +1,5 @@
 // Captures stream and subtitle URLs per tab, runs season resolving, talks to the helper.
-import { parsePage, collectEpisodes } from './lib/titles.js';
+import { parsePage, collectEpisodes, seriesKey } from './lib/titles.js';
 import { api, requireFeature } from './lib/helper.js';
 import { seasonKey, resolveOrder } from './lib/season.js';
 import { analyzeSources } from './lib/sources.js';
@@ -7,9 +7,14 @@ import { youtubeTarget } from './lib/youtube.js';
 import { initI18n, t, isRtl, currentLang, langTag } from './lib/i18n.js';
 import { loadUiSettings } from './lib/ui-settings.js';
 import { createStore } from './lib/packs/store.js';
+import { createFollowStore } from './lib/follow-store.js';
+import {
+  epId, createFollow, diffFollow, toNotify, markNotified, prunePending, dismiss, followOptions, latestUrl, sameSeries,
+} from './lib/follow.js';
 import { syncDynamicRules as syncRules } from './lib/packs/dnr.js';
 
 const packs = createStore({ storage: chrome.storage.local, fetch: globalThis.fetch.bind(globalThis) });
+const followStore = createFollowStore(chrome.storage.local);
 
 const syncDynamicRules = () => syncRules(() => packs.installedPacks()).catch(() => {});
 syncDynamicRules();
@@ -269,39 +274,31 @@ async function handle(msg, sender) {
       return { episodes: collectEpisodes(st.page?.url || '', links || [], await packFor(st.page?.url)) };
     }
     case 'queue-episodes': {
-      // Every episode becomes a card (a 'resolving' job) now; the resolver finds the videos later.
-      const o = msg.options || {};
       const st = tabId != null ? await getState(tabId) : null;
-      const name = String(o.name || '').trim() || st?.meta?.name || '';
-      if (!name) throw Object.assign(new Error('Series name is required'), { code: 'name_required' });
-      const items = msg.items || [];
-      // An older helper would take these source-less jobs as broken downloads.
-      await requireFeature('season');
-      if (o.subtitlesOnly) await requireFeature('subs-only');
-      const { jobs: known } = await api('GET', '/jobs');
-      const groupOf = season => {
-        const key = seasonKey(name, season);
-        // count: every episode of this season in the queue, the earlier ones included.
-        const urls = new Set(known.filter(j => j.group?.key === key).map(j => j.pageUrl));
-        for (const it of items) if (it.season === season) urls.add(it.url);
-        return { key, name, season, count: urls.size };
-      };
-      const r = await api('POST', '/jobs', {
-        jobs: items.map(it => ({
-          state: 'resolving',
-          pageUrl: it.url,
-          meta: { kind: 'episode', name, season: it.season, episode: it.episode },
-          group: groupOf(it.season),
-          quality: o.height ? { height: o.height } : null,
-          audio: 'all',
-          subtitlesOnly: Boolean(o.subtitlesOnly),
-          embedSubs: o.embedSubs || null,
-          outDir: o.outDir || undefined,
-        })),
-      });
-      runResolver().catch(() => {});
-      return { ok: true, added: r.ids.length - r.reused.length - r.skipped.length, reused: r.reused.length, skipped: r.skipped.length };
+      return queueEpisodes(msg.items || [], msg.options || {}, st?.meta?.name || '');
     }
+    case 'follow-status': {
+      const { pageUrl, pack } = await tabPage(tabId);
+      return { follow: pageUrl ? await followStore.findByKey(seriesKey(pageUrl, pack)) : null };
+    }
+    case 'follow-add':
+      return { follow: await addFollow(tabId, msg.name) };
+    case 'follow-remove':
+      await followStore.remove(msg.id);
+      chrome.notifications.clear(`follow:${msg.id}`).catch(() => {});
+      return { ok: true };
+    case 'follow-list':
+      return { follows: await prunedFollows() };
+    case 'follow-check-now':
+      return { result: await checkAllFollows() };
+    case 'follow-download':
+      return downloadFollow(msg.id, msg.ids || null);
+    case 'follow-button': // the notification buttons' path; the e2e test drives it with this message
+      await onFollowButton(msg.notificationId, msg.index);
+      return { ok: true };
+    case 'follow-dismiss':
+      await followStore.update(msg.id, f => dismiss(f, msg.epId));
+      return { ok: true };
     case 'resolve-job':
       // The helper already put the job back to 'resolving' (retry); the loop takes it in order.
       await runResolver();
@@ -755,3 +752,232 @@ chrome.windows.onRemoved.addListener(windowId => {
 
 // Browser start: episodes that never started go on without the user.
 chrome.runtime.onStartup.addListener(() => { runResolver({ resume: true }).catch(() => {}); });
+
+// ---------- queueing season episodes ----------
+
+// Every episode becomes a card (a 'resolving' job) now; the resolver finds the videos later.
+// o: {name, height, subtitlesOnly, embedSubs, outDir}; the popup sends them, a follow download
+// builds them from the stored settings (followOptions).
+async function queueEpisodes(items, o = {}, fallbackName = '') {
+  const name = String(o.name || '').trim() || fallbackName;
+  if (!name) throw Object.assign(new Error('Series name is required'), { code: 'name_required' });
+  // An older helper would take these source-less jobs as broken downloads.
+  await requireFeature('season');
+  if (o.subtitlesOnly) await requireFeature('subs-only');
+  const { jobs: known } = await api('GET', '/jobs');
+  const groupOf = season => {
+    const key = seasonKey(name, season);
+    // count: every episode of this season in the queue, the earlier ones included.
+    const urls = new Set(known.filter(j => j.group?.key === key).map(j => j.pageUrl));
+    for (const it of items) if (it.season === season) urls.add(it.url);
+    return { key, name, season, count: urls.size };
+  };
+  const r = await api('POST', '/jobs', {
+    jobs: items.map(it => ({
+      state: 'resolving',
+      pageUrl: it.url,
+      meta: { kind: 'episode', name, season: it.season, episode: it.episode },
+      group: groupOf(it.season),
+      quality: o.height ? { height: o.height } : null,
+      audio: 'all',
+      subtitlesOnly: Boolean(o.subtitlesOnly),
+      embedSubs: o.embedSubs || null,
+      outDir: o.outDir || undefined,
+    })),
+  });
+  runResolver().catch(() => {});
+  return { ok: true, added: r.ids.length - r.reused.length - r.skipped.length, reused: r.reused.length, skipped: r.skipped.length };
+}
+
+// ---------- follow a series ----------
+// A follow is a series page the user follows (lib/follow.js, lib/follow-store.js). A check opens
+// the page in the resolver window, reads its episode links and asks before anything downloads:
+// a notification with "Download" / "Not now", and a card in the popup.
+
+const FOLLOW_PERIOD_MIN = 360; // every 6 hours while the browser is open
+const FOLLOW_RETRY_MIN = 10; // a season search was running: try again later
+const FOLLOW_CHECK_MS = 60000; // one page may take this long at most
+let followChecking = false;
+
+async function tabPage(tabId) {
+  if (tabId == null) return { pageUrl: '', pack: null };
+  const st = await getState(tabId);
+  const pageUrl = st.page?.url || (await chrome.tabs.get(tabId).catch(() => null))?.url || '';
+  return { pageUrl, pack: await packFor(pageUrl), st };
+}
+
+async function addFollow(tabId, name) {
+  const { pageUrl, pack, st } = await tabPage(tabId);
+  const links = await chrome.tabs.sendMessage(tabId, { type: 'links' }, { frameId: 0 }).catch(() => []);
+  const episodes = collectEpisodes(pageUrl, links || [], pack);
+  if (!episodes.length) throw Object.assign(new Error('No episode list on this page'), { code: 'episode_unreadable' });
+  const n = String(name || '').trim() || st?.meta?.name || '';
+  if (!n) throw Object.assign(new Error('Series name is required'), { code: 'name_required' });
+  const follow = await followStore.add(createFollow({ url: pageUrl, name: n, key: seriesKey(pageUrl, pack), episodes }));
+  await ensureFollowAlarm();
+  return follow;
+}
+
+function waitTabComplete(tabId, signal) {
+  return new Promise((resolve, reject) => {
+    const poll = setInterval(async () => {
+      if (signal?.aborted) return done(() => reject(signal.reason));
+      const tab = await chrome.tabs.get(tabId).catch(() => null);
+      if (!tab) return done(() => reject(new Error('tab closed')));
+      if (tab.status === 'complete') done(resolve);
+    }, 500);
+    const done = fn => { clearInterval(poll); fn(); };
+  });
+}
+
+// The episode list of one page, read in the resolver window; [] when the page has none, or when
+// the site sent it to another series (expectKey: the follow's key; another host is fine).
+async function readEpisodes(url, signal, expectKey = '') {
+  const tabId = await openResolverTab(url, signal);
+  chrome.tabs.update(tabId, { muted: true }).catch(() => {});
+  try {
+    await waitTabComplete(tabId, signal);
+    await wait(3000, signal); // let the page script draw its list
+    const pageUrl = (await chrome.tabs.get(tabId).catch(() => null))?.url || url;
+    const pack = await packFor(pageUrl);
+    if (expectKey && !sameSeries(expectKey, seriesKey(pageUrl, pack))) return [];
+    const links = await chrome.tabs.sendMessage(tabId, { type: 'links' }, { frameId: 0 }).catch(() => []);
+    return collectEpisodes(pageUrl, links || [], pack);
+  } finally {
+    await closeResolverTab(tabId);
+  }
+}
+
+// Checks one follow: the followed page first, the newest known episode page when that gives
+// nothing. A failed check changes nothing but lastError.
+async function checkFollow(follow) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(new Error('Follow check timed out')), FOLLOW_CHECK_MS);
+  let episodes = [];
+  try {
+    episodes = await readEpisodes(follow.url, ctrl.signal, follow.key);
+    const last = latestUrl(follow);
+    if (!episodes.length && last && last !== follow.url) episodes = await readEpisodes(last, ctrl.signal, follow.key);
+  } catch { episodes = []; } finally {
+    clearTimeout(timer);
+  }
+  const { jobs } = await api('GET', '/jobs').catch(() => ({ jobs: [] }));
+  return followStore.update(follow.id, f => prunePending(diffFollow(f, episodes).follow, jobs));
+}
+
+// 'done', or 'busy' when a season search runs (it owns the window; a retry alarm is set).
+async function checkAllFollows() {
+  const busy = () => {
+    chrome.alarms.create('follow-retry', { delayInMinutes: FOLLOW_RETRY_MIN });
+    return 'busy';
+  };
+  if (resolverRunning || followChecking) return busy();
+  followChecking = true;
+  try {
+    await initI18n((await loadUiSettings()).lang).catch(() => {});
+    for (const f of await followStore.list()) {
+      if (resolverRunning) return busy();
+      const checked = await checkFollow(f);
+      if (checked) await notifyFollow(checked);
+    }
+    return 'done';
+  } finally {
+    followChecking = false;
+    if (!resolverRunning) await closeResolverWindow();
+  }
+}
+
+const epLabel = e => `S${String(e.season).padStart(2, '0')}E${String(e.episode).padStart(2, '0')}`;
+
+// One notification per follow, only when a check finds episodes never asked about. A notification
+// that is still open is replaced: the new one asks about its episodes and the earlier ones together.
+async function notifyFollow(follow) {
+  const fresh = toNotify(follow);
+  if (!fresh.length) return;
+  const key = `follownote:${follow.id}`;
+  const open = new Set((await chrome.storage.session.get(key))[key] || []);
+  for (const e of fresh) open.add(epId(e.season, e.episode));
+  const items = follow.pending.filter(p => open.has(epId(p.season, p.episode)));
+  const ids = items.map(e => epId(e.season, e.episode));
+  const list = items.slice(0, 3).map(epLabel).join(', ') + (items.length > 3 ? ` +${items.length - 3}` : '');
+  await chrome.notifications.create(`follow:${follow.id}`, {
+    type: 'basic',
+    iconUrl: 'icons/icon128.png',
+    title: 'ReelHeist',
+    message: t('follow_notify', { name: follow.name, n: items.length, list }),
+    buttons: [{ title: t('btn_download') }, { title: t('follow_not_now') }],
+    requireInteraction: true,
+  });
+  // The "Download" button takes the episodes this notification asked about.
+  await chrome.storage.session.set({ [key]: ids });
+  await followStore.update(follow.id, f => markNotified(f, ids));
+}
+
+// Queues pending episodes of a follow (ids: those to take; null: all of them).
+async function downloadFollow(id, ids) {
+  const follow = (await followStore.list()).find(f => f.id === id);
+  if (!follow) throw Object.assign(new Error('This series is not followed'), { code: 'bad_request' });
+  const want = ids ? new Set(ids) : null;
+  const items = follow.pending
+    .filter(p => !want || want.has(epId(p.season, p.episode)))
+    .map(p => ({ url: p.url, season: p.season, episode: p.episode }));
+  if (!items.length) return { ok: true, added: 0, reused: 0, skipped: 0 };
+  const ui = await loadUiSettings();
+  await initI18n(ui.lang).catch(() => {});
+  const r = await queueEpisodes(items, followOptions(ui, currentLang(), follow.name), follow.name);
+  const { jobs } = await api('GET', '/jobs');
+  await followStore.update(id, f => prunePending(f, jobs));
+  return r;
+}
+
+// The popup shows pending episodes; the ones that went to the queue meanwhile leave the card.
+async function prunedFollows() {
+  const list = await followStore.list();
+  const { jobs } = await api('GET', '/jobs').catch(() => ({ jobs: null }));
+  if (!jobs) return list;
+  const out = [];
+  for (const f of list) {
+    const pruned = prunePending(f, jobs);
+    out.push(pruned === f ? f : (await followStore.update(f.id, x => prunePending(x, jobs))) || pruned);
+  }
+  return out;
+}
+
+async function ensureFollowAlarm(reset = false) {
+  if (!reset && await chrome.alarms.get('follow-check')) return;
+  chrome.alarms.create('follow-check', { delayInMinutes: 1, periodInMinutes: FOLLOW_PERIOD_MIN });
+}
+
+chrome.runtime.onStartup.addListener(() => { ensureFollowAlarm(true).catch(() => {}); });
+chrome.runtime.onInstalled.addListener(() => { ensureFollowAlarm().catch(() => {}); });
+chrome.alarms.onAlarm.addListener(alarm => {
+  if (alarm.name === 'follow-check' || alarm.name === 'follow-retry') checkAllFollows().catch(() => {});
+});
+
+async function onFollowButton(nid, index) {
+  if (!String(nid).startsWith('follow:')) return;
+  const id = nid.slice('follow:'.length);
+  chrome.notifications.clear(nid).catch(() => {});
+  const key = `follownote:${id}`;
+  const ids = (await chrome.storage.session.get(key))[key] || null;
+  chrome.storage.session.remove(key).catch(() => {});
+  // "Not now": the episodes stay on the popup card and are not announced again.
+  if (index !== 0) return;
+  try {
+    await downloadFollow(id, ids);
+  } catch (e) {
+    // The user pressed "Download" and the popup may be closed: say what went wrong.
+    await initI18n((await loadUiSettings()).lang).catch(() => {});
+    const code = e?.code ? `err_${e.code}` : '';
+    const text = code && t(code) !== code ? t(code) : (e?.message || String(e));
+    await chrome.notifications.create(`follow-error:${id}`, {
+      type: 'basic', iconUrl: 'icons/icon128.png', title: 'ReelHeist', message: t('follow_download_failed', { error: text }),
+    }).catch(() => {});
+  }
+}
+
+chrome.notifications.onButtonClicked.addListener((nid, index) => { onFollowButton(nid, index).catch(() => {}); });
+// Closed without an answer: the next notification asks only about what it finds.
+chrome.notifications.onClosed.addListener(nid => {
+  if (nid.startsWith('follow:')) chrome.storage.session.remove(`follownote:${nid.slice('follow:'.length)}`).catch(() => {});
+});

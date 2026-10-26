@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "Descargando: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} descargas en curso"
+  },
   "status_bar_downloads": {
     "message": "Descargas"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "Se guardan en una carpeta «srt» junto al MP4. Si está desactivado, se eliminan cuando ya están dentro del MP4."
+  },
+  "lbl_parallel": {
+    "message": "Descargas a la vez"
+  },
+  "hint_parallel": {
+    "message": "Los episodios de una temporada se descargan juntos; el primero que termina es el primero listo."
   },
   "btn_add_lang": {
     "message": "+ Añadir idioma"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "Desactivadas"
+  },
+  "follow_btn": {
+    "message": "Seguir"
+  },
+  "follow_following": {
+    "message": "Siguiendo"
+  },
+  "follow_unfollow": {
+    "message": "Dejar de seguir"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} episodios nuevos ({list}). ¿Los descargo?"
+  },
+  "follow_not_now": {
+    "message": "Ahora no"
+  },
+  "follow_card_title": {
+    "message": "Episodios nuevos"
+  },
+  "follow_remove": {
+    "message": "Quitar"
+  },
+  "set_grp_follow": {
+    "message": "Series seguidas"
+  },
+  "follow_none": {
+    "message": "Todavía no sigues ninguna serie."
+  },
+  "follow_last_check": {
+    "message": "Última comprobación: {time}"
+  },
+  "follow_check_now": {
+    "message": "Comprobar ahora"
+  },
+  "follow_err": {
+    "message": "La última comprobación falló: la página no se abrió o la lista de episodios estaba vacía."
+  },
+  "follow_download_failed": {
+    "message": "No se pudieron añadir los episodios nuevos a la cola: {error}"
   }
 }

@@ -164,7 +164,8 @@ async function planHls(job, signal) {
   return { streams, extraSubs };
 }
 
-async function downloadHls(job, workDir, onProgress, signal) {
+// maxConnections: this job's share when several jobs run at once.
+async function downloadHls(job, workDir, onProgress, signal, { maxConnections = 16 } = {}) {
   const { streams, extraSubs } = await planHls(job, signal);
   const headers = job.source.headers;
   const keyCache = new Map();
@@ -180,7 +181,7 @@ async function downloadHls(job, workDir, onProgress, signal) {
   });
   for (const s of streams) await fsp.mkdir(s.dir, { recursive: true });
 
-  const limiter = new AdaptiveLimiter({ start: 4, min: 2, max: 16 });
+  const limiter = new AdaptiveLimiter({ start: Math.min(4, maxConnections), min: Math.min(2, maxConnections), max: maxConnections });
   const total = tasks.length;
   let done = 0;
   let bytes = 0;
@@ -271,6 +272,7 @@ async function downloadHls(job, workDir, onProgress, signal) {
     downloadMs: Date.now() - started,
     bytes,
     retries,
+    maxConnections,
     peakConnections: limiter.peak,
     finalConnections: limiter.limit,
   };

@@ -1,6 +1,7 @@
 // Bottom status bar shown across all popup screens.
 import { t } from '../lib/i18n.js';
 import { icon } from './icons.js';
+import { queueSummary } from '../lib/queue-summary.js';
 
 function h(tag, attrs = {}, ...children) {
   const el = document.createElement(tag);
@@ -29,14 +30,17 @@ export function createStatusBar({ onClick }) {
   function render(jobs = []) {
     const bar = $('statusBar');
     if (!bar) return;
-    const active = (jobs || []).filter(j => ['downloading', 'muxing', 'queued'].includes(j.state));
-    const running = active.find(j => j.state === 'downloading' || j.state === 'muxing') || active[0];
-    if (running) {
-      const pct = Math.round(running.progress?.percent || 0);
-      const extra = active.length > 1 ? `+${active.length - 1} ›` : '›';
+    // Several jobs run at once with parallel downloads: then the bar gives their number and mean percent.
+    const s = queueSummary(jobs || []);
+    if (s.first) {
+      const pct = s.pct;
+      const extra = s.waiting ? `+${s.waiting} ›` : '›';
+      const title = s.running.length > 1
+        ? t('status_bar_downloading_n', { n: s.running.length })
+        : t('status_bar_downloading', { name: s.first.names?.base || 'Video' });
       bar.replaceChildren(
         icon('tray'),
-        h('span', { class: 'foot-title' }, t('status_bar_downloading', { name: running.names?.base || 'Video' })),
+        h('span', { class: 'foot-title' }, title),
         h('span', { class: 'bar' }, h('i', { style: `width:${pct}%` })),
         h('span', {}, t('percent', { n: pct })),
         h('span', { class: 'hint-link accent' }, extra),

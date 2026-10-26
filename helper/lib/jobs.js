@@ -16,6 +16,14 @@ const notify = require('./notify');
 const NOTIFY_MODES = ['all', 'errors', 'off'];
 const RESOLVE_STEPS = ['page', 'video'];
 const DEFAULT_DEADLINE_MS = 90000;
+const DEFAULT_PARALLEL = 3;
+const MAX_PARALLEL = 5;
+const TOTAL_CONNECTIONS = 16;
+
+// Jobs running at once share the connections one job had alone, so the server sees no more load.
+function connectionCap(parallel) {
+  return Math.max(2, Math.floor(TOTAL_CONNECTIONS / parallel));
+}
 const ACTIVE = ['resolving', 'queued', 'downloading', 'muxing', 'paused', 'failed'];
 
 // embedSubs from the extension: { lang } (the language that turns on by itself, may be '') or null.
@@ -42,9 +50,9 @@ function cleanPlaylists(p) {
 class Queue {
   constructor({ log = () => {}, notify: notifier } = {}) {
     this.jobs = [];
-    this.settings = { outDir: P.DEFAULT_OUT_DIR, notify: 'all', lang: 'en' };
+    this.settings = { outDir: P.DEFAULT_OUT_DIR, notify: 'all', lang: 'en', parallel: DEFAULT_PARALLEL };
     this.notifier = notifier || (n => notify.send(n, this.log));
-    this.running = null;
+    this.running = new Map(); // job id -> { job, ctrl, done }
     this.log = log;
     this.saveTimer = null;
     this.watchdog = null;
@@ -107,8 +115,15 @@ class Queue {
     if (typeof s.outDir === 'string' && s.outDir.trim()) this.settings.outDir = s.outDir.trim();
     if (NOTIFY_MODES.includes(s.notify)) this.settings.notify = s.notify;
     if (typeof s.lang === 'string' && /^[A-Za-z_]{2,10}$/.test(s.lang)) this.settings.lang = s.lang;
+    if (Number.isInteger(s.parallel) && s.parallel >= 1 && s.parallel <= MAX_PARALLEL) this.settings.parallel = s.parallel;
     await fsp.writeFile(P.SETTINGS_FILE, JSON.stringify(this.settings, null, 1));
+    this.kick(); // a higher number starts waiting jobs now; a lower one lets running jobs finish
     return this.settings;
+  }
+
+  parallelLimit() {
+    const n = this.settings.parallel;
+    return Number.isInteger(n) && n >= 1 && n <= MAX_PARALLEL ? n : DEFAULT_PARALLEL;
   }
 
   notifyMode() {
@@ -297,7 +312,7 @@ class Queue {
     const j = this.get(id);
     if (!j) throw new CodedError('bad_request', `Unknown job ${id}`);
     // A canceled job can still be stopping: let it end before its work folder is removed.
-    if (this.running?.job === j) await this.running.done?.catch(() => {});
+    await this.running.get(j.id)?.done?.catch(() => {});
     j.state = 'resolving';
     j.step = 'page';
     j.stepError = null;
@@ -337,9 +352,10 @@ class Queue {
   async pause(id) {
     const j = this.get(id);
     if (!j) return null;
-    const inflight = this.running?.job === j ? this.running.done : null;
+    const entry = this.running.get(j.id);
+    const inflight = entry?.done || null;
     if (['queued', 'downloading', 'muxing'].includes(j.state)) j.state = 'paused';
-    if (this.running?.job === j) this.running.ctrl.abort(new Error('paused'));
+    entry?.ctrl.abort(new Error('paused'));
     if (inflight) await inflight.catch(() => {});
     await this.save();
     return j;
@@ -348,9 +364,10 @@ class Queue {
   async cancel(id) {
     const j = this.get(id);
     if (!j) return;
-    const inflight = this.running?.job === j ? this.running.done : null;
+    const entry = this.running.get(j.id);
+    const inflight = entry?.done || null;
     if (!['done'].includes(j.state)) j.state = 'canceled';
-    if (this.running?.job === j) this.running.ctrl.abort(new Error('canceled'));
+    entry?.ctrl.abort(new Error('canceled'));
     if (inflight) await inflight.catch(() => {});
     await this.save();
     await this.cleanWork(j);
@@ -358,7 +375,7 @@ class Queue {
 
   async retry(id, refresh) {
     const j = this.get(id);
-    if (!j || this.running?.job === j) return { job: j, resolve: false };
+    if (!j || this.running.has(j.id)) return { job: j, resolve: false };
     // An attempt is already running: leave it alone.
     if (j.state === 'resolving') return { job: j, resolve: true };
     // No source yet (failed resolving, or canceled before resolved): resolve again.
@@ -386,9 +403,10 @@ class Queue {
   async remove(id) {
     const j = this.get(id);
     if (!j) return;
-    const inflight = this.running?.job === j ? this.running.done : null;
+    const entry = this.running.get(j.id);
+    const inflight = entry?.done || null;
     this.jobs = this.jobs.filter(x => x !== j);
-    if (this.running?.job === j) this.running.ctrl.abort(new Error('canceled'));
+    entry?.ctrl.abort(new Error('canceled'));
     if (inflight) await inflight.catch(() => {});
     await this.save();
     await this.cleanWork(j);
@@ -398,13 +416,20 @@ class Queue {
     await fsp.rm(path.join(P.WORK_DIR, j.id), { recursive: true, force: true }).catch(() => {});
   }
 
+  // Starts queued jobs until settings.parallel of them run. The first one done is the first one
+  // finished; a free place goes to the next job in queue order.
   kick() {
-    if (this.running) return;
-    const next = this.jobs.find(j => j.state === 'queued');
-    if (!next) return;
+    while (this.running.size < this.parallelLimit()) {
+      const next = this.jobs.find(j => j.state === 'queued' && !this.running.has(j.id));
+      if (!next) return;
+      this.start(next);
+    }
+  }
+
+  start(next) {
     const ctrl = new AbortController();
     const entry = { job: next, ctrl, done: null };
-    this.running = entry;
+    this.running.set(next.id, entry);
     entry.done = this.runJob(next, ctrl.signal)
       .catch(e => {
         if (ctrl.signal.aborted) return;
@@ -419,7 +444,7 @@ class Queue {
         this.onFailed(next);
       })
       .finally(async () => {
-        if (this.running === entry) this.running = null;
+        if (this.running.get(next.id) === entry) this.running.delete(next.id);
         await this.save().catch(() => {});
         this.kick();
       });
@@ -528,7 +553,7 @@ class Queue {
 
     const result = job.source.kind === 'file'
       ? await downloadFile(job, workDir, onProgress, signal)
-      : await downloadHls(job, workDir, onProgress, signal);
+      : await downloadHls(job, workDir, onProgress, signal, { maxConnections: connectionCap(this.parallelLimit()) });
 
     const seen = new Set();
     const subList = [...job.subtitles, ...result.extraSubs].filter(s => !seen.has(s.url) && seen.add(s.url));
@@ -589,4 +614,4 @@ class Queue {
   }
 }
 
-module.exports = { Queue };
+module.exports = { Queue, connectionCap };

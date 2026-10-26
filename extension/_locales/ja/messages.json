@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "ダウンロード中: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} 件をダウンロード中"
+  },
   "status_bar_downloads": {
     "message": "ダウンロード一覧"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "MP4 の横の「srt」フォルダーに入ります。オフにすると、MP4 に埋め込んだ後に削除されます。"
+  },
+  "lbl_parallel": {
+    "message": "同時ダウンロード数"
+  },
+  "hint_parallel": {
+    "message": "シーズンのエピソードは同時にダウンロードされ、先に終わったものから完了します。"
   },
   "btn_add_lang": {
     "message": "+ 言語を追加"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "オフ"
+  },
+  "follow_btn": {
+    "message": "フォロー"
+  },
+  "follow_following": {
+    "message": "フォロー中"
+  },
+  "follow_unfollow": {
+    "message": "フォロー解除"
+  },
+  "follow_notify": {
+    "message": "{name}: 新しいエピソード {n} 件（{list}）。ダウンロードしますか？"
+  },
+  "follow_not_now": {
+    "message": "今はしない"
+  },
+  "follow_card_title": {
+    "message": "新しいエピソード"
+  },
+  "follow_remove": {
+    "message": "削除"
+  },
+  "set_grp_follow": {
+    "message": "フォロー中のシリーズ"
+  },
+  "follow_none": {
+    "message": "まだフォローしているシリーズはありません。"
+  },
+  "follow_last_check": {
+    "message": "最終確認: {time}"
+  },
+  "follow_check_now": {
+    "message": "今すぐ確認"
+  },
+  "follow_err": {
+    "message": "最終確認に失敗しました。ページが開かなかったか、エピソード一覧が空でした。"
+  },
+  "follow_download_failed": {
+    "message": "新しいエピソードをキューに追加できませんでした: {error}"
   }
 }

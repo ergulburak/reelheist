@@ -228,7 +228,13 @@ döner.
   klasöre yazılır; YouTube'da `yt-dlp --skip-download --write-subs`. Hiç altyazı yazılamazsa iş
   `no_subtitles` ile düşer. Çıktı `output.video = null`; kartta "Oynat" yerine "Klasör", adım
   çubuğunda "MP4" yok ("İndirme" adımı "Altyazı"). Bildirim: `notify_done_subs_only`.
-- **Kuyruk:** Aynı anda bir iş. Durumlar: `resolving`, `queued`, `downloading`, `muxing`,
+- **Kuyruk:** Aynı anda en çok `settings.parallel` iş (1-5, varsayılan 3; Ayarlar → İndirme →
+  "Aynı anda indirme", `POST /api/settings`). `running` bir Map'tir (iş kimliği → iş). `kick()` boş
+  yer kaldıkça sıradaki `queued` işi başlatır; önce biten önce biter. Sayı artınca bekleyen işler
+  hemen başlar, azalınca çalışan işler bitene kadar sürer. Bir HLS işinin bağlantı üst sınırı
+  `connectionCap(parallel)` = 16 / parallel (en az 2): toplam yük tek işteki gibi kalır. yt-dlp
+  işleri kendi bağlantılarını yönetir. Alt çubuk birden çok iş varken sayıyı ve ortalama yüzdeyi
+  gösterir (`lib/queue-summary.js`). Durumlar: `resolving`, `queued`, `downloading`, `muxing`,
   `done`, `failed`, `canceled` (`paused` da var). `jobs.json` ile kalıcı. `resolving` iş henüz
   kaynak adresi olmayan sezon bölümüdür; `kick()` yalnızca `queued` işleri alır. Yeni alanlar:
   `step` (`page|video|download|mux|done`), `stepError` (hatanın adımı), `group`
@@ -248,6 +254,31 @@ döner.
 - **ffmpeg:** veri klasöründeki `ffmpeg\bin\ffmpeg.exe`, yoksa PATH.
 - **Kurulum:** `install.ps1` — Node kontrolü, ffmpeg indirme (BtbN GitHub sürümü, curl ile),
   native host manifest'i yazma, HKCU altında Chrome, Brave ve Edge için kayıt.
+
+### Diziyi takip et
+
+- Ayrıntı: [takip tasarımı](superpowers/specs/2026-10-26-follow-series-design.md).
+- Popup'ta bölüm listesi olan her sayfada (dizi ana sayfası ya da bölüm sayfası) "Takip et" satırı
+  çıkar (`#followRow`). Takip kaydı `chrome.storage.local` → `follows` içindedir (`lib/follow.js`,
+  `lib/follow-store.js`): sayfa adresi, ad, görülen bölümler (`sezon x bölüm`), bölüm adresleri,
+  bekleyenler (`pending`), bildirilenler (`notified`), son kontrol ve son hata.
+- Kontrol: tarayıcı açılınca 1 dk sonra ve 6 saatte bir (`follow-check` alarmı). Sayfa çözümleyici
+  penceresinde açılır, `links` ile bağlantılar okunur, `collectEpisodes` bölümleri çıkarır. Sayfa
+  boş gelirse bilinen en son bölümün sayfası denenir; o da boşsa hiçbir şey yeni sayılmaz ve
+  `lastError` yazılır. Bir kontrol en çok 60 sn sürer. Sezon araması çalışıyorsa kontrol beklemeye
+  alınır (`follow-retry`, 10 dk). Site sayfayı başka bir diziye yönlendirirse (dizi anahtarının
+  yol kısmı farklı, `sameSeries`) o sayfanın bölümleri alınmaz; alan adı değişikliği aynı dizi sayılır.
+- Bölüm kimliği sezon ve bölüm numarasıdır. Görülmemiş her numara yenidir (eski bir sezona sonradan
+  eklenen de). Takip başladığında sayfada görünen bölümler görülmüş sayılır.
+- Yeni bölümler için tek bir `chrome.notifications` bildirimi gelir ("İndir", "Şimdi değil"); her
+  bölüm en çok bir kez bildirilir. Bölümler popup'taki "Yeni bölümler" kartında (`#followCard`)
+  "İndir" ve "Kaldır" ile durur; kuyruğa giren (herhangi bir yoldan) karttan çıkar. "İndir",
+  popup açık değilken kayıtlı ayarlardan seçenek kurar (`followOptions`) ve `queueEpisodes` ile
+  sezon kuyruğuna ekler. Açık kalan bir bildirimi sonraki kontrol değiştirir; yeni bildirim eski ve
+  yeni bölümleri birlikte sorar. Bildirimden "İndir" hata verirse (`follow-error:<id>`) bir hata
+  bildirimi gelir. Bölüm, kendi sayfasından tek başına indirilse de (aynı adres) karttan çıkar.
+- Ayarlar → İndirme → "Takip edilen diziler": son kontrol ya da hata, "Şimdi kontrol et",
+  "Takipten çık". Uçtan uca test: `node tools/e2e-follow.js --ui`.
 
 ### Bildirimler
 

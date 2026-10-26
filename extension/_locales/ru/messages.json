@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "Загрузка: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "Идёт загрузок: {n}"
+  },
   "status_bar_downloads": {
     "message": "Загрузки"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "Они попадают в папку «srt» рядом с MP4. Если выключено, они удаляются после встраивания в MP4."
+  },
+  "lbl_parallel": {
+    "message": "Одновременные загрузки"
+  },
+  "hint_parallel": {
+    "message": "Серии сезона загружаются вместе; первая завершённая готова первой."
   },
   "btn_add_lang": {
     "message": "+ Добавить язык"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "Выкл."
+  },
+  "follow_btn": {
+    "message": "Следить"
+  },
+  "follow_following": {
+    "message": "Отслеживается"
+  },
+  "follow_unfollow": {
+    "message": "Не следить"
+  },
+  "follow_notify": {
+    "message": "{name}: новых серий — {n} ({list}). Скачать?"
+  },
+  "follow_not_now": {
+    "message": "Не сейчас"
+  },
+  "follow_card_title": {
+    "message": "Новые серии"
+  },
+  "follow_remove": {
+    "message": "Убрать"
+  },
+  "set_grp_follow": {
+    "message": "Отслеживаемые сериалы"
+  },
+  "follow_none": {
+    "message": "Вы пока не следите ни за одним сериалом."
+  },
+  "follow_last_check": {
+    "message": "Последняя проверка: {time}"
+  },
+  "follow_check_now": {
+    "message": "Проверить сейчас"
+  },
+  "follow_err": {
+    "message": "Последняя проверка не удалась: страница не открылась или список серий пуст."
+  },
+  "follow_download_failed": {
+    "message": "Не удалось добавить новые серии в очередь: {error}"
   }
 }

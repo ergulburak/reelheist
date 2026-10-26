@@ -909,7 +909,8 @@ details.more { margin: 4px 0 0; }
   padding-top: 10px;
   border-top: 1px solid var(--line-soft);
 }
-.job .act {
+.job .act,
+.follow-card .act {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -922,18 +923,22 @@ details.more { margin: 4px 0 0; }
   white-space: nowrap;
 }
 .job .act .ico { width: 14px; height: 14px; vertical-align: 0; }
-.job .act-primary {
+.job .act-primary,
+.follow-card .act-primary {
   border: 0;
   background: linear-gradient(180deg, var(--accent-hi), var(--accent) 60%, var(--accent-lo));
   color: var(--accent-text);
   box-shadow: inset 0 1px 0 var(--sheen), 0 8px 18px -10px var(--glow);
 }
+.follow-card .act-primary:hover,
 .job .act-primary:hover { background: linear-gradient(180deg, var(--accent-hi), var(--accent) 60%, var(--accent-lo)); filter: brightness(1.07); }
-.job .act-ghost {
+.job .act-ghost,
+.follow-card .act-ghost {
   background: var(--surface-2);
   border: 1px solid var(--line-soft);
   color: var(--text);
 }
+.follow-card .act-ghost:hover,
 .job .act-ghost:hover { background: var(--surface-3); border-color: var(--line); }
 .job .act-icon {
   width: 30px;
@@ -1579,3 +1584,26 @@ select.lang-add:hover { color: var(--text); }
     transition-duration: 1ms !important;
   }
 }
+
+/* "New episodes" card (follow a series) and the follow row on the page view. */
+.follow-card {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+}
+.follow-card-title { font-weight: 700; margin-bottom: 6px; }
+.follow-group + .follow-group { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line-soft); }
+.follow-name { color: var(--muted); font-size: 12px; margin-bottom: 4px; overflow-wrap: anywhere; }
+.follow-ep { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
+.follow-ep-label { flex: 1; min-width: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.follow-row { margin: 0 0 10px; }
+.follow-on { color: var(--ok); font-weight: 600; }
+/* Settings: followed series. */
+.follow-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+.follow-item + .follow-item { border-top: 1px solid var(--line-soft); }
+.follow-item-main { flex: 1; min-width: 0; }
+.follow-item-name { font-weight: 600; overflow-wrap: anywhere; }
+.follow-item-meta { font-size: 11.5px; color: var(--muted); }
+.follow-item-meta.err { color: var(--err); }

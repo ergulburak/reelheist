@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "Mengunduh: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} unduhan berjalan"
+  },
   "status_bar_downloads": {
     "message": "Unduhan"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "Berkas masuk ke folder \"srt\" di samping MP4. Jika ini mati, berkas dihapus setelah ada di dalam MP4."
+  },
+  "lbl_parallel": {
+    "message": "Unduhan bersamaan"
+  },
+  "hint_parallel": {
+    "message": "Episode satu musim diunduh bersama; yang selesai lebih dulu siap lebih dulu."
   },
   "btn_add_lang": {
     "message": "+ Tambah bahasa"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "Mati"
+  },
+  "follow_btn": {
+    "message": "Ikuti"
+  },
+  "follow_following": {
+    "message": "Diikuti"
+  },
+  "follow_unfollow": {
+    "message": "Berhenti mengikuti"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} episode baru ({list}). Unduh?"
+  },
+  "follow_not_now": {
+    "message": "Nanti saja"
+  },
+  "follow_card_title": {
+    "message": "Episode baru"
+  },
+  "follow_remove": {
+    "message": "Hapus"
+  },
+  "set_grp_follow": {
+    "message": "Serial yang diikuti"
+  },
+  "follow_none": {
+    "message": "Anda belum mengikuti serial apa pun."
+  },
+  "follow_last_check": {
+    "message": "Pemeriksaan terakhir: {time}"
+  },
+  "follow_check_now": {
+    "message": "Periksa sekarang"
+  },
+  "follow_err": {
+    "message": "Pemeriksaan terakhir gagal: halaman tidak terbuka atau daftar episode kosong."
+  },
+  "follow_download_failed": {
+    "message": "Episode baru tidak dapat dimasukkan ke antrean: {error}"
   }
 }

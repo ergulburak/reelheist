@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "Lädt: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} Downloads laufen"
+  },
   "status_bar_downloads": {
     "message": "Downloads"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "Sie kommen in einen Ordner „srt“ neben der MP4. Wenn dies aus ist, werden sie gelöscht, sobald sie in der MP4 sind."
+  },
+  "lbl_parallel": {
+    "message": "Gleichzeitige Downloads"
+  },
+  "hint_parallel": {
+    "message": "Folgen einer Staffel laden gemeinsam; was zuerst fertig ist, ist zuerst fertig."
   },
   "btn_add_lang": {
     "message": "+ Sprache hinzufügen"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "Aus"
+  },
+  "follow_btn": {
+    "message": "Folgen"
+  },
+  "follow_following": {
+    "message": "Gefolgt"
+  },
+  "follow_unfollow": {
+    "message": "Nicht mehr folgen"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} neue Folgen ({list}). Herunterladen?"
+  },
+  "follow_not_now": {
+    "message": "Nicht jetzt"
+  },
+  "follow_card_title": {
+    "message": "Neue Folgen"
+  },
+  "follow_remove": {
+    "message": "Entfernen"
+  },
+  "set_grp_follow": {
+    "message": "Gefolgte Serien"
+  },
+  "follow_none": {
+    "message": "Sie folgen noch keiner Serie."
+  },
+  "follow_last_check": {
+    "message": "Letzte Prüfung: {time}"
+  },
+  "follow_check_now": {
+    "message": "Jetzt prüfen"
+  },
+  "follow_err": {
+    "message": "Letzte Prüfung fehlgeschlagen: Die Seite öffnete nicht oder die Folgenliste war leer."
+  },
+  "follow_download_failed": {
+    "message": "Die neuen Folgen konnten nicht eingereiht werden: {error}"
   }
 }

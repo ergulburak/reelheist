@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "İndiriliyor: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} indirme sürüyor"
+  },
   "status_bar_downloads": {
     "message": "İndirmeler"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "MP4'ün yanındaki \"srt\" klasörüne konur. Kapalıyken, MP4 içine eklendikten sonra silinir."
+  },
+  "lbl_parallel": {
+    "message": "Aynı anda indirme"
+  },
+  "hint_parallel": {
+    "message": "Bir sezonun bölümleri birlikte iner; önce biten önce biter."
   },
   "btn_add_lang": {
     "message": "+ Dil ekle"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "Kapalı"
+  },
+  "follow_btn": {
+    "message": "Takip et"
+  },
+  "follow_following": {
+    "message": "Takip ediliyor"
+  },
+  "follow_unfollow": {
+    "message": "Takipten çık"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} yeni bölüm ({list}). İndireyim mi?"
+  },
+  "follow_not_now": {
+    "message": "Şimdi değil"
+  },
+  "follow_card_title": {
+    "message": "Yeni bölümler"
+  },
+  "follow_remove": {
+    "message": "Kaldır"
+  },
+  "set_grp_follow": {
+    "message": "Takip edilen diziler"
+  },
+  "follow_none": {
+    "message": "Henüz takip edilen dizi yok."
+  },
+  "follow_last_check": {
+    "message": "Son kontrol: {time}"
+  },
+  "follow_check_now": {
+    "message": "Şimdi kontrol et"
+  },
+  "follow_err": {
+    "message": "Son kontrol başarısız: sayfa açılamadı ya da bölüm listesi boş."
+  },
+  "follow_download_failed": {
+    "message": "Yeni bölümler kuyruğa eklenemedi: {error}"
   }
 }

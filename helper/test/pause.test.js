@@ -44,7 +44,7 @@ test('pause keeps segments and resumes without refetching them', async () => {
     const paused = await q.pause(job.id);
     assert.strictEqual(paused.state, 'paused');
     await sleep(100);
-    assert.strictEqual(q.running, null);
+    assert.strictEqual(q.running.size, 0);
     assert.strictEqual(q.get(job.id).state, 'paused');
 
     const savedBefore = fs.readdirSync(segDir).filter(f => f.endsWith('.seg'));
@@ -120,6 +120,6 @@ test('paused job is not picked by kick()', async () => {
   };
   q.jobs = [job];
   q.kick();
-  assert.strictEqual(q.running, null);
+  assert.strictEqual(q.running.size, 0);
   assert.strictEqual(q.get('paused1').state, 'paused');
 });

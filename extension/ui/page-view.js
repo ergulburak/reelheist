@@ -410,7 +410,104 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
     showPreview({ youtubeUrl: yt.videoUrl, source: { kind: 'ytdlp', url: yt.videoUrl } });
   }
 
+  // "Follow" row: on any page with an episode list (series page or episode page), outside the
+  // download form, because a series page has no video.
+  async function updateFollowRow() {
+    const row = $('followRow');
+    if (!row) return;
+    try {
+      const { episodes } = await bg({ type: 'episodes' });
+      if (!episodes?.length) {
+        row.hidden = true;
+        return;
+      }
+      const { follow } = await bg({ type: 'follow-status' });
+      if (follow) {
+        const off = h('button', {
+          type: 'button',
+          class: 'hint-link',
+          onclick: async () => {
+            off.disabled = true;
+            await bg({ type: 'follow-remove', id: follow.id }).catch(() => {});
+            updateFollowRow();
+            updateFollowCard();
+          },
+        }, t('follow_unfollow'));
+        row.replaceChildren(h('span', { class: 'follow-on' }, `✓ ${t('follow_following')}`),
+          h('span', { class: 'hint-sep', 'aria-hidden': 'true' }, ' · '), off);
+      } else {
+        const on = h('button', {
+          type: 'button',
+          class: 'hint-link accent',
+          onclick: async () => {
+            on.disabled = true;
+            try {
+              await bg({ type: 'follow-add', name: $('name')?.value.trim() || '' });
+            } catch (e) {
+              setStatus($('pageStatus'), errText(e), true);
+            }
+            updateFollowRow();
+          },
+        }, `＋ ${t('follow_btn')}`);
+        row.replaceChildren(on);
+      }
+      row.hidden = false;
+    } catch {
+      row.hidden = true;
+    }
+  }
+
+  // "New episodes" card: what the follow checks found and the user did not take yet.
+  async function updateFollowCard() {
+    const card = $('followCard');
+    if (!card) return;
+    const { follows } = await bg({ type: 'follow-list' }).catch(() => ({ follows: [] }));
+    const withNew = (follows || []).filter(f => f.pending?.length);
+    if (!withNew.length) {
+      card.hidden = true;
+      card.replaceChildren();
+      return;
+    }
+    const p2 = n => String(n).padStart(2, '0');
+    const act = (label, cls, fn) => {
+      const btn = h('button', {
+        type: 'button',
+        class: `act ${cls}`,
+        onclick: async () => {
+          btn.disabled = true;
+          try { await fn(); } catch (e) { setStatus($('pageStatus'), errText(e), true); }
+          updateFollowCard();
+        },
+      }, label);
+      return btn;
+    };
+    card.replaceChildren(
+      h('div', { class: 'follow-card-title' }, t('follow_card_title')),
+      ...withNew.map(f => h('div', { class: 'follow-group' },
+        h('div', { class: 'follow-name' }, f.name),
+        ...f.pending.map(p => {
+          const ep = `${p.season}x${p.episode}`;
+          return h('div', { class: 'follow-ep', 'data-ep': ep },
+            h('span', { class: 'follow-ep-label' }, `S${p2(p.season)}E${p2(p.episode)}`),
+            act(t('btn_download'), 'act-primary btn-follow-download', async () => {
+              await bg({ type: 'follow-download', id: f.id, ids: [ep] });
+              onJobAdded?.();
+            }),
+            act(t('follow_remove'), 'act-ghost btn-follow-remove', () => bg({ type: 'follow-dismiss', id: f.id, epId: ep })));
+        }))));
+    card.hidden = false;
+  }
+
+  // Drawn once per popup and again after an action: loadPage polls a page without a video every few
+  // seconds, and a redraw on each poll would swap the buttons under the pointer.
+  let followDrawn = false;
+
   async function loadPage() {
+    if (!followDrawn) {
+      followDrawn = true;
+      updateFollowRow();
+      updateFollowCard();
+    }
     clearTimeout(searchTimer);
     clearTimeout(promptTimer);
     const status = $('pageStatus');

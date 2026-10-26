@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "正在下载：{name}"
   },
+  "status_bar_downloading_n": {
+    "message": "正在下载 {n} 项"
+  },
   "status_bar_downloads": {
     "message": "下载列表"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "它们放在 MP4 旁边的“srt”文件夹中。关闭此项时，嵌入 MP4 后会删除它们。"
+  },
+  "lbl_parallel": {
+    "message": "同时下载数"
+  },
+  "hint_parallel": {
+    "message": "同一季的剧集一起下载；先完成的先结束。"
   },
   "btn_add_lang": {
     "message": "+ 添加语言"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "关闭"
+  },
+  "follow_btn": {
+    "message": "关注"
+  },
+  "follow_following": {
+    "message": "已关注"
+  },
+  "follow_unfollow": {
+    "message": "取消关注"
+  },
+  "follow_notify": {
+    "message": "{name}：{n} 集新剧集（{list}）。要下载吗？"
+  },
+  "follow_not_now": {
+    "message": "以后再说"
+  },
+  "follow_card_title": {
+    "message": "新剧集"
+  },
+  "follow_remove": {
+    "message": "移除"
+  },
+  "set_grp_follow": {
+    "message": "已关注的剧集"
+  },
+  "follow_none": {
+    "message": "你还没有关注任何剧集。"
+  },
+  "follow_last_check": {
+    "message": "上次检查：{time}"
+  },
+  "follow_check_now": {
+    "message": "立即检查"
+  },
+  "follow_err": {
+    "message": "上次检查失败：页面未打开或剧集列表为空。"
+  },
+  "follow_download_failed": {
+    "message": "无法将新剧集加入队列：{error}"
   }
 }

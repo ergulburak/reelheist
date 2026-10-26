@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "डाउनलोड हो रहा है: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} डाउनलोड चल रहे हैं"
+  },
   "status_bar_downloads": {
     "message": "डाउनलोड"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "वे MP4 के पास \"srt\" फ़ोल्डर में जाती हैं। यह बंद हो तो MP4 में जुड़ने के बाद वे हटा दी जाती हैं।"
+  },
+  "lbl_parallel": {
+    "message": "एक साथ डाउनलोड"
+  },
+  "hint_parallel": {
+    "message": "एक सीज़न के एपिसोड साथ-साथ डाउनलोड होते हैं; जो पहले पूरा हो, वह पहले तैयार होता है।"
   },
   "btn_add_lang": {
     "message": "+ भाषा जोड़ें"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "बंद"
+  },
+  "follow_btn": {
+    "message": "फ़ॉलो करें"
+  },
+  "follow_following": {
+    "message": "फ़ॉलो किया जा रहा है"
+  },
+  "follow_unfollow": {
+    "message": "फ़ॉलो हटाएँ"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} नए एपिसोड ({list}). डाउनलोड करूँ?"
+  },
+  "follow_not_now": {
+    "message": "अभी नहीं"
+  },
+  "follow_card_title": {
+    "message": "नए एपिसोड"
+  },
+  "follow_remove": {
+    "message": "हटाएँ"
+  },
+  "set_grp_follow": {
+    "message": "फ़ॉलो की गई सीरीज़"
+  },
+  "follow_none": {
+    "message": "आप अभी कोई सीरीज़ फ़ॉलो नहीं करते।"
+  },
+  "follow_last_check": {
+    "message": "पिछली जाँच: {time}"
+  },
+  "follow_check_now": {
+    "message": "अभी जाँचें"
+  },
+  "follow_err": {
+    "message": "पिछली जाँच विफल: पेज नहीं खुला या एपिसोड सूची खाली थी।"
+  },
+  "follow_download_failed": {
+    "message": "नए एपिसोड कतार में नहीं जोड़े जा सके: {error}"
   }
 }

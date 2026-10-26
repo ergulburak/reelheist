@@ -487,6 +487,9 @@
   "status_bar_downloading": {
     "message": "Downloading: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} downloads running"
+  },
   "status_bar_downloads": {
     "message": "Downloads"
   },
@@ -615,6 +618,12 @@
   },
   "hint_keep_srt": {
     "message": "They go into an \"srt\" folder next to the MP4. When this is off, they are deleted after they are inside the MP4."
+  },
+  "lbl_parallel": {
+    "message": "Downloads at the same time"
+  },
+  "hint_parallel": {
+    "message": "Episodes of a season download together; the first one done is the first one finished."
   },
   "btn_add_lang": {
     "message": "+ Add language"
@@ -759,5 +768,44 @@
   },
   "notify_off": {
     "message": "Off"
+  },
+  "follow_btn": {
+    "message": "Follow"
+  },
+  "follow_following": {
+    "message": "Following"
+  },
+  "follow_unfollow": {
+    "message": "Unfollow"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} new episodes ({list}). Download them?"
+  },
+  "follow_not_now": {
+    "message": "Not now"
+  },
+  "follow_card_title": {
+    "message": "New episodes"
+  },
+  "follow_remove": {
+    "message": "Remove"
+  },
+  "set_grp_follow": {
+    "message": "Followed series"
+  },
+  "follow_none": {
+    "message": "You do not follow a series yet."
+  },
+  "follow_last_check": {
+    "message": "Last check: {time}"
+  },
+  "follow_check_now": {
+    "message": "Check now"
+  },
+  "follow_err": {
+    "message": "Last check failed: the page did not open or its episode list was empty."
+  },
+  "follow_download_failed": {
+    "message": "The new episodes could not be queued: {error}"
   }
 }

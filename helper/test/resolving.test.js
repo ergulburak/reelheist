@@ -181,7 +181,7 @@ test('kick() does not start a resolving job', async () => {
   const q = await fresh();
   const { job } = await q.add(input());
   q.kick();
-  assert.strictEqual(q.running, null);
+  assert.strictEqual(q.running.size, 0);
   assert.strictEqual(job.state, 'resolving');
 });
 

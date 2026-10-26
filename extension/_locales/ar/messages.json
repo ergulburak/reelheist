@@ -479,6 +479,9 @@
   "status_bar_downloading": {
     "message": "جارٍ التنزيل: {name}"
   },
+  "status_bar_downloading_n": {
+    "message": "{n} تنزيلات جارية"
+  },
   "status_bar_downloads": {
     "message": "التنزيلات"
   },
@@ -607,6 +610,12 @@
   },
   "hint_keep_srt": {
     "message": "توضع في مجلد \"srt\" بجانب ملف MP4. عند إيقاف هذا الخيار، تُحذف بعد تضمينها داخل MP4."
+  },
+  "lbl_parallel": {
+    "message": "التنزيلات في الوقت نفسه"
+  },
+  "hint_parallel": {
+    "message": "تُنزَّل حلقات الموسم معاً؛ ما ينتهي أولاً يجهز أولاً."
   },
   "btn_add_lang": {
     "message": "+ إضافة لغة"
@@ -751,5 +760,44 @@
   },
   "notify_off": {
     "message": "إيقاف"
+  },
+  "follow_btn": {
+    "message": "متابعة"
+  },
+  "follow_following": {
+    "message": "تتم المتابعة"
+  },
+  "follow_unfollow": {
+    "message": "إلغاء المتابعة"
+  },
+  "follow_notify": {
+    "message": "{name}: {n} حلقات جديدة ({list}). هل أنزّلها؟"
+  },
+  "follow_not_now": {
+    "message": "ليس الآن"
+  },
+  "follow_card_title": {
+    "message": "حلقات جديدة"
+  },
+  "follow_remove": {
+    "message": "إزالة"
+  },
+  "set_grp_follow": {
+    "message": "المسلسلات المتابَعة"
+  },
+  "follow_none": {
+    "message": "لا تتابع أي مسلسل بعد."
+  },
+  "follow_last_check": {
+    "message": "آخر فحص: {time}"
+  },
+  "follow_check_now": {
+    "message": "افحص الآن"
+  },
+  "follow_err": {
+    "message": "فشل آخر فحص: لم تُفتح الصفحة أو كانت قائمة الحلقات فارغة."
+  },
+  "follow_download_failed": {
+    "message": "تعذّرت إضافة الحلقات الجديدة إلى قائمة الانتظار: {error}"
   }
 }
