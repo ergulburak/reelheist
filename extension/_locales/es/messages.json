@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "Desactivada"
   },
+  "set_grp_overlay": {
+    "message": "Botón en la página"
+  },
+  "lbl_overlay": {
+    "message": "Mostrar el botón «Descargar» en el reproductor de vídeo"
+  },
+  "set_overlay_hint": {
+    "message": "Si está desactivado, abre ReelHeist desde el icono de la barra de herramientas."
+  },
   "hint_audio_auto": {
     "message": "Automático: el idioma de la interfaz y el idioma original del vídeo."
   },

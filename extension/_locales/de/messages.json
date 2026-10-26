@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "Aus"
   },
+  "set_grp_overlay": {
+    "message": "Schaltfläche auf der Seite"
+  },
+  "lbl_overlay": {
+    "message": "Die Schaltfläche „Herunterladen“ auf dem Videoplayer zeigen"
+  },
+  "set_overlay_hint": {
+    "message": "Wenn sie aus ist, öffnen Sie ReelHeist über das Symbol in der Symbolleiste."
+  },
   "hint_audio_auto": {
     "message": "Automatisch: die Sprache der Oberfläche und die Originalsprache des Videos."
   },

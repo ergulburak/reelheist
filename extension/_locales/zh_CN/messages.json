@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "关闭"
   },
+  "set_grp_overlay": {
+    "message": "页面上的按钮"
+  },
+  "lbl_overlay": {
+    "message": "在视频播放器上显示“下载”按钮"
+  },
+  "set_overlay_hint": {
+    "message": "关闭后，请通过工具栏图标打开 ReelHeist。"
+  },
   "hint_audio_auto": {
     "message": "自动：界面语言和视频的原始语言。"
   },

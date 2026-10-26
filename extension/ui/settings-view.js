@@ -111,6 +111,9 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     const motionEl = $('setMotion');
     if (motionEl) motionEl.value = ['auto', 'on', 'off'].includes(ui.motion) ? ui.motion : 'auto';
 
+    const overlayEl = $('setOverlay');
+    if (overlayEl) overlayEl.checked = ui.overlay !== false;
+
     const outEl = $('outDir');
     if (outEl && getSettings()?.outDir !== undefined) {
       outEl.value = getSettings().outDir;
@@ -262,6 +265,11 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       const next = await saveUiSettings({ motion });
       setUi(next);
       onUiChanged?.();
+    });
+
+    // The page button reads this setting itself (content/overlay.js) and shows or hides at once.
+    $('setOverlay')?.addEventListener('change', async e => {
+      setUi(await saveUiSettings({ overlay: Boolean(e.target.checked) }));
     });
 
     $('setNotify')?.addEventListener('change', async e => {

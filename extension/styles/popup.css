@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-body.embedded { width: 100%; height: 100vh; }
+body.embedded { width: 100%; min-height: 100vh; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -617,8 +617,12 @@ button.link.edit-link:hover {
   overflow-y: auto;
 }
 
-/* Bottom status bar */
+/* Bottom status bar: stays at the bottom of the window while the view above it scrolls. */
 .foot {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  flex: none;
   display: flex;
   align-items: center;
   gap: 9px;

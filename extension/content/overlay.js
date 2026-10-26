@@ -7,6 +7,15 @@
   let button = null;
   let panel = null;
   let tabId = null;
+  let place = () => {}; // moves the button onto the player; set when the UI is built
+
+  // Settings → Appearance can turn the button off. The toolbar icon still opens the popup,
+  // and a panel that is already open stays open.
+  let enabled = true;
+  const overlayOn = settings => settings?.overlay !== false;
+  chrome.storage.local.get('settings')
+    .then(r => { enabled = overlayOn(r.settings); place(); })
+    .catch(() => {});
 
   function playerElement() {
     // YouTube keeps extra hidden/preview <video> elements; its main player is #movie_player.
@@ -150,7 +159,11 @@
       if (e.data && e.data.type === 'reelheist-close') closePanel();
     });
     document.documentElement.appendChild(host);
-    const place = () => {
+    place = () => {
+      if (!enabled) {
+        button.style.display = 'none';
+        return;
+      }
       if (/(^|\.)youtube\.com$/.test(location.hostname) && !/^\/(watch|shorts|live\/)/.test(location.pathname)) {
         button.style.display = 'none';
         return;
@@ -186,7 +199,10 @@
   });
 
   chrome.storage?.onChanged?.addListener(changes => {
-    if (changes.settings && host) refreshOverlayUi();
+    if (!changes.settings) return;
+    enabled = overlayOn(changes.settings.newValue);
+    place();
+    if (host) refreshOverlayUi();
   });
 
   // YouTube: no stream URLs to wait for; show the button on every YouTube page

@@ -586,6 +586,15 @@
   "motion_off": {
     "message": "Off"
   },
+  "set_grp_overlay": {
+    "message": "Button on the page"
+  },
+  "lbl_overlay": {
+    "message": "Show the \"Download\" button on the video player"
+  },
+  "set_overlay_hint": {
+    "message": "When it is off, open ReelHeist from the toolbar icon."
+  },
   "hint_audio_auto": {
     "message": "Automatic: the interface language and the original language of the video."
   },

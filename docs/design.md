@@ -142,6 +142,11 @@ gerekir. `host.js` sadece daemon'u başlatır ve port + token verir.
   öğesinin sağ üst köşesine "⬇ İndir" düğmesi koyar (Shadow DOM). Tıklanınca aynı popup
   sayfası (`popup.html?tab=<id>`) sayfa üzerinde bir panel olarak açılır. Oynatıcı bir poster
   arkasında gizliyse düğme pencerenin sağ alt köşesinde durur.
+  Ayarlar → Görünüm → "Sayfadaki düğme" (`settings.overlay`, varsayılan açık) düğmeyi kapatır.
+  `overlay.js` ayarı `chrome.storage.local` içinden okur ve değişince düğmeyi hemen gizler ya da
+  gösterir; açık bir panel açık kalır. Düğme kapalıyken popup araç çubuğu simgesinden açılır.
+- **Alt çubuk:** "İndirilenler" çubuğu (`#statusBar`) `position: sticky; bottom: 0` ile popup ve
+  gömülü panelde pencerenin altında kalır; görünüm onun üstünde kayar.
 
 ### Çerçeve içinde okuma (genel teknik)
 

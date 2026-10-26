@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "Nonaktif"
   },
+  "set_grp_overlay": {
+    "message": "Tombol di halaman"
+  },
+  "lbl_overlay": {
+    "message": "Tampilkan tombol \"Unduh\" di pemutar video"
+  },
+  "set_overlay_hint": {
+    "message": "Jika dimatikan, buka ReelHeist dari ikon toolbar."
+  },
   "hint_audio_auto": {
     "message": "Otomatis: bahasa antarmuka dan bahasa asli video."
   },

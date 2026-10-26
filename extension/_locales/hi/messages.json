@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "बंद"
   },
+  "set_grp_overlay": {
+    "message": "पेज पर बटन"
+  },
+  "lbl_overlay": {
+    "message": "वीडियो प्लेयर पर \"डाउनलोड\" बटन दिखाएँ"
+  },
+  "set_overlay_hint": {
+    "message": "बंद होने पर ReelHeist को टूलबार आइकन से खोलें।"
+  },
   "hint_audio_auto": {
     "message": "स्वचालित: इंटरफ़ेस की भाषा और वीडियो की मूल भाषा।"
   },

@@ -5,6 +5,7 @@ export const DEFAULT_SETTINGS = {
   lang: 'auto',
   autoUpdatePacks: true,
   motion: 'auto', // 'auto' | 'on' | 'off'
+  overlay: true, // the "Download" button on the page's video player
   defaults: {},
   siteMemory: {},
 };

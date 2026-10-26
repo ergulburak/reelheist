@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "オフ"
   },
+  "set_grp_overlay": {
+    "message": "ページ上のボタン"
+  },
+  "lbl_overlay": {
+    "message": "ビデオプレーヤーに「ダウンロード」ボタンを表示"
+  },
+  "set_overlay_hint": {
+    "message": "オフのときは、ツールバーのアイコンから ReelHeist を開いてください。"
+  },
   "hint_audio_auto": {
     "message": "自動: 表示言語と動画の元の言語。"
   },

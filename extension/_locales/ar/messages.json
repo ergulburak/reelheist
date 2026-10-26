@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "إيقاف"
   },
+  "set_grp_overlay": {
+    "message": "الزر على الصفحة"
+  },
+  "lbl_overlay": {
+    "message": "إظهار زر \"تنزيل\" على مشغل الفيديو"
+  },
+  "set_overlay_hint": {
+    "message": "عند إيقافه، افتح ReelHeist من أيقونة شريط الأدوات."
+  },
   "hint_audio_auto": {
     "message": "تلقائي: لغة الواجهة واللغة الأصلية للفيديو."
   },

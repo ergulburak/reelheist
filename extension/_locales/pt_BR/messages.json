@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "Desligada"
   },
+  "set_grp_overlay": {
+    "message": "Botão na página"
+  },
+  "lbl_overlay": {
+    "message": "Mostrar o botão \"Baixar\" no player de vídeo"
+  },
+  "set_overlay_hint": {
+    "message": "Quando estiver desligado, abra o ReelHeist pelo ícone da barra de ferramentas."
+  },
   "hint_audio_auto": {
     "message": "Automático: o idioma da interface e o idioma original do vídeo."
   },

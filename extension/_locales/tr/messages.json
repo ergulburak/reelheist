@@ -578,6 +578,15 @@
   "motion_off": {
     "message": "Kapalı"
   },
+  "set_grp_overlay": {
+    "message": "Sayfadaki düğme"
+  },
+  "lbl_overlay": {
+    "message": "Video oynatıcıda \"İndir\" düğmesini göster"
+  },
+  "set_overlay_hint": {
+    "message": "Kapalıyken ReelHeist'i araç çubuğundaki simgeden açın."
+  },
   "hint_audio_auto": {
     "message": "Otomatik: arayüz dili ve videonun orijinal dili."
   },
