@@ -38,7 +38,11 @@ function resolveInside(outDir, file, { ext = '.mp4' } = {}) {
 function checkExists(outDir, folder, base) {
   checkSegment(folder, 'folder');
   checkSegment(base, 'base');
-  const file = path.join(outDir, sanitize(folder), `${sanitize(base)}.mp4`);
+  // An episode lives in its own folder (folder/base/base.mp4); older downloads sit in the
+  // series folder itself (folder/base.mp4).
+  const own = path.join(outDir, sanitize(folder), sanitize(base), `${sanitize(base)}.mp4`);
+  const flat = path.join(outDir, sanitize(folder), `${sanitize(base)}.mp4`);
+  const file = fs.existsSync(own) ? own : flat;
   if (!isInside(outDir, file)) throw bad('path is outside the download folder');
   try {
     const st = fs.statSync(file);

@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "Datei prüfen: Die Längen stimmen nicht überein ({detail})."
   },
+  "warn_subs_not_embedded": {
+    "message": "Die Untertitel konnten nicht in die MP4 eingebettet werden; sie liegen als .srt-Dateien im Ordner „srt“."
+  },
   "err_bad_request": {
     "message": "Die Anfrage ist ungültig."
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "Automatisch: die Sprache der Oberfläche, Englisch und die Originalsprache des Videos."
+  },
+  "lbl_embed_subs": {
+    "message": "Untertitel in die MP4 einbetten"
+  },
+  "hint_embed_subs": {
+    "message": "VLC, Smartphones und die meisten Fernseher zeigen sie im Untertitelmenü. Die erste Untertitelsprache oben wird automatisch eingeschaltet."
+  },
+  "lbl_keep_srt": {
+    "message": "Die .srt-Dateien behalten"
+  },
+  "hint_keep_srt": {
+    "message": "Sie kommen in einen Ordner „srt“ neben der MP4. Wenn dies aus ist, werden sie gelöscht, sobald sie in der MP4 sind."
   },
   "btn_add_lang": {
     "message": "+ Sprache hinzufügen"

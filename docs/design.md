@@ -10,8 +10,13 @@ seçenekleri aynı MP4 içinde.
 
 - Tek bölüm/film indirme, kalite seçimi.
 - Bütün ses kanallarını aynı MP4 dosyasına koyma (kullanıcı oynatıcıda seçer).
-- Bütün altyazıları videonun yanına, aynı adla, SRT olarak kaydetme.
-- Klasör adı dizi/film adı.
+- Bütün altyazıları aynı adla SRT olarak kaydetme (videonun klasöründeki `srt` klasörüne).
+- Klasör adı dizi/film adı. Her dizi bölümü dizi klasörünün içinde kendi klasöründedir:
+  `Dizi\Dizi.S01E02\Dizi.S01E02.mp4` (`names.sub`). `.srt` dosyaları her işte iş klasörünün içindeki
+  `srt` klasörüne yazılır (`names.SRT_DIR`; "Subs"/"Subtitles" değil, çünkü VLC ve Plex bunları
+  kendiliğinden tarar ve MP4 içindeki iz yerine bir dosyayı açar). Daha önce
+  doğrudan dizi klasörüne inmiş bölümler yerinde kalır; "zaten var" denetimi iki yere de bakar.
+  Sezon başlığındaki "Klasör" dizi klasörünü açar (`open?show=1`).
 - Bir sezonu tek seferde kuyruğa ekleme.
 - İndirme kuyruğu: ilerleme, boyut, kalan süre, iptal, yeniden dene, klasörü aç.
 - YouTube için `yt-dlp` ile indirme.
@@ -200,6 +205,19 @@ döner.
   ses/video/playlist süreleri %1'den (en az 2 sn) fazla ayrıksa iş `warning = av_mismatch`
   ile biter ve kuyrukta uyarı görünür.
 - **Altyazı:** VTT → SRT (zaman biçimi, cue ayarları atılır, numaralandırma), UTF-8 BOM'lu.
+- **Altyazıları MP4 içine gömme:** iş kaydında `embedSubs: {lang}` (eklenti: Ayarlar → İndirme →
+  "Altyazıları MP4 içine göm", `defaults.embedSubs`, varsayılan açık; `lang` = varsayılan altyazı
+  dillerinin ilki, yoksa arayüz dili). MP4 bittikten sonra `mux.embedSubtitles` yazılan `.srt`
+  dosyalarını ikinci bir kopyalama geçişiyle `mov_text` izleri olarak ekler (görüntü ve ses kopyalanır,
+  bir bölüm için yaklaşık 2 sn). İz adı arayüz dilinde dil adıdır (`title` ve `handler_name`), zorunlu
+  izin adına `track_forced` eklenir. `lang` dilindeki ilk tam (zorunlu olmayan) iz `default` işaretini
+  alır ve ilk sıraya konur; diğerleri kapalıdır. `embedSubs.keepSrt` (".srt dosyalarını sakla",
+  varsayılan açık) kapalıysa ve bütün izler MP4'e girdiyse `.srt` dosyaları ve boş `srt` klasörü
+  silinir (`output.srtKept = false`); gömme kapalıysa ya da hata verdiyse dosyalar her zaman kalır. Hata olursa MP4 olduğu gibi
+  kalır ve iş `warning = subs_not_embedded` ile biter. HLS, doğrudan MP4 ve yt-dlp işlerinde çalışır;
+  "Yalnızca altyazı" işlerinde çalışmaz. `/api/ping` `features` listesinde `embed-subs` vardır.
+  VLC 3 MP4 varsayılan işaretini kullanmaz: tercih edilen altyazı dili boşsa gömülü izi kendisi
+  açmaz, yandaki `.srt` dosyalarından birini açar.
   Dil kodu `lang` alanından; yoksa etiketten (Türkçe/Turkish → `tr` …) ya da URL'den.
   Aynı dilde iki altyazı varsa `.tr.2.srt`. Zorunlu (forced, yalnızca ekran yazıları) altyazı
   `.tr.forced.srt` adını alır: HLS `FORCED=YES`, "Forced"/"Zorunlu" etiketi ya da dosya adında

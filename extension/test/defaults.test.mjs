@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { chooseDefaults, rememberChoice, applyRemember, subtitleKey, MEMORY_CAP } from '../lib/defaults.js';
+import { chooseDefaults, rememberChoice, applyRemember, subtitleKey, MEMORY_CAP, embedSubsOption } from '../lib/defaults.js';
 
 const yt = {
   type: 'ytdlp',
@@ -118,4 +118,22 @@ test('rememberChoice stores into settings.siteMemory', async () => {
   assert.deepStrictEqual(Object.keys(store.settings.siteMemory), ['x.example']);
   assert.strictEqual(store.settings.siteMemory['x.example'].height, 720);
   delete globalThis.chrome;
+});
+
+test('embedSubsOption: on by default, first default subtitle language turns on', () => {
+  assert.deepStrictEqual(embedSubsOption({ defaults: { subLangs: ['tr', 'en'] } }, 'en'), { lang: 'tr', keepSrt: true });
+  assert.deepStrictEqual(embedSubsOption({ defaults: { subLangs: ['pt_BR'] } }, 'en'), { lang: 'pt', keepSrt: true });
+});
+
+test('embedSubsOption: no default subtitle language means the interface language', () => {
+  assert.deepStrictEqual(embedSubsOption({ defaults: {} }, 'de-DE'), { lang: 'de', keepSrt: true });
+  assert.deepStrictEqual(embedSubsOption({}, 'tr'), { lang: 'tr', keepSrt: true });
+});
+
+test('embedSubsOption: "keep .srt files" turned off is sent as keepSrt false', () => {
+  assert.deepStrictEqual(embedSubsOption({ defaults: { keepSrt: false, subLangs: ['tr'] } }, 'en'), { lang: 'tr', keepSrt: false });
+});
+
+test('embedSubsOption: the setting turned off gives null', () => {
+  assert.strictEqual(embedSubsOption({ defaults: { embedSubs: false, subLangs: ['tr'] } }, 'tr'), null);
 });

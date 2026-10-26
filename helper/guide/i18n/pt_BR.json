@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} baixado · verifique o arquivo, as durações não coincidem",
   "notify_failed": "Não foi possível baixar {name} · {error}",
   "notify_season_done": "{name} temporada {season} completa · {n} episódios",
-  "notify_resume": "A busca da temporada continua · faltam {n} episódios"
+  "notify_resume": "A busca da temporada continua · faltam {n} episódios",
+  "track_forced": "forçadas"
 }

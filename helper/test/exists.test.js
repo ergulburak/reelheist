@@ -22,6 +22,17 @@ test('finds existing mp4', () => {
   assert.ok(r.mtime);
 });
 
+test('finds an episode in its own folder, and an older one directly in the series folder', () => {
+  const out = tmp();
+  fs.mkdirSync(path.join(out, 'Show', 'Show.S01E03'), { recursive: true });
+  const inSub = path.join(out, 'Show', 'Show.S01E03', 'Show.S01E03.mp4');
+  fs.writeFileSync(inSub, 'new');
+  assert.strictEqual(checkExists(out, 'Show', 'Show.S01E03').path, inSub);
+  const flat = path.join(out, 'Show', 'Show.S01E01.mp4');
+  fs.writeFileSync(flat, 'old');
+  assert.strictEqual(checkExists(out, 'Show', 'Show.S01E01').path, flat);
+});
+
 test('missing -> exists:false', () => {
   const r = checkExists(tmp(), 'Nope', 'Nope');
   assert.deepStrictEqual(r, { exists: false, path: null, size: 0, mtime: null });

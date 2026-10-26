@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "ファイルを確認してください：長さが一致しません（{detail}）。"
   },
+  "warn_subs_not_embedded": {
+    "message": "字幕を MP4 に埋め込めませんでした。.srt ファイルとして「srt」フォルダーにあります。"
+  },
   "err_bad_request": {
     "message": "リクエストが無効です。"
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "自動: 表示言語、英語、動画の元の言語。"
+  },
+  "lbl_embed_subs": {
+    "message": "字幕を MP4 に埋め込む"
+  },
+  "hint_embed_subs": {
+    "message": "VLC、スマートフォン、ほとんどのテレビで字幕メニューに表示されます。上の最初の字幕言語が自動でオンになります。"
+  },
+  "lbl_keep_srt": {
+    "message": ".srt ファイルを残す"
+  },
+  "hint_keep_srt": {
+    "message": "MP4 の横の「srt」フォルダーに入ります。オフにすると、MP4 に埋め込んだ後に削除されます。"
   },
   "btn_add_lang": {
     "message": "+ 言語を追加"

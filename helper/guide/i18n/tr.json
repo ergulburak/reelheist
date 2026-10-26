@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} indi · dosyayı kontrol edin, süreler uyuşmuyor",
   "notify_failed": "{name} indirilemedi · {error}",
   "notify_season_done": "{name} {season}. sezon tamamlandı · {n} bölüm",
-  "notify_resume": "Sezon araması devam ediyor · {n} bölüm kaldı"
+  "notify_resume": "Sezon araması devam ediyor · {n} bölüm kaldı",
+  "track_forced": "zorunlu"
 }

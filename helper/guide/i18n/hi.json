@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} डाउनलोड हो गया · फ़ाइल जाँचें, अवधि मेल नहीं खाती",
   "notify_failed": "{name} डाउनलोड नहीं हो सका · {error}",
   "notify_season_done": "{name} सीज़न {season} पूरा हुआ · {n} एपिसोड",
-  "notify_resume": "सीज़न की खोज जारी है · {n} एपिसोड बाकी"
+  "notify_resume": "सीज़न की खोज जारी है · {n} एपिसोड बाकी",
+  "track_forced": "अनिवार्य"
 }

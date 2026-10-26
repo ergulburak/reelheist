@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} téléchargé · vérifiez le fichier, les durées ne correspondent pas",
   "notify_failed": "{name} n'a pas pu être téléchargé · {error}",
   "notify_season_done": "{name} saison {season} terminée · {n} épisodes",
-  "notify_resume": "La recherche de la saison continue · {n} épisodes restants"
+  "notify_resume": "La recherche de la saison continue · {n} épisodes restants",
+  "track_forced": "forcés"
 }

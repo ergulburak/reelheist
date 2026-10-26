@@ -297,6 +297,14 @@ test('onDone picks the toast key', () => {
   assert.strictEqual(calls.length, 3);
 });
 
+test('a subtitle warning does not use the length-mismatch toast', () => {
+  const { q, calls } = spyQueue('all');
+  q.onDone(plain({ warning: 'subs_not_embedded' }));
+  assert.strictEqual(calls[0].key, 'notify_done');
+  q.onDone(plain({ warning: 'av_mismatch' }));
+  assert.strictEqual(calls[1].key, 'notify_done_warn');
+});
+
 test('onDone is silent unless notify is all', () => {
   for (const mode of ['errors', 'off']) {
     const { q, calls } = spyQueue(mode);

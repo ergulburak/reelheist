@@ -82,6 +82,16 @@ export function chooseDefaults(probe, { uiLang = 'en', defaults = {}, memory = {
   return { height, audioLangs, subtitleKeys: [...new Set(subtitleKeys)] };
 }
 
+// "Put subtitles inside the MP4" (Settings → Download, on by default). Returns the job field:
+// { lang, keepSrt }: the subtitle that turns on by itself (the first default subtitle language, else
+// the interface language) and "Keep .srt files" (on by default), or null when the setting is off.
+export function embedSubsOption(ui, uiLang) {
+  const d = ui?.defaults || {};
+  if (d.embedSubs === false) return null;
+  const first = Array.isArray(d.subLangs) && d.subLangs.length ? d.subLangs[0] : uiLang;
+  return { lang: primaryLang(first), keepSrt: d.keepSrt !== false };
+}
+
 // Pure part of rememberChoice: returns a new map, at most MEMORY_CAP hosts (oldest "t" dropped).
 export function applyRemember(siteMemory, host, choice, now = Date.now()) {
   const next = { ...(siteMemory || {}) };

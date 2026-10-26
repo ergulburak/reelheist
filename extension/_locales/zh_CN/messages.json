@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "请检查文件：时长不一致（{detail}）。"
   },
+  "warn_subs_not_embedded": {
+    "message": "无法将字幕嵌入 MP4；字幕以 .srt 文件形式保存在“srt”文件夹中。"
+  },
   "err_bad_request": {
     "message": "请求无效。"
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "自动：界面语言、英语和视频的原始语言。"
+  },
+  "lbl_embed_subs": {
+    "message": "将字幕嵌入 MP4"
+  },
+  "hint_embed_subs": {
+    "message": "VLC、手机和大多数电视会在字幕菜单中显示它们。上面的第一个字幕语言会自动开启。"
+  },
+  "lbl_keep_srt": {
+    "message": "保留 .srt 文件"
+  },
+  "hint_keep_srt": {
+    "message": "它们放在 MP4 旁边的“srt”文件夹中。关闭此项时，嵌入 MP4 后会删除它们。"
   },
   "btn_add_lang": {
     "message": "+ 添加语言"

@@ -415,6 +415,9 @@
   "warn_av_mismatch": {
     "message": "Check the file: the lengths do not match ({detail})."
   },
+  "warn_subs_not_embedded": {
+    "message": "The subtitles could not be put inside the MP4; they are in the \"srt\" folder as .srt files."
+  },
   "err_bad_request": {
     "message": "The request was not valid."
   },
@@ -600,6 +603,18 @@
   },
   "hint_subs_auto": {
     "message": "Automatic: the interface language, English and the original language of the video."
+  },
+  "lbl_embed_subs": {
+    "message": "Put subtitles inside the MP4"
+  },
+  "hint_embed_subs": {
+    "message": "VLC, phones and most TVs show them in the subtitle menu. The first subtitle language above turns on by itself."
+  },
+  "lbl_keep_srt": {
+    "message": "Keep the .srt files"
+  },
+  "hint_keep_srt": {
+    "message": "They go into an \"srt\" folder next to the MP4. When this is off, they are deleted after they are inside the MP4."
   },
   "btn_add_lang": {
     "message": "+ Add language"

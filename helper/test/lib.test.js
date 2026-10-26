@@ -132,7 +132,7 @@ test('guessLang uses lang, label, then URL', () => {
 
 test('buildNames and subtitle suffixes', () => {
   assert.deepStrictEqual(names.buildNames({ kind: 'episode', name: 'MobLand', season: 2, episode: 6 }),
-    { folder: 'MobLand', base: 'MobLand.S02E06' });
+    { folder: 'MobLand', base: 'MobLand.S02E06', sub: 'MobLand.S02E06' });
   assert.deepStrictEqual(names.buildNames({ kind: 'movie', name: 'Clean Hands', year: 2026 }),
     { folder: 'Clean Hands (2026)', base: 'Clean Hands (2026)' });
   assert.strictEqual(names.sanitize('A: B / C?'), 'A B C');

@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} heruntergeladen · Datei prüfen, die Längen passen nicht zusammen",
   "notify_failed": "{name} konnte nicht heruntergeladen werden · {error}",
   "notify_season_done": "{name} Staffel {season} komplett · {n} Folgen",
-  "notify_resume": "Staffelsuche läuft weiter · noch {n} Folgen"
+  "notify_resume": "Staffelsuche läuft weiter · noch {n} Folgen",
+  "track_forced": "erzwungen"
 }

@@ -23,5 +23,6 @@
   "notify_done_warn": "تم تنزيل {name} · افحص الملف، فالمدتان غير متطابقتين",
   "notify_failed": "تعذّر تنزيل {name} · {error}",
   "notify_season_done": "اكتمل الموسم {season} من {name} · {n} حلقات",
-  "notify_resume": "البحث عن الموسم مستمر · تبقّت {n} حلقات"
+  "notify_resume": "البحث عن الموسم مستمر · تبقّت {n} حلقات",
+  "track_forced": "إجبارية"
 }

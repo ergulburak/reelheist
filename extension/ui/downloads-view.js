@@ -297,7 +297,8 @@ export function createDownloadsView({ bg, errText, onRefresh }) {
     }
     if (group.allDone) {
       const first = group.jobs.find(j => j.state === 'done');
-      buttons.push(sa(t('btn_folder'), () => api('POST', `/jobs/${first.id}/open`), 'btn-folder', 'folder'));
+      // The series folder; every episode sits in its own folder inside it.
+      buttons.push(sa(t('btn_folder'), () => api('POST', `/jobs/${first.id}/open?show=1`), 'btn-folder', 'folder'));
     }
     const label = t('season_head', { name: group.name, season: group.season });
 

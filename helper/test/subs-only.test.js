@@ -56,9 +56,10 @@ test('subtitlesOnly job writes srt files and no mp4', async () => {
     assert.strictEqual(j.step, 'done');
     assert.strictEqual(j.output.video, null);
     assert.deepStrictEqual(j.output.subtitles.map(s => s.lang).sort(), ['en', 'tr']);
-    const files = fs.readdirSync(path.join(outDir, 'Show')).sort();
+    // The episode's own folder holds its subtitles.
+    const files = fs.readdirSync(path.join(outDir, 'Show', 'Show.S01E02', 'srt')).sort();
     assert.deepStrictEqual(files, ['Show.S01E02.en.srt', 'Show.S01E02.tr.srt']);
-    assert.match(fs.readFileSync(path.join(outDir, 'Show', 'Show.S01E02.tr.srt'), 'utf8'), /Merhaba/);
+    assert.match(fs.readFileSync(path.join(outDir, 'Show', 'Show.S01E02', 'srt', 'Show.S01E02.tr.srt'), 'utf8'), /Merhaba/);
   } finally {
     srv.close();
   }

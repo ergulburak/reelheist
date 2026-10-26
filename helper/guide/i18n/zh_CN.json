@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} 已下载 · 请检查文件，时长不一致",
   "notify_failed": "{name} 下载失败 · {error}",
   "notify_season_done": "{name} 第 {season} 季已完成 · 共 {n} 集",
-  "notify_resume": "正在继续搜索整季 · 还剩 {n} 集"
+  "notify_resume": "正在继续搜索整季 · 还剩 {n} 集",
+  "track_forced": "强制"
 }

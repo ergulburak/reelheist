@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "Periksa berkas: durasinya tidak cocok ({detail})."
   },
+  "warn_subs_not_embedded": {
+    "message": "Subtitle tidak dapat disematkan ke dalam MP4; subtitle ada di folder \"srt\" sebagai berkas .srt."
+  },
   "err_bad_request": {
     "message": "Permintaan tidak valid."
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "Otomatis: bahasa antarmuka, bahasa Inggris, dan bahasa asli video."
+  },
+  "lbl_embed_subs": {
+    "message": "Sematkan subtitle ke dalam MP4"
+  },
+  "hint_embed_subs": {
+    "message": "VLC, ponsel, dan sebagian besar TV menampilkannya di menu subtitle. Bahasa subtitle pertama di atas menyala sendiri."
+  },
+  "lbl_keep_srt": {
+    "message": "Simpan berkas .srt"
+  },
+  "hint_keep_srt": {
+    "message": "Berkas masuk ke folder \"srt\" di samping MP4. Jika ini mati, berkas dihapus setelah ada di dalam MP4."
   },
   "btn_add_lang": {
     "message": "+ Tambah bahasa"

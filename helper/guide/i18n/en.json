@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} downloaded · check the file, the lengths do not match",
   "notify_failed": "{name} could not be downloaded · {error}",
   "notify_season_done": "{name} season {season} complete · {n} episodes",
-  "notify_resume": "Season search continues · {n} episodes left"
+  "notify_resume": "Season search continues · {n} episodes left",
+  "track_forced": "forced"
 }

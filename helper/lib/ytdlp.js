@@ -8,7 +8,7 @@ const path = require('path');
 const P = require('./paths');
 const { findFfmpeg } = require('./mux');
 const { CodedError } = require('./errors');
-const { normalizeLang, toLang3 } = require('./names');
+const { normalizeLang, toLang3, SRT_DIR } = require('./names');
 
 const YTDLP_DIR = P.YTDLP_DIR;
 const YTDLP_EXE = path.join(YTDLP_DIR, 'yt-dlp.exe');
@@ -270,11 +270,13 @@ function subtitleArgs(subs) {
   return args;
 }
 
-// Subtitle files yt-dlp wrote for this job: "<base>.<lang>.srt".
+// Subtitle files yt-dlp wrote for this job: "<SRT_DIR>/<base>.<lang>.srt".
 async function writtenSubtitles(outDir, base) {
-  return (await fsp.readdir(outDir))
+  const dir = path.join(outDir, SRT_DIR);
+  const files = await fsp.readdir(dir).catch(() => []);
+  return files
     .filter(f => f.startsWith(`${base}.`) && f.endsWith('.srt'))
-    .map(f => ({ file: path.join(outDir, f), lang: f.slice(base.length + 1, -4), label: '' }));
+    .map(f => ({ file: path.join(dir, f), lang: f.slice(base.length + 1, -4), label: '' }));
 }
 
 // Subtitle-only job: no video, only the SRT files. Returns {subtitles}.
@@ -295,7 +297,7 @@ async function downloadSubtitles(job, workDir, outDir, signal, log = () => {}) {
     '-P', outDir,
     '-P', `temp:${workDir}`,
     '-o', `${base}.%(ext)s`,
-    '-o', `subtitle:${base}.%(ext)s`,
+    '-o', `subtitle:${SRT_DIR}/${base}.%(ext)s`,
     '--no-mtime',
     ...subArgs,
   ], { signal });
@@ -329,7 +331,7 @@ async function download(job, workDir, outDir, onProgress, signal, log = () => {}
     '-P', outDir,
     '-P', `temp:${workDir}`,
     '-o', `${base}.%(ext)s`,
-    '-o', `subtitle:${base}.%(ext)s`,
+    '-o', `subtitle:${SRT_DIR}/${base}.%(ext)s`,
     '--no-mtime',
     '--no-part',
     '--continue',

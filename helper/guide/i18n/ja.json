@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} をダウンロードしました · ファイルを確認してください。長さが一致しません",
   "notify_failed": "{name} をダウンロードできませんでした · {error}",
   "notify_season_done": "{name} シーズン{season}が完了しました · {n} 話",
-  "notify_resume": "シーズンの検索を続けています · 残り {n} 話"
+  "notify_resume": "シーズンの検索を続けています · 残り {n} 話",
+  "track_forced": "強制"
 }

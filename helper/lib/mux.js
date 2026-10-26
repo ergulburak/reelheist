@@ -7,6 +7,7 @@ const path = require('path');
 const { toLang3, normalizeLang } = require('./names');
 const P = require('./paths');
 const { CodedError } = require('./errors');
+const notify = require('./notify');
 
 function findFfmpeg() {
   const local = P.FFMPEG_EXE;
@@ -170,4 +171,76 @@ function checkOutput(streams, expected) {
   return bad ? { code: 'av_mismatch', detail: parts.join(', ') } : null;
 }
 
-module.exports = { mux, findFfmpeg, buildArgs, inputArgs, inspect, run, probeStreams, checkOutput, ffprobePath };
+// ---------- subtitles inside the MP4 ----------
+
+function languageName(code, uiLang) {
+  try { return new Intl.DisplayNames([uiLang || 'en'], { type: 'language' }).of(code) || code; } catch { return code; }
+}
+
+// subs: [{file, lang, forced, label}] as written next to the video. Returns the tracks to add,
+// [{file, lang3, title, isDefault}]. The first full (not forced) track in defaultLang turns on
+// by itself and goes first (some TVs simply take the first track); every other track stays off.
+// Titles are language names in the UI language; a forced track says so in its title.
+function subtitleTrackPlan(subs, { defaultLang, uiLang } = {}) {
+  const want = normalizeLang(defaultLang);
+  const ui = normalizeLang(uiLang) || 'en';
+  const forcedWord = notify.texts(uiLang).track_forced || 'forced';
+  const tracks = subs.map(s => {
+    const lang = normalizeLang(s.lang);
+    const known = !!lang && lang !== 'und';
+    const name = known ? languageName(lang, ui) : (s.label || 'Subtitle');
+    return {
+      file: s.file,
+      lang,
+      forced: !!s.forced,
+      lang3: known ? toLang3(lang) : 'und',
+      title: s.forced ? `${name} (${forcedWord})` : name,
+    };
+  });
+  const def = tracks.findIndex(t => !t.forced && want && t.lang === want);
+  const ordered = def < 0 ? tracks : [tracks[def], ...tracks.filter((_, i) => i !== def)];
+  return ordered.map(t => ({ file: t.file, lang3: t.lang3, title: t.title, isDefault: t === tracks[def] }));
+}
+
+// Copies the video and audio of an MP4 and adds the subtitle files as mov_text tracks.
+function embedArgs(video, tracks, outFile) {
+  const args = ['-hide_banner', '-nostdin', '-y', '-i', video];
+  for (const t of tracks) args.push('-i', t.file);
+  args.push('-map', '0:v?', '-map', '0:a?');
+  tracks.forEach((_, i) => args.push('-map', `${i + 1}:0`));
+  args.push('-c', 'copy', '-c:s', 'mov_text');
+  // The MP4 keeps the title as "name"; many players (VLC among them) show the handler name.
+  tracks.forEach((t, i) => args.push(`-metadata:s:s:${i}`, `language=${t.lang3}`, `-metadata:s:s:${i}`, `title=${t.title}`,
+    `-metadata:s:s:${i}`, `handler_name=${t.title}`));
+  tracks.forEach((t, i) => args.push(`-disposition:s:${i}`, t.isDefault ? 'default' : '0'));
+  args.push('-movflags', '+faststart', '-f', 'mp4', outFile);
+  return args;
+}
+
+// Adds the subtitles to a finished MP4 in place. Returns the number of tracks added.
+// On any failure the MP4 stays exactly as it was and the error is thrown.
+async function embedSubtitles(videoFile, subs, { defaultLang, uiLang, signal } = {}) {
+  const ffmpeg = findFfmpeg();
+  if (!ffmpeg) throw new CodedError('ffmpeg_missing', 'ffmpeg was not found');
+  const tracks = subtitleTrackPlan(subs, { defaultLang, uiLang });
+  if (!tracks.length) return 0;
+  const tmp = `${videoFile}.subs.part`;
+  try {
+    await run(ffmpeg, embedArgs(videoFile, tracks, tmp), { signal });
+    try {
+      await fs.promises.rename(tmp, videoFile);
+    } catch {
+      await fs.promises.rm(videoFile, { force: true });
+      await fs.promises.rename(tmp, videoFile);
+    }
+  } catch (e) {
+    await fs.promises.rm(tmp, { force: true }).catch(() => {});
+    throw e;
+  }
+  return tracks.length;
+}
+
+module.exports = {
+  mux, findFfmpeg, buildArgs, inputArgs, inspect, run, probeStreams, checkOutput, ffprobePath,
+  subtitleTrackPlan, embedArgs, embedSubtitles,
+};

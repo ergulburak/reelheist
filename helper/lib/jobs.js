@@ -6,9 +6,9 @@ const fsp = fs.promises;
 const path = require('path');
 const crypto = require('crypto');
 const P = require('./paths');
-const { buildNames } = require('./names');
+const { buildNames, SRT_DIR } = require('./names');
 const { downloadHls, downloadFile, writeSubtitles, planHlsSubtitles } = require('./download');
-const { mux, findFfmpeg, probeStreams, checkOutput } = require('./mux');
+const { mux, findFfmpeg, probeStreams, checkOutput, embedSubtitles } = require('./mux');
 const ytdlp = require('./ytdlp');
 const { toCoded, CodedError, CODES } = require('./errors');
 const notify = require('./notify');
@@ -17,6 +17,13 @@ const NOTIFY_MODES = ['all', 'errors', 'off'];
 const RESOLVE_STEPS = ['page', 'video'];
 const DEFAULT_DEADLINE_MS = 90000;
 const ACTIVE = ['resolving', 'queued', 'downloading', 'muxing', 'paused', 'failed'];
+
+// embedSubs from the extension: { lang } (the language that turns on by itself, may be '') or null.
+function cleanEmbed(e) {
+  if (!e || typeof e !== 'object') return null;
+  // keepSrt: keep the .srt files (in SRT_DIR) after they went into the MP4; only false turns it off.
+  return { lang: typeof e.lang === 'string' ? e.lang.slice(0, 16) : '', keepSrt: e.keepSrt !== false };
+}
 
 // Keep only string playlists, at most ~2 MB in total.
 function cleanPlaylists(p) {
@@ -123,7 +130,7 @@ class Queue {
     if (this.notifyMode() !== 'all') return;
     const subs = job.output?.subtitles?.length || 0;
     const key = job.subtitlesOnly ? 'notify_done_subs_only'
-      : job.warning ? 'notify_done_warn' : subs ? 'notify_done_subs' : 'notify_done';
+      : job.warning === 'av_mismatch' ? 'notify_done_warn' : subs ? 'notify_done_subs' : 'notify_done';
     this.toast(key, { name: job.names?.base, size: notify.formatSize(job.output?.size), n: subs });
     const g = job.group;
     if (!g) return;
@@ -170,6 +177,7 @@ class Queue {
       })),
       includeHlsSubtitles: input.includeHlsSubtitles !== false,
       subtitlesOnly: !!input.subtitlesOnly,
+      embedSubs: cleanEmbed(input.embedSubs),
       playlists: cleanPlaylists(input.playlists),
       maxSegments: input.maxSegments || null,
       outDir: input.outDir || null,
@@ -215,6 +223,7 @@ class Queue {
       subtitles: [],
       includeHlsSubtitles: input.includeHlsSubtitles !== false,
       subtitlesOnly: !!input.subtitlesOnly,
+      embedSubs: cleanEmbed(input.embedSubs),
       playlists: null,
       maxSegments: input.maxSegments || null,
       outDir: input.outDir || null,
@@ -416,10 +425,39 @@ class Queue {
       });
   }
 
+  // The settings ask for the subtitles inside the MP4 as well (the .srt files stay).
+  // Never fails the job: on an error the MP4 stays as it was. Returns {n, error}.
+  async embedSubs(job, videoFile, subs, signal) {
+    if (!job.embedSubs || !subs?.length) return { n: 0, error: null };
+    try {
+      const n = await embedSubtitles(videoFile, subs, { defaultLang: job.embedSubs.lang, uiLang: this.settings.lang, signal });
+      return { n, error: null };
+    } catch (e) {
+      if (signal?.aborted) throw e;
+      this.log(`İş ${job.id}: altyazılar MP4'e eklenemedi: ${e.message}`);
+      return { n: 0, error: e.message };
+    }
+  }
+
+  // Where the job writes its files: the series/movie folder, plus the episode's own folder.
+  jobDir(job) {
+    return path.join(job.outDir || this.settings.outDir, job.names.folder, job.names.sub || '');
+  }
+
+  // The .srt files go away only when the settings say so and every one of them is inside the MP4.
+  // Returns true when the files stay.
+  async finishSrt(job, subs, embed) {
+    if (!subs?.length || job.embedSubs?.keepSrt !== false || !embed.n || embed.error) return true;
+    for (const s of subs) await fsp.rm(s.file, { force: true }).catch(() => {});
+    const dir = path.dirname(subs[0].file);
+    if (path.basename(dir) === SRT_DIR) await fsp.rmdir(dir).catch(() => {}); // only when empty
+    return false;
+  }
+
   async runJob(job, signal) {
     const workDir = path.join(P.WORK_DIR, job.id);
     await fsp.mkdir(workDir, { recursive: true });
-    const outDir = path.join(job.outDir || this.settings.outDir, job.names.folder);
+    const outDir = this.jobDir(job);
     await fsp.mkdir(outDir, { recursive: true });
     job.state = 'downloading';
     job.step = 'download';
@@ -446,7 +484,7 @@ class Queue {
         const extra = job.source.kind === 'hls' ? await planHlsSubtitles(job, signal).catch(() => []) : [];
         const seen = new Set();
         const list = [...job.subtitles, ...extra].filter(s => !seen.has(s.url) && seen.add(s.url));
-        written = await writeSubtitles(list, outDir, job.names.base, signal, this.log);
+        written = await writeSubtitles(list, path.join(outDir, SRT_DIR), job.names.base, signal, this.log);
       }
       if (!written.length) throw new CodedError('no_subtitles', 'No subtitle could be downloaded from this page');
       job.state = 'done';
@@ -463,10 +501,17 @@ class Queue {
 
     if (job.source.kind === 'ytdlp') {
       const r = await ytdlp.download(job, workDir, outDir, onProgress, signal, this.log);
+      const embed = await this.embedSubs(job, r.video, r.subtitles, signal);
+      if (embed.error) {
+        job.warning = 'subs_not_embedded';
+        job.warningDetail = embed.error;
+      }
+      if (embed.n) r.size = (await fsp.stat(r.video)).size;
+      const srtKept = await this.finishSrt(job, r.subtitles, embed);
       job.state = 'done';
       job.step = 'done';
       job.progress = { phase: 'done', percent: 100, bytes: r.size, totalBytes: r.size };
-      job.output = { video: r.video, size: r.size, audioTracks: r.audioTracks, subtitles: r.subtitles };
+      job.output = { video: r.video, size: r.size, audioTracks: r.audioTracks, subtitles: r.subtitles, embeddedSubs: embed.n, srtKept };
       job.finishedAt = Date.now();
       job.stats = {
         ...r.stats,
@@ -487,7 +532,7 @@ class Queue {
 
     const seen = new Set();
     const subList = [...job.subtitles, ...result.extraSubs].filter(s => !seen.has(s.url) && seen.add(s.url));
-    const writtenSubs = await writeSubtitles(subList, outDir, job.names.base, signal, this.log);
+    const writtenSubs = await writeSubtitles(subList, path.join(outDir, SRT_DIR), job.names.base, signal, this.log);
 
     const videoFile = path.join(outDir, `${job.names.base}.mp4`);
     job.state = 'muxing';
@@ -500,6 +545,8 @@ class Queue {
     } else {
       await mux(result.streams, videoFile, { duration: result.duration, onProgress, signal, log: this.log });
     }
+    const embed = await this.embedSubs(job, videoFile, writtenSubs, signal);
+    const srtKept = await this.finishSrt(job, writtenSubs, embed);
     const muxMs = Date.now() - muxStart;
     const st = await fsp.stat(videoFile);
     // A finished file whose audio and video lengths differ has frozen or silent parts.
@@ -509,6 +556,9 @@ class Queue {
       job.warning = warn.code;
       job.warningDetail = warn.detail;
       this.log(`İş ${job.id} uyarı: süreler uyuşmuyor (${warn.detail})`);
+    } else if (embed.error) {
+      job.warning = 'subs_not_embedded';
+      job.warningDetail = embed.error;
     }
     job.state = 'done';
     job.step = 'done';
@@ -518,6 +568,8 @@ class Queue {
       size: st.size,
       audioTracks: result.streams.filter(s => s.kind === 'audio').map(s => s.name || s.lang),
       subtitles: writtenSubs,
+      embeddedSubs: embed.n,
+      srtKept,
     };
     job.finishedAt = Date.now();
     const dl = result.stats || {};

@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} descargado · revisa el archivo, las duraciones no coinciden",
   "notify_failed": "No se pudo descargar {name} · {error}",
   "notify_season_done": "{name} temporada {season} completa · {n} episodios",
-  "notify_resume": "La búsqueda de temporada continúa · quedan {n} episodios"
+  "notify_resume": "La búsqueda de temporada continúa · quedan {n} episodios",
+  "track_forced": "forzados"
 }

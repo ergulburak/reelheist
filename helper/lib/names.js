@@ -88,7 +88,9 @@ function buildNames(meta) {
     return { folder, base };
   }
   if (meta.kind === 'episode' && meta.season != null && meta.episode != null) {
-    return { folder: name, base: `${name}.S${pad2(meta.season)}E${pad2(meta.episode)}` };
+    // Every episode has its own folder (sub) inside the series folder: video and subtitles together.
+    const base = `${name}.S${pad2(meta.season)}E${pad2(meta.episode)}`;
+    return { folder: name, base, sub: base };
   }
   const withYear = meta.year ? sanitize(`${name} (${meta.year})`) : name;
   return { folder: withYear, base: withYear };
@@ -115,4 +117,8 @@ function subtitleSuffixes(subs) {
   });
 }
 
-module.exports = { guessLang, normalizeLang, toLang3, sanitize, buildNames, subtitleSuffixes, isForcedSubtitle };
+// The .srt files of a job go into this folder inside the job's folder. Not "Subs" or "Subtitles":
+// VLC and Plex scan those by themselves and would open one of the files instead of the MP4's track.
+const SRT_DIR = 'srt';
+
+module.exports = { SRT_DIR, guessLang, normalizeLang, toLang3, sanitize, buildNames, subtitleSuffixes, isForcedSubtitle };

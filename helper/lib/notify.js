@@ -103,7 +103,7 @@ function readLang(lang) {
 }
 
 const KEYS = ['notify_done', 'notify_done_subs', 'notify_done_subs_only', 'notify_done_warn', 'notify_failed',
-  'notify_season_done', 'notify_resume'];
+  'notify_season_done', 'notify_resume', 'track_forced'];
 
 // Notification texts for a language; missing language or key falls back to English.
 function texts(lang) {

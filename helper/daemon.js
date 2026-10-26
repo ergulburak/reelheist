@@ -22,7 +22,7 @@ const releaseConfig = require('./release.json');
 
 const VERSION = require('./package.json').version;
 // What this helper can do. Add a name here together with the extension code that needs it.
-const FEATURES = ['season', 'subs-only'];
+const FEATURES = ['season', 'subs-only', 'embed-subs'];
 const token = crypto.randomBytes(24).toString('hex');
 let guideServer = null;
 const updater = createUpdateService({ repo: releaseConfig.repo, current: VERSION });
@@ -174,8 +174,10 @@ const server = http.createServer(async (req, res) => {
       else if (action === 'remove') await queue.remove(id);
       else if (action === 'open') {
         const play = url.searchParams.get('play') === '1' || body.play === true || body.play === 1;
-        if (job.output?.video && fs.existsSync(job.output.video)) openInExplorer(job.output.video, !play);
-        else openInExplorer(require('path').join(job.outDir || queue.settings.outDir, job.names.folder), false);
+        // show=1 (season header): the series folder. Otherwise the video, or the job's own folder.
+        if (url.searchParams.get('show') === '1') openInExplorer(require('path').join(job.outDir || queue.settings.outDir, job.names.folder), false);
+        else if (job.output?.video && fs.existsSync(job.output.video)) openInExplorer(job.output.video, !play);
+        else openInExplorer(queue.jobDir(job), false);
       } else return send(res, 404, { error: 'action' });
       return send(res, 200, { ok: true });
     }

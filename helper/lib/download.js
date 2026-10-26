@@ -9,7 +9,7 @@ const { request, getText } = require('./http');
 const hls = require('./hls');
 const { pickVariant } = require('./probe');
 const subs = require('./subtitles');
-const { subtitleSuffixes, guessLang } = require('./names');
+const { subtitleSuffixes, guessLang, isForcedSubtitle } = require('./names');
 const { CodedError } = require('./errors');
 const { AdaptiveLimiter } = require('./throttle');
 
@@ -301,13 +301,18 @@ async function fetchSubtitle(s, signal) {
 async function writeSubtitles(list, outDir, base, signal, log) {
   const suffixes = subtitleSuffixes(list);
   const written = [];
+  let made = false; // the folder is made only when a file goes into it
   for (let i = 0; i < list.length; i++) {
     try {
       const srt = await fetchSubtitle(list[i], signal);
       if (!srt.trim()) continue;
       const file = path.join(outDir, `${base}.${suffixes[i]}.srt`);
+      if (!made) {
+        await fsp.mkdir(outDir, { recursive: true });
+        made = true;
+      }
       await fsp.writeFile(file, '﻿' + srt.replace(/\n/g, '\r\n'), 'utf8');
-      written.push({ file, lang: guessLang(list[i]), label: list[i].label || '' });
+      written.push({ file, lang: guessLang(list[i]), label: list[i].label || '', forced: isForcedSubtitle(list[i]) });
     } catch (e) {
       if (signal?.aborted) throw e;
       log?.(`Altyazı indirilemedi (${list[i].label || list[i].url}): ${e.message}`);

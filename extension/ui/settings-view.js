@@ -114,6 +114,15 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     const overlayEl = $('setOverlay');
     if (overlayEl) overlayEl.checked = ui.overlay !== false;
 
+    const embedEl = $('setEmbedSubs');
+    if (embedEl) embedEl.checked = ui.defaults?.embedSubs !== false;
+    // Without embedding the .srt files are the only subtitles: they always stay.
+    const keepEl = $('setKeepSrt');
+    if (keepEl) {
+      keepEl.disabled = ui.defaults?.embedSubs === false;
+      keepEl.checked = keepEl.disabled || ui.defaults?.keepSrt !== false;
+    }
+
     const outEl = $('outDir');
     if (outEl && getSettings()?.outDir !== undefined) {
       outEl.value = getSettings().outDir;
@@ -149,6 +158,8 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
     if (!nextDefaults.quality) delete nextDefaults.quality;
     if (!nextDefaults.audioLangs) delete nextDefaults.audioLangs;
     if (!nextDefaults.subLangs) delete nextDefaults.subLangs;
+    if (nextDefaults.embedSubs !== false) delete nextDefaults.embedSubs; // on is the default: store only "off"
+    if (nextDefaults.keepSrt !== false) delete nextDefaults.keepSrt;
     const next = await saveUiSettings({ defaults: nextDefaults });
     setUi(next);
     onUiChanged?.();
@@ -252,6 +263,12 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
         onChange: list => saveDefaultsPatch({ subLangs: list.length ? list : undefined }),
       });
     }
+
+    $('setEmbedSubs')?.addEventListener('change', async e => {
+      await saveDefaultsPatch({ embedSubs: e.target.checked ? undefined : false });
+      syncFormFromState();
+    });
+    $('setKeepSrt')?.addEventListener('change', e => saveDefaultsPatch({ keepSrt: e.target.checked ? undefined : false }));
 
     $('clearMemoryBtn')?.addEventListener('click', async () => {
       const next = await saveUiSettings({ siteMemory: {} });

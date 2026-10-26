@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "Vérifiez le fichier : les durées ne correspondent pas ({detail})."
   },
+  "warn_subs_not_embedded": {
+    "message": "Les sous-titres n’ont pas pu être intégrés au MP4 ; ils sont dans le dossier « srt », en fichiers .srt."
+  },
   "err_bad_request": {
     "message": "La requête n’est pas valide."
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "Automatique : la langue de l’interface, l’anglais et la langue originale de la vidéo."
+  },
+  "lbl_embed_subs": {
+    "message": "Intégrer les sous-titres dans le MP4"
+  },
+  "hint_embed_subs": {
+    "message": "VLC, les téléphones et la plupart des téléviseurs les affichent dans le menu des sous-titres. La première langue de sous-titres ci-dessus s’active seule."
+  },
+  "lbl_keep_srt": {
+    "message": "Garder les fichiers .srt"
+  },
+  "hint_keep_srt": {
+    "message": "Ils vont dans un dossier « srt » à côté du MP4. Si cette option est désactivée, ils sont supprimés une fois intégrés au MP4."
   },
   "btn_add_lang": {
     "message": "+ Ajouter une langue"

@@ -295,6 +295,7 @@ async function handle(msg, sender) {
           quality: o.height ? { height: o.height } : null,
           audio: 'all',
           subtitlesOnly: Boolean(o.subtitlesOnly),
+          embedSubs: o.embedSubs || null,
           outDir: o.outDir || undefined,
         })),
       });

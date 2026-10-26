@@ -4,7 +4,7 @@ import { analyzeSources } from '../lib/sources.js';
 import { youtubeTarget, youtubeCookies } from '../lib/youtube.js';
 import { t, langTag, currentLang } from '../lib/i18n.js';
 import { loadPreview, wantsClip, staticFrameUrl } from '../lib/preview.js';
-import { chooseDefaults, rememberChoice, subtitleKey } from '../lib/defaults.js';
+import { chooseDefaults, rememberChoice, subtitleKey, embedSubsOption } from '../lib/defaults.js';
 import { estimateBytes, estimateSeconds, formatBytes, formatDuration } from '../lib/estimate.js';
 import { RELEASES_URL } from '../lib/links.js';
 import { icon } from './icons.js';
@@ -31,6 +31,8 @@ export function sanitize(name) {
 }
 
 export function createPageView({ bg, getUi, getSettings, setSettings, errText, showView, onJobAdded }) {
+  // Settings → Download → "Put subtitles inside the MP4": goes with every new job.
+  const embedSubs = () => embedSubsOption(getUi(), currentLang());
   const $ = id => document.getElementById(id);
 
   let state = null;
@@ -133,7 +135,9 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
     if ($('kind').value === 'video') return { folder: sanitize($('channel').value || 'YouTube'), base: name };
     if ($('kind').value === 'episode') {
       const p = n => String(Number(n) || 0).padStart(2, '0');
-      return { folder: name, base: `${name}.S${p($('season').value)}E${p($('episode').value)}` };
+      // Same as the helper's names.js: every episode has its own folder (sub) in the series folder.
+      const base = `${name}.S${p($('season').value)}E${p($('episode').value)}`;
+      return { folder: name, base, sub: base };
     }
     const y = $('year').value;
     const withYear = y ? sanitize(`${name} (${y})`) : name;
@@ -177,7 +181,8 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
   function updateTarget() {
     const n = names();
     const outDir = getSettings().outDir || t('default_dir');
-    $('target').textContent = t('target_line', { path: `${outDir}\\${n.folder}\\${n.base}.mp4` });
+    const dir = n.sub ? `${n.folder}\\${n.sub}` : n.folder;
+    $('target').textContent = t('target_line', { path: `${outDir}\\${dir}\\${n.base}.mp4` });
   }
 
   function selectedAudioLangsForEstimate() {
@@ -348,7 +353,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
           await bg({
             type: 'queue-episodes',
             items: items.map(e => ({ url: e.url, season: e.season, episode: e.episode })),
-            options: { name: $('name').value.trim(), height: Number($('quality').value) || null, subtitlesOnly: subsOnly },
+            options: { name: $('name').value.trim(), height: Number($('quality').value) || null, subtitlesOnly: subsOnly, embedSubs: embedSubs() },
           });
           onJobAdded?.();
         } catch (e) {
@@ -520,6 +525,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
           source: { kind: 'ytdlp', url: cur.source.url },
           ...chosenYoutubeOptions(),
           subtitlesOnly: subsOnly,
+          embedSubs: embedSubs(),
           cookies: await youtubeCookies(),
         });
         await rememberCurrentChoice();
@@ -556,6 +562,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
       })),
       includeHlsSubtitles: false,
       subtitlesOnly: subsOnly,
+      embedSubs: embedSubs(),
     };
     btn.disabled = true;
     try {
@@ -690,6 +697,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
               pageUrl: e.url,
               source: { kind: 'ytdlp', url: e.url },
               ...opts,
+              embedSubs: embedSubs(),
               cookies,
             })),
           });
@@ -736,7 +744,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
           add.disabled = true;
           addError.hidden = true;
           try {
-            await bg({ type: 'queue-episodes', items, options: { name: $('name').value.trim(), height: Number($('quality').value) || null, subtitlesOnly: subsOnly } });
+            await bg({ type: 'queue-episodes', items, options: { name: $('name').value.trim(), height: Number($('quality').value) || null, subtitlesOnly: subsOnly, embedSubs: embedSubs() } });
             showView('queue');
           } catch (e) {
             addError.textContent = errText(e);

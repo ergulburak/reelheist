@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "Verifique o arquivo: as durações não coincidem ({detail})."
   },
+  "warn_subs_not_embedded": {
+    "message": "Não foi possível incorporar as legendas no MP4; elas estão na pasta \"srt\" como arquivos .srt."
+  },
   "err_bad_request": {
     "message": "A solicitação não é válida."
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "Automático: o idioma da interface, o inglês e o idioma original do vídeo."
+  },
+  "lbl_embed_subs": {
+    "message": "Incorporar as legendas no MP4"
+  },
+  "hint_embed_subs": {
+    "message": "O VLC, os celulares e a maioria das TVs mostram as legendas no menu de legendas. O primeiro idioma de legenda acima liga sozinho."
+  },
+  "lbl_keep_srt": {
+    "message": "Manter os arquivos .srt"
+  },
+  "hint_keep_srt": {
+    "message": "Eles vão para uma pasta \"srt\" ao lado do MP4. Quando isto está desligado, são apagados depois de entrarem no MP4."
   },
   "btn_add_lang": {
     "message": "+ Adicionar idioma"

@@ -407,6 +407,9 @@
   "warn_av_mismatch": {
     "message": "Dosyayı kontrol edin: süreler uyuşmuyor ({detail})."
   },
+  "warn_subs_not_embedded": {
+    "message": "Altyazılar MP4 içine eklenemedi; \"srt\" klasöründe .srt dosyaları olarak duruyor."
+  },
   "err_bad_request": {
     "message": "Geçersiz istek."
   },
@@ -592,6 +595,18 @@
   },
   "hint_subs_auto": {
     "message": "Otomatik: arayüz dili, İngilizce ve videonun orijinal dili."
+  },
+  "lbl_embed_subs": {
+    "message": "Altyazıları MP4 içine göm"
+  },
+  "hint_embed_subs": {
+    "message": "VLC, telefonlar ve çoğu TV bunları altyazı menüsünde gösterir. Yukarıdaki ilk altyazı dili kendiliğinden açılır."
+  },
+  "lbl_keep_srt": {
+    "message": ".srt dosyalarını sakla"
+  },
+  "hint_keep_srt": {
+    "message": "MP4'ün yanındaki \"srt\" klasörüne konur. Kapalıyken, MP4 içine eklendikten sonra silinir."
   },
   "btn_add_lang": {
     "message": "+ Dil ekle"

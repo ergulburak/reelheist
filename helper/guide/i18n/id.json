@@ -23,5 +23,6 @@
   "notify_done_warn": "{name} terunduh · periksa file, durasinya tidak cocok",
   "notify_failed": "{name} gagal diunduh · {error}",
   "notify_season_done": "{name} musim {season} selesai · {n} episode",
-  "notify_resume": "Pencarian musim berlanjut · sisa {n} episode"
+  "notify_resume": "Pencarian musim berlanjut · sisa {n} episode",
+  "track_forced": "paksa"
 }
