@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Tentang Windows SmartScreen",
   "note_smartscreen_desc": "Jika Windows menampilkan \"Windows melindungi PC Anda\", klik \"Info selengkapnya\" lalu \"Tetap jalankan\".",
   "reload_title": "Memperbarui instalasi yang ada?",
-  "reload_desc": "Buka halaman Ekstensi dan klik ikon Muat ulang (↻) pada kartu ReelHeist."
+  "reload_desc": "Buka halaman Ekstensi dan klik ikon Muat ulang (↻) pada kartu ReelHeist.",
+  "notify_done": "{name} terunduh · {size}",
+  "notify_done_subs": "{name} terunduh · {size} · {n} subtitel",
+  "notify_done_subs_only": "Subtitel {name} diunduh · {n} subtitel",
+  "notify_done_warn": "{name} terunduh · periksa file, durasinya tidak cocok",
+  "notify_failed": "{name} gagal diunduh · {error}",
+  "notify_season_done": "{name} musim {season} selesai · {n} episode",
+  "notify_resume": "Pencarian musim berlanjut · sisa {n} episode"
 }

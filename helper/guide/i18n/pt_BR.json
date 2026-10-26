@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Sobre o Windows SmartScreen",
   "note_smartscreen_desc": "Se o Windows exibir \"O Windows protegeu o seu PC\", clique em \"Mais informações\" e em \"Executar assim mesmo\".",
   "reload_title": "Atualizando uma instalação existente?",
-  "reload_desc": "Abra a página de Extensões e clique no ícone Recarregar (↻) no cartão do ReelHeist."
+  "reload_desc": "Abra a página de Extensões e clique no ícone Recarregar (↻) no cartão do ReelHeist.",
+  "notify_done": "{name} baixado · {size}",
+  "notify_done_subs": "{name} baixado · {size} · {n} legendas",
+  "notify_done_subs_only": "Legendas de {name} baixadas · {n} legendas",
+  "notify_done_warn": "{name} baixado · verifique o arquivo, as durações não coincidem",
+  "notify_failed": "Não foi possível baixar {name} · {error}",
+  "notify_season_done": "{name} temporada {season} completa · {n} episódios",
+  "notify_resume": "A busca da temporada continua · faltam {n} episódios"
 }

@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "Unduh"
   },
+  "lbl_subs_only": {
+    "message": "Hanya subtitel"
+  },
+  "btn_download_subs": {
+    "message": "Unduh subtitel"
+  },
+  "badge_subs_only": {
+    "message": "Hanya subtitel"
+  },
+  "step_subs": {
+    "message": "Subtitel"
+  },
+  "err_no_subtitles": {
+    "message": "Tidak ada subtitel di halaman ini."
+  },
   "playlist_summary": {
     "message": "Tambahkan playlist ke antrean"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "Antrean kosong."
   },
-  "season_progress": {
-    "message": "Musim: {done}/{total} episode siap"
+  "step_page": {
+    "message": "Halaman"
   },
-  "season_progress_current": {
-    "message": "Musim: {done}/{total} episode siap (sekarang episode {n})"
+  "step_video": {
+    "message": "Video"
   },
-  "season_failed": {
-    "message": "Musim {season} episode {episode} tidak dapat ditambahkan: {error}"
+  "step_download": {
+    "message": "Unduh"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "Selesai"
+  },
+  "resolve_opening": {
+    "message": "Membuka halaman"
+  },
+  "resolve_waiting": {
+    "message": "Halaman terbuka, menunggu pemutar · {sec} / {max} dtk"
+  },
+  "resolve_short_only": {
+    "message": "Video pendek ditemukan, menunggu episode · {sec} / {max} dtk"
+  },
+  "queued_behind": {
+    "message": "Antre · {n} di depan"
+  },
+  "season_head": {
+    "message": "{name} · Musim {season}"
+  },
+  "season_head_count": {
+    "message": "{n} episode"
+  },
+  "season_sum_done": {
+    "message": "{n} selesai"
+  },
+  "season_sum_active": {
+    "message": "{n} diunduh"
+  },
+  "season_sum_finding": {
+    "message": "{n} dicari"
+  },
+  "season_sum_failed": {
+    "message": "{n} gagal"
+  },
+  "season_sum_queued": {
+    "message": "{n} antre"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} diunduh {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} membuat MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} dijeda"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} dicari"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} gagal"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "Yang gagal"
+  },
+  "btn_open_page": {
+    "message": "Buka halaman"
+  },
+  "queued_more": {
+    "message": "{list} · antre"
+  },
+  "state_resolving": {
+    "message": "Mencari"
+  },
+  "err_episode_interrupted": {
+    "message": "Pencarian berhenti sebelum selesai (browser atau program pembantu ditutup). Coba lagi."
+  },
+  "err_name_required": {
+    "message": "Nama serial wajib diisi."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · mencari {n} episode · jangan tutup jendela ini"
   },
   "overlay_download": {
     "message": "⬇ Unduh"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "Tidak dapat terhubung ke program pembantu."
+  },
+  "err_helper_outdated": {
+    "message": "Program pembantu sudah usang. Pasang versi terbaru, lalu coba lagi."
   },
   "err_episode_timeout": {
     "message": "Video tidak ditemukan (waktu habis)."
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "Lisensi"
+  },
+  "lbl_notify": {
+    "message": "Notifikasi"
+  },
+  "notify_all": {
+    "message": "Semua unduhan"
+  },
+  "notify_errors": {
+    "message": "Hanya kesalahan"
+  },
+  "notify_off": {
+    "message": "Mati"
   }
 }

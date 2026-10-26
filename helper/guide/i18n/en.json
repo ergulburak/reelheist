@@ -16,5 +16,12 @@
   "note_smartscreen_title": "About Windows SmartScreen",
   "note_smartscreen_desc": "If Windows shows \"Windows protected your PC\" when running the installer, click \"More info\" and then \"Run anyway\".",
   "reload_title": "Updating an existing install?",
-  "reload_desc": "Open your browser Extensions page and click the Reload (↻) icon on the ReelHeist card."
+  "reload_desc": "Open your browser Extensions page and click the Reload (↻) icon on the ReelHeist card.",
+  "notify_done": "{name} downloaded · {size}",
+  "notify_done_subs": "{name} downloaded · {size} · {n} subtitles",
+  "notify_done_subs_only": "{name} subtitles downloaded · {n} subtitles",
+  "notify_done_warn": "{name} downloaded · check the file, the lengths do not match",
+  "notify_failed": "{name} could not be downloaded · {error}",
+  "notify_season_done": "{name} season {season} complete · {n} episodes",
+  "notify_resume": "Season search continues · {n} episodes left"
 }

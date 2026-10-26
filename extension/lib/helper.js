@@ -35,6 +35,15 @@ export async function getHelper(force = false) {
   return cached;
 }
 
+// An older helper has the same version number but not every feature: it answers ping
+// without `features`, or without the name. Throws helper_outdated in that case.
+export async function requireFeature(name) {
+  const info = await api('GET', '/ping');
+  if (!Array.isArray(info?.features) || !info.features.includes(name)) {
+    throw Object.assign(new Error(`The helper program is out of date (no "${name}" support)`), { code: 'helper_outdated' });
+  }
+}
+
 export async function api(method, path, body) {
   for (let attempt = 0; attempt < 2; attempt++) {
     const h = await getHelper(attempt > 0);

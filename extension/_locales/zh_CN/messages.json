@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "下载"
   },
+  "lbl_subs_only": {
+    "message": "仅字幕"
+  },
+  "btn_download_subs": {
+    "message": "下载字幕"
+  },
+  "badge_subs_only": {
+    "message": "仅字幕"
+  },
+  "step_subs": {
+    "message": "字幕"
+  },
+  "err_no_subtitles": {
+    "message": "此页面上未找到字幕。"
+  },
   "playlist_summary": {
     "message": "将播放列表加入队列"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "队列为空。"
   },
-  "season_progress": {
-    "message": "本季：已准备 {done}/{total} 集"
+  "step_page": {
+    "message": "页面"
   },
-  "season_progress_current": {
-    "message": "本季：已准备 {done}/{total} 集（正在处理第 {n} 集）"
+  "step_video": {
+    "message": "视频"
   },
-  "season_failed": {
-    "message": "第 {season} 季第 {episode} 集无法添加：{error}"
+  "step_download": {
+    "message": "下载"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "完成"
+  },
+  "resolve_opening": {
+    "message": "正在打开页面"
+  },
+  "resolve_waiting": {
+    "message": "页面已打开，等待播放器 · {sec} / {max} 秒"
+  },
+  "resolve_short_only": {
+    "message": "发现短视频，等待正片 · {sec} / {max} 秒"
+  },
+  "queued_behind": {
+    "message": "排队中 · 前面 {n} 集"
+  },
+  "season_head": {
+    "message": "{name} · 第 {season} 季"
+  },
+  "season_head_count": {
+    "message": "{n} 集"
+  },
+  "season_sum_done": {
+    "message": "{n} 已完成"
+  },
+  "season_sum_active": {
+    "message": "{n} 下载中"
+  },
+  "season_sum_finding": {
+    "message": "{n} 查找中"
+  },
+  "season_sum_failed": {
+    "message": "{n} 失败"
+  },
+  "season_sum_queued": {
+    "message": "{n} 排队中"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} 下载中 {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} 正在生成 MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} 已暂停"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} 查找中"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} 失败"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "失败项"
+  },
+  "btn_open_page": {
+    "message": "打开页面"
+  },
+  "queued_more": {
+    "message": "{list} · 排队中"
+  },
+  "state_resolving": {
+    "message": "查找中"
+  },
+  "err_episode_interrupted": {
+    "message": "查找在完成前停止了（浏览器或辅助程序已关闭）。请重试。"
+  },
+  "err_name_required": {
+    "message": "需要剧集名称。"
+  },
+  "resolver_title": {
+    "message": "ReelHeist · 正在查找 {n} 集 · 请勿关闭此窗口"
   },
   "overlay_download": {
     "message": "⬇ 下载"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "无法连接到辅助程序。"
+  },
+  "err_helper_outdated": {
+    "message": "辅助程序版本过旧。请安装最新版本，然后重试。"
   },
   "err_episode_timeout": {
     "message": "未找到视频（超时）。"
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "许可证"
+  },
+  "lbl_notify": {
+    "message": "通知"
+  },
+  "notify_all": {
+    "message": "所有下载"
+  },
+  "notify_errors": {
+    "message": "仅错误"
+  },
+  "notify_off": {
+    "message": "关闭"
   }
 }

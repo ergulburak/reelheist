@@ -9,18 +9,18 @@ export { formatDuration };
 // opts.minDuration: streams shorter than this (seconds) are marked `short` (trailer, ad).
 export async function analyzeSources(sources, probe, opts = {}) {
   const recent = sources.slice(-10);
-  const results = [];
-  for (const s of recent) {
+  // All probes run at once; results keep the order of the sources.
+  const settled = await Promise.allSettled(recent.map(s => Promise.resolve().then(() => probe(s))));
+  const results = recent.map((s, i) => {
+    const r = settled[i];
     if (s.kind === 'file') {
-      results.push({ source: s, probe: { type: 'file', variants: [], audios: [], subtitles: [], duration: null } });
-      continue;
+      // The helper reads the file length when it can; otherwise: unknown length, still a choice.
+      const fixed = { type: 'file', variants: [], audios: [], subtitles: [], duration: null };
+      const p = r.status === 'fulfilled' ? r.value : null;
+      return { source: s, probe: p ? { ...fixed, ...p, type: 'file' } : fixed };
     }
-    try {
-      results.push({ source: s, probe: await probe(s) });
-    } catch (e) {
-      results.push({ source: s, error: e.message });
-    }
-  }
+    return r.status === 'fulfilled' ? { source: s, probe: r.value } : { source: s, error: r.reason?.message };
+  });
   const children = new Set();
   for (const r of results) {
     if (r.probe?.type !== 'master') continue;

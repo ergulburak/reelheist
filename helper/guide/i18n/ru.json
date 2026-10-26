@@ -16,5 +16,12 @@
   "note_smartscreen_title": "О Windows SmartScreen",
   "note_smartscreen_desc": "Если Windows покажет экран «Система Windows защитила ваш компьютер», нажмите «Подробнее» → «Выполнить в любом случае».",
   "reload_title": "Обновляете установленную версию?",
-  "reload_desc": "Откройте страницу расширений и нажмите значок обновления (↻) на карточке ReelHeist."
+  "reload_desc": "Откройте страницу расширений и нажмите значок обновления (↻) на карточке ReelHeist.",
+  "notify_done": "{name} скачан · {size}",
+  "notify_done_subs": "{name} скачан · {size} · субтитров: {n}",
+  "notify_done_subs_only": "Субтитры {name} загружены · {n} субтитров",
+  "notify_done_warn": "{name} скачан · проверьте файл, длительности не совпадают",
+  "notify_failed": "Не удалось скачать {name} · {error}",
+  "notify_season_done": "{name}, сезон {season} завершён · серий: {n}",
+  "notify_resume": "Поиск по сезону продолжается · осталось серий: {n}"
 }

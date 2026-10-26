@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "İndir"
   },
+  "lbl_subs_only": {
+    "message": "Yalnızca altyazı"
+  },
+  "btn_download_subs": {
+    "message": "Altyazıyı indir"
+  },
+  "badge_subs_only": {
+    "message": "Yalnızca altyazı"
+  },
+  "step_subs": {
+    "message": "Altyazı"
+  },
+  "err_no_subtitles": {
+    "message": "Bu sayfada altyazı bulunamadı."
+  },
   "playlist_summary": {
     "message": "Oynatma listesini kuyruğa ekle"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "Kuyruk boş."
   },
-  "season_progress": {
-    "message": "Sezon: {done}/{total} bölüm hazırlandı"
+  "step_page": {
+    "message": "Sayfa"
   },
-  "season_progress_current": {
-    "message": "Sezon: {done}/{total} bölüm hazırlandı (şimdi {n}. bölüm)"
+  "step_video": {
+    "message": "Video"
   },
-  "season_failed": {
-    "message": "{season}. sezon {episode}. bölüm eklenemedi: {error}"
+  "step_download": {
+    "message": "İndirme"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "Bitti"
+  },
+  "resolve_opening": {
+    "message": "Sayfa açılıyor"
+  },
+  "resolve_waiting": {
+    "message": "Sayfa açıldı, oynatıcı bekleniyor · {sec} / {max} sn"
+  },
+  "resolve_short_only": {
+    "message": "Kısa bir video bulundu, bölüm bekleniyor · {sec} / {max} sn"
+  },
+  "queued_behind": {
+    "message": "Sırada · önünde {n} bölüm"
+  },
+  "season_head": {
+    "message": "{name} · Sezon {season}"
+  },
+  "season_head_count": {
+    "message": "{n} bölüm"
+  },
+  "season_sum_done": {
+    "message": "{n} bitti"
+  },
+  "season_sum_active": {
+    "message": "{n} iniyor"
+  },
+  "season_sum_finding": {
+    "message": "{n} aranıyor"
+  },
+  "season_sum_failed": {
+    "message": "{n} hata"
+  },
+  "season_sum_queued": {
+    "message": "{n} sırada"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} iniyor %{pct}"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} MP4 yapılıyor"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} duraklatıldı"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} aranıyor"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} hata"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "Hatalılar"
+  },
+  "btn_open_page": {
+    "message": "Sayfayı aç"
+  },
+  "queued_more": {
+    "message": "{list} · sırada"
+  },
+  "state_resolving": {
+    "message": "Aranıyor"
+  },
+  "err_episode_interrupted": {
+    "message": "Arama bitmeden durdu (tarayıcı ya da yardımcı program kapandı). Yeniden deneyin."
+  },
+  "err_name_required": {
+    "message": "Dizi adı gerekli."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · {n} bölüm aranıyor · pencereyi kapatmayın"
   },
   "overlay_download": {
     "message": "⬇ İndir"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "Yardımcı programa bağlanılamadı."
+  },
+  "err_helper_outdated": {
+    "message": "Yardımcı program eski. Son sürümü kurun, sonra yeniden deneyin."
   },
   "err_episode_timeout": {
     "message": "Video bulunamadı (zaman aşımı)."
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "Lisanslar"
+  },
+  "lbl_notify": {
+    "message": "Bildirimler"
+  },
+  "notify_all": {
+    "message": "Tüm indirmeler"
+  },
+  "notify_errors": {
+    "message": "Yalnızca hatalar"
+  },
+  "notify_off": {
+    "message": "Kapalı"
   }
 }

@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Windows SmartScreen について",
   "note_smartscreen_desc": "「Windows によって PC が保護されました」と表示された場合は、「詳細情報」→「実行」をクリックしてください。",
   "reload_title": "アップデートの場合",
-  "reload_desc": "拡張機能ページを開き、ReelHeist カードの再読み込み (↻) アイコンをクリックしてください。"
+  "reload_desc": "拡張機能ページを開き、ReelHeist カードの再読み込み (↻) アイコンをクリックしてください。",
+  "notify_done": "{name} をダウンロードしました · {size}",
+  "notify_done_subs": "{name} をダウンロードしました · {size} · 字幕 {n} 件",
+  "notify_done_subs_only": "{name} の字幕をダウンロードしました · {n} 件",
+  "notify_done_warn": "{name} をダウンロードしました · ファイルを確認してください。長さが一致しません",
+  "notify_failed": "{name} をダウンロードできませんでした · {error}",
+  "notify_season_done": "{name} シーズン{season}が完了しました · {n} 話",
+  "notify_resume": "シーズンの検索を続けています · 残り {n} 話"
 }

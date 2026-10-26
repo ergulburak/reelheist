@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "Baixar"
   },
+  "lbl_subs_only": {
+    "message": "Somente legendas"
+  },
+  "btn_download_subs": {
+    "message": "Baixar legendas"
+  },
+  "badge_subs_only": {
+    "message": "Somente legendas"
+  },
+  "step_subs": {
+    "message": "Legendas"
+  },
+  "err_no_subtitles": {
+    "message": "Nenhuma legenda foi encontrada nesta página."
+  },
   "playlist_summary": {
     "message": "Adicionar a playlist à fila"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "A fila está vazia."
   },
-  "season_progress": {
-    "message": "Temporada: {done}/{total} episódios prontos"
+  "step_page": {
+    "message": "Página"
   },
-  "season_progress_current": {
-    "message": "Temporada: {done}/{total} episódios prontos (agora o episódio {n})"
+  "step_video": {
+    "message": "Vídeo"
   },
-  "season_failed": {
-    "message": "Não foi possível adicionar a temporada {season}, episódio {episode}: {error}"
+  "step_download": {
+    "message": "Baixar"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "Pronto"
+  },
+  "resolve_opening": {
+    "message": "Abrindo a página"
+  },
+  "resolve_waiting": {
+    "message": "Página aberta, aguardando o player · {sec} / {max} s"
+  },
+  "resolve_short_only": {
+    "message": "Um vídeo curto foi encontrado, aguardando o episódio · {sec} / {max} s"
+  },
+  "queued_behind": {
+    "message": "Na fila · {n} à frente"
+  },
+  "season_head": {
+    "message": "{name} · Temporada {season}"
+  },
+  "season_head_count": {
+    "message": "{n} episódios"
+  },
+  "season_sum_done": {
+    "message": "{n} prontos"
+  },
+  "season_sum_active": {
+    "message": "{n} baixando"
+  },
+  "season_sum_finding": {
+    "message": "{n} buscando"
+  },
+  "season_sum_failed": {
+    "message": "{n} com erro"
+  },
+  "season_sum_queued": {
+    "message": "{n} na fila"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} baixando {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} criando MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} pausado"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} buscando"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} com erro"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "Falhas"
+  },
+  "btn_open_page": {
+    "message": "Abrir página"
+  },
+  "queued_more": {
+    "message": "{list} · na fila"
+  },
+  "state_resolving": {
+    "message": "Buscando"
+  },
+  "err_episode_interrupted": {
+    "message": "A busca parou antes de terminar (o navegador ou o programa auxiliar foi fechado). Tente de novo."
+  },
+  "err_name_required": {
+    "message": "O nome da série é obrigatório."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · buscando {n} episódios · não feche esta janela"
   },
   "overlay_download": {
     "message": "⬇ Baixar"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "Não foi possível conectar ao programa auxiliar."
+  },
+  "err_helper_outdated": {
+    "message": "O programa auxiliar está desatualizado. Instale a versão mais recente e tente de novo."
   },
   "err_episode_timeout": {
     "message": "Nenhum vídeo encontrado (tempo esgotado)."
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "Licenças"
+  },
+  "lbl_notify": {
+    "message": "Notificações"
+  },
+  "notify_all": {
+    "message": "Todos os downloads"
+  },
+  "notify_errors": {
+    "message": "Somente erros"
+  },
+  "notify_off": {
+    "message": "Desativadas"
   }
 }

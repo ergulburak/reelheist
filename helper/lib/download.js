@@ -112,6 +112,15 @@ async function writeConcatInputs(s, si, workDir) {
   s.concat = true;
 }
 
+// Subtitle renditions of an HLS master (subtitle-only jobs read nothing else).
+async function planHlsSubtitles(job, signal) {
+  if (job.includeHlsSubtitles === false) return [];
+  const headers = job.source.headers;
+  const { text, finalUrl } = await getText(job.source.url, { headers, signal, cache: job.playlists || null });
+  if (!hls.isMaster(text)) return [];
+  return hls.parseMaster(text, finalUrl).subtitles.map(s => ({ hls: true, url: s.url, lang: s.lang, label: s.name, headers }));
+}
+
 // Build the list of streams to fetch for an HLS job.
 async function planHls(job, signal) {
   const headers = job.source.headers;
@@ -309,5 +318,5 @@ async function writeSubtitles(list, outDir, base, signal, log) {
 
 module.exports = {
   downloadHls, downloadFile, writeSubtitles, stripToTsSync, ivForSegment, planHls, isValidSegment, runAdaptive,
-  discontinuityGroups, writeConcatInputs,
+  discontinuityGroups, writeConcatInputs, planHlsSubtitles,
 };

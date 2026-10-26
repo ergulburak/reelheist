@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "Скачать"
   },
+  "lbl_subs_only": {
+    "message": "Только субтитры"
+  },
+  "btn_download_subs": {
+    "message": "Скачать субтитры"
+  },
+  "badge_subs_only": {
+    "message": "Только субтитры"
+  },
+  "step_subs": {
+    "message": "Субтитры"
+  },
+  "err_no_subtitles": {
+    "message": "На этой странице субтитры не найдены."
+  },
   "playlist_summary": {
     "message": "Добавить плейлист в очередь"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "Очередь пуста."
   },
-  "season_progress": {
-    "message": "Сезон: готово серий {done} из {total}"
+  "step_page": {
+    "message": "Сайт"
   },
-  "season_progress_current": {
-    "message": "Сезон: готово серий {done} из {total} (сейчас серия {n})"
+  "step_video": {
+    "message": "Видео"
   },
-  "season_failed": {
-    "message": "Сезон {season}, серия {episode}: не удалось добавить: {error}"
+  "step_download": {
+    "message": "Загрузка"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "Готово"
+  },
+  "resolve_opening": {
+    "message": "Открываем страницу"
+  },
+  "resolve_waiting": {
+    "message": "Страница открыта, ждём плеер · {sec} / {max} с"
+  },
+  "resolve_short_only": {
+    "message": "Найдено короткое видео, ждём серию · {sec} / {max} с"
+  },
+  "queued_behind": {
+    "message": "В очереди · впереди {n}"
+  },
+  "season_head": {
+    "message": "{name} · Сезон {season}"
+  },
+  "season_head_count": {
+    "message": "серий: {n}"
+  },
+  "season_sum_done": {
+    "message": "готово: {n}"
+  },
+  "season_sum_active": {
+    "message": "загружается: {n}"
+  },
+  "season_sum_finding": {
+    "message": "поиск: {n}"
+  },
+  "season_sum_failed": {
+    "message": "ошибок: {n}"
+  },
+  "season_sum_queued": {
+    "message": "в очереди: {n}"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} загрузка {pct} %"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} сборка MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} пауза"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} поиск"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} ошибка"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "Ошибки"
+  },
+  "btn_open_page": {
+    "message": "Открыть страницу"
+  },
+  "queued_more": {
+    "message": "{list} · в очереди"
+  },
+  "state_resolving": {
+    "message": "Поиск"
+  },
+  "err_episode_interrupted": {
+    "message": "Поиск остановился до завершения (закрыт браузер или вспомогательная программа). Повторите."
+  },
+  "err_name_required": {
+    "message": "Нужно название сериала."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · поиск серий: {n} · не закрывайте это окно"
   },
   "overlay_download": {
     "message": "⬇ Скачать"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "Не удалось подключиться к вспомогательной программе."
+  },
+  "err_helper_outdated": {
+    "message": "Вспомогательная программа устарела. Установите последнюю версию и повторите."
   },
   "err_episode_timeout": {
     "message": "Видео не найдено (время ожидания истекло)."
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "Лицензии"
+  },
+  "lbl_notify": {
+    "message": "Уведомления"
+  },
+  "notify_all": {
+    "message": "Все загрузки"
+  },
+  "notify_errors": {
+    "message": "Только ошибки"
+  },
+  "notify_off": {
+    "message": "Выкл."
   }
 }

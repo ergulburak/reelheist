@@ -12,6 +12,9 @@
 - **Temiz MP4 çıktısı:** `ffmpeg` kullanarak yeniden kodlama (re-encode) yapmadan görüntüyü, birden çok ses kanalını (dil etiketli, orijinal ses varsayılan olarak işaretli) ve altyazıları tek bir standart `.mp4` dosyasında birleştirir.
 - **Duraklat ve sürdür:** İndirilen parçalar diskte korunur; duraklatılan veya kesilen indirmeler kaldığı yerden devam eder.
 - **Hareketli önizleme ve seçim çipleri:** 2 saniyelik sessiz önizleme döngüsü, kalite (`1080p`, `720p`, `480p`), ses dili ve altyazı çipleri ile site bazlı seçim belleği sunar.
+- **Sezon kartları:** Bir sezonu kuyruğa aldığınızda her bölüm hemen kart olarak görünür; adım çubuğu (Sayfa, Video, İndirme, MP4, Bitti) nerede olduğunu gösterir ve hatalı bölümü yeniden deneyebilirsiniz.
+- **Yalnızca altyazı:** "Yalnızca altyazı" çipini açın; video indirilmeden sadece `.srt` dosyaları kaydedilir (bir sezon için de geçerlidir).
+- **İndirme bildirimleri:** İndirme bitince veya hata verince Windows bildirimi gösterilir; Ayarlar → İndirme → Bildirimler altından tümü, yalnızca hatalar veya kapalı seçilir.
 - **3 tema ve 12 dil:** Kırmızı, Siyah/Bej ve Bej/Siyah temalar; 12 dilde tam arayüz desteği (`tr`, `en`, `es`, `pt_BR`, `fr`, `de`, `ru`, `ar` sağdan sola, `zh_CN`, `id`, `ja`, `hi`).
 - **İmzalı site paketi depoları:** Özel başlık ayrıştırma, bölüm bulma ve oynatıcı başlatma kuralları için Ed25519 imzalı bildirimsel JSON paketleri.
 

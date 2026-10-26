@@ -55,6 +55,21 @@
   "btn_download": {
     "message": "Download"
   },
+  "lbl_subs_only": {
+    "message": "Subtitles only"
+  },
+  "btn_download_subs": {
+    "message": "Download subtitles"
+  },
+  "badge_subs_only": {
+    "message": "Subtitles only"
+  },
+  "step_subs": {
+    "message": "Subtitles"
+  },
+  "err_no_subtitles": {
+    "message": "No subtitles were found on this page."
+  },
   "playlist_summary": {
     "message": "Add the playlist to the queue"
   },
@@ -246,14 +261,92 @@
   "queue_empty": {
     "message": "The queue is empty."
   },
-  "season_progress": {
-    "message": "Season: {done}/{total} episodes ready"
+  "step_page": {
+    "message": "Page"
   },
-  "season_progress_current": {
-    "message": "Season: {done}/{total} episodes ready (now episode {n})"
+  "step_video": {
+    "message": "Video"
   },
-  "season_failed": {
-    "message": "Season {season} episode {episode} could not be added: {error}"
+  "step_download": {
+    "message": "Download"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "Done"
+  },
+  "resolve_opening": {
+    "message": "Opening the page"
+  },
+  "resolve_waiting": {
+    "message": "Page open, waiting for the player · {sec} / {max} s"
+  },
+  "resolve_short_only": {
+    "message": "A short video was found, waiting for the episode · {sec} / {max} s"
+  },
+  "queued_behind": {
+    "message": "Queued · {n} ahead"
+  },
+  "season_head": {
+    "message": "{name} · Season {season}"
+  },
+  "season_head_count": {
+    "message": "{n} episodes"
+  },
+  "season_sum_done": {
+    "message": "{n} done"
+  },
+  "season_sum_active": {
+    "message": "{n} downloading"
+  },
+  "season_sum_finding": {
+    "message": "{n} searching"
+  },
+  "season_sum_failed": {
+    "message": "{n} failed"
+  },
+  "season_sum_queued": {
+    "message": "{n} queued"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} downloading {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} making MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} paused"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} searching"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} failed"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "Retry failed"
+  },
+  "btn_open_page": {
+    "message": "Open page"
+  },
+  "queued_more": {
+    "message": "{list} · queued"
+  },
+  "state_resolving": {
+    "message": "Searching"
+  },
+  "err_episode_interrupted": {
+    "message": "The search stopped before it ended (the browser or the helper program closed). Retry."
+  },
+  "err_name_required": {
+    "message": "Series name is required."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · {n} episodes searching · do not close this window"
   },
   "overlay_download": {
     "message": "⬇ Download"
@@ -306,6 +399,9 @@
   },
   "err_helper_unreachable": {
     "message": "Could not connect to the helper program."
+  },
+  "err_helper_outdated": {
+    "message": "The helper program is out of date. Install the latest version, then try again."
   },
   "err_episode_timeout": {
     "message": "No video found (timed out)."
@@ -627,5 +723,17 @@
   },
   "link_licenses": {
     "message": "Licenses"
+  },
+  "lbl_notify": {
+    "message": "Notifications"
+  },
+  "notify_all": {
+    "message": "All downloads"
+  },
+  "notify_errors": {
+    "message": "Only errors"
+  },
+  "notify_off": {
+    "message": "Off"
   }
 }

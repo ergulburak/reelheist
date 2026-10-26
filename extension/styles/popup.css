@@ -856,6 +856,19 @@ details.more { margin: 4px 0 0; }
 }
 .job.done .job-state { color: var(--ok); }
 .job.failed .job-state { color: var(--err); }
+/* Failed season card: its page instead of the state word (the error line says what went wrong). */
+.job-page {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+/* Helper unreachable: the cards below are the last known state. */
+.stale-note { margin: 0 0 8px; }
+.stale-note ~ .job, .stale-note ~ .season { opacity: .6; }
 .job-pct { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
 .job-info { margin-top: 6px; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .bar { height: 4px; margin: 6px 0 5px; overflow: hidden; border-radius: 2px; background: var(--surface-2); position: relative; }
@@ -933,6 +946,161 @@ details.more { margin: 4px 0 0; }
   background: color-mix(in srgb, var(--err) 10%, transparent);
   border-color: transparent;
 }
+.job .actions { flex-wrap: wrap; }
+
+/* Season group: sticky header, then the episode cards behind a thin line. */
+.season { display: flex; flex-direction: column; gap: 8px; }
+.season-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-block: 8px;
+  padding-inline: 12px 8px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 75%, var(--bg));
+  border: 1px solid var(--line-soft);
+  box-shadow: 0 8px 16px -14px var(--shadow);
+  cursor: pointer;
+  transition: border-color 150ms ease;
+}
+.season-head:hover { border-color: var(--line); }
+.season-main { flex: 1; min-width: 0; }
+.season-title { font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+.season-count { color: var(--muted); font-size: 12px; font-weight: 400; white-space: nowrap; }
+.season-sum {
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.season-dots {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  max-width: 100%;
+  margin-inline-start: 6px;
+  vertical-align: middle;
+}
+.season-dots i { display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.season-dots i.done { background: var(--ok); }
+.season-dots i.active { background: var(--accent); }
+.season-dots i.failed { background: var(--err); }
+.season-head .sbar {
+  display: flex;
+  height: 3px;
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--surface-2);
+}
+.season-head .sbar i { display: block; height: 100%; }
+.season-head .sbar i.d { background: var(--ok); }
+.season-head .sbar i.c { background: var(--accent); }
+.season-head .sbar i.c.f { opacity: 0.5; }
+.season-head .sbar i.e { background: var(--err); }
+.season-head .err { margin-top: 4px; font-size: 12px; overflow-wrap: anywhere; }
+.season-head .err:empty { display: none; }
+.season-head .act {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 9px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.season-head .act:hover { background: var(--surface-2); }
+.season-head .act .ico { width: 13px; height: 13px; }
+.season-head .chev {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+}
+.season-head .chev:hover { color: var(--text); background: var(--surface-2); }
+.season-head .chev span { display: block; transition: transform 150ms ease; }
+.season-head.folded .chev span { transform: rotate(-90deg); }
+[dir="rtl"] .season-head.folded .chev span { transform: rotate(90deg); }
+.season-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-inline-start: 8px;
+  padding-inline-start: 8px;
+  border-inline-start: 2px solid var(--surface-2);
+}
+
+/* Episode card inside a season */
+.job.in-group { padding: 10px 12px; border-radius: 14px; }
+.job.in-group .job-thumb { width: 64px; height: 36px; border-radius: 8px; }
+.job.in-group .job-thumb .ico { width: 18px; height: 18px; }
+.job.in-group.waiting, .job.in-group.done { opacity: 0.78; }
+.job.in-group.waiting:hover, .job.in-group.done:hover { opacity: 1; }
+.job.resolving.finding {
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line-soft));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--surface)), var(--surface) 70%);
+}
+.job .sub { color: var(--muted); font-size: 11.5px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.job.in-group .actions { margin-top: 10px; padding-top: 8px; }
+
+/* Five-step bar: Page → Video → Download → MP4 → Done */
+.steps { display: flex; align-items: center; margin: 10px 0 2px; }
+.st {
+  flex: 0 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
+  white-space: nowrap;
+}
+.st-l { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.st .dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+}
+.st.done { color: var(--muted); }
+.st.done .dot { background: var(--ok); border-color: var(--ok); }
+.st.now { color: var(--text); }
+.st.now .dot { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+.st.err { color: var(--err); }
+.st.err .dot { background: var(--err); border-color: var(--err); }
+.ln { flex: 1 1 6px; min-width: 6px; height: 2px; margin: 0 3px; border-radius: 1px; background: var(--line); }
+.ln.done { background: var(--ok); }
+
+.queued-more {
+  align-self: flex-start;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+.queued-more:hover { background: none; color: var(--text); }
 
 /* Settings screen */
 .set {

@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Hinweis zu Windows SmartScreen",
   "note_smartscreen_desc": "Falls Windows „Der PC wurde durch Windows geschützt“ anzeigt, klicken Sie auf „Weitere Informationen“ → „Trotzdem ausführen“.",
   "reload_title": "Bestehende Installation aktualisieren?",
-  "reload_desc": "Öffnen Sie die Erweiterungsseite und klicken Sie bei ReelHeist auf das Neu-laden-Symbol (↻)."
+  "reload_desc": "Öffnen Sie die Erweiterungsseite und klicken Sie bei ReelHeist auf das Neu-laden-Symbol (↻).",
+  "notify_done": "{name} heruntergeladen · {size}",
+  "notify_done_subs": "{name} heruntergeladen · {size} · {n} Untertitel",
+  "notify_done_subs_only": "{name}: Untertitel heruntergeladen · {n} Untertitel",
+  "notify_done_warn": "{name} heruntergeladen · Datei prüfen, die Längen passen nicht zusammen",
+  "notify_failed": "{name} konnte nicht heruntergeladen werden · {error}",
+  "notify_season_done": "{name} Staffel {season} komplett · {n} Folgen",
+  "notify_resume": "Staffelsuche läuft weiter · noch {n} Folgen"
 }

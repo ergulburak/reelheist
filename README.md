@@ -12,6 +12,9 @@
 - **Clean MP4 output:** Remuxes video, multiple audio tracks (tagged by language with the original track marked default), and subtitles into a single standard `.mp4` file using `ffmpeg` without re-encoding.
 - **Pause & resume downloads:** Segment-level progress is kept on disk so interrupted or paused downloads resume where they left off.
 - **Animated preview & selection chips:** Shows a 2-second muted preview loop, quality chip (`1080p`, `720p`, `480p`), audio track chip, and subtitle chip with per-site memory.
+- **Season cards:** Queue a season and every episode appears as a card at once, with a step bar (Page, Video, Download, MP4, Done), so you can see where each one is and retry a failed one.
+- **Subtitles only:** turn on the "Subtitles only" chip to save just the `.srt` files (also for a whole season) without downloading the video.
+- **Download notifications:** Windows toasts when a download finishes or fails; choose all, errors only, or off under Settings → Download → Notifications.
 - **3 themes & 12 languages:** Red, Black/Beige, and Beige/Black themes; full localization in 12 languages (`tr`, `en`, `es`, `pt_BR`, `fr`, `de`, `ru`, `ar` with RTL, `zh_CN`, `id`, `ja`, `hi`).
 - **Signed site-pack repositories:** Optional Ed25519-signed declarative JSON packs for custom title parsing, episode discovery, and player triggers.
 

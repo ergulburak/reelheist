@@ -1,5 +1,5 @@
 import { api } from './lib/helper.js';
-import { initI18n, applyI18n, t } from './lib/i18n.js';
+import { initI18n, applyI18n, t, currentLang } from './lib/i18n.js';
 import { applyTheme } from './lib/theme.js';
 import { loadUiSettings } from './lib/ui-settings.js';
 import { icon } from './ui/icons.js';
@@ -12,6 +12,18 @@ let ui = await loadUiSettings();
 applyTheme(ui.theme);
 await initI18n(ui.lang);
 applyI18n(document);
+
+// The helper writes its toast texts in the UI language. The language goes to the helper
+// once, again when it changes, and again when a send failed (the helper may start later:
+// every good queue poll calls this, and it does nothing when the helper has the language).
+let pushedLang = null;
+function pushLang() {
+  const lang = currentLang();
+  if (pushedLang === lang) return;
+  pushedLang = lang;
+  api('POST', '/settings', { lang }).catch(() => { pushedLang = null; });
+}
+pushLang();
 
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -122,12 +134,13 @@ async function refreshQueue() {
   clearTimeout(queueTimer);
   try {
     const { jobs } = await api('GET', '/jobs');
+    pushLang();
     statusBar.render(jobs);
     pageView.onJobsUpdate(jobs);
     await downloadsView.render(jobs);
   } catch (e) {
     statusBar.render([]);
-    if (!$('queue').hidden) downloadsView.setStatus($('seasonStatus'), errText(e), true);
+    downloadsView.renderError(errText(e));
   }
   queueTimer = setTimeout(refreshQueue, 1000);
 }
@@ -158,12 +171,18 @@ document.addEventListener('keydown', e => {
 });
 
 // React to theme/lang changes in storage
+// Folding a season card also writes settings (seasonFolded); the queue view has drawn
+// that already, so such a change needs nothing here.
+const withoutFold = u => JSON.stringify({ ...u, seasonFolded: undefined });
 chrome.storage?.onChanged?.addListener(async changes => {
   if (!changes.settings) return;
+  const prev = ui;
   ui = await loadUiSettings();
+  if (withoutFold(prev) === withoutFold(ui)) return;
   applyTheme(ui.theme);
   await initI18n(ui.lang);
   applyI18n(document);
+  pushLang();
   if (currentView === 'queue') $('headerTitle').textContent = t('status_bar_downloads');
   else if (currentView === 'settings') $('headerTitle').textContent = t('settings_summary');
   pageView.refreshI18n();
@@ -173,6 +192,8 @@ chrome.storage?.onChanged?.addListener(async changes => {
 
 pageView.loadPage();
 refreshQueue();
+// Season episodes queued earlier and never started: the background resolver takes them now.
+bg({ type: 'adopt-resolving' }).catch(() => {});
 api('GET', '/update').then(info => {
   statusBar.setUpdateInfo(info);
   refreshQueue();

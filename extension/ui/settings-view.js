@@ -117,6 +117,9 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       outEl.title = getSettings().outDir;
     }
 
+    const notifyEl = $('setNotify');
+    if (notifyEl) notifyEl.value = ['all', 'errors', 'off'].includes(getSettings()?.notify) ? getSettings().notify : 'all';
+
     renderMemory();
     renderAbout();
   }
@@ -259,6 +262,17 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
       const next = await saveUiSettings({ motion });
       setUi(next);
       onUiChanged?.();
+    });
+
+    $('setNotify')?.addEventListener('change', async e => {
+      const el = e.target;
+      try {
+        const saved = await api('POST', '/settings', { notify: el.value });
+        setSettings(saved);
+      } catch {
+        // Helper offline: show the value the helper still has, not the one that was not saved.
+        el.value = ['all', 'errors', 'off'].includes(getSettings()?.notify) ? getSettings().notify : 'all';
+      }
     });
 
     $('pickOutDir')?.prepend(icon('folder'));

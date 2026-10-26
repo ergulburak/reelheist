@@ -16,5 +16,12 @@
   "note_smartscreen_title": "حول Windows SmartScreen",
   "note_smartscreen_desc": "إذا ظهر تنبيه \"قام Windows بحماية الكمبيوتر\"، انقر على \"مزيد من المعلومات\" ثم \"تشغيل على أي حال\".",
   "reload_title": "هل تقوم بالتحديث؟",
-  "reload_desc": "افتح صفحة الإضافات وانقر على رمز إعادة التحميل (↻) في بطاقة ReelHeist."
+  "reload_desc": "افتح صفحة الإضافات وانقر على رمز إعادة التحميل (↻) في بطاقة ReelHeist.",
+  "notify_done": "تم تنزيل {name} · {size}",
+  "notify_done_subs": "تم تنزيل {name} · {size} · {n} ترجمات",
+  "notify_done_subs_only": "تم تنزيل ترجمات {name} · {n} ترجمة",
+  "notify_done_warn": "تم تنزيل {name} · افحص الملف، فالمدتان غير متطابقتين",
+  "notify_failed": "تعذّر تنزيل {name} · {error}",
+  "notify_season_done": "اكتمل الموسم {season} من {name} · {n} حلقات",
+  "notify_resume": "البحث عن الموسم مستمر · تبقّت {n} حلقات"
 }

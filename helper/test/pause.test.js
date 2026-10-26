@@ -24,10 +24,10 @@ test('pause keeps segments and resumes without refetching them', async () => {
   const srv = await startHlsServer({ segments: 8, delayMs: 280 });
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'rh-pause-out-'));
   try {
-    const q = new Queue();
+    const q = new Queue({ notify: () => {} });
     await q.load();
     await q.setSettings({ outDir });
-    const job = await q.add({
+    const { job } = await q.add({
       meta: { kind: 'movie', name: 'PauseTest' },
       source: { kind: 'hls', url: srv.mediaUrl },
     });
@@ -82,16 +82,16 @@ test('cancel deletes work dir', async () => {
   const srv = await startHlsServer({ segments: 6, delayMs: 300 });
   const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'rh-cancel-out-'));
   try {
-    const q = new Queue();
+    const q = new Queue({ notify: () => {} });
     await q.load();
     await q.setSettings({ outDir });
-    const job = await q.add({
+    const { job } = await q.add({
       meta: { kind: 'movie', name: 'CancelTest' },
       source: { kind: 'hls', url: srv.mediaUrl },
     });
 
     const workDir = path.join(P.WORK_DIR, job.id);
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 150; i++) {
       await sleep(80);
       if (fs.existsSync(path.join(workDir, 's0', '000000.seg'))) break;
     }
@@ -108,8 +108,8 @@ test('cancel deletes work dir', async () => {
 });
 
 test('paused job is not picked by kick()', async () => {
-  const q = new Queue();
-  await q.load();
+  // No load(): it would kick whatever earlier tests left in jobs.json.
+  const q = new Queue({ notify: () => {} });
   const job = {
     id: 'paused1',
     createdAt: Date.now(),

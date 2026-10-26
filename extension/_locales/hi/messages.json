@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "डाउनलोड करें"
   },
+  "lbl_subs_only": {
+    "message": "केवल उपशीर्षक"
+  },
+  "btn_download_subs": {
+    "message": "उपशीर्षक डाउनलोड करें"
+  },
+  "badge_subs_only": {
+    "message": "केवल उपशीर्षक"
+  },
+  "step_subs": {
+    "message": "उपशीर्षक"
+  },
+  "err_no_subtitles": {
+    "message": "इस पेज पर कोई उपशीर्षक नहीं मिला।"
+  },
   "playlist_summary": {
     "message": "प्लेलिस्ट को कतार में जोड़ें"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "कतार खाली है।"
   },
-  "season_progress": {
-    "message": "सीज़न: {total} में से {done} एपिसोड तैयार"
+  "step_page": {
+    "message": "पेज"
   },
-  "season_progress_current": {
-    "message": "सीज़न: {total} में से {done} एपिसोड तैयार (अभी एपिसोड {n})"
+  "step_video": {
+    "message": "वीडियो"
   },
-  "season_failed": {
-    "message": "सीज़न {season} एपिसोड {episode} नहीं जोड़ा जा सका: {error}"
+  "step_download": {
+    "message": "डाउनलोड"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "पूरा"
+  },
+  "resolve_opening": {
+    "message": "पेज खुल रहा है"
+  },
+  "resolve_waiting": {
+    "message": "पेज खुला, प्लेयर का इंतज़ार · {sec} / {max} सेकंड"
+  },
+  "resolve_short_only": {
+    "message": "एक छोटा वीडियो मिला, एपिसोड का इंतज़ार · {sec} / {max} सेकंड"
+  },
+  "queued_behind": {
+    "message": "कतार में · आगे {n}"
+  },
+  "season_head": {
+    "message": "{name} · सीज़न {season}"
+  },
+  "season_head_count": {
+    "message": "{n} एपिसोड"
+  },
+  "season_sum_done": {
+    "message": "{n} पूरे"
+  },
+  "season_sum_active": {
+    "message": "{n} डाउनलोड में"
+  },
+  "season_sum_finding": {
+    "message": "{n} खोज में"
+  },
+  "season_sum_failed": {
+    "message": "{n} विफल"
+  },
+  "season_sum_queued": {
+    "message": "{n} कतार में"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} डाउनलोड {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} MP4 बन रहा है"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} रोका गया"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} खोज में"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} विफल"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "विफल"
+  },
+  "btn_open_page": {
+    "message": "पेज खोलें"
+  },
+  "queued_more": {
+    "message": "{list} · कतार में"
+  },
+  "state_resolving": {
+    "message": "खोज में"
+  },
+  "err_episode_interrupted": {
+    "message": "खोज पूरी होने से पहले रुक गई (ब्राउज़र या सहायक प्रोग्राम बंद हुआ)। फिर कोशिश करें।"
+  },
+  "err_name_required": {
+    "message": "सीरीज़ का नाम ज़रूरी है।"
+  },
+  "resolver_title": {
+    "message": "ReelHeist · {n} एपिसोड खोज में · यह विंडो बंद न करें"
   },
   "overlay_download": {
     "message": "⬇ डाउनलोड"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "सहायक प्रोग्राम से कनेक्ट नहीं हो सका।"
+  },
+  "err_helper_outdated": {
+    "message": "सहायक प्रोग्राम पुराना है। नया संस्करण इंस्टॉल करें, फिर कोशिश करें।"
   },
   "err_episode_timeout": {
     "message": "कोई वीडियो नहीं मिला (समय समाप्त)।"
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "लाइसेंस"
+  },
+  "lbl_notify": {
+    "message": "सूचनाएँ"
+  },
+  "notify_all": {
+    "message": "सभी डाउनलोड"
+  },
+  "notify_errors": {
+    "message": "केवल त्रुटियाँ"
+  },
+  "notify_off": {
+    "message": "बंद"
   }
 }

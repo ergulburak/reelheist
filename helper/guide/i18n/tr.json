@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Windows SmartScreen uyarısı hakkında",
   "note_smartscreen_desc": "Kurulum programını çalıştırırken Windows \"Bilgisayarınız korundu\" derse \"Ek bilgi\" → \"Yine de çalıştır\" seçeneğine tıklayın.",
   "reload_title": "Güncelleme mi yapıyorsunuz?",
-  "reload_desc": "Tarayıcınızın Uzantılar sayfasını açıp ReelHeist kartındaki Yeniden yükle (↻) simgesine tıklayın."
+  "reload_desc": "Tarayıcınızın Uzantılar sayfasını açıp ReelHeist kartındaki Yeniden yükle (↻) simgesine tıklayın.",
+  "notify_done": "{name} indi · {size}",
+  "notify_done_subs": "{name} indi · {size} · {n} altyazı",
+  "notify_done_subs_only": "{name} altyazıları indi · {n} altyazı",
+  "notify_done_warn": "{name} indi · dosyayı kontrol edin, süreler uyuşmuyor",
+  "notify_failed": "{name} indirilemedi · {error}",
+  "notify_season_done": "{name} {season}. sezon tamamlandı · {n} bölüm",
+  "notify_resume": "Sezon araması devam ediyor · {n} bölüm kaldı"
 }

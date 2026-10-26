@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Windows SmartScreen के बारे में",
   "note_smartscreen_desc": "यदि Windows \"Windows protected your PC\" दिखाता है, तो \"More info\" → \"Run anyway\" पर क्लिक करें।",
   "reload_title": "मौजूदा इंस्टॉल अपडेट कर रहे हैं?",
-  "reload_desc": "एक्सटेंशन पेज खोलें और ReelHeist कार्ड पर रीलोड (↻) आइकन पर क्लिक करें।"
+  "reload_desc": "एक्सटेंशन पेज खोलें और ReelHeist कार्ड पर रीलोड (↻) आइकन पर क्लिक करें।",
+  "notify_done": "{name} डाउनलोड हो गया · {size}",
+  "notify_done_subs": "{name} डाउनलोड हो गया · {size} · {n} सबटाइटल",
+  "notify_done_subs_only": "{name} के उपशीर्षक डाउनलोड हुए · {n} उपशीर्षक",
+  "notify_done_warn": "{name} डाउनलोड हो गया · फ़ाइल जाँचें, अवधि मेल नहीं खाती",
+  "notify_failed": "{name} डाउनलोड नहीं हो सका · {error}",
+  "notify_season_done": "{name} सीज़न {season} पूरा हुआ · {n} एपिसोड",
+  "notify_resume": "सीज़न की खोज जारी है · {n} एपिसोड बाकी"
 }

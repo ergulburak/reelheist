@@ -1,5 +1,5 @@
 // "This page" view: preview card, selection chips, metadata editor, download/progress/exists/error states.
-import { api } from '../lib/helper.js';
+import { api, requireFeature } from '../lib/helper.js';
 import { analyzeSources } from '../lib/sources.js';
 import { youtubeTarget, youtubeCookies } from '../lib/youtube.js';
 import { t, langTag, currentLang } from '../lib/i18n.js';
@@ -41,6 +41,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
   let activeJob = null;
   let existing = null;
   let forceRedownload = false;
+  let subsOnly = false; // "Subtitles only": no video, only the .srt files
   let existsSeq = 0;
   let existsTimer = null;
   let searchTimer = null;
@@ -341,23 +342,30 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
         .sort((a, b) => a.episode - b.episode);
       if (!inSeason.length) return;
       const nextEp = inSeason[0];
-      const queueItems = async items => {
-        await bg({
-          type: 'queue-episodes',
-          items: items.map(e => ({ url: e.url, season: e.season, episode: e.episode })),
-          options: { name: $('name').value.trim(), height: Number($('quality').value) || null },
-        });
-        onJobAdded?.();
+      const queueItems = async (btn, items) => {
+        btn.disabled = true;
+        try {
+          await bg({
+            type: 'queue-episodes',
+            items: items.map(e => ({ url: e.url, season: e.season, episode: e.episode })),
+            options: { name: $('name').value.trim(), height: Number($('quality').value) || null, subtitlesOnly: subsOnly },
+          });
+          onJobAdded?.();
+        } catch (e) {
+          setStatus($('pageStatus'), errText(e), true);
+        } finally {
+          btn.disabled = false;
+        }
       };
       const nextBtn = h('button', {
         type: 'button',
         class: 'hint-link',
-        onclick: () => queueItems([nextEp]),
+        onclick: () => queueItems(nextBtn, [nextEp]),
       }, t('hint_next_ep', { n: nextEp.episode }));
       const restBtn = h('button', {
         type: 'button',
         class: 'hint-link accent',
-        onclick: () => queueItems(inSeason),
+        onclick: () => queueItems(restBtn, inSeason),
       }, t('hint_add_season_rest', { n: inSeason.length }));
       row.replaceChildren(nextBtn, h('span', { class: 'hint-sep', 'aria-hidden': 'true' }, ' · '), restBtn);
       row.hidden = false;
@@ -504,11 +512,14 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
     if (cur.source.kind === 'ytdlp') {
       btn.disabled = true;
       try {
+        // An older helper ignores subtitlesOnly and would download the whole video.
+        if (subsOnly) await requireFeature('subs-only');
         await api('POST', '/jobs', {
           meta: { kind: 'video', name: $('name').value.trim() || 'Video', channel: $('channel').value.trim() || 'YouTube' },
           pageUrl: cur.source.url,
           source: { kind: 'ytdlp', url: cur.source.url },
           ...chosenYoutubeOptions(),
+          subtitlesOnly: subsOnly,
           cookies: await youtubeCookies(),
         });
         await rememberCurrentChoice();
@@ -544,9 +555,11 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
         url: s.url, label: s.label, lang: s.lang, headers: s.headers, hls: Boolean(s.hls),
       })),
       includeHlsSubtitles: false,
+      subtitlesOnly: subsOnly,
     };
     btn.disabled = true;
     try {
+      if (subsOnly) await requireFeature('subs-only');
       await api('POST', '/jobs', job);
       await rememberCurrentChoice();
       forceRedownload = false;
@@ -558,8 +571,32 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
     }
   }
 
+  // "Subtitles only" chip: quality and audio choices disappear, the button downloads subtitles.
+  function applySubsOnly() {
+    const chip = $('chip-subsonly');
+    if (chip) {
+      chip.classList.toggle('on', subsOnly);
+      chip.setAttribute('aria-pressed', String(subsOnly));
+      chip.replaceChildren(icon('cc'), h('span', { class: 'chip-text' }, t('lbl_subs_only')));
+    }
+    for (const id of ['chip-quality', 'chip-audio']) {
+      const el = $(id);
+      if (el) el.hidden = subsOnly;
+    }
+    if (subsOnly) chips.closeMenus();
+    const lbl = $('downloadMainLabel')?.querySelector('[data-i18n]');
+    if (lbl) lbl.textContent = t(subsOnly ? 'btn_download_subs' : 'download');
+    const est = $('downloadEst');
+    if (est) est.hidden = subsOnly;
+  }
+
   function wire() {
     chips.wire();
+    $('chip-subsonly')?.addEventListener('click', () => {
+      subsOnly = !subsOnly;
+      applySubsOnly();
+    });
+    applySubsOnly();
 
     // Decorate buttons with SVG icons
     $('downloadMainLabel')?.prepend(icon('download'));
@@ -687,6 +724,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
       };
       seasonSel.addEventListener('change', renderList);
       renderList();
+      const addError = h('div', { class: 'err small', hidden: true });
       const add = h('button', {
         type: 'button',
         class: 'primary',
@@ -696,15 +734,23 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
           }));
           if (!items.length) return;
           add.disabled = true;
-          await bg({ type: 'queue-episodes', items, options: { name: $('name').value.trim(), height: Number($('quality').value) || null } });
-          showView('queue');
-          add.disabled = false;
+          addError.hidden = true;
+          try {
+            await bg({ type: 'queue-episodes', items, options: { name: $('name').value.trim(), height: Number($('quality').value) || null, subtitlesOnly: subsOnly } });
+            showView('queue');
+          } catch (e) {
+            addError.textContent = errText(e);
+            addError.hidden = false;
+          } finally {
+            add.disabled = false;
+          }
         },
       }, t('btn_add_episodes'));
       box.replaceChildren(
         h('label', {}, t('lbl_season'), seasonSel),
         list,
         h('div', { class: 'muted small' }, t('season_hint')),
+        addError,
         add,
       );
     });
@@ -741,6 +787,7 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
           setStatus(status, cur.probe.duration ? t('status_video_found_dur', { duration: dur(cur.probe.duration) }) : t('status_video_found'));
         }
         chips.renderAll();
+        applySubsOnly();
         updateTarget();
         updatePreviewHeader();
         updateDownloadEstimate();

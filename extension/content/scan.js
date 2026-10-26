@@ -81,11 +81,30 @@
   // force: the page is a throwaway season tab, so also click play overlays in the top frame
   // before any <video> exists (posters that load the player on click), with the pack's
   // selectors and the generic ones.
+  // Players that load or play only on screen: bring the element to the middle of the view
+  // (the resolver window is small, the player is often below the fold).
+  function show(el) {
+    try { el.scrollIntoView({ block: 'center', inline: 'center' }); } catch { /* detached */ }
+  }
+
+  function largest(list) {
+    let best = null;
+    let area = 0;
+    for (const el of list) {
+      const r = el.getBoundingClientRect();
+      if (r.width * r.height > area) { area = r.width * r.height; best = el; }
+    }
+    return best;
+  }
+
   function trigger(player, force = false) {
     const lazyAttrs = Array.isArray(player?.lazySrcAttrs) && player.lazySrcAttrs.length ? player.lazySrcAttrs : DEFAULT_LAZY;
     const packSel = Array.isArray(player?.playSelectors) && player.playSelectors.length ? player.playSelectors.join(', ') : '';
     const playSels = force && packSel ? [packSel, DEFAULT_PLAY] : [packSel || DEFAULT_PLAY];
     let acted = 0;
+    // The player: a <video> in this frame, otherwise the biggest <iframe>.
+    const playerEl = largest(document.querySelectorAll('video')) || largest(document.querySelectorAll('iframe'));
+    if (playerEl) show(playerEl);
     for (const f of document.querySelectorAll('iframe')) {
       const ds = lazyAttrs.map(a => f.getAttribute(a)).find(Boolean);
       const src = f.getAttribute('src');
@@ -114,6 +133,7 @@
         }
       }
       for (const el of targets) {
+        show(el);
         el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
         acted++;
       }
@@ -130,6 +150,10 @@
       sendResponse({ ok: true });
     } else if (msg.type === 'page-info' && isTop) {
       sendResponse(pageInfo());
+    } else if (msg.type === 'set-title' && isTop) {
+      // Resolver tab: the window title tells the user to leave the window open.
+      document.title = String(msg.title || '');
+      sendResponse({ ok: true });
     } else if (msg.type === 'links' && isTop) {
       sendResponse([...document.querySelectorAll('a[href]')].map(a => ({ href: a.href, text: a.textContent })));
     }

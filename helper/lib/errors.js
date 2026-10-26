@@ -3,7 +3,8 @@
 // `detail` is English technical text for logs and the "details" line only.
 
 const CODES = ['link_expired', 'drm', 'no_quality', 'playlist_empty', 'not_hls', 'ffmpeg_missing',
-  'ytdlp_missing', 'ytdlp_failed', 'live', 'bad_segment', 'no_video', 'bad_request', 'internal'];
+  'ytdlp_missing', 'ytdlp_failed', 'live', 'bad_segment', 'no_video', 'bad_request', 'internal',
+  'episode_timeout', 'episode_unreadable', 'episode_short', 'episode_interrupted', 'state', 'no_subtitles'];
 
 class CodedError extends Error {
   constructor(code, detail) {

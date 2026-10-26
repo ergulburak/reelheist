@@ -58,6 +58,7 @@
             <button type="button" id="chip-quality" class="chip on" aria-expanded="false"></button>
             <button type="button" id="chip-audio" class="chip on" aria-expanded="false"></button>
             <button type="button" id="chip-subs" class="chip on" aria-expanded="false"></button>
+            <button type="button" id="chip-subsonly" class="chip" aria-pressed="false"></button>
           </div>
           <div id="menu-quality" class="chip-menu" hidden>
             <div id="qualityList" class="menu-list"></div>
@@ -138,7 +139,6 @@
 
   <section id="queue" class="view" hidden>
     <div class="body">
-      <div id="seasonStatus" class="status small"></div>
       <div class="queue-head">
         <button type="button" id="clearDone" class="link" data-i18n="btn_clear_done"></button>
       </div>
@@ -259,6 +259,14 @@
             <button type="button" id="pickOutDir" class="btn-pick-folder"><span data-i18n="btn_change_folder"></span></button>
           </div>
           <div id="outDirStatus" class="status small" hidden></div>
+        </div>
+
+        <div class="grp">
+          <label><span data-i18n="lbl_notify"></span> <select id="setNotify">
+            <option value="all" data-i18n="notify_all"></option>
+            <option value="errors" data-i18n="notify_errors"></option>
+            <option value="off" data-i18n="notify_off"></option>
+          </select></label>
         </div>
 
         <div class="grp">

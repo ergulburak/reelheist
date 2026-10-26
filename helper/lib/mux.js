@@ -120,13 +120,21 @@ async function mux(streams, outFile, { duration, onProgress, signal, log } = {})
   return outFile;
 }
 
-// [{type, duration, start}] of a finished file through ffprobe (next to ffmpeg); [] without it.
-function probeStreams(ffmpeg, file) {
+// ffprobe sits next to ffmpeg; null when either one is missing.
+function ffprobePath() {
+  const ffmpeg = findFfmpeg();
+  if (!ffmpeg) return null;
   const ffprobe = path.join(path.dirname(ffmpeg), process.platform === 'win32' ? 'ffprobe.exe' : 'ffprobe');
-  if (!fs.existsSync(ffprobe)) return Promise.resolve([]);
+  return fs.existsSync(ffprobe) ? ffprobe : null;
+}
+
+// [{type, duration, start}] of a finished file through ffprobe (next to ffmpeg); [] without it.
+function probeStreams(file) {
+  const ffprobe = ffprobePath();
+  if (!ffprobe) return Promise.resolve([]);
   return new Promise(resolve => {
     const p = spawn(ffprobe, ['-v', 'error', '-show_entries', 'stream=codec_type,duration,start_time', '-of', 'json', file],
-      { windowsHide: true });
+      { windowsHide: true, stdio: ['ignore', 'pipe', 'ignore'] });
     let out = '';
     p.stdout.on('data', d => (out += d));
     p.on('close', () => {
@@ -162,4 +170,4 @@ function checkOutput(streams, expected) {
   return bad ? { code: 'av_mismatch', detail: parts.join(', ') } : null;
 }
 
-module.exports = { mux, findFfmpeg, buildArgs, inputArgs, inspect, run, probeStreams, checkOutput };
+module.exports = { mux, findFfmpeg, buildArgs, inputArgs, inspect, run, probeStreams, checkOutput, ffprobePath };

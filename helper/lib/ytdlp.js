@@ -260,6 +260,50 @@ function selectFormats(json, { height, langs } = {}) {
 
 const sizeOf = f => f.filesize || f.filesize_approx || 0;
 
+// yt-dlp subtitle options for the chosen languages ([] when none): SRT next to the video.
+function subtitleArgs(subs) {
+  const list = (subs || []).filter(s => s.lang);
+  if (!list.length) return [];
+  const args = ['--sub-langs', list.map(s => s.lang).join(','), '--sub-format', 'srt/vtt/best', '--convert-subs', 'srt'];
+  if (list.some(s => !s.auto)) args.push('--write-subs');
+  if (list.some(s => s.auto)) args.push('--write-auto-subs');
+  return args;
+}
+
+// Subtitle files yt-dlp wrote for this job: "<base>.<lang>.srt".
+async function writtenSubtitles(outDir, base) {
+  return (await fsp.readdir(outDir))
+    .filter(f => f.startsWith(`${base}.`) && f.endsWith('.srt'))
+    .map(f => ({ file: path.join(outDir, f), lang: f.slice(base.length + 1, -4), label: '' }));
+}
+
+// Subtitle-only job: no video, only the SRT files. Returns {subtitles}.
+async function downloadSubtitles(job, workDir, outDir, signal, log = () => {}) {
+  if (job.cookies) await saveCookies(job.cookies);
+  const exe = await ensureYtdlp();
+  const json = await probeRaw(job.source.url, { signal, maxAgeMs: 30 * 60 * 1000 });
+  if (json.is_live) throw new CodedError('live', 'Live streams cannot be downloaded');
+  const infoFile = path.join(workDir, 'info.json');
+  await fsp.writeFile(infoFile, JSON.stringify(json));
+  const base = job.names.base;
+  const subArgs = subtitleArgs(job.subtitles);
+  if (!subArgs.length) throw new CodedError('no_subtitles', 'No subtitle language was chosen');
+  await run(exe, [
+    ...baseArgs(),
+    '--load-info-json', infoFile,
+    '--skip-download',
+    '-P', outDir,
+    '-P', `temp:${workDir}`,
+    '-o', `${base}.%(ext)s`,
+    '-o', `subtitle:${base}.%(ext)s`,
+    '--no-mtime',
+    ...subArgs,
+  ], { signal });
+  const subtitles = await writtenSubtitles(outDir, base);
+  log(`yt-dlp altyazı: ${subtitles.map(s => s.lang).join(',') || '-'}`);
+  return { subtitles };
+}
+
 // Download one job with yt-dlp. Returns {video, size, subtitles, stats, audioTracks}.
 async function download(job, workDir, outDir, onProgress, signal, log = () => {}) {
   if (job.cookies) await saveCookies(job.cookies);
@@ -309,12 +353,7 @@ async function download(job, workDir, outDir, onProgress, signal, log = () => {}
     });
     args.push('--postprocessor-args', `Merger+ffmpeg_o:${meta.join(' ')}`);
   }
-  const subs = (job.subtitles || []).filter(s => s.lang);
-  if (subs.length) {
-    args.push('--sub-langs', subs.map(s => s.lang).join(','), '--sub-format', 'srt/vtt/best', '--convert-subs', 'srt');
-    if (subs.some(s => !s.auto)) args.push('--write-subs');
-    if (subs.some(s => s.auto)) args.push('--write-auto-subs');
-  }
+  args.push(...subtitleArgs(job.subtitles));
 
   let phase = 'downloading';
   await run(exe, args, {
@@ -351,10 +390,7 @@ async function download(job, workDir, outDir, onProgress, signal, log = () => {}
 
   const video = path.join(outDir, `${base}.mp4`);
   const st = await fsp.stat(video);
-  // Subtitle files yt-dlp wrote: "<base>.<lang>.srt"
-  const written = (await fsp.readdir(outDir))
-    .filter(f => f.startsWith(`${base}.`) && f.endsWith('.srt'))
-    .map(f => ({ file: path.join(outDir, f), lang: f.slice(base.length + 1, -4), label: '' }));
+  const written = await writtenSubtitles(outDir, base);
   log(`yt-dlp biçimleri: ${sel.ids.join('+')}`);
   return {
     video,
@@ -367,5 +403,5 @@ async function download(job, workDir, outDir, onProgress, signal, log = () => {}
 
 module.exports = {
   isYoutubeUrl, findYtdlp, ensureYtdlp, probeRaw, probePlaylist, normalize, selectFormats, audioTracks,
-  download, saveCookies, run, baseArgs,
+  download, downloadSubtitles, subtitleArgs, saveCookies, run, baseArgs,
 };

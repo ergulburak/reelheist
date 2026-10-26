@@ -177,8 +177,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
       await b.evaluate(popup, `chrome.runtime.sendMessage({type:'queue-episodes', tabId:${tabId}, items:[${JSON.stringify(next)}], options:{name:'E2E Sezon', outDir:${JSON.stringify(outDir)}}})`);
       for (let i = 0; i < 60; i++) {
         await sleep(2000);
-        const s = await b.evaluate(popup, "chrome.runtime.sendMessage({type:'season-status'})");
-        if (!s.running) { console.log('season status', JSON.stringify(s)); break; }
+        // The season card is a helper job: wait until it leaves 'resolving'.
+        const all = await b.evaluate(popup, `import('./lib/helper.js').then(m => m.api('GET','/jobs'))`);
+        const card = all?.jobs?.find(j => j.pageUrl === next.url);
+        if (card && card.state !== 'resolving') { console.log('season card', card.state, card.step, card.errorCode || ''); break; }
       }
       const jobs = await b.evaluate(popup, `import('./lib/helper.js').then(m => m.api('GET','/jobs'))`);
       const sj = jobs.jobs.find(j => j.names.folder === 'E2E Sezon');

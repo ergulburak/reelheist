@@ -158,7 +158,8 @@ test('buildArgs maps every audio and tags languages', () => {
 test('errors: codes map to the shared list and HTTP expiry becomes link_expired', () => {
   const { CODES, CodedError, toCoded } = require('../lib/errors');
   assert.deepStrictEqual(CODES, ['link_expired', 'drm', 'no_quality', 'playlist_empty', 'not_hls', 'ffmpeg_missing',
-    'ytdlp_missing', 'ytdlp_failed', 'live', 'bad_segment', 'no_video', 'bad_request', 'internal']);
+    'ytdlp_missing', 'ytdlp_failed', 'live', 'bad_segment', 'no_video', 'bad_request', 'internal',
+    'episode_timeout', 'episode_unreadable', 'episode_short', 'episode_interrupted', 'state', 'no_subtitles']);
   assert.deepStrictEqual(toCoded(new CodedError('drm', 'encrypted')), { code: 'drm', detail: 'encrypted' });
   assert.deepStrictEqual(toCoded(Object.assign(new Error('HTTP 403'), { status: 403 })).code, 'link_expired');
   assert.strictEqual(toCoded(new Error('boom')).code, 'internal');

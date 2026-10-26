@@ -61,6 +61,25 @@ test('minDuration marks trailers and ads as short', async () => {
   assert.strictEqual(plain[0].short, false);
 });
 
+test('file source with known short duration is short', async () => {
+  const sources = [
+    { url: 'https://ads.test/ad.mp4', kind: 'file' },
+    { url: master.url, kind: 'hls' },
+  ];
+  const probes = {
+    'https://ads.test/ad.mp4': { type: 'file', variants: [], audios: [], subtitles: [], duration: 20 },
+    [master.url]: master,
+  };
+  const list = await analyzeSources(sources, async s => probes[s.url], { minDuration: 120 });
+  assert.deepStrictEqual(list.map(r => [r.source.url, r.short]), [
+    [master.url, false],
+    ['https://ads.test/ad.mp4', true],
+  ]);
+  // A file probe that fails keeps the old fixed result (unknown length, not short).
+  const failed = await analyzeSources(sources.slice(0, 1), async () => { throw new Error('ffprobe'); }, { minDuration: 120 });
+  assert.deepStrictEqual(failed.map(r => [r.probe.type, r.short]), [['file', false]]);
+});
+
 test('qualities and audio tracks', () => {
   assert.deepStrictEqual(qualities(master), [1080, 720]);
   assert.deepStrictEqual(audioTracks(master, null).map(a => a.name), ['Türkçe', 'İngilizce']);

@@ -16,5 +16,12 @@
   "note_smartscreen_title": "Aviso de Windows SmartScreen",
   "note_smartscreen_desc": "Si Windows muestra \"Windows protegió su PC\", haz clic en \"Más información\" y luego en \"Ejecutar de todas formas\".",
   "reload_title": "¿Estás actualizando?",
-  "reload_desc": "Abre la página de Extensiones y pulsa el icono de recargar (↻) en la tarjeta de ReelHeist."
+  "reload_desc": "Abre la página de Extensiones y pulsa el icono de recargar (↻) en la tarjeta de ReelHeist.",
+  "notify_done": "{name} descargado · {size}",
+  "notify_done_subs": "{name} descargado · {size} · {n} subtítulos",
+  "notify_done_subs_only": "Subtítulos de {name} descargados · {n} subtítulos",
+  "notify_done_warn": "{name} descargado · revisa el archivo, las duraciones no coinciden",
+  "notify_failed": "No se pudo descargar {name} · {error}",
+  "notify_season_done": "{name} temporada {season} completa · {n} episodios",
+  "notify_resume": "La búsqueda de temporada continúa · quedan {n} episodios"
 }

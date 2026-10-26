@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "تحميل"
   },
+  "lbl_subs_only": {
+    "message": "الترجمة فقط"
+  },
+  "btn_download_subs": {
+    "message": "تنزيل الترجمة"
+  },
+  "badge_subs_only": {
+    "message": "الترجمة فقط"
+  },
+  "step_subs": {
+    "message": "الترجمة"
+  },
+  "err_no_subtitles": {
+    "message": "لم يتم العثور على ترجمات في هذه الصفحة."
+  },
   "playlist_summary": {
     "message": "إضافة قائمة التشغيل إلى قائمة الانتظار"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "قائمة الانتظار فارغة."
   },
-  "season_progress": {
-    "message": "الموسم: جاهزة {done} من {total} حلقة"
+  "step_page": {
+    "message": "الصفحة"
   },
-  "season_progress_current": {
-    "message": "الموسم: جاهزة {done} من {total} حلقة (الآن الحلقة {n})"
+  "step_video": {
+    "message": "الفيديو"
   },
-  "season_failed": {
-    "message": "تعذّرت إضافة الموسم {season} الحلقة {episode}: {error}"
+  "step_download": {
+    "message": "التنزيل"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "تم"
+  },
+  "resolve_opening": {
+    "message": "جارٍ فتح الصفحة"
+  },
+  "resolve_waiting": {
+    "message": "الصفحة مفتوحة، في انتظار المشغّل · {sec} / {max} ث"
+  },
+  "resolve_short_only": {
+    "message": "عُثر على فيديو قصير، في انتظار الحلقة · {sec} / {max} ث"
+  },
+  "queued_behind": {
+    "message": "في الانتظار · قبلها {n}"
+  },
+  "season_head": {
+    "message": "{name} · الموسم {season}"
+  },
+  "season_head_count": {
+    "message": "{n} حلقات"
+  },
+  "season_sum_done": {
+    "message": "{n} مكتملة"
+  },
+  "season_sum_active": {
+    "message": "{n} قيد التنزيل"
+  },
+  "season_sum_finding": {
+    "message": "{n} قيد البحث"
+  },
+  "season_sum_failed": {
+    "message": "{n} فشلت"
+  },
+  "season_sum_queued": {
+    "message": "{n} في الانتظار"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} قيد التنزيل {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} جارٍ إنشاء MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} متوقف مؤقتاً"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} قيد البحث"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} فشلت"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "الفاشلة"
+  },
+  "btn_open_page": {
+    "message": "فتح الصفحة"
+  },
+  "queued_more": {
+    "message": "{list} · في الانتظار"
+  },
+  "state_resolving": {
+    "message": "جارٍ البحث"
+  },
+  "err_episode_interrupted": {
+    "message": "توقف البحث قبل أن ينتهي (أُغلق المتصفح أو البرنامج المساعد). أعد المحاولة."
+  },
+  "err_name_required": {
+    "message": "اسم المسلسل مطلوب."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · البحث عن {n} حلقات · لا تغلق هذه النافذة"
   },
   "overlay_download": {
     "message": "⬇ تحميل"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "تعذّر الاتصال بالبرنامج المساعد."
+  },
+  "err_helper_outdated": {
+    "message": "البرنامج المساعد قديم. ثبّت أحدث إصدار، ثم أعد المحاولة."
   },
   "err_episode_timeout": {
     "message": "لم يُعثر على فيديو (انتهت المهلة)."
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "التراخيص"
+  },
+  "lbl_notify": {
+    "message": "الإشعارات"
+  },
+  "notify_all": {
+    "message": "كل التنزيلات"
+  },
+  "notify_errors": {
+    "message": "الأخطاء فقط"
+  },
+  "notify_off": {
+    "message": "إيقاف"
   }
 }

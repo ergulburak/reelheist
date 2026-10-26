@@ -116,14 +116,28 @@ gerekir. `host.js` sadece daemon'u başlatır ve port + token verir.
   `data-src`'li boş iframe'lere `src` verir ve çerçevelerdeki `<video>`'yu sessiz oynatmayı
   dener. Sezon çözümlemede bu işlem otomatik yapılır.
 - **Sezon:** Üst çerçevedeki linkler başlık ayrıştırıcıdan geçer; aynı dizi + aynı sezona ait
-  bölümler listelenir. Kullanıcı işaretler. Arka plan, kullanıcının penceresinin sağ alt
-  köşesinde küçük, sessiz ve odaksız bir pencerede her bölümü sırayla açar, oynatıcıyı
-  tetikler, kaynak + altyazı yakalanınca (en çok 60 sn) sekmeyi kapatır ve işi kuyruğa ekler.
-  Pencere küçültülmez: küçültülmüş pencerede sayfa gizli sayılır ve tarayıcı videoyu
-  yüklemez. İki denemede video bulunmazsa tetikleyici, üst çerçevedeki "oynat" kapaklarına
-  da tıklar. Aynı bölüm iki kez kuyruğa girmez. 120 saniyeden kısa kaynaklar (fragman,
-  reklam; örneğin sayfadaki YouTube gömmesi) bölüm sayılmaz: çözümleyici süre dolana kadar
-  daha uzun bir kaynak bekler, bulamazsa `episode_short` hatası verir.
+  bölümler listelenir. Kullanıcı işaretler. Arka plan, her bölüm için önce yardımcıda
+  `resolving` bir iş açar; kartlar sezon seçildiği anda kuyrukta görünür. Yardımcı tek doğruluk
+  kaynağıdır: arka plan bellekte liste tutmaz, sıradaki işi `GET /api/jobs`'tan alır. Çözümleyici
+  kullanıcının penceresinin sağ alt köşesinde küçük, sessiz ve odaksız bir pencerede bölümleri
+  sırayla açar, oynatıcıyı tetikler, kaynak + altyazı yakalanınca (en çok 90 sn) sekmeyi kapatır
+  ve işi `resolved` ile indirmeye verir. Pencere küçültülmez: küçültülmüş pencerede sayfa gizli
+  sayılır ve tarayıcı videoyu yüklemez. Her adım (`page`, `video`) yardımcıya yazılır; kart
+  adım çubuğunu ve sayacı bundan çizer. Başarısız yakalama bir kez otomatik yeniden denenir
+  (en çok iki deneme); ikinci başarısızlıkta kart hata ile kalır ve yalnızca "Yeniden dene" ile
+  tekrar denenir. İki denemede video bulunmazsa tetikleyici, üst çerçevedeki "oynat" kapaklarına
+  da tıklar. Aynı bölüm iki kez kart olmaz (`pageUrl` eşleşmesi). 120 saniyeden kısa kaynaklar
+  (fragman, reklam; örneğin sayfadaki YouTube gömmesi) bölüm sayılmaz: çözümleyici süre dolana
+  kadar daha uzun bir kaynak bekler, bulamazsa `episode_short` hatası verir. Çözümleyici
+  sekmesinin başlığı "ReelHeist · N bölüm aranıyor · pencereyi kapatmayın" olur (`resolver_title`).
+  Çözümleyici penceresi kapanırsa (tarayıcı kapanışı dahil) o anki iş yeniden "sırada" olur.
+  Pencere açma ve kapama sırayla çalışır, bu yüzden sezon döngüsü ile `refresh-job` iki pencere
+  açmaz. Pencere kimliği `chrome.storage.session` içinde de durur: yeniden başlayan service worker
+  eski pencereyi kapatır. Sıra sezon adına, sonra sezon numarasına (S2, S10'dan önce), sonra
+  bölüme göredir.
+  Tarayıcı yeniden açılınca (`chrome.runtime.onStartup`) hiç başlamamış `resolving` işler
+  kendiliğinden sürer. Başlamış ama sahipsiz kalan iş `episode_interrupted` ile `failed` olur.
+  Ayrıntı: [sezon kartları tasarımı](superpowers/specs/2026-10-24-season-cards-design.md).
 - **Overlay (C):** Sekmede kaynak bulununca üst çerçeve, görünür en büyük `iframe`/`video`
   öğesinin sağ üst köşesine "⬇ İndir" düğmesi koyar (Shadow DOM). Tıklanınca aynı popup
   sayfası (`popup.html?tab=<id>`) sayfa üzerinde bir panel olarak açılır. Oynatıcı bir poster
@@ -144,10 +158,29 @@ döner.
 - **API** (127.0.0.1, rastgele port, her istekte `X-Token`; `Origin` sadece
   `chrome-extension://<id>`):
   `GET /api/ping`, `POST /api/probe`, `GET /api/jobs`, `POST /api/jobs`,
-  `POST /api/jobs/:id/{cancel,retry,remove,open}`, `GET|POST /api/settings`.
+  `POST /api/jobs/:id/{cancel,pause,retry,remove,open}`,
+  `POST /api/jobs/:id/{resolve,resolved,fail}`, `GET|POST /api/settings`.
+  - `GET /api/ping` yanıtındaki `features` (`season`, `subs-only`) yardımcının yeteneklerini verir.
+    Sürüm numarası aynı kalsa da eklenti eski yardımcıyı bundan tanır: sezon kuyruğu ve "Yalnızca
+    altyazı" bu adlar yoksa `helper_outdated` hatası verir.
+  - `GET /api/jobs` her saniye okunur: işlerin `playlists` önbelleği ve kaynak başlıkları yanıtta yoktur.
+  - `POST /api/jobs` yanıtı `{ids, reused, skipped}`. Gövdede `state: 'resolving'` ile kaynaksız iş
+    açılır. Aynı `pageUrl` varsa yeni iş açılmaz: `resolving/queued/downloading/muxing/paused`
+    var olanı kullanır (`reused`), `failed/canceled` yeniden `resolving` olur (`reused`),
+    `done` atlanır (`skipped`).
+  - `resolve` (`{step, note, attempts, deadlineMs, heartbeat}`), `resolved` (`{source, playlists,
+    subtitles, meta?}`; işi `queued` yapar; `meta` adlar için yok sayılır, adlar kart açılırken
+    belirlenir) ve `fail` (`{code, detail, step}`) yalnızca `resolving` işte
+    geçerlidir; aksi hâlde `409 {error: 'state', detail}` döner, geç çağrı silinmiş işi diriltmez.
+    Geçersiz gövde `400 {error: 'bad_request'}` döner: `resolved` içinde `source.url` yok, ya da
+    `resolve.step` `page`/`video` değil. `fail` içinde `step` `page`/`video` değilse `video` sayılır.
+  - `retry` yanıtı `{ok, resolve, pageUrl}`. `failed` + `stepError` `page`/`video` olan (ya da
+    kaynağı olmayan) iş `resolving` olur ve `resolve: true` döner; eklenti çözümleyiciyi başlatır.
+    Diğer işler kuyruğa döner (`refresh` ile kaynak tazelenir).
 - **Probe:** m3u8 indirir. Master ise kaliteler (`RESOLUTION`, `BANDWIDTH`), ses kanalları
   (`EXT-X-MEDIA TYPE=AUDIO`: ad, dil, varsayılan), altyazı kanalları döner. Medya listesi
-  ise tek kalite + süre döner.
+  ise tek kalite + süre döner. Doğrudan MP4 için süreyi `ffprobe` uzak dosyadan okur
+  (`-show_entries format=duration`); 15 sn zaman aşımı, aşılırsa süre bilinmez. Okunamazsa `duration: null` kalır.
 - **İndirme:** Seçilen kalitenin medya listesi + seçilen grubun bütün ses kanalları indirilir.
   Paralel parça, her parça için yeniden deneme. `EXT-X-KEY AES-128` çözülür, `EXT-X-MAP`
   (fMP4) ve `EXT-X-BYTERANGE` desteklenir. Parça başında TS olmayan çöp bayt varsa ilk geçerli
@@ -164,9 +197,24 @@ döner.
 - **Altyazı:** VTT → SRT (zaman biçimi, cue ayarları atılır, numaralandırma), UTF-8 BOM'lu.
   Dil kodu `lang` alanından; yoksa etiketten (Türkçe/Turkish → `tr` …) ya da URL'den.
   Aynı dilde iki altyazı varsa `.tr.2.srt`.
-- **Kuyruk:** Aynı anda bir iş. Durumlar: `queued`, `downloading`, `muxing`, `done`, `failed`,
-  `canceled`. `jobs.json` ile kalıcı. 403/410 hatalarında mesaj: "Bağlantının süresi doldu —
-  Yeniden dene" (yeniden dene, eklenti tarafından sayfa yeniden açılarak adresler tazelenir).
+- **Yalnızca altyazı:** iş kaydında `subtitlesOnly: true` (popup'taki "Yalnızca altyazı" çipi;
+  sezon kuyruğuna da geçer). Yardımcı video parçası indirmez ve ffmpeg çalıştırmaz: HLS ana
+  listesindeki altyazı kanalları + sayfadan seçilen altyazılar `.srt` olarak videonun gideceği
+  klasöre yazılır; YouTube'da `yt-dlp --skip-download --write-subs`. Hiç altyazı yazılamazsa iş
+  `no_subtitles` ile düşer. Çıktı `output.video = null`; kartta "Oynat" yerine "Klasör", adım
+  çubuğunda "MP4" yok ("İndirme" adımı "Altyazı"). Bildirim: `notify_done_subs_only`.
+- **Kuyruk:** Aynı anda bir iş. Durumlar: `resolving`, `queued`, `downloading`, `muxing`,
+  `done`, `failed`, `canceled` (`paused` da var). `jobs.json` ile kalıcı. `resolving` iş henüz
+  kaynak adresi olmayan sezon bölümüdür; `kick()` yalnızca `queued` işleri alır. Yeni alanlar:
+  `step` (`page|video|download|mux|done`), `stepError` (hatanın adımı), `group`
+  (`{key, name, season, count}`; sezonsuz işte `null`) ve `resolve`
+  (`{attempts, startedAt, deadlineMs, note, heartbeat}`). `load()` kuralı: `downloading/muxing` işler
+  `queued` olur; `startedAt` olan `resolving` iş `failed` olur (`errorCode = episode_interrupted`),
+  hiç başlamamış olan beklemeye devam eder. Bekçi 15 sn'de bir çalışır: `max(startedAt, heartbeat)
+  + deadlineMs + 60 sn` (`deadlineMs` yoksa 90 sn) geçen `resolving` iş `episode_interrupted` ile `failed` olur ve hata
+  bildirimi gider. Çözümleyici deneme sürerken 30 sn'de bir `resolve {heartbeat}` gönderir. Aynı `pageUrl` için ikinci
+  kart açılmaz. 403/410 hatalarında mesaj: "Bağlantının süresi doldu — Yeniden dene" (yeniden
+  dene, eklenti tarafından sayfa yeniden açılarak adresler tazelenir).
 - **Tek daemon.** Tarayıcı aynı anda birkaç native mesaj gönderebilir. `host.js` bir kilit
   dosyası kullanır; `daemon.js` açılışta çalışan başka bir daemon varsa kapanır.
 - **Daemon başlatma.** `host.js` daemon'u WMI (`Win32_Process.Create`) ile başlatır; böylece
@@ -175,6 +223,25 @@ döner.
 - **ffmpeg:** veri klasöründeki `ffmpeg\bin\ffmpeg.exe`, yoksa PATH.
 - **Kurulum:** `install.ps1` — Node kontrolü, ffmpeg indirme (BtbN GitHub sürümü, curl ile),
   native host manifest'i yazma, HKCU altında Chrome, Brave ve Edge için kayıt.
+
+### Bildirimler
+
+- `lib/notify.js` Windows bildirimi gönderir: PowerShell ile `ToastNotificationManager` (AppId
+  `ReelHeist`, ek paket yok). Gönderim işi bekletmez; hata yutulur ve log'a yazılır. Tıklayınca
+  eylem yoktur.
+- Ayar `notify`: `all | errors | off` (varsayılan `all`); popup Ayarlar → İndirme sekmesinden seçilir,
+  `POST /api/settings` ile saklanır. Eklenti aynı çağrıyla `lang` gönderir.
+- Metinler `helper/guide/i18n/<lang>.json` içindeki `notify_*` anahtarlarındadır (12 dil).
+- Kurallar: `all` her bölüm bitişinde bildirir (`av_mismatch` uyarılı metin ayrı), gruptaki son iş
+  bitince tek özet bildirim ekler ve hataları bildirir; `errors` yalnızca `failed` bildirir; `off`
+  hiçbir şey göstermez. Hatalar tek bildirimde toplanmaz. Hata bildirimindeki `{error}` eklentinin
+  çevrilmiş `err_<code>` metnidir (`extension/_locales`, yardımcının yanındaki klasör); metin yoksa
+  `detail` yazılır. Boş bir değer (bilinmeyen boyut) önündeki ` · ` ile birlikte düşer.
+- Devam bildirimi `notify_resume` ("Sezon araması devam ediyor · {n} bölüm kaldı"): çözümleyici
+  tarayıcı açılışında (`chrome.runtime.onStartup`) hiç başlamamış sezon işlerini sürdürürken
+  `resolve` çağrısı `note: 'resume'` ile gelir. Popup açılışı döngüyü başlatır ama bu bildirimi
+  göndermez. Yalnızca `off` kipinde gösterilmez;
+  `errors` kipinde de görünür.
 
 ### Uyarlanabilir indirme
 
@@ -231,3 +298,7 @@ Kendi çözücümüz yerine `yt-dlp` kullanılır (YouTube sık değişir; yt-dl
   `ffprobe` ile akışları doğrulama.
 - Eklenti uçtan uca: Brave'i geçici profil + `--remote-debugging-pipe` ile açıp eklentiyi CDP
   `Extensions.loadUnpacked` ile yükleme; yakalanan kaynak ve altyazıları kontrol etme.
+- Sezon kartları: `helper/test/resolving.test.js` (`resolving` iş, `resolve/resolved/fail/retry`,
+  yeniden başlatma, bekçi, `kick()`), `helper/test/notify.test.js` (bildirim kuralları, `toastArgs`),
+  `extension/test/season.test.mjs` (`lib/season.js`: adım çubuğu, grup sayımı, sıralama).
+- `helper/test/timing.test.js`: uzak MP4 süresi probe testi (`ffprobe` varsa).

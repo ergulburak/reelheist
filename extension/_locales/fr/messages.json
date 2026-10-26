@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "Télécharger"
   },
+  "lbl_subs_only": {
+    "message": "Sous-titres seulement"
+  },
+  "btn_download_subs": {
+    "message": "Télécharger les sous-titres"
+  },
+  "badge_subs_only": {
+    "message": "Sous-titres seulement"
+  },
+  "step_subs": {
+    "message": "Sous-titres"
+  },
+  "err_no_subtitles": {
+    "message": "Aucun sous-titre trouvé sur cette page."
+  },
   "playlist_summary": {
     "message": "Ajouter la playlist à la file"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "La file d'attente est vide."
   },
-  "season_progress": {
-    "message": "Saison : {done}/{total} épisodes prêts"
+  "step_page": {
+    "message": "Page"
   },
-  "season_progress_current": {
-    "message": "Saison : {done}/{total} épisodes prêts (épisode {n} en cours)"
+  "step_video": {
+    "message": "Vidéo"
   },
-  "season_failed": {
-    "message": "Saison {season}, épisode {episode} : ajout impossible : {error}"
+  "step_download": {
+    "message": "Téléch."
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "Terminé"
+  },
+  "resolve_opening": {
+    "message": "Ouverture de la page"
+  },
+  "resolve_waiting": {
+    "message": "Page ouverte, attente du lecteur · {sec} / {max} s"
+  },
+  "resolve_short_only": {
+    "message": "Une courte vidéo a été trouvée, attente de l’épisode · {sec} / {max} s"
+  },
+  "queued_behind": {
+    "message": "En file · {n} avant"
+  },
+  "season_head": {
+    "message": "{name} · Saison {season}"
+  },
+  "season_head_count": {
+    "message": "{n} épisodes"
+  },
+  "season_sum_done": {
+    "message": "{n} terminés"
+  },
+  "season_sum_active": {
+    "message": "{n} en téléchargement"
+  },
+  "season_sum_finding": {
+    "message": "{n} en recherche"
+  },
+  "season_sum_failed": {
+    "message": "{n} en échec"
+  },
+  "season_sum_queued": {
+    "message": "{n} en file"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} téléchargement {pct} %"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} création du MP4"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} en pause"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} en recherche"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} en échec"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "Échecs"
+  },
+  "btn_open_page": {
+    "message": "Ouvrir la page"
+  },
+  "queued_more": {
+    "message": "{list} · en file"
+  },
+  "state_resolving": {
+    "message": "Recherche"
+  },
+  "err_episode_interrupted": {
+    "message": "La recherche s’est arrêtée avant la fin (navigateur ou programme d’assistance fermé). Réessayez."
+  },
+  "err_name_required": {
+    "message": "Le nom de la série est obligatoire."
+  },
+  "resolver_title": {
+    "message": "ReelHeist · {n} épisodes en recherche · ne fermez pas cette fenêtre"
   },
   "overlay_download": {
     "message": "⬇ Télécharger"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "Impossible de se connecter au programme auxiliaire."
+  },
+  "err_helper_outdated": {
+    "message": "Le programme d’assistance n’est pas à jour. Installez la dernière version, puis réessayez."
   },
   "err_episode_timeout": {
     "message": "Aucune vidéo trouvée (délai dépassé)."
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "Licences"
+  },
+  "lbl_notify": {
+    "message": "Notifications"
+  },
+  "notify_all": {
+    "message": "Tous les téléchargements"
+  },
+  "notify_errors": {
+    "message": "Erreurs uniquement"
+  },
+  "notify_off": {
+    "message": "Désactivées"
   }
 }

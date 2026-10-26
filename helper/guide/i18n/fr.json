@@ -16,5 +16,12 @@
   "note_smartscreen_title": "À propos de Windows SmartScreen",
   "note_smartscreen_desc": "Si Windows affiche « Windows a protégé votre PC », cliquez sur « Informations complémentaires » puis « Exécuter quand même ».",
   "reload_title": "Mise à jour d’une installation existante ?",
-  "reload_desc": "Ouvrez la page des Extensions et cliquez sur l’icône Actualiser (↻) sur la carte ReelHeist."
+  "reload_desc": "Ouvrez la page des Extensions et cliquez sur l’icône Actualiser (↻) sur la carte ReelHeist.",
+  "notify_done": "{name} téléchargé · {size}",
+  "notify_done_subs": "{name} téléchargé · {size} · {n} sous-titres",
+  "notify_done_subs_only": "Sous-titres de {name} téléchargés · {n} sous-titres",
+  "notify_done_warn": "{name} téléchargé · vérifiez le fichier, les durées ne correspondent pas",
+  "notify_failed": "{name} n'a pas pu être téléchargé · {error}",
+  "notify_season_done": "{name} saison {season} terminée · {n} épisodes",
+  "notify_resume": "La recherche de la saison continue · {n} épisodes restants"
 }

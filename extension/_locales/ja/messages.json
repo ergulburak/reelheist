@@ -53,6 +53,21 @@
   "btn_download": {
     "message": "ダウンロード"
   },
+  "lbl_subs_only": {
+    "message": "字幕のみ"
+  },
+  "btn_download_subs": {
+    "message": "字幕をダウンロード"
+  },
+  "badge_subs_only": {
+    "message": "字幕のみ"
+  },
+  "step_subs": {
+    "message": "字幕"
+  },
+  "err_no_subtitles": {
+    "message": "このページに字幕は見つかりませんでした。"
+  },
   "playlist_summary": {
     "message": "プレイリストをキューに追加"
   },
@@ -239,14 +254,92 @@
   "queue_empty": {
     "message": "キューは空です。"
   },
-  "season_progress": {
-    "message": "シーズン: {total} 話中 {done} 話が準備完了"
+  "step_page": {
+    "message": "ページ"
   },
-  "season_progress_current": {
-    "message": "シーズン: {total} 話中 {done} 話が準備完了（現在 第 {n} 話）"
+  "step_video": {
+    "message": "動画"
   },
-  "season_failed": {
-    "message": "シーズン {season} 第 {episode} 話を追加できませんでした: {error}"
+  "step_download": {
+    "message": "ダウンロード"
+  },
+  "step_mux": {
+    "message": "MP4"
+  },
+  "step_done": {
+    "message": "完了"
+  },
+  "resolve_opening": {
+    "message": "ページを開いています"
+  },
+  "resolve_waiting": {
+    "message": "ページを開きました。プレーヤーを待っています · {sec} / {max} 秒"
+  },
+  "resolve_short_only": {
+    "message": "短い動画が見つかりました。本編を待っています · {sec} / {max} 秒"
+  },
+  "queued_behind": {
+    "message": "待機中 · 前に {n} 話"
+  },
+  "season_head": {
+    "message": "{name} · シーズン {season}"
+  },
+  "season_head_count": {
+    "message": "{n} 話"
+  },
+  "season_sum_done": {
+    "message": "{n} 完了"
+  },
+  "season_sum_active": {
+    "message": "{n} ダウンロード中"
+  },
+  "season_sum_finding": {
+    "message": "{n} 検索中"
+  },
+  "season_sum_failed": {
+    "message": "{n} 失敗"
+  },
+  "season_sum_queued": {
+    "message": "{n} 待機中"
+  },
+  "ep_sum_downloading": {
+    "message": "E{n} ダウンロード中 {pct}%"
+  },
+  "ep_sum_muxing": {
+    "message": "E{n} MP4 を作成中"
+  },
+  "ep_sum_paused": {
+    "message": "E{n} 一時停止中"
+  },
+  "ep_sum_finding": {
+    "message": "E{n} 検索中"
+  },
+  "ep_sum_failed": {
+    "message": "E{n} 失敗"
+  },
+  "ep_sum_more": {
+    "message": "+{n}"
+  },
+  "btn_retry_failed": {
+    "message": "失敗分"
+  },
+  "btn_open_page": {
+    "message": "ページを開く"
+  },
+  "queued_more": {
+    "message": "{list} · 待機中"
+  },
+  "state_resolving": {
+    "message": "検索中"
+  },
+  "err_episode_interrupted": {
+    "message": "検索が完了前に停止しました（ブラウザーまたはヘルパープログラムが閉じられました）。再試行してください。"
+  },
+  "err_name_required": {
+    "message": "シリーズ名が必要です。"
+  },
+  "resolver_title": {
+    "message": "ReelHeist · {n} 話を検索中 · このウィンドウを閉じないでください"
   },
   "overlay_download": {
     "message": "⬇ ダウンロード"
@@ -298,6 +391,9 @@
   },
   "err_helper_unreachable": {
     "message": "ヘルパープログラムに接続できません。"
+  },
+  "err_helper_outdated": {
+    "message": "ヘルパープログラムが古くなっています。最新版をインストールしてから再試行してください。"
   },
   "err_episode_timeout": {
     "message": "動画が見つかりません（タイムアウト）。"
@@ -619,5 +715,17 @@
   },
   "link_licenses": {
     "message": "ライセンス"
+  },
+  "lbl_notify": {
+    "message": "通知"
+  },
+  "notify_all": {
+    "message": "すべてのダウンロード"
+  },
+  "notify_errors": {
+    "message": "エラーのみ"
+  },
+  "notify_off": {
+    "message": "オフ"
   }
 }

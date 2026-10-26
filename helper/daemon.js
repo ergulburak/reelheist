@@ -21,6 +21,8 @@ const { pickFolder } = require('./lib/pick-folder');
 const releaseConfig = require('./release.json');
 
 const VERSION = require('./package.json').version;
+// What this helper can do. Add a name here together with the extension code that needs it.
+const FEATURES = ['season', 'subs-only'];
 const token = crypto.randomBytes(24).toString('hex');
 let guideServer = null;
 const updater = createUpdateService({ repo: releaseConfig.repo, current: VERSION });
@@ -89,7 +91,10 @@ const server = http.createServer(async (req, res) => {
 
     if (route === 'GET /ping') {
       if (url.searchParams.get('hello') === '1') guideServer?.markConnected();
-      return send(res, 200, { ok: true, version: VERSION, pid: process.pid, ffmpeg: !!findFfmpeg(), guideUrl: guideServer?.url || null });
+      // features: what this helper can do, so a newer extension can tell an older helper apart.
+      return send(res, 200, {
+        ok: true, version: VERSION, pid: process.pid, ffmpeg: !!findFfmpeg(), guideUrl: guideServer?.url || null, features: FEATURES,
+      });
     }
     if (route === 'POST /hello') {
       guideServer?.markConnected();
@@ -133,18 +138,39 @@ const server = http.createServer(async (req, res) => {
     if (route === 'POST /jobs' && parts.length === 2) {
       const body = await readBody(req);
       const items = Array.isArray(body.jobs) ? body.jobs : [body];
-      const added = [];
-      for (const j of items) added.push((await queue.add(j)).id);
-      return send(res, 200, { ids: added });
+      const ids = [], reused = [], skipped = [];
+      for (const j of items) {
+        const r = await queue.add(j);
+        ids.push(r.job.id);
+        if (r.reused) reused.push(r.job.id);
+        if (r.skipped) skipped.push(r.job.id);
+      }
+      return send(res, 200, { ids, reused, skipped });
     }
     if (req.method === 'POST' && parts[1] === 'jobs' && parts.length === 4) {
       const [, , id, action] = parts;
       const job = queue.get(id);
       if (!job) return send(res, 404, { error: 'job' });
       const body = await readBody(req).catch(() => ({}));
+      if (action === 'retry') {
+        const r = await queue.retry(id, body);
+        return send(res, 200, { ok: true, resolve: r.resolve, pageUrl: r.job?.pageUrl || null });
+      }
+      if (action === 'resolve' || action === 'resolved' || action === 'fail') {
+        try {
+          if (action === 'resolve') await queue.resolveUpdate(id, body);
+          else if (action === 'resolved') await queue.resolved(id, body);
+          else await queue.fail(id, body);
+        } catch (e) {
+          // 409: the job is no longer resolving; 400: the body is not valid.
+          if (e.code === 'state') return send(res, 409, { error: 'state', detail: e.detail });
+          if (e.code === 'bad_request') return send(res, 400, { error: 'bad_request', detail: e.detail });
+          throw e;
+        }
+        return send(res, 200, { ok: true });
+      }
       if (action === 'cancel') await queue.cancel(id);
       else if (action === 'pause') await queue.pause(id);
-      else if (action === 'retry') await queue.retry(id, body);
       else if (action === 'remove') await queue.remove(id);
       else if (action === 'open') {
         const play = url.searchParams.get('play') === '1' || body.play === true || body.play === 1;

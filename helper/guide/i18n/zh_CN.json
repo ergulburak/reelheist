@@ -16,5 +16,12 @@
   "note_smartscreen_title": "关于 Windows SmartScreen",
   "note_smartscreen_desc": "如果 Windows 显示“Windows 已保护你的电脑”，请点击“更多信息”→“仍要运行”。",
   "reload_title": "正在更新现有安装？",
-  "reload_desc": "打开扩展程序页面，点击 ReelHeist 卡片上的重新加载 (↻) 图标。"
+  "reload_desc": "打开扩展程序页面，点击 ReelHeist 卡片上的重新加载 (↻) 图标。",
+  "notify_done": "{name} 已下载 · {size}",
+  "notify_done_subs": "{name} 已下载 · {size} · {n} 个字幕",
+  "notify_done_subs_only": "{name} 字幕已下载 · {n} 个字幕",
+  "notify_done_warn": "{name} 已下载 · 请检查文件，时长不一致",
+  "notify_failed": "{name} 下载失败 · {error}",
+  "notify_season_done": "{name} 第 {season} 季已完成 · 共 {n} 集",
+  "notify_resume": "正在继续搜索整季 · 还剩 {n} 集"
 }

@@ -19,6 +19,7 @@ const hls = require('../lib/hls');
 const { discontinuityGroups, writeConcatInputs } = require('../lib/download');
 const { buildArgs, inspect, mux, findFfmpeg, checkOutput, probeStreams } = require('../lib/mux');
 const { request } = require('../lib/http');
+const { probe, fileDuration, fileDurationArgs } = require('../lib/probe');
 
 test('parseMedia numbers discontinuity groups', () => {
   const text = `#EXTM3U
@@ -113,7 +114,7 @@ test('discontinuity: a forward PTS jump does not leave a gap in the MP4', { skip
   await writeConcatInputs(s, 0, work);
   const out = path.join(work, 'out.mp4');
   await mux([s], out, { duration: 8 });
-  const streams = await probeStreams(ffmpeg, out);
+  const streams = await probeStreams(out);
   const v = streams.find(x => x.type === 'video');
   const au = streams.find(x => x.type === 'audio');
   assert.ok(Math.abs(v.duration - 8) < 0.3, `video ${v.duration}`);
@@ -135,7 +136,7 @@ test('separate audio rendition keeps its PTS offset against the video', { skip: 
   assert.ok(Math.abs(ia.start - iv.start - 0.8) < 0.05, `${iv.start} ${ia.start}`);
   const out = path.join(work, 'out.mp4');
   await mux([v, a], out, { duration: 4 });
-  const streams = await probeStreams(ffmpeg, out);
+  const streams = await probeStreams(out);
   const au = streams.find(x => x.type === 'audio');
   assert.ok(Math.abs(au.start - 0.8) < 0.05, `audio starts at ${au.start}, expected 0.8`);
 });
@@ -160,4 +161,65 @@ test('request: idle timeout tolerates a slow stream but aborts a stall', async (
     srv.closeAllConnections?.();
     srv.close();
   }
+});
+
+test('remote mp4 duration is probed', { skip: !canRun }, async () => {
+  const work = fs.mkdtempSync(path.join(os.tmpdir(), 'rh-mp4-'));
+  const file = path.join(work, 'clip.mp4');
+  const r = spawnSync(ffmpeg, ['-hide_banner', '-nostdin', '-y', '-v', 'error',
+    '-f', 'lavfi', '-i', 'testsrc2=s=160x120:r=24:d=3',
+    '-c:v', 'libx264', '-preset', 'ultrafast', '-movflags', '+faststart', '-f', 'mp4', file]);
+  assert.strictEqual(r.status, 0, r.stderr.toString());
+  const size = fs.statSync(file).size;
+  const srv = http.createServer((req, res) => {
+    if (req.url === '/stall.mp4') return; // never answers: only an abort or the timeout ends the probe
+    if (req.url === '/private.mp4' && req.headers.referer !== 'https://site.example/ep1') { res.writeHead(403); res.end(); return; }
+    if (req.url !== '/clip.mp4' && req.url !== '/private.mp4') { res.writeHead(404); res.end(); return; }
+    const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+    if (m) {
+      const start = m[1] === '' ? size - Number(m[2]) : Number(m[1]);
+      const end = m[1] === '' || m[2] === '' ? size - 1 : Math.min(Number(m[2]), size - 1);
+      res.writeHead(206, {
+        'Content-Type': 'video/mp4', 'Accept-Ranges': 'bytes',
+        'Content-Range': `bytes ${start}-${end}/${size}`, 'Content-Length': end - start + 1,
+      });
+      fs.createReadStream(file, { start, end }).pipe(res);
+    } else {
+      res.writeHead(200, { 'Content-Type': 'video/mp4', 'Accept-Ranges': 'bytes', 'Content-Length': size });
+      fs.createReadStream(file).pipe(res);
+    }
+  }).listen(0, '127.0.0.1');
+  await new Promise(resolve => srv.on('listening', resolve));
+  const base = `http://127.0.0.1:${srv.address().port}`;
+  try {
+    const p = await probe({ kind: 'file', url: `${base}/clip.mp4` });
+    assert.strictEqual(p.type, 'file');
+    assert.ok(Math.abs(p.duration - 3) < 0.3, `duration ${p.duration}`);
+    const missing = await probe({ kind: 'file', url: `${base}/missing` });
+    assert.strictEqual(missing.duration, null);
+    // The page's Referer goes with the request.
+    const headers = { Referer: 'https://site.example/ep1' };
+    assert.ok(Math.abs((await fileDuration(`${base}/private.mp4`, headers)) - 3) < 0.3);
+    assert.strictEqual(await fileDuration(`${base}/private.mp4`, {}), null);
+    // An abort ends a stalled probe at once.
+    const ctrl = new AbortController();
+    const t0 = Date.now();
+    setTimeout(() => ctrl.abort(), 300);
+    assert.strictEqual(await fileDuration(`${base}/stall.mp4`, {}, { signal: ctrl.signal }), null);
+    assert.ok(Date.now() - t0 < 5000, `abort took ${Date.now() - t0} ms`);
+  } finally {
+    srv.closeAllConnections?.();
+    srv.close();
+  }
+});
+
+test('fileDuration opens only http(s) and keeps header values on one line', async () => {
+  assert.strictEqual(await fileDuration('file:///C:/Windows/win.ini', {}), null);
+  assert.strictEqual(await fileDuration('C:\Windows\win.ini', {}), null);
+  const args = fileDurationArgs('https://x.example/a.mp4', { Referer: 'https://a.example/\r\nX-Evil: 1' });
+  const h = args[args.indexOf('-headers') + 1];
+  assert.ok(!/\r\nX-Evil/.test(h), h);
+  assert.ok(h.includes('Referer: https://a.example/ X-Evil: 1\r\n'), h);
+  const at = args.indexOf('-protocol_whitelist');
+  assert.deepStrictEqual(args.slice(at, at + 2), ['-protocol_whitelist', 'http,https,tls,tcp,crypto']);
 });
