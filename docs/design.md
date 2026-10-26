@@ -196,7 +196,9 @@ döner.
   ile biter ve kuyrukta uyarı görünür.
 - **Altyazı:** VTT → SRT (zaman biçimi, cue ayarları atılır, numaralandırma), UTF-8 BOM'lu.
   Dil kodu `lang` alanından; yoksa etiketten (Türkçe/Turkish → `tr` …) ya da URL'den.
-  Aynı dilde iki altyazı varsa `.tr.2.srt`.
+  Aynı dilde iki altyazı varsa `.tr.2.srt`. Zorunlu (forced, yalnızca ekran yazıları) altyazı
+  `.tr.forced.srt` adını alır: HLS `FORCED=YES`, "Forced"/"Zorunlu" etiketi ya da dosya adında
+  `.forced.` ile tanınır. Böylece sayfadaki sıra ne olursa olsun `.tr.srt` tam altyazıdır.
 - **Yalnızca altyazı:** iş kaydında `subtitlesOnly: true` (popup'taki "Yalnızca altyazı" çipi;
   sezon kuyruğuna da geçer). Yardımcı video parçası indirmez ve ffmpeg çalıştırmaz: HLS ana
   listesindeki altyazı kanalları + sayfadan seçilen altyazılar `.srt` olarak videonun gideceği

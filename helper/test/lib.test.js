@@ -140,6 +140,23 @@ test('buildNames and subtitle suffixes', () => {
     ['tr', 'en', 'tr.2']);
 });
 
+test('forced subtitles get a ".forced" suffix, whatever the page order', () => {
+  // Real order from a season page (What We Do in the Shadows S01E02): forced track first.
+  const base = 'https://cdn.example/s01e02-webdl-trdual';
+  const forced = { label: 'Forced', url: `${base}_subtitles02.tur.forced.vtt` };
+  const full = { label: 'Turkish', url: `${base}_subtitles03.tur.vtt` };
+  const en = { label: 'English', url: `${base}_subtitles01.eng.vtt` };
+  assert.deepStrictEqual(names.subtitleSuffixes([forced, en, full]), ['tr.forced', 'en', 'tr']);
+  assert.deepStrictEqual(names.subtitleSuffixes([full, en, forced]), ['tr', 'en', 'tr.forced']);
+  // HLS FORCED=YES flag, and a Turkish label.
+  assert.deepStrictEqual(names.subtitleSuffixes([{ lang: 'tr', forced: true }, { lang: 'tr' }]), ['tr.forced', 'tr']);
+  assert.deepStrictEqual(names.subtitleSuffixes([{ label: 'Türkçe (Zorunlu)' }, { label: 'Türkçe' }]), ['tr.forced', 'tr']);
+  assert.deepStrictEqual(names.subtitleSuffixes([{ lang: 'tr', forced: true }, { lang: 'tr', forced: true }]),
+    ['tr.forced', 'tr.forced.2']);
+  // "forced" inside a word is not a flag.
+  assert.strictEqual(names.isForcedSubtitle({ label: 'Unforced Errors', url: 'https://x/unforced.en.vtt' }), false);
+});
+
 test('buildArgs maps every audio and tags languages', () => {
   const args = buildArgs([
     { file: 'v.ts' },

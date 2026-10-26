@@ -118,7 +118,7 @@ async function planHlsSubtitles(job, signal) {
   const headers = job.source.headers;
   const { text, finalUrl } = await getText(job.source.url, { headers, signal, cache: job.playlists || null });
   if (!hls.isMaster(text)) return [];
-  return hls.parseMaster(text, finalUrl).subtitles.map(s => ({ hls: true, url: s.url, lang: s.lang, label: s.name, headers }));
+  return hls.parseMaster(text, finalUrl).subtitles.map(s => ({ hls: true, url: s.url, lang: s.lang, label: s.name, forced: s.forced, headers }));
 }
 
 // Build the list of streams to fetch for an HLS job.

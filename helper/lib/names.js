@@ -94,14 +94,25 @@ function buildNames(meta) {
   return { folder: withYear, base: withYear };
 }
 
-// Give each subtitle a unique ".lang" suffix: tr, tr.2, tr.3 …
+// A forced track has only on-screen text (signs, foreign lines). Sources mark it with the
+// HLS FORCED=YES flag, a "Forced"/"Zorunlu" label or a ".forced." part in the file name.
+function isForcedSubtitle({ forced, label, url } = {}) {
+  if (forced === true) return true;
+  if (/(^|[^\p{L}])(forced|zorunlu)([^\p{L}]|$)/iu.test(label || '')) return true;
+  return /[._-]forced[._-]/i.test(fileNameOf(url));
+}
+
+// Give each subtitle a unique ".lang" suffix: tr, tr.2, tr.3 … A forced track gets
+// ".lang.forced" (the name Plex, Jellyfin and VLC read), so the page order never gives
+// the plain ".tr.srt" name to a signs-only file.
 function subtitleSuffixes(subs) {
   const seen = {};
   return subs.map(s => {
     const code = guessLang(s);
-    seen[code] = (seen[code] || 0) + 1;
-    return seen[code] === 1 ? code : `${code}.${seen[code]}`;
+    const key = isForcedSubtitle(s) ? `${code}.forced` : code;
+    seen[key] = (seen[key] || 0) + 1;
+    return seen[key] === 1 ? key : `${key}.${seen[key]}`;
   });
 }
 
-module.exports = { guessLang, normalizeLang, toLang3, sanitize, buildNames, subtitleSuffixes };
+module.exports = { guessLang, normalizeLang, toLang3, sanitize, buildNames, subtitleSuffixes, isForcedSubtitle };
