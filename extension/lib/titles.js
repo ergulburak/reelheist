@@ -20,9 +20,11 @@ function pathOf(url) {
   try { return decodeURIComponent(new URL(url).pathname); } catch { return url || ''; }
 }
 
+// A pack pattern may leave the season out of the match (an optional group, for sites whose
+// first-season addresses carry no season): the episode is in season 1 then.
 function fromGroups(m) {
   const g = m.groups || {};
-  return { season: Number(g.season), episode: Number(g.episode) };
+  return { season: g.season === undefined ? 1 : Number(g.season), episode: Number(g.episode) };
 }
 
 const EPISODE_TEXT_PATTERNS = [

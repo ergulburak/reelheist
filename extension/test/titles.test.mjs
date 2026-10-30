@@ -110,3 +110,33 @@ test('collectEpisodes uses pack linkUrl and same series key', () => {
   ], pack);
   assert.deepStrictEqual(eps.map(e => `${e.season}x${e.episode}`), ['1x1', '2x7']);
 });
+
+// Flat addresses: "/<slug>[-<season>-part]-<episode>-ep-watch", the series page under "/show/".
+const flat = {
+  schema: 1, id: 'flat', name: 'Flat', version: '1.0.0', hosts: ['flat.example'],
+  title: {
+    episodeUrl: ['(?:-(?<season>\\d{1,2})-part)?-(?<episode>\\d{1,4})-ep-watch(?:-[a-z0-9]+)?/?$'],
+    slugUrl: '^/(?:show/)?(?<slug>[^/]+?)(?:-\\d{1,2}-part)?(?:-\\d{1,4}-ep)?-watch(?:-[a-z0-9]+)?/?$',
+  },
+};
+
+test('pack episodeUrl with an optional season group: no season means season 1', () => {
+  assert.deepStrictEqual(parseEpisode('https://flat.example/some-show-2024-7-ep-watch', '', flat), { season: 1, episode: 7 });
+  assert.deepStrictEqual(parseEpisode('https://flat.example/some-show-2024-2-part-7-ep-watch-1', '', flat), { season: 2, episode: 7 });
+  assert.strictEqual(parseEpisode('https://flat.example/show/some-show-2024-watch-1', '', flat), null);
+});
+
+test('flat addresses share one series key with and without a season', () => {
+  const key = seriesKey('https://flat.example/show/Some-Show-2024-watch-1', flat);
+  assert.strictEqual(key, 'flat.example/some-show-2024');
+  assert.strictEqual(seriesKey('https://flat.example/some-show-2024-7-ep-watch', flat), key);
+  assert.strictEqual(seriesKey('https://flat.example/show/some-show-2024-2-part-watch', flat), key);
+  assert.strictEqual(seriesKey('https://flat.example/some-show-2024-2-part-7-ep-watch', flat), key);
+  const eps = collectEpisodes('https://flat.example/show/Some-Show-2024-watch-1', [
+    { href: 'https://flat.example/some-show-2024-1-ep-watch', text: '1' },
+    { href: 'https://flat.example/some-show-2024-12-ep-watch', text: '12' },
+    { href: 'https://flat.example/some-show-2024-2-part-1-ep-watch', text: 's2 1' },
+    { href: 'https://flat.example/some-show-3-ep-watch', text: 'other series' },
+  ], flat);
+  assert.deepStrictEqual(eps.map(e => `${e.season}x${e.episode}`), ['1x1', '1x12', '2x1']);
+});

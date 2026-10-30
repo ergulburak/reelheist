@@ -18,7 +18,7 @@ Regex strings are compiled with the `i` flag.
 | `lang` | string, optional | Content language, for example `en`. |
 | `hosts` | string[] | Lowercase hostname patterns. `*` is allowed only inside the hostname, for example `a*.com` or `*.a.com`. No scheme, path, port or spaces. |
 | `title.strip` | string[], optional | Regexes. Matches are removed from the page title. |
-| `title.episodeUrl` | string[], optional | Regexes with named groups `(?<season>)` and `(?<episode>)`. |
+| `title.episodeUrl` | string[], optional | Regexes with named groups `(?<season>)` and `(?<episode>)`. The season group may be optional: an address without a season is season 1. |
 | `title.slugUrl` | string, optional | Regex with named group `(?<slug>)`. |
 | `title.yearUrl` | string, optional | Regex. The first capture is the year. |
 | `episodes.linkUrl` | string[], optional | Regexes with groups `(?<season>)` and `(?<episode>)` for episode links. |

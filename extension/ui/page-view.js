@@ -332,6 +332,13 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
     };
   }
 
+  async function hasEpisodeList() {
+    try {
+      const { episodes } = await bg({ type: 'episodes' });
+      return Boolean(episodes?.length);
+    } catch { return false; }
+  }
+
   async function updateSeasonHint() {
     const row = $('seasonHintRow');
     row.hidden = true;
@@ -542,7 +549,9 @@ export function createPageView({ bg, getUi, getSettings, setSettings, errText, s
       $('episode').value = m.episode ?? '';
       $('year').value = m.year ?? '';
       updateKindFields();
-      $('seasonBox').hidden = m.kind !== 'episode';
+      // A series page is not an episode but lists them (anime sites keep the list off the
+      // episode pages): the season box belongs there too.
+      $('seasonBox').hidden = m.kind !== 'episode' && !(await hasEpisodeList());
 
       if (!state.sources.length) {
         setViewState('searching');
