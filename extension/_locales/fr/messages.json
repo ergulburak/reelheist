@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name} : {n} nouveaux épisodes ({list}). Les télécharger ?"
   },
+  "follow_notify_one": {
+    "message": "{name} : 1 nouvel épisode ({list}). Le télécharger ?"
+  },
+  "err_follow_no_list": {
+    "message": "Cette page n'a pas de liste d'épisodes à suivre."
+  },
+  "follow_busy": {
+    "message": "Une recherche de saison est en cours. La vérification reprendra dans 10 minutes."
+  },
   "follow_not_now": {
     "message": "Pas maintenant"
   },

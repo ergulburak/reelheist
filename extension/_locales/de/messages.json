@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: {n} neue Folgen ({list}). Herunterladen?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 neue Folge ({list}). Herunterladen?"
+  },
+  "err_follow_no_list": {
+    "message": "Diese Seite hat keine Folgenliste zum Verfolgen."
+  },
+  "follow_busy": {
+    "message": "Eine Staffelsuche läuft. Die Prüfung wird in 10 Minuten wiederholt."
+  },
   "follow_not_now": {
     "message": "Nicht jetzt"
   },

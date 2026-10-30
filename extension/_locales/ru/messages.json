@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: новых серий — {n} ({list}). Скачать?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 новая серия ({list}). Скачать?"
+  },
+  "err_follow_no_list": {
+    "message": "На этой странице нет списка серий для отслеживания."
+  },
+  "follow_busy": {
+    "message": "Идёт поиск сезона. Проверка повторится через 10 минут."
+  },
   "follow_not_now": {
     "message": "Не сейчас"
   },

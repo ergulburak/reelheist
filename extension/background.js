@@ -10,6 +10,7 @@ import { createStore } from './lib/packs/store.js';
 import { createFollowStore } from './lib/follow-store.js';
 import {
   epId, createFollow, diffFollow, toNotify, markNotified, prunePending, dismiss, followOptions, latestUrl, sameSeries,
+  followNotifyKey,
 } from './lib/follow.js';
 import { syncDynamicRules as syncRules } from './lib/packs/dnr.js';
 
@@ -286,6 +287,7 @@ async function handle(msg, sender) {
     case 'follow-remove':
       await followStore.remove(msg.id);
       chrome.notifications.clear(`follow:${msg.id}`).catch(() => {});
+      await ensureFollowAlarm();
       return { ok: true };
     case 'follow-list':
       return { follows: await prunedFollows() };
@@ -810,7 +812,7 @@ async function addFollow(tabId, name) {
   const { pageUrl, pack, st } = await tabPage(tabId);
   const links = await chrome.tabs.sendMessage(tabId, { type: 'links' }, { frameId: 0 }).catch(() => []);
   const episodes = collectEpisodes(pageUrl, links || [], pack);
-  if (!episodes.length) throw Object.assign(new Error('No episode list on this page'), { code: 'episode_unreadable' });
+  if (!episodes.length) throw Object.assign(new Error('No episode list on this page'), { code: 'follow_no_list' });
   const n = String(name || '').trim() || st?.meta?.name || '';
   if (!n) throw Object.assign(new Error('Series name is required'), { code: 'name_required' });
   const follow = await followStore.add(createFollow({ url: pageUrl, name: n, key: seriesKey(pageUrl, pack), episodes }));
@@ -904,7 +906,7 @@ async function notifyFollow(follow) {
     type: 'basic',
     iconUrl: 'icons/icon128.png',
     title: 'ReelHeist',
-    message: t('follow_notify', { name: follow.name, n: items.length, list }),
+    message: t(followNotifyKey(items.length), { name: follow.name, n: items.length, list }),
     buttons: [{ title: t('btn_download') }, { title: t('follow_not_now') }],
     requireInteraction: true,
   });
@@ -943,7 +945,9 @@ async function prunedFollows() {
   return out;
 }
 
+// The check alarm runs only while there is something to check.
 async function ensureFollowAlarm(reset = false) {
+  if (!(await followStore.list()).length) return chrome.alarms.clear('follow-check');
   if (!reset && await chrome.alarms.get('follow-check')) return;
   chrome.alarms.create('follow-check', { delayInMinutes: 1, periodInMinutes: FOLLOW_PERIOD_MIN });
 }

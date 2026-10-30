@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import { epId, createFollow, diffFollow, toNotify, markNotified, prunePending, dismiss, followOptions } from '../lib/follow.js';
+import { epId, createFollow, diffFollow, toNotify, markNotified, prunePending, dismiss, followOptions, followNotifyKey } from '../lib/follow.js';
 
 const ep = (season, episode, host = 'site.test') => ({ season, episode, url: `https://${host}/dizi/demo/sezon-${season}/bolum-${episode}/` });
 const base = () => createFollow({ url: 'https://site.test/dizi/demo/', name: 'Demo', key: 'site.test/dizi/demo', episodes: [ep(1, 1), ep(1, 2), ep(1, 3)], now: 1000 });
@@ -103,4 +103,10 @@ test('prunePending drops an episode downloaded from its own page (a job without 
   let { follow } = diffFollow(base(), [ep(1, 4), ep(1, 5)], 2);
   follow = prunePending(follow, [{ state: 'done', group: null, pageUrl: ep(1, 4).url, meta: { kind: 'episode', episode: 4 } }]);
   assert.deepStrictEqual(follow.pending.map(e => epId(e.season, e.episode)), ['1x5']);
+});
+
+test('followNotifyKey picks the singular text for one episode', () => {
+  assert.strictEqual(followNotifyKey(1), 'follow_notify_one');
+  assert.strictEqual(followNotifyKey(2), 'follow_notify');
+  assert.strictEqual(followNotifyKey(7), 'follow_notify');
 });

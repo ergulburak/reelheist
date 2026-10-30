@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: {n} episodios nuevos ({list}). ¿Los descargo?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 episodio nuevo ({list}). ¿Lo descargo?"
+  },
+  "err_follow_no_list": {
+    "message": "Esta página no tiene una lista de episodios para seguir."
+  },
+  "follow_busy": {
+    "message": "Hay una búsqueda de temporada en curso. La comprobación se repetirá en 10 minutos."
+  },
   "follow_not_now": {
     "message": "Ahora no"
   },

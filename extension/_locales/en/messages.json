@@ -781,6 +781,15 @@
   "follow_notify": {
     "message": "{name}: {n} new episodes ({list}). Download them?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 new episode ({list}). Download it?"
+  },
+  "err_follow_no_list": {
+    "message": "This page has no episode list to follow."
+  },
+  "follow_busy": {
+    "message": "A season search is running. The check will run again in 10 minutes."
+  },
   "follow_not_now": {
     "message": "Not now"
   },

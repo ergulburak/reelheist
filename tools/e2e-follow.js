@@ -73,6 +73,7 @@ async function removeDemoJobs() {
     // 1. Follow from the series page: every listed episode is seen.
     const st0 = await msg({ type: 'follow-status' });
     assert.strictEqual(st0.follow, null, 'not followed yet');
+    assert.strictEqual(await b.evaluate(sw, `chrome.alarms.get('follow-check').then(a => !!a)`), false, 'no check alarm without a follow');
     const added = await msg({ type: 'follow-add', name: 'Demo' });
     assert.ok(added.follow?.id, JSON.stringify(added));
     let f = (await follows())[0];
@@ -168,8 +169,10 @@ async function removeDemoJobs() {
     console.log('ok 6 busy while the resolver runs');
     await removeDemoJobs();
 
-    // 7. Remove from the card, unfollow.
+    // 7. Remove from the card, unfollow. One new episode is announced in the singular.
     site.episodes.push([2, 3]);
+    await b.evaluate(sw, `(() => { const o = chrome.notifications.create.bind(chrome.notifications);
+      self.__notes = {}; chrome.notifications.create = (id, opts) => { self.__notes[id] = opts; return o(id, opts); }; })()`);
     // The canceled season search needs a few seconds to stop and close its window.
     let r7 = 'busy';
     for (let i = 0; i < 15 && r7 === 'busy'; i++) {
@@ -178,14 +181,28 @@ async function removeDemoJobs() {
     }
     assert.strictEqual(r7, 'done');
     f = (await follows())[0];
+    const note7 = await b.evaluate(sw, `self.__notes['follow:${f.id}']`);
+    assert.strictEqual(note7?.message, 'Demo: 1 yeni bölüm (S02E03). İndireyim mi?', JSON.stringify(note7));
     const last = f.pending[f.pending.length - 1];
     if (last) {
       await msg({ type: 'follow-dismiss', id: f.id, epId: `${last.season}x${last.episode}` });
       assert.ok(!(await follows())[0].pending.some(p => p.season === last.season && p.episode === last.episode));
     }
+    await b.evaluate(sw, `chrome.alarms.create('follow-check', { periodInMinutes: 360 })`);
     await msg({ type: 'follow-remove', id: f.id });
     assert.deepStrictEqual(await follows(), []);
+    assert.strictEqual(await b.evaluate(sw, `chrome.alarms.get('follow-check').then(a => !!a)`), false, 'check alarm cleared with the last follow');
     console.log('ok 7 dismiss and unfollow');
+
+    // 8. A page without an episode list cannot be followed, and the error says so.
+    const { targetId: noneT } = await b.send('Target.createTarget', { url: `${base}/nothing-here` });
+    await sleep(2000);
+    const tabs8 = await b.evaluate(sw, 'chrome.tabs.query({}).then(t => t.map(x => ({ id: x.id, url: x.url })))');
+    const noneTab = tabs8.find(t => t.url.startsWith(`${base}/nothing-here`)).id;
+    const r8 = await b.evaluate(pop, `chrome.runtime.sendMessage(${JSON.stringify({ tabId: noneTab, type: 'follow-add', name: 'None' })})`);
+    assert.strictEqual(r8?.code, 'follow_no_list', JSON.stringify(r8));
+    await b.send('Target.closeTarget', { targetId: noneT });
+    console.log('ok 8 no episode list: follow_no_list');
 
     if (UI) await require('./e2e-follow-ui').run({ b, sw, pop, extId, tabId, base, site, msg, follows });
     console.log('e2e-follow: PASS');

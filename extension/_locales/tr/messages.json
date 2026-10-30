@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: {n} yeni bölüm ({list}). İndireyim mi?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 yeni bölüm ({list}). İndireyim mi?"
+  },
+  "err_follow_no_list": {
+    "message": "Bu sayfada takip edilecek bir bölüm listesi yok."
+  },
+  "follow_busy": {
+    "message": "Bir sezon araması sürüyor. Kontrol 10 dakika sonra yeniden denenecek."
+  },
   "follow_not_now": {
     "message": "Şimdi değil"
   },

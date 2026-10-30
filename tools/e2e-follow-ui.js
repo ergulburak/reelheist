@@ -73,6 +73,12 @@ async function run({ b, sw, pop, extId, tabId, base, site, msg, follows }) {
   await sleep(600);
   const item = await ev(`(() => { const r = document.querySelector('#followList .follow-item'); return r ? r.textContent : null; })()`);
   assert.ok(item && item.includes('Demo') && item.includes('Son kontrol'), String(item));
+  // "Check now" while a season search runs says that the check waits.
+  await msg({ type: 'queue-episodes', items: [{ url: `${base}/show/demo/season-1/episode-1/`, season: 1, episode: 1 }], options: { name: 'Demo' } });
+  await ev(`document.querySelector('#followList .follow-item .btn-follow-check').click()`);
+  await sleep(1500);
+  assert.match(await ev(`document.getElementById('followList').textContent`), /sezon araması sürüyor/i);
+  console.log('ok ui-3a busy check is reported');
   await ev(`document.querySelector('#followList .follow-item .btn-follow-unfollow').click()`);
   await sleep(1200);
   assert.deepStrictEqual(await follows(), []);

@@ -77,3 +77,16 @@ test('applyTheme sets data-theme and rejects unknown names', () => {
   assert.strictEqual(applyTheme('nope', doc), 'red');
   assert.deepStrictEqual(THEMES, ['red', 'black-beige', 'beige-black', 'midnight', 'emerald', 'amethyst', 'amber', 'snow', 'rose', 'velvet', 'neon', 'sunset', 'arctic', 'graphite', 'lavender']);
 });
+
+test('one new episode is announced in the singular', async () => {
+  await initI18n('en', { loader });
+  assert.strictEqual(t('follow_notify_one', { name: 'Demo', list: 'S01E04' }), 'Demo: 1 new episode (S01E04). Download it?');
+  assert.strictEqual(t('follow_notify', { name: 'Demo', n: 2, list: 'S01E04, S01E05' }), 'Demo: 2 new episodes (S01E04, S01E05). Download them?');
+});
+
+test('the follow texts the popup shows exist in every locale', () => {
+  for (const l of LOCALES) {
+    const m = read(l);
+    for (const k of ['follow_notify_one', 'err_follow_no_list', 'follow_busy']) assert.ok(m[k]?.message.trim(), `${l}.${k}`);
+  }
+});

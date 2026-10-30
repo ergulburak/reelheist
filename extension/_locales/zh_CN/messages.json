@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}：{n} 集新剧集（{list}）。要下载吗？"
   },
+  "follow_notify_one": {
+    "message": "{name}：1 集新剧集（{list}）。要下载吗？"
+  },
+  "err_follow_no_list": {
+    "message": "此页面没有可关注的剧集列表。"
+  },
+  "follow_busy": {
+    "message": "正在搜索季。检查将在 10 分钟后重试。"
+  },
   "follow_not_now": {
     "message": "以后再说"
   },

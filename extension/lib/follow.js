@@ -112,3 +112,6 @@ export function followOptions(ui, uiLang, name) {
     embedSubs: embedSubsOption(ui, uiLang),
   };
 }
+
+// The notification text key: one episode reads in the singular.
+export const followNotifyKey = n => (n === 1 ? 'follow_notify_one' : 'follow_notify');

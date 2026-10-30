@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: {n} حلقات جديدة ({list}). هل أنزّلها؟"
   },
+  "follow_notify_one": {
+    "message": "{name}: حلقة جديدة واحدة ({list}). هل أنزّلها؟"
+  },
+  "err_follow_no_list": {
+    "message": "لا توجد في هذه الصفحة قائمة حلقات لمتابعتها."
+  },
+  "follow_busy": {
+    "message": "يجري البحث عن موسم. سيُعاد الفحص بعد 10 دقائق."
+  },
   "follow_not_now": {
     "message": "ليس الآن"
   },

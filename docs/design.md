@@ -262,7 +262,8 @@ döner.
   çıkar (`#followRow`). Takip kaydı `chrome.storage.local` → `follows` içindedir (`lib/follow.js`,
   `lib/follow-store.js`): sayfa adresi, ad, görülen bölümler (`sezon x bölüm`), bölüm adresleri,
   bekleyenler (`pending`), bildirilenler (`notified`), son kontrol ve son hata.
-- Kontrol: tarayıcı açılınca 1 dk sonra ve 6 saatte bir (`follow-check` alarmı). Sayfa çözümleyici
+- Kontrol: tarayıcı açılınca 1 dk sonra ve 6 saatte bir (`follow-check` alarmı). Alarm yalnızca en az
+  bir takip varken kurulur; son takip silinince kaldırılır (`ensureFollowAlarm`). Sayfa çözümleyici
   penceresinde açılır, `links` ile bağlantılar okunur, `collectEpisodes` bölümleri çıkarır. Sayfa
   boş gelirse bilinen en son bölümün sayfası denenir; o da boşsa hiçbir şey yeni sayılmaz ve
   `lastError` yazılır. Bir kontrol en çok 60 sn sürer. Sezon araması çalışıyorsa kontrol beklemeye
@@ -271,14 +272,16 @@ döner.
 - Bölüm kimliği sezon ve bölüm numarasıdır. Görülmemiş her numara yenidir (eski bir sezona sonradan
   eklenen de). Takip başladığında sayfada görünen bölümler görülmüş sayılır.
 - Yeni bölümler için tek bir `chrome.notifications` bildirimi gelir ("İndir", "Şimdi değil"); her
-  bölüm en çok bir kez bildirilir. Bölümler popup'taki "Yeni bölümler" kartında (`#followCard`)
+  bölüm en çok bir kez bildirilir. Tek bölümde metin tekildir (`follow_notify_one`, `followNotifyKey`). Bölümler popup'taki "Yeni bölümler" kartında (`#followCard`)
   "İndir" ve "Kaldır" ile durur; kuyruğa giren (herhangi bir yoldan) karttan çıkar. "İndir",
   popup açık değilken kayıtlı ayarlardan seçenek kurar (`followOptions`) ve `queueEpisodes` ile
   sezon kuyruğuna ekler. Açık kalan bir bildirimi sonraki kontrol değiştirir; yeni bildirim eski ve
   yeni bölümleri birlikte sorar. Bildirimden "İndir" hata verirse (`follow-error:<id>`) bir hata
   bildirimi gelir. Bölüm, kendi sayfasından tek başına indirilse de (aynı adres) karttan çıkar.
 - Ayarlar → İndirme → "Takip edilen diziler": son kontrol ya da hata, "Şimdi kontrol et",
-  "Takipten çık". Uçtan uca test: `node tools/e2e-follow.js --ui`.
+  "Takipten çık". "Şimdi kontrol et" sezon araması yüzünden beklemeye alınırsa listenin altında
+  bunu söyleyen bir satır çıkar (`follow_busy`). Bölüm listesi olmayan bir sayfada "Takip et"
+  `follow_no_list` hatası verir (video hatasıyla karışmaz). Uçtan uca test: `node tools/e2e-follow.js --ui`.
 
 ### Bildirimler
 

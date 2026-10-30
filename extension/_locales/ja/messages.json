@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: 新しいエピソード {n} 件（{list}）。ダウンロードしますか？"
   },
+  "follow_notify_one": {
+    "message": "{name}: 新しいエピソード 1 件（{list}）。ダウンロードしますか？"
+  },
+  "err_follow_no_list": {
+    "message": "このページにはフォローできるエピソード一覧がありません。"
+  },
+  "follow_busy": {
+    "message": "シーズン検索の実行中です。10 分後に再確認します。"
+  },
   "follow_not_now": {
     "message": "今はしない"
   },

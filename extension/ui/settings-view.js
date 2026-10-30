@@ -369,12 +369,15 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
   }
 
   // Settings → Download: followed series, their last check, "Check now" and "Unfollow".
+  let followNote = ''; // what the last "Check now" answered, shown once under the list
   async function renderFollows() {
     const box = $('followList');
     if (!box) return;
     const { follows } = await bg({ type: 'follow-list' }).catch(() => ({ follows: [] }));
+    const note = followNote ? [h('div', { class: 'muted small follow-note' }, followNote)] : [];
+    followNote = '';
     if (!follows?.length) {
-      box.replaceChildren(h('div', { class: 'muted small' }, t('follow_none')));
+      box.replaceChildren(h('div', { class: 'muted small' }, t('follow_none')), ...note);
       return;
     }
     const when = ms => new Date(ms).toLocaleString(langTag(), { dateStyle: 'short', timeStyle: 'short' });
@@ -396,8 +399,11 @@ export function createSettingsView({ bg, getUi, setUi, getSettings, setSettings,
         f.lastError
           ? h('div', { class: 'follow-item-meta err' }, t('follow_err'))
           : h('div', { class: 'follow-item-meta' }, t('follow_last_check', { time: when(f.lastCheck) }))),
-      button(t('follow_check_now'), 'btn-follow-check', () => bg({ type: 'follow-check-now' })),
-      button(t('follow_unfollow'), 'btn-follow-unfollow', () => bg({ type: 'follow-remove', id: f.id })))));
+      button(t('follow_check_now'), 'btn-follow-check', async () => {
+        const { result } = await bg({ type: 'follow-check-now' });
+        if (result === 'busy') followNote = t('follow_busy');
+      }),
+      button(t('follow_unfollow'), 'btn-follow-unfollow', () => bg({ type: 'follow-remove', id: f.id })))), ...note);
   }
 
   async function open() {

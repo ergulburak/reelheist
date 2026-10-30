@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: {n} नए एपिसोड ({list}). डाउनलोड करूँ?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 नया एपिसोड ({list}). डाउनलोड करूँ?"
+  },
+  "err_follow_no_list": {
+    "message": "इस पेज पर फ़ॉलो करने के लिए एपिसोड सूची नहीं है।"
+  },
+  "follow_busy": {
+    "message": "सीज़न खोज चल रही है। जाँच 10 मिनट बाद फिर होगी।"
+  },
   "follow_not_now": {
     "message": "अभी नहीं"
   },

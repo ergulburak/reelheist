@@ -773,6 +773,15 @@
   "follow_notify": {
     "message": "{name}: {n} episode baru ({list}). Unduh?"
   },
+  "follow_notify_one": {
+    "message": "{name}: 1 episode baru ({list}). Unduh?"
+  },
+  "err_follow_no_list": {
+    "message": "Halaman ini tidak punya daftar episode untuk diikuti."
+  },
+  "follow_busy": {
+    "message": "Pencarian musim sedang berjalan. Pemeriksaan akan diulang 10 menit lagi."
+  },
   "follow_not_now": {
     "message": "Nanti saja"
   },
