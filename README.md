@@ -18,6 +18,10 @@
 
 ---
 
+## What's new in 0.4.1
+
+- **Follow a series, four small fixes:** one new episode is announced in the singular; "Follow" on a page without an episode list says so; "Check now" tells you when it waits for a running season search; the 6-hour check runs only while a series is followed.
+
 ## What's new in 0.4.0
 
 - **Follow a series:** press "Follow" on a series or episode page. When ReelHeist finds new episodes or a new season, a notification asks "Download them?" and a "New episodes" card waits in the popup. Nothing downloads without your answer. The list is under Settings → Download.
@@ -65,7 +69,7 @@
 
 ## Installation (Windows)
 
-1. Download **`ReelHeist-Setup-0.4.0.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
+1. Download **`ReelHeist-Setup-0.4.1.exe`** from the [GitHub Releases](https://github.com/ergulburak/reelheist/releases) page and run it.
    - **Windows SmartScreen notice:** Because the installer is not signed with a commercial code-signing certificate yet, Windows may display *"Windows protected your PC"*. Click **More info** → **Run anyway**.
 2. Choose your language and complete the setup wizard. No administrator privileges are required (installs under `%LOCALAPPDATA%\ReelHeist`).
 3. At the end of setup, the **Guided Extension Setup** page opens automatically in your browser:

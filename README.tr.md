@@ -20,6 +20,10 @@
 
 ---
 
+## 0.4.1 sürümündeki yenilikler
+
+- **Diziyi takip et, dört küçük düzeltme:** tek yeni bölüm tekil olarak bildirilir; bölüm listesi olmayan sayfada "Takip et" bunu söyler; "Şimdi kontrol et" süren bir sezon aramasını beklediğini bildirir; 6 saatlik kontrol yalnızca takip edilen dizi varken çalışır.
+
 ## 0.4.0 sürümündeki yenilikler
 
 - **Diziyi takip et:** dizi ya da bölüm sayfasında "Takip et" düğmesine basın. ReelHeist yeni bölüm ya da yeni sezon bulunca bir bildirim "İndireyim mi?" diye sorar ve popup'ta bir "Yeni bölümler" kartı bekler. Cevabınız olmadan hiçbir şey inmez. Liste Ayarlar → İndirme altındadır.
@@ -67,7 +71,7 @@
 
 ## Kurulum (Windows)
 
-1. [GitHub Releases](https://github.com/ergulburak/reelheist/releases) sayfasından **`ReelHeist-Setup-0.4.0.exe`** dosyasını indirip çalıştırın.
+1. [GitHub Releases](https://github.com/ergulburak/reelheist/releases) sayfasından **`ReelHeist-Setup-0.4.1.exe`** dosyasını indirip çalıştırın.
    - **Windows SmartScreen uyarısı:** Kurulum programı henüz ücretli bir sertifikayla imzalanmadığı için Windows *"Bilgisayarınız korundu"* uyarısı gösterebilir. **Ek bilgi** → **Yine de çalıştır** seçeneğine tıklayın.
 2. Dilinizi seçin ve kurulumu tamamlayın. Yönetici izni gerekmez (`%LOCALAPPDATA%\ReelHeist` altına kurulur).
 3. Kurulum sonunda tarayıcınızda **Rehberli Eklenti Kurulum** sayfası otomatik olarak açılır:
